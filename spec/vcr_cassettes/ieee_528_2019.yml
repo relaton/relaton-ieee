@@ -1,0 +1,88 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://standards.ieee.org/bin/standards/search?data=%7B%22data%22:%7B%22searchTerm%22:%22528-2019%22%7D%7D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 29 Apr 2020 13:46:27 GMT
+      Cache-Control:
+      - no-cache="set-cookie"
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Host,Accept-Encoding,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      Content-Length:
+      - '847'
+      Set-Cookie:
+      - AWSELB=77AF5BDD1C1D50E4D12118E21FBA1C1FB04C8B23C8B85BCDE140D80C879EB3BF8FCE853543B1A0E49404A8F888F3C7BA1947A3C581C9FE6BA7CF201DC5898AAC0539E8F22B;PATH=/;MAX-AGE=900;Secure
+      - AWSELBCORS=77AF5BDD1C1D50E4D12118E21FBA1C1FB04C8B23C8B85BCDE140D80C879EB3BF8FCE853543B1A0E49404A8F888F3C7BA1947A3C581C9FE6BA7CF201DC5898AAC0539E8F22B;PATH=/;MAX-AGE=900;SECURE;SAMESITE=None
+      - TS01247332=01c1c020ddefcfd3524f096870369a4e3466c0d5dc57ec5e680cffe81eb9b1c12f3e00a4adfc367ad618b894a1b2798519d2e249c4d060c7d6c0b7e02efaf0f538ffacc2ed06c0c0d2936c987b3a13e238de443ba7;
+        Path=/
+      Connection:
+      - close
+      Content-Security-Policy:
+      - frame-ancestors http://*.ieee.org https://*.ieee.org
+      Strict-Transport-Security:
+      - max-age=16070400
+    body:
+      encoding: ASCII-8BIT
+      string: '{"status":"success","code":200,"message":"{\"response\":{\"Facets\":[{\"facetId\":1,\"facetName\":\"contentType\",\"multiselect\":true,\"facets\":[{\"facetValueName\":\"Standard\",\"facetValueId\":4294967245,\"selected\":false}],\"sortOrder\":1},{\"facetId\":3,\"facetName\":\"standardTopics\",\"multiselect\":true,\"facets\":[{\"facetValueName\":\"Aerospace
+        Electronics\",\"facetValueId\":4294967248,\"selected\":false},{\"facetValueName\":\"Nuclear
+        Power\",\"facetValueId\":4294967275,\"selected\":false},{\"facetValueName\":\"Power
+        and Energy\",\"facetValueId\":4294967279,\"selected\":false}],\"sortOrder\":82}],\"searchResults\":{\"resultsMapList\":[{\"record\":{\"recordTitle\":\"528-2019
+        - IEEE Standard for Inertial Sensor Terminology\",\"recordText\":\"<endeca_term>528-2019<\/endeca_term>
+        - IEEE Standard for Inertial Sensor Terminology\",\"recordURL\":\"https://standards.ieee.org/content/ieee-standards/en/standard/528-2019.html\"}},{\"record\":{\"recordTitle\":\"528-2019
+        - IEEE Standard for Inertial Sensor Terminology\",\"recordText\":\"<endeca_term>528-2019<\/endeca_term>
+        - IEEE Standard for Inertial Sensor Terminology\",\"recordURL\":\"https://standards.ieee.org/standard/528-2019.html\"}},{\"record\":{\"recordTitle\":\"1293-1998/Cor
+        1-2008 - IEEE Standard Specification Format Guide and Test Procedure for Linear,Single-Axis,
+        Nongyroscopic Accelerometers Corrigendum 1: Changes to Annex K and Annex L\",\"recordText\":\"1293-1998/Cor
+        1-2008 - IEEE Standard Specification Format Guide and Test Procedure for Linear,Single-Axis,
+        Nongyroscopic Accelerometers  ...\",\"recordURL\":\"https://standards.ieee.org/standard/1293-1998-Cor1-2008.html\"}},{\"record\":{\"recordTitle\":\"1293-2018
+        - IEEE Standard Specification Format Guide and Test Procedure for Linear Single-Axis,
+        Nongyroscopic Accelerometers\",\"recordText\":\"1293-2018 - IEEE Standard
+        Specification Format Guide and Test Procedure for Linear Single-Axis, Nongyroscopic
+        Accelerometers  ...\",\"recordURL\":\"https://standards.ieee.org/content/ieee-standards/en/standard/1293-2018.html\"}},{\"record\":{\"recordTitle\":\"1293-2018
+        - IEEE Standard Specification Format Guide and Test Procedure for Linear Single-Axis,
+        Nongyroscopic Accelerometers\",\"recordText\":\"1293-2018 - IEEE Standard
+        Specification Format Guide and Test Procedure for Linear Single-Axis, Nongyroscopic
+        Accelerometers  ...\",\"recordURL\":\"https://standards.ieee.org/standard/1293-2018.html\"}},{\"record\":{\"recordTitle\":\"1431-2004
+        - IEEE Standard Specification Format Guide and Test Procedure for Coriolis
+        Vibratory Gyros\",\"recordText\":\"1431-2004 - IEEE Standard Specification
+        Format Guide and Test Procedure for Coriolis Vibratory Gyros IEEE.org  ...\",\"recordURL\":\"https://standards.ieee.org/standard/1431-2004.html\"}},{\"record\":{\"recordTitle\":\"1431-2004/Cor
+        1-2008 - IEEE Standard Specification Format Guide and Test Procedure for Coriolis
+        Vibratory Gyros - Corrigendum 1\",\"recordText\":\"1431-2004/Cor 1-2008 -
+        IEEE Standard Specification Format Guide and Test Procedure for Coriolis Vibratory
+        Gyros  ...\",\"recordURL\":\"https://standards.ieee.org/standard/1431-2004-Cor1-2008.html\"}},{\"record\":{\"recordTitle\":\"1554-2005
+        - IEEE Recommended Practice for Inertial Sensor Test Equipment, Instrumentation,
+        Data Acquisition, and Analysis\",\"recordText\":\"1554-2005 - IEEE Recommended
+        Practice for Inertial Sensor Test Equipment, Instrumentation, Data Acquisition,
+        and Analysis  ...\",\"recordURL\":\"https://standards.ieee.org/standard/1554-2005.html\"}},{\"record\":{\"recordTitle\":\"292-1969
+        - IEEE Specification Format for Single-Degree-of-Freedom Spring-Restrained
+        Rate Gyros\",\"recordText\":\"292-1969 - IEEE Specification Format for Single-Degree-of-Freedom
+        Spring-Restrained Rate Gyros IEEE.org IEEE Xplore Digital Library  ...\",\"recordURL\":\"https://standards.ieee.org/standard/292-1969.html\"}},{\"record\":{\"recordTitle\":\"293-1969
+        - IEEE Test Procedure for Single-Degree-of-Freedom Spring-Restrained Rate
+        Gyros\",\"recordText\":\"293-1969 - IEEE Test Procedure for Single-Degree-of-Freedom
+        Spring-Restrained Rate Gyros IEEE.org IEEE Xplore Digital Library  ...\",\"recordURL\":\"https://standards.ieee.org/standard/293-1969.html\"}}],\"totalNumberOfResults\":24,\"start\":0,\"offset\":0,\"recordsPerPage\":10}}}"}'
+    http_version: null
+  recorded_at: Wed, 29 Apr 2020 13:46:27 GMT
+recorded_with: VCR 5.1.0
