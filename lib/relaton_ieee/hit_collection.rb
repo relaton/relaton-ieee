@@ -9,6 +9,8 @@ module RelatonIeee
     DATAFILE = File.expand_path "bibliography.json", DATADIR
     ETAGFILE = File.expand_path "etag.txt", DATADIR
 
+    # rubocop:disable Metrics/AbcSize
+
     # @param ref [Strig]
     # @param year [String]
     # @param opts [Hash]
@@ -24,5 +26,6 @@ module RelatonIeee
         Hit.new hit["record"], self
       end
     end
+    # rubocop:enable Metrics/AbcSize
   end
 end

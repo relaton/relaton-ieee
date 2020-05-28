@@ -1,0 +1,38 @@
+<bibdata>
+  <fetched>2020-05-28</fetched>
+  <title type="main" format="text/plain" language="en" script="Latn">528-2019 - IEEE Standard for Inertial Sensor Terminology</title>
+  <uri type="src">https://standards.ieee.org/content/ieee-standards/en/standard/528-2019.html</uri>
+  <docidentifier type="IEEE">528-2019</docidentifier>
+  <date type="issued">
+    <on>2019</on>
+  </date>
+  <date type="published">
+    <on>2019</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Ashley Moran</completename>
+      </name>
+    </person>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">Terms and definitions relating to inertial sensors are presented in this standard. Usage as understood by the inertial sensor community is given preference over general technical usage of the terms herein. The criterion for inclusion of a term and its definition in this standard is usefulness as related to inertial sensor technology.</abstract>
+  <status>
+    <stage>Active</stage>
+  </status>
+  <ext>
+    <committee type="sponsor">
+      <name>AES/GA - Gyro Accelerometer Panel</name>
+    </committee>
+    <committee type="working">
+      <name>SENSR_WG - Sensors Working Group</name>
+      <chair>Harry Davis</chair>
+    </committee>
+    <committee type="society">
+      <name>IEEE Aerospace and Electronic Systems Society</name>
+    </committee>
+  </ext>
+</bibdata>

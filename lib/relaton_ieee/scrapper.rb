@@ -1,39 +1,35 @@
 module RelatonIeee
   module Scrapper
     class << self
+      # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+
       # papam hit [Hash]
       # @return [RelatonOgc::OrcBibliographicItem]
       def parse_page(hit)
         doc = Nokogiri::HTML Faraday.get(hit["recordURL"]).body
-        RelatonBib::BibliographicItem.new(
+        IeeeBibliographicItem.new(
           fetched: Date.today.to_s,
           title: fetch_title(hit["recordTitle"]),
           docid: fetch_docid(hit["recordTitle"]),
           link: fetch_link(hit["recordURL"]),
-          # doctype: type[:type],
-          # docsubtype: type[:subtype],
           docstatus: fetch_status(doc),
-          # edition: fetch_edition(hit["identifier"]),
           abstract: fetch_abstract(doc),
           contributor: fetch_contributor(doc),
           language: ["en"],
           script: ["Latn"],
-          date: fetch_date(hit["date"]),
-          # editorialgroup: fetch_editorialgroup,
+          date: fetch_date(doc),
+          committee: fetch_committee(doc),
         )
       end
+      # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
       private
 
-      # def fetch_editorialgroup
-      #   EditorialGroup.new committee: "technical"
-      # end
-
       # @param title [String]
-      # @return [Array<RelatonIsoBib::TypedTitleString>]
+      # @return [Array<RelatonBib::TypedTitleString>]
       def fetch_title(title)
         [
-          RelatonIsoBib::TypedTitleString.new(
+          RelatonBib::TypedTitleString.new(
             type: "main", content: title, language: "en", script: "Latn",
           ),
         ]
@@ -58,15 +54,15 @@ module RelatonIeee
         stage = doc.at("//td[.='Status']/following-sibling::td/div")
         return unless stage
 
-        RelatonBib::DocunentStatus.new(stage: stage)
+        RelatonBib::DocumentStatus.new(stage: stage.text)
       end
 
       # @param identifier [String]
       # @return [String]
-      def fetch_edition(identifier)
-        %r{(?<=r)(?<edition>\d+)$} =~ identifier
-        edition
-      end
+      # def fetch_edition(identifier)
+      #   %r{(?<=r)(?<edition>\d+)$} =~ identifier
+      #   edition
+      # end
 
       # @param doc [Nokogiri::HTML::Document]
       # @return [Array<RelatonBib::FormattedString>]
@@ -81,10 +77,12 @@ module RelatonIeee
       # @param doc [Nokogiri::HTML::Document]
       # @return [Array<RelatonBib::ContributionInfo>]
       def fetch_contributor(doc)
-        contribs = doc["creator"].to_s.split(", ").map do |name|
-          personn_contrib name
-        end
-        contribs << org_contrib(doc["publisher"]) if doc["publisher"]
+        name = doc.at(
+          "//td[.='IEEE Program Manager']/following-sibling::td/div/a",
+        )
+        return [] unless name
+
+        [personn_contrib(name.text)]
       end
 
       # @param name [String]
@@ -101,17 +99,53 @@ module RelatonIeee
 
       # @param name [String]
       # @return [RelatonBib::ContributionInfo]
-      def org_contrib(name)
-        entity = RelatonBib::Organization.new(name: name)
-        RelatonBib::ContributionInfo.new(
-          entity: entity, role: [type: "publisher"],
-        )
-      end
+      # def org_contrib(name)
+      #   entity = RelatonBib::Organization.new(name: name)
+      #   RelatonBib::ContributionInfo.new(
+      #     entity: entity, role: [type: "publisher"],
+      #   )
+      # end
 
-      # @param date [String]
+      # rubocop:disable Metrics/MethodLength
+
+      # @param date [Nokogiri::HTML::Document]
       # @return [Array<RelatonBib::BibliographicDate>]
-      def fetch_date(date)
-        [RelatonBib::BibliographicDate.new(type: "published", on: date)]
+      def fetch_date(doc)
+        dates = []
+        issued = doc.at "//td[.='Board Approval']/following-sibling::td/div"
+        if issued
+          dates << RelatonBib::BibliographicDate.new(type: "issued",
+                                                     on: issued.text)
+        end
+        published = doc.at("//td[.='History']/following-sibling::td/div")&.
+          text&.match(/(?<=Published Date:)[\d-]+/)&.to_s
+        if published
+          dates << RelatonBib::BibliographicDate.new(type: "published",
+                                                     on: published)
+        end
+        dates
+      end
+      # rubocop:enable Metrics/MethodLength
+
+      # @param doc [Nokogiri::HTML::Document]
+      # @return [Array<RelatonIeee::Committee>]
+      def fetch_committee(doc)
+        committees = []
+        sponsor = doc.at "//td[.='Sponsor Committee']/following-sibling::td/div"
+        if sponsor
+          committees << Committee.new(type: "sponsor", name: sponsor.text)
+        end
+        working = doc.at "//td[.='Working Group']/following-sibling::td/div"
+        chair = doc.at "//td[.='Working Group Chair']/following-sibling::td/div"
+        if working
+          committees << Committee.new(type: "working", name: working.text,
+                                      chair: chair.text)
+        end
+        society = doc.at "//td[.='Society']/following-sibling::td/div"
+        if society
+          committees << Committee.new(type: "society", name: society.text)
+        end
+        committees
       end
     end
   end

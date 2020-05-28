@@ -3,7 +3,7 @@ module RelatonIeee
     # Parse page.
     # @return [RelatonIeee::IeeeBliographicItem]
     def fetch
-      @fetch ||= Scrapper.parse_page @hit
+      @fetch ||= Scrapper.parse_page hit
     end
   end
 end
