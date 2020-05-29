@@ -9,6 +9,8 @@ module RelatonIeee
       super
     end
 
+    # @param builder [Nokogiri::XML::Bilder]
+    # @parma bibdata [TrueClass, FalseClass, NilClass]
     def to_xml(builder = nil, **opts)
       super do |bldr|
         if committee.any?
@@ -17,6 +19,13 @@ module RelatonIeee
           end
         end
       end
+    end
+
+    # @return [Hash]
+    def to_hash
+      hash = super
+      hash["committee"] = committee.map &:to_hash
+      hash
     end
   end
 end

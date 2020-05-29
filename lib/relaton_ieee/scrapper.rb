@@ -125,7 +125,8 @@ module RelatonIeee
         end
         dates
       end
-      # rubocop:enable Metrics/MethodLength
+
+      # rubocop:disable Metrics/AbcSize
 
       # @param doc [Nokogiri::HTML::Document]
       # @return [Array<RelatonIeee::Committee>]
@@ -147,6 +148,7 @@ module RelatonIeee
         end
         committees
       end
+      # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
     end
   end
 end

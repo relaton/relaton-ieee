@@ -25,7 +25,7 @@ module RelatonIeee
 
     # @return [Hash]
     def to_hash
-      hash = { type: type, name: name }
+      hash = { "type" => type, "name" => name }
       hash["chair"] = chair if chair
       hash
     end

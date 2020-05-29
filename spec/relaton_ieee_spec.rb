@@ -3,6 +3,12 @@ RSpec.describe RelatonIeee do
     expect(RelatonIeee::VERSION).not_to be nil
   end
 
+  it "returs grammar hash" do
+    hash = RelatonIeee.grammar_hash
+    expect(hash).to be_instance_of String
+    expect(hash.size).to eq 32
+  end
+
   it "fetch hits" do
     VCR.use_cassette "ieee_528_2019" do
       hit_collection = RelatonIeee::IeeeBibliography.search("IEEE 528-2019")

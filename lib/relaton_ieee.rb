@@ -1,3 +1,4 @@
+require "digest/md5"
 require "relaton_bib"
 require "relaton_ieee/version"
 require "relaton_ieee/ieee_bibliography"
@@ -6,8 +7,18 @@ require "relaton_ieee/hit"
 require "relaton_ieee/scrapper"
 require "relaton_ieee/ieee_bibliographic_item"
 require "relaton_ieee/committee"
+require "relaton_ieee/xml_parser"
+require "relaton_ieee/hash_converter"
 
 module RelatonIeee
   class Error < StandardError; end
-  # Your code goes here...
+
+  # Returns hash of XML reammar
+  # @return [String]
+  def self.grammar_hash
+    gem_path = File.expand_path "..", __dir__
+    grammars_path = File.join gem_path, "grammars", "*"
+    grammars = Dir[grammars_path].sort.map { |gp| File.read gp }.join
+    Digest::MD5.hexdigest grammars
+  end
 end
