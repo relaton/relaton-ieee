@@ -12,9 +12,8 @@ module RelatonIeee
     # rubocop:disable Metrics/AbcSize
 
     # @param ref [Strig]
-    # @param year [String]
     # @param opts [Hash]
-    def initialize(ref, year = nil)
+    def initialize(ref)
       super
       code = ref.sub /^IEEE\s/, ""
       search = CGI.escape({ data: { searchTerm: code } }.to_json)
@@ -22,9 +21,13 @@ module RelatonIeee
       resp = Faraday.get url
       resp_json = JSON.parse resp.body
       json = JSON.parse resp_json["message"]
-      @array = json["response"]["searchResults"]["resultsMapList"].map do |hit|
-        Hit.new hit["record"], self
-      end
+      @array = json["response"]["searchResults"]["resultsMapList"].
+        reduce([]) do |s, hit|
+          /^(?<id>\d+)-(?<year>\d{4})/ =~ hit["record"]["recordTitle"]
+          next s unless id && code =~ %r{^#{id}}
+
+          s << Hit.new(hit["record"].merge(code: id, year: year.to_i), self)
+        end.sort_by { |h| h.hit[:year] }.reverse
     end
     # rubocop:enable Metrics/AbcSize
   end

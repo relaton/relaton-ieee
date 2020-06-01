@@ -1,4 +1,5 @@
 require "digest/md5"
+require "yaml"
 require "relaton_bib"
 require "relaton_ieee/version"
 require "relaton_ieee/ieee_bibliography"

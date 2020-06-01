@@ -3,39 +3,33 @@ module RelatonIeee
     class << self
       # @param text [String]
       # @return [RelatonIeee::HitCollection]
-      def search(text, year = nil, _opts = {})
-        HitCollection.new text, year
+      def search(text)
+        HitCollection.new text
       rescue Faraday::ConnectionFailed
         raise RelatonBib::RequestError, "Could not access #{HitCollection::DOMAIN}"
       end
 
       # @param code [String] the IEEE standard Code to look up (e..g "528-2019")
       # @param year [String] the year the standard was published (optional)
-      #
       # @param opts [Hash] options
-      # @option opts [TrueClass, FalseClass] :all_parts restricted to all parts
-      #   if all-parts reference is required
-      # @option opts [TrueClass, FalseClass] :bibdata
       #
       # @return [Hash, NilClass] returns { ret: RelatonBib::BibliographicItem }
       #   if document is found else returns NilClass
-      def get(code, year = nil, opts = {})
-        result = bib_search_filter(code, year, opts) || (return nil)
+      def get(code, year = nil, _opts = {})
+        warn "[relaton-ieee] (\"#{code}\") fetching..."
+        result = search(code) || (return nil)
+        year ||= code.match(/(?<=-)\d{4}/)&.to_s
         ret = bib_results_filter(result, year)
         if ret[:ret]
-          warn "[relaton-ieee] (\"#{code}\") found #{ret[:ret].docidentifier.first.id}"
-          ret[:ret]
+          item = ret[:ret].fetch
+          warn "[relaton-ieee] (\"#{code}\") found #{item.docidentifier.first.id}"
+          item
         else
           fetch_ref_err(code, year, ret[:years])
         end
       end
 
       private
-
-      def bib_search_filter(code, year, opts)
-        warn "[relaton-ieee] (\"#{code}\") fetching..."
-        search(code, year, opts)
-      end
 
       # Sort through the results from RelatonIeee, fetching them three at a time,
       # and return the first result that matches the code,
@@ -50,17 +44,14 @@ module RelatonIeee
       # @return [Hash]
       def bib_results_filter(result, year)
         missed_years = []
-        result.each do |r|
-          item = r.fetch
-          return { ret: item } if !year
+        result.each do |hit|
+          return { ret: hit } if !year
 
-          item.date.select { |d| d.type == "published" }.each do |d|
-            return { ret: item } if year.to_i == d.on.year
+          return { ret: hit } if year.to_i == hit.hit[:year]
 
-            missed_years << d.on.year
-          end
+          missed_years << hit.hit[:year]
         end
-        { years: missed_years }
+        { years: missed_years.uniq }
       end
 
       # @param code [Strig]

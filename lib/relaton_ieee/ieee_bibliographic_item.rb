@@ -13,7 +13,7 @@ module RelatonIeee
     # @parma bibdata [TrueClass, FalseClass, NilClass]
     def to_xml(builder = nil, **opts)
       super do |bldr|
-        if committee.any?
+        if opts[:bibdata] && committee.any?
           bldr.ext do |b|
             committee.each { |c| c.to_xml b }
           end
