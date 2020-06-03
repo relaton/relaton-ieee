@@ -27,7 +27,7 @@ module RelatonIeee
           next s unless id && code =~ %r{^#{id}}
 
           s << Hit.new(hit["record"].merge(code: id, year: year.to_i), self)
-        end.sort_by { |h| h.hit[:year] }.reverse
+        end.sort_by { |h| h.hit[:year].to_s + h.hit["recordURL"] }.reverse
     end
     # rubocop:enable Metrics/AbcSize
   end
