@@ -7,6 +7,7 @@ module RelatonIeee
     def initialize(**args)
       @committee = args.delete :committee
       super
+      # @doctype = args[:doctyp]
     end
 
     # @param builder [Nokogiri::XML::Bilder]
