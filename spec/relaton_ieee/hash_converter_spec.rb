@@ -17,7 +17,7 @@ RSpec.describe RelatonIeee::HashConverter do
     }
     item = RelatonIeee::HashConverter.hash_to_bib hash
     expect(item[:relation][0][:bibitem]).to be_instance_of(
-      RelatonIeee::IeeeBibliographicItem,
+      RelatonIeee::IeeeBibliographicItem
     )
   end
 end

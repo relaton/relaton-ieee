@@ -7,7 +7,6 @@ module RelatonIeee
     def initialize(**args)
       @committee = args.delete :committee
       super
-      # @doctype = args[:doctyp]
     end
 
     # @param builder [Nokogiri::XML::Bilder]
@@ -27,6 +26,14 @@ module RelatonIeee
       hash = super
       hash["committee"] = committee.map &:to_hash
       hash
+    end
+
+    # @param prefix [String]
+    # @return [String]
+    def to_asciibib(prefix = "")
+      out = super
+      committee.each { |c| out += c.to_asciibib prefix, committee.size }
+      out
     end
   end
 end

@@ -13,7 +13,7 @@ module RelatonIeee
 
         data[:committee] = ext.xpath("./committee").map do |c|
           Committee.new(
-            type: c[:type], name: c.at("name").text, chair: c.at("chair")&.text,
+            type: c[:type], name: c.at("name").text, chair: c.at("chair")&.text
           )
         end
         data

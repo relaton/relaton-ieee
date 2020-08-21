@@ -29,5 +29,18 @@ module RelatonIeee
       hash["chair"] = chair if chair
       hash
     end
+
+    # @param prefix [String]
+    # @param count [Integer]
+    # @return [String]
+    def to_asciibib(prefix, count)
+      pref = prefix.empty? ? prefix : prefix + "."
+      pref += "committee"
+      out = count > 1 ? "#{pref}::\n" : ""
+      out += "#{pref}.type:: #{type}\n"
+      out += "#{pref}.name:: #{name}\n"
+      out += "#{pref}.chair:: #{chair}\n" if chair
+      out
+    end
   end
 end
