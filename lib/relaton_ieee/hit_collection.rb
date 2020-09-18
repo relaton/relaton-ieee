@@ -13,7 +13,7 @@ module RelatonIeee
 
     # @param ref [Strig]
     # @param opts [Hash]
-    def initialize(ref)
+    def initialize(ref) # rubocop:disable Metrics/MethodLength
       super
       code = ref.sub /^IEEE\s/, ""
       search = CGI.escape({ data: { searchTerm: code } }.to_json)
@@ -21,9 +21,9 @@ module RelatonIeee
       resp = Faraday.get url
       resp_json = JSON.parse resp.body
       json = JSON.parse resp_json["message"]
-      @array = json["response"]["searchResults"]["resultsMapList"].
-        reduce([]) do |s, hit|
-          /^(?<id>\d+)-(?<year>\d{4})/ =~ hit["record"]["recordTitle"]
+      @array = json["response"]["searchResults"]["resultsMapList"]
+        .reduce([]) do |s, hit|
+          /^(?:\w+\s)?(?<id>\d+)-(?<year>\d{4})/ =~ hit["record"]["recordTitle"]
           next s unless id && code =~ %r{^#{id}}
 
           s << Hit.new(hit["record"].merge(code: id, year: year.to_i), self)

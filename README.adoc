@@ -8,7 +8,7 @@ You can use it to retrieve metadata of IEEE Standards from standards.ieee.org, a
 
 Add this line to your application's Gemfile:
 
-[sourse,ruby]
+[source,ruby]
 ----
 gem 'relaton-ieee'
 ----
@@ -25,35 +25,37 @@ Or install it yourself as:
 
 === Search for a standard using keywords
 
+[source,ruby]
 ----
-> require 'relaton_ieee'
+require 'relaton_ieee'
 => true
 
-> hits = RelatonIeee::IeeeBibliography.search("IEEE 528-2019")
+hits = RelatonIeee::IeeeBibliography.search("IEEE 528-2019")
 => <RelatonIeee::HitCollection:0x007f84c0085308 @ref=IEEE 528-2019 @fetched=false>
 
-> item = hits[0].fetch
+item = hits[0].fetch
  => #<RelatonIeee::IeeeBibliographicItem:0x007f84bf839c30
  ...
 ----
 
 === XML serialization
 
+[source,ruby]
 ----
-> item.to_xml
- => "<bibitem id=\"528-2019\">
+item.to_xml
+ => "<bibitem id="IEEE528-2019">
       <fetched>2020-06-01</fetched>
-      <title type=\"main\" format=\"text/plain\" language=\"en\" script=\"Latn\">528-2019 - IEEE Standard for Inertial Sensor Terminology</title>
-      <uri type=\"src\">https://standards.ieee.org/content/ieee-standards/en/standard/528-2019.html</uri>
-      <docidentifier type=\"IEEE\">528-2019</docidentifier>
-      <date type=\"issued\">
+      <title type="main" format="text/plain" language="en" script="Latn">IEEE 528-2019 - IEEE Standard for Inertial Sensor Terminology</title>
+      <uri type="src">https://standards.ieee.org/content/ieee-standards/en/standard/528-2019.html</uri>
+      <docidentifier type="IEEE">IEEE 528-2019</docidentifier>
+      <date type="issued">
         <on>2019</on>
       </date>
-      <date type=\"published\">
+      <date type="published">
         <on>2019</on>
       </date>
       <contributor>
-        <role type=\"author\"/>
+        <role type="author"/>
         <person>
           <name>
             <completename>Ashley Moran</completename>
@@ -62,7 +64,7 @@ Or install it yourself as:
       </contributor>
       <language>en</language>
       <script>Latn</script>
-      <abstract format=\"text/plain\" language=\"en\" script=\"Latn\">Terms and definitions relating to inertial sensors are presented in this standard. Usage as understood by the inertial sensor community is given preference over general technical usage of the terms herein. The criterion for inclusion of a term and its definition in this standard is usefulness as related to inertial sensor technology.</abstract>
+      <abstract format="text/plain" language="en" script="Latn">Terms and definitions relating to inertial sensors are presented in this standard. Usage as understood by the inertial sensor community is given preference over general technical usage of the terms herein. The criterion for inclusion of a term and its definition in this standard is usefulness as related to inertial sensor technology.</abstract>
       <status>
         <stage>Active</stage>
       </status>
@@ -71,13 +73,14 @@ Or install it yourself as:
 
 With argument `bibdata: true` it ouputs XML wrapped by `bibdata` element and adds flavour `ext` element.
 
+[source,ruby]
 ----
-> item.to_xml bibdata: true
+item.to_xml bibdata: true
  => "<bibdata>
       <fetched>2020-06-01</fetched>
-      <title type="main" format="text/plain" language="en" script="Latn">528-2019 - IEEE Standard for Inertial Sensor Terminology</title>
+      <title type="main" format="text/plain" language="en" script="Latn">IEEE 528-2019 - IEEE Standard for Inertial Sensor Terminology</title>
       <uri type="src">https://standards.ieee.org/content/ieee-standards/en/standard/528-2019.html</uri>
-      <docidentifier type="IEEE">528-2019</docidentifier>
+      <docidentifier type="IEEE">IEEE 528-2019</docidentifier>
       <date type="issued">
         <on>2019</on>
       </date>
@@ -99,7 +102,7 @@ With argument `bibdata: true` it ouputs XML wrapped by `bibdata` element and add
         <stage>Active</stage>
       </status>
       <ext>
-        <committee type="sponsor">
+        <committee type="standard">
           <name>AES/GA - Gyro Accelerometer Panel</name>
         </committee>
         <committee type="working">
@@ -114,20 +117,21 @@ With argument `bibdata: true` it ouputs XML wrapped by `bibdata` element and add
 ----
 
 === Get document by reference
+[source,ruby]
 ----
-> RelatonIeee::IeeeBibliography.get("IEEE 528-2019")
+RelatonIeee::IeeeBibliography.get("IEEE 528-2019")
 [relaton-ieee] ("IEEE 528-2019") fetching...
 [relaton-ieee] ("IEEE 528-2019") found 528-2019
  => #<RelatonIeee::IeeeBibliographicItem:0x007fceb52a6e40
  ...
 
- > RelatonIeee::IeeeBibliography.get("IEEE 528", "2019")
+ RelatonIeee::IeeeBibliography.get("IEEE 528", "2019")
 [relaton-ieee] ("IEEE 528") fetching...
 [relaton-ieee] ("IEEE 528") found 528-2019
  => #<RelatonIeee::IeeeBibliographicItem:0x007fceb54af7f0
  ...
 
- > RelatonIeee::IeeeBibliography.get("IEEE 528")
+ RelatonIeee::IeeeBibliography.get("IEEE 528")
 [relaton-ieee] ("IEEE 528") fetching...
 [relaton-ieee] ("IEEE 528") found 528-2019
 => #<RelatonIeee::IeeeBibliographicItem:0x007fceb512c510
@@ -135,23 +139,25 @@ With argument `bibdata: true` it ouputs XML wrapped by `bibdata` element and add
 ----
 
 === Create bibliographic item from XML
+[source,ruby]
 ----
-> RelatonIeee::XMLParser.from_xml File.read "spec/fixtures/ieee_528_2019.xml"
+RelatonIeee::XMLParser.from_xml File.read "spec/fixtures/ieee_528_2019.xml"
  => #<RelatonIeee::IeeeBibliographicItem:0x007fceb550c978
  ...
 ----
 
 === Create bibliographic item from YAML
+[source,ruby]
 ----
-> hash = YAML.load_file 'spec/fixtures/ieee_528_2019.yaml'
+hash = YAML.load_file 'spec/fixtures/ieee_528_2019.yaml'
  => {"id"=>"528-2019", "title"=>{
  ...
 
- > bib_hash = RelatonIeee::HashConverter.hash_to_bib hash
+ bib_hash = RelatonIeee::HashConverter.hash_to_bib hash
  => {:id=>"528-2019", :title=>[{
  ...
 
- > RelatonIeee::IeeeBibliographicItem.new bib_hash
+ RelatonIeee::IeeeBibliographicItem.new bib_hash
  => #<RelatonIeee::IeeeBibliographicItem:0x007fce940b3eb0
  ...
 ----

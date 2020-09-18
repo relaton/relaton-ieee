@@ -35,7 +35,7 @@ RSpec.describe RelatonIeee do
     it "by reference without year" do
       VCR.use_cassette "ieee_528_no_year" do
         result = RelatonIeee::IeeeBibliography.get "IEEE 528"
-        expect(result.docidentifier.first.id).to eq "528-2019"
+        expect(result.docidentifier.first.id).to eq "IEEE 528-2019"
       end
     end
 

@@ -18,7 +18,7 @@ module RelatonIeee
           language: ["en"],
           script: ["Latn"],
           date: fetch_date(doc),
-          committee: fetch_committee(doc),
+          committee: fetch_committee(doc)
         )
       end
       # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
@@ -30,7 +30,7 @@ module RelatonIeee
       def fetch_title(title)
         [
           RelatonBib::TypedTitleString.new(
-            type: "main", content: title, language: "en", script: "Latn",
+            type: "main", content: title, language: "en", script: "Latn"
           ),
         ]
       end
@@ -38,7 +38,7 @@ module RelatonIeee
       # @param title [String]
       # @return [Array<RelatonBib::DocumentIdentifier>]
       def fetch_docid(title)
-        /^(?<identifier>\S+)/ =~ title
+        /^(?<identifier>(?:\w+\s)?\S+)/ =~ title
         [RelatonBib::DocumentIdentifier.new(id: identifier, type: "IEEE")]
       end
 
@@ -78,7 +78,7 @@ module RelatonIeee
       # @return [Array<RelatonBib::ContributionInfo>]
       def fetch_contributor(doc)
         name = doc.at(
-          "//td[.='IEEE Program Manager']/following-sibling::td/div/a",
+          "//td[.='IEEE Program Manager']/following-sibling::td/div/a"
         )
         return [] unless name
 
@@ -89,11 +89,11 @@ module RelatonIeee
       # @return [RelatonBib::ContributionInfo]
       def personn_contrib(name)
         fname = RelatonBib::FullName.new(
-          completename: RelatonBib::LocalizedString.new(name),
+          completename: RelatonBib::LocalizedString.new(name)
         )
         entity = RelatonBib::Person.new(name: fname)
         RelatonBib::ContributionInfo.new(
-          entity: entity, role: [type: "author"],
+          entity: entity, role: [type: "author"]
         )
       end
 
@@ -117,8 +117,8 @@ module RelatonIeee
           dates << RelatonBib::BibliographicDate.new(type: "issued",
                                                      on: issued.text)
         end
-        published = doc.at("//td[.='History']/following-sibling::td/div")&.
-          text&.match(/(?<=Published Date:)[\d-]+/)&.to_s
+        published = doc.at("//td[.='History']/following-sibling::td/div")
+          &.text&.match(/(?<=Published Date:)[\d-]+/)&.to_s
         if published
           dates << RelatonBib::BibliographicDate.new(type: "published",
                                                      on: published)
@@ -135,6 +135,10 @@ module RelatonIeee
         sponsor = doc.at "//td[.='Sponsor Committee']/following-sibling::td/div"
         if sponsor
           committees << Committee.new(type: "sponsor", name: sponsor.text)
+        end
+        sponsor = doc.at "//td[.='Standards Committee']/following-sibling::td/div/a"
+        if sponsor
+          committees << Committee.new(type: "standard", name: sponsor.text)
         end
         working = doc.at "//td[.='Working Group']/following-sibling::td/div"
         chair = doc.at "//td[.='Working Group Chair']/following-sibling::td/div"
