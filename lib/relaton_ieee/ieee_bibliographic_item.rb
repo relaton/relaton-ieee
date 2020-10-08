@@ -9,10 +9,13 @@ module RelatonIeee
       super
     end
 
-    # @param builder [Nokogiri::XML::Bilder]
-    # @parma bibdata [TrueClass, FalseClass, NilClass]
-    def to_xml(builder = nil, **opts)
-      super do |bldr|
+    # @param opts [Hash]
+    # @option opts [Nokogiri::XML::Builder] :builder XML builder
+    # @option opts [Boolean] :bibdata
+    # @option opts [String] :lang language
+    # @return [String] XML
+    def to_xml(**opts)
+      super **opts do |bldr|
         if opts[:bibdata] && committee.any?
           bldr.ext do |b|
             committee.each { |c| c.to_xml b }
