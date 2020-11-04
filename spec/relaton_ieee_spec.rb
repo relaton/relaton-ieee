@@ -32,6 +32,13 @@ RSpec.describe RelatonIeee do
       end
     end
 
+    it "corrigendum" do
+      VCR.use_cassette "ieee_802_1ae_2018_cor_1_2020" do
+        result = RelatonIeee::IeeeBibliography.get "802.1AE-2018/Cor 1-2020"
+        expect(result.docidentifier[0].id).to eq "IEEE 802.1AE-2018/Cor"
+      end
+    end
+
     it "by reference without year" do
       VCR.use_cassette "ieee_528_no_year" do
         result = RelatonIeee::IeeeBibliography.get "IEEE 528"
