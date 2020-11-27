@@ -24,7 +24,7 @@ abstract.script:: Latn
 abstract.format:: text/plain
 link.type:: src
 link.content:: https://standards.ieee.org/content/ieee-standards/en/standard/528-2019.html
-contributor.person.name.completename.content:: Ashley Moran
+contributor.person.name.completename:: Ashley Moran
 contributor.role.type:: author
 committee::
 committee.type:: sponsor
