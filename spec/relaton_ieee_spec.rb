@@ -54,5 +54,12 @@ RSpec.describe RelatonIeee do
         end.to output(/no match found online for IEEE 528 year 2018/).to_stderr
       end
     end
+
+    it "by reference with Std" do
+      VCR.use_cassette "ieee_std_1619_2007" do
+        result = RelatonIeee::IeeeBibliography.get "IEEE Std 1619-2007"
+        expect(result.docidentifier[0].id).to eq "IEEE 1619-2007"
+      end
+    end
   end
 end

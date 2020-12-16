@@ -15,7 +15,7 @@ module RelatonIeee
     # @param opts [Hash]
     def initialize(ref) # rubocop:disable Metrics/MethodLength
       super
-      code = ref.sub /^IEEE\s/, ""
+      code = ref.sub /^IEEE\s(Std\s)?/, ""
       search = CGI.escape({ data: { searchTerm: code } }.to_json)
       url = "#{DOMAIN}/bin/standards/search?data=#{search}"
       resp = Faraday.get url
