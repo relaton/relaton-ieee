@@ -22,7 +22,7 @@ module RelatonIeee
       # @param item_hash [Hash]
       # @return [RelatonIeee::IeeeBibliographicItem]
       def bib_item(item_hash)
-        IeeeBibliographicItem.new item_hash
+        IeeeBibliographicItem.new **item_hash
       end
     end
   end
