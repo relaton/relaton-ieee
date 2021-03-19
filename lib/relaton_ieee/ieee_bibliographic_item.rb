@@ -9,6 +9,13 @@ module RelatonIeee
       super
     end
 
+    # @param hash [Hash]
+    # @return [RelatonIeee::IeeeBibliographicItem]
+    def self.from_hash(hash)
+      item_hash = ::RelatonIeee::HashConverter.hash_to_bib(hash)
+      new **item_hash
+    end
+
     # @param opts [Hash]
     # @option opts [Nokogiri::XML::Builder] :builder XML builder
     # @option opts [Boolean] :bibdata

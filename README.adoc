@@ -153,11 +153,7 @@ hash = YAML.load_file 'spec/fixtures/ieee_528_2019.yaml'
  => {"id"=>"528-2019", "title"=>{
  ...
 
- bib_hash = RelatonIeee::HashConverter.hash_to_bib hash
- => {:id=>"528-2019", :title=>[{
- ...
-
- RelatonIeee::IeeeBibliographicItem.new bib_hash
+ RelatonIeee::IeeeBibliographicItem.from_hash hash
  => #<RelatonIeee::IeeeBibliographicItem:0x007fce940b3eb0
  ...
 ----
