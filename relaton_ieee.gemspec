@@ -42,6 +42,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
 
-  spec.add_dependency "faraday", "~> 1.0.0"
+  spec.add_dependency "faraday", "~> 1.1"
   spec.add_dependency "relaton-bib", "~> 1.7.0"
 end
