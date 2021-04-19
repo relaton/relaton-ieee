@@ -39,10 +39,19 @@ RSpec.describe RelatonIeee do
       end
     end
 
-    it "by reference without year" do
-      VCR.use_cassette "ieee_528_no_year" do
-        result = RelatonIeee::IeeeBibliography.get "IEEE 528"
-        expect(result.docidentifier.first.id).to eq "IEEE 528-2019"
+    context "by reference without year" do
+      it do
+        VCR.use_cassette "ieee_528_no_year" do
+          result = RelatonIeee::IeeeBibliography.get "IEEE 528"
+          expect(result.docidentifier.first.id).to eq "IEEE 528-2019"
+        end
+      end
+
+      it do
+        VCR.use_cassette "ieee 754" do
+          bib = RelatonIeee::IeeeBibliography.get "IEEE 754"
+          expect(bib.docidentifier[0].id).to eq "IEEE 754-2019"
+        end
       end
     end
 
