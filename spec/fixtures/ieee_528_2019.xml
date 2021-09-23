@@ -1,5 +1,5 @@
 <bibdata>
-  <fetched>2021-04-19</fetched>
+  <fetched>2021-09-23</fetched>
   <title type="main" format="text/plain" language="en" script="Latn">IEEE 528-2019 - IEEE Standard for Inertial Sensor Terminology</title>
   <uri type="src">https://standards.ieee.org/standard/528-2019.html</uri>
   <docidentifier type="IEEE">IEEE 528-2019</docidentifier>
@@ -13,7 +13,7 @@
     <role type="author"/>
     <person>
       <name>
-        <completename>Ashley Moran</completename>
+        <completename>Dan Perez</completename>
       </name>
     </person>
   </contributor>
@@ -24,7 +24,7 @@
     <stage>Active</stage>
   </status>
   <ext>
-    <committee type="standard">
+    <committee type="sponsor">
       <name>AES/GA - Gyro Accelerometer Panel</name>
     </committee>
     <committee type="working">

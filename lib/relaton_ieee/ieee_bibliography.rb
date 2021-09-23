@@ -19,7 +19,7 @@ module RelatonIeee
         warn "[relaton-ieee] (\"#{code}\") fetching..."
         result = search(code) || (return nil)
         year ||= code.match(/(?<=-)\d{4}/)&.to_s
-        ret = bib_results_filter(result, year)
+        ret = bib_results_filter(result, code, year)
         if ret[:ret]
           item = ret[:ret].fetch
           warn "[relaton-ieee] (\"#{code}\") found #{item.docidentifier.first.id}"
@@ -42,9 +42,13 @@ module RelatonIeee
       # @param opts [Hash] options
       #
       # @return [Hash]
-      def bib_results_filter(result, year)
+      def bib_results_filter(result, ref, year)
+        rp1 = ref_parts ref
         missed_years = []
         result.each do |hit|
+          rp2 = ref_parts hit.hit["recordTitle"]
+          next if rp1[:code] != rp2[:code] || rp1[:corr] != rp2[:corr]
+
           return { ret: hit } if !year
 
           return { ret: hit } if year.to_i == hit.hit[:year]
@@ -52,6 +56,15 @@ module RelatonIeee
           missed_years << hit.hit[:year]
         end
         { years: missed_years.uniq }
+      end
+
+      def ref_parts(ref)
+        %r{
+          ^(?:IEEE\s(?:Std\s)?)?
+          (?<code>[^-/]+)
+          (?:-(?<year>\d{4}))?
+          (?:/(?<corr>\w+\s\d+-\d{4}))?
+        }x.match ref
       end
 
       # @param code [Strig]
