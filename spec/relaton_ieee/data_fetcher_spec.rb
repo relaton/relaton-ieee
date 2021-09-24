@@ -46,6 +46,7 @@ RSpec.describe RelatonIeee::DataFetcher do
             </publicationinfo>
           </publication>
         XML
+        bib.instance_variable_set :@docnumber, "3412"
         expect { df.fetch_doc(doc, "file.xml") }.to output(
           /Document exists ID: "IEEE 5678" AMSID: "1234" source: "file\.xml"\. Other AMSID: "4321"/,
         ).to_stderr
