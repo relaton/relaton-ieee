@@ -11,4 +11,5 @@
 .rspec_status
 .rubocop-https---raw-githubusercontent-com-riboseinc-oss-guides-master-ci-rubocop-yml
 .vscode/
+ieee-rawbib/
 Gemfile.lock

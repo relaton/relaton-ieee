@@ -5,7 +5,7 @@ module RelatonIeee
 
     # @param committee [Array<RelatonIeee::Committee>]
     def initialize(**args)
-      @committee = args.delete :committee
+      @committee = args.delete(:committee) || []
       super
     end
 
@@ -13,7 +13,7 @@ module RelatonIeee
     # @return [RelatonIeee::IeeeBibliographicItem]
     def self.from_hash(hash)
       item_hash = ::RelatonIeee::HashConverter.hash_to_bib(hash)
-      new **item_hash
+      new(**item_hash)
     end
 
     # @param opts [Hash]
@@ -22,7 +22,7 @@ module RelatonIeee
     # @option opts [String] :lang language
     # @return [String] XML
     def to_xml(**opts)
-      super **opts do |bldr|
+      super(**opts) do |bldr|
         if opts[:bibdata] && committee.any?
           bldr.ext do |b|
             committee.each { |c| c.to_xml b }
@@ -34,7 +34,7 @@ module RelatonIeee
     # @return [Hash]
     def to_hash
       hash = super
-      hash["committee"] = committee.map &:to_hash
+      hash["committee"] = committee.map &:to_hash if committee.any?
       hash
     end
 

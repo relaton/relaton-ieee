@@ -1,0 +1,128 @@
+RSpec.describe RelatonIeee::DataFetcher do
+  it "fetch data" do
+    expect(Dir).to receive(:exist?).with("data").and_return false
+    expect(FileUtils).to receive(:mkdir_p).with("data")
+    files = Dir["spec/fixtures/rawbib/**/*.{xml,zip}"]
+    expect(Dir).to receive(:[]).with("ieee-rawbib/**/*.{xml,zip}").and_return files
+    expect(File).to receive(:write).with("data/P802_5T_D2_5.yaml", kind_of(String), encoding: "UTF-8")
+    expect(File).to receive(:write).with("data/P802_22_D3_0_MAR_2011.yaml", kind_of(String), encoding: "UTF-8")
+    RelatonIeee::DataFetcher.fetch
+  end
+
+  context "instance" do
+    let(:df) { RelatonIeee::DataFetcher.new "data", "yaml" }
+
+    it "warn if error" do
+      files = Dir["spec/fixtures/rawbib/**/*.{xml,zip}"]
+      expect(Dir).to receive(:[]).with("ieee-rawbib/**/*.{xml,zip}").and_return files
+      expect(df).to receive(:fetch_doc).and_raise(StandardError).twice
+      expect { df.fetch }.to output(/File: spec\/fixtures\/rawbib/).to_stderr
+    end
+
+    it "handle empty file" do
+      expect do
+        expect(df.fetch_doc("", "file.xml")).to be_nil
+      end.to output(/Empty file: file\.xml/).to_stderr
+    end
+
+    context "when ouput file exists" do
+      let(:bib) do
+        docid = RelatonBib::DocumentIdentifier.new id: "IEEE 5678"
+        title = [{ content: "Title" }]
+        RelatonIeee::IeeeBibliographicItem.new docnumber: "5678", title: title, docid: [docid]
+      end
+
+      before(:each) do
+        expect(RelatonIeee::DataParser).to receive(:parse).and_return bib
+        df.instance_variable_get(:@backrefs)["4321"] = "IEEE 5678"
+      end
+
+      it "warn" do
+        doc = <<~XML
+          <publication>
+            <title>Title</title>
+            <publicationinfo>
+              <amsid>1234</amsid>
+            </publicationinfo>
+          </publication>
+        XML
+        expect { df.fetch_doc(doc, "file.xml") }.to output(
+          /Document exists ID: "IEEE 5678" AMSID: "1234" source: "file\.xml"\. Other AMSID: "4321"/,
+        ).to_stderr
+      end
+
+      it "rewrite file if PubID includes a docnumber" do
+        doc = <<~XML
+          <publication>
+            <title>IEEE 5678 Title</title>
+            <publicationinfo>
+              <amsid>1234</amsid>
+            </publicationinfo>
+          </publication>
+        XML
+        expect(File).to receive(:write).with("data/5678.yaml", kind_of(String), encoding: "UTF-8")
+        expect { df.fetch_doc(doc, "file.xml") }.to output(
+          /Document exists ID: "IEEE 5678" AMSID: "1234" source: "file\.xml"\. Other AMSID: "4321"/,
+        ).to_stderr
+      end
+    end
+
+    context "hamdle relations" do
+      before(:each) do
+        df.instance_variable_get(:@crossrefs)["5678"] = [{ amsid: "3412", type: "V" }]
+      end
+
+      it "add cross-reference to existed PubID" do
+        amsid = double "amsid", text: "1234"
+        expect(amsid).to receive(:[]).with(:type).and_return("C").twice
+        df.add_crossref "5678", amsid
+        expect(df.instance_variable_get(:@crossrefs)["5678"]).to eq [
+          { amsid: "3412", type: "V" }, { amsid: "1234", type: "C" }
+        ]
+      end
+
+      it "udate unresolved relations" do
+        df.instance_variable_get(:@backrefs)["3412"] = "7809"
+        docid = RelatonBib::DocumentIdentifier.new id: "5678"
+        title = [{ content: "Title" }]
+        bib = RelatonIeee::IeeeBibliographicItem.new title: title, docid: [docid]
+        expect(df).to receive(:read_bib).with("5678").and_return bib
+        expect(df).to receive(:save_doc) do |arg|
+          expect(arg.relation[0].type).to eq "updates"
+          expect(arg.relation[0].description.content).to eq "revises"
+          expect(arg.relation[0].bibitem.formattedref.content).to eq "7809"
+        end
+        df.update_relations
+      end
+    end
+
+    context "read saved document" do
+      it "in YAML format" do
+        yaml = {
+          "title" => {
+            "content" => "Title",
+            "type" => "main",
+            "language" => "en",
+            "script" => "Latn",
+            "format" => "text/plain",
+          },
+          "docid" => { "id" => "5678", "type" => "IEEE" },
+        }.to_yaml
+        expect(File).to receive(:read).with("data/5678.yaml", encoding: "UTF-8").and_return yaml
+        expect(df.read_bib("5678")).to be_instance_of RelatonIeee::IeeeBibliographicItem
+      end
+
+      it "in XML format" do
+        xml = <<~XML
+          <bibitem>
+            <title type="main" format="text/plain" language="en" script="Latn">Title</title>
+            <docidentifier type="IEEE">5678</docidentifier>
+          </bibitem>
+        XML
+        df.instance_variable_set :@format, "xml"
+        expect(File).to receive(:read).with("data/5678.xml", encoding: "UTF-8").and_return xml
+        expect(df.read_bib("5678")).to be_instance_of RelatonIeee::IeeeBibliographicItem
+      end
+    end
+  end
+end

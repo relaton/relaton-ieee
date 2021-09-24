@@ -4,11 +4,12 @@ module RelatonIeee
   class Processor < Relaton::Processor
     attr_reader :idtype
 
-    def initialize
+    def initialize # rubocop:disable Lint/MissingSuper
       @short = :relaton_ieee
       @prefix = "IEEE"
       @defaultprefix = %r{^IEEE\s}
       @idtype = "IEEE"
+      @datasets = %w[ieee-rawbib]
     end
 
     # @param code [String]
@@ -17,6 +18,18 @@ module RelatonIeee
     # @return [RelatonIeee::IeeeBibliographicItem]
     def get(code, date, opts)
       ::RelatonIeee::IeeeBibliography.get(code, date, opts)
+    end
+
+    #
+    # Fetch all the documents from ./iee-rawbib directory
+    #
+    # @param [String] _source source name
+    # @param [Hash] opts
+    # @option opts [String] :output directory to output documents
+    # @option opts [String] :format
+    #
+    def fetch_data(_source, opts)
+      DataFetcher.fetch(**opts)
     end
 
     # @param xml [String]

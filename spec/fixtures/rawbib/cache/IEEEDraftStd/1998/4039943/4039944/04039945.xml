@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE publication PUBLIC "-//IEEE//IDAMS Exchange V2.0.0//EN" "ieee_idams_exchange.dtd">
+<publication>
+  <title><![CDATA[IEEE Std P802.5t/D2.5]]></title>
+  <normtitle><![CDATA[IEEE Std P802.5t/D2.5]]></normtitle>
+  <standardsfamilytitle>IEEE Standard for Information Technology - Telecommunications and Information Exchange Between Systems - Local and Metropolitan Area Networks - Specific Requirements. Part 5: Token Ring Access Method and Physical Layer Specifications</standardsfamilytitle>
+  <publicationinfo>
+    <idamsid>0b000064806a9dab</idamsid>
+    <stdnumber>P802.5t/D2.5</stdnumber>
+    <publicationtype>Standard</publicationtype>
+    <publicationsubtype>Standard Docs</publicationsubtype>
+    <standard_subtype>IEEE Standard</standard_subtype>
+    <ieeeabbrev>IEEESTD</ieeeabbrev>
+    <pubstatus>Active</pubstatus>
+    <publicationopenaccess>F</publicationopenaccess>
+    <standard_id>0</standard_id>
+    <standard_status>Inactive</standard_status>
+    <standardmodifierset>
+      <standard_modifier>Draft</standard_modifier>
+    </standardmodifierset>
+    <packagememberset>
+      <packagemember>STDSELECT</packagemember>
+    </packagememberset>
+    <isbn isbntype="New-2005" mediatype="Electronic">978-1-5044-3975-6</isbn>
+    <standard_family>802.5</standard_family>
+    <standardpackageset>
+      <standard_package>Local and Metropolitan Area Networks (LAN/MAN)</standard_package>
+      <standard_package>Communications</standard_package>
+    </standardpackageset>
+    <icscodes>
+      <code_term codenum="35.110">Networking</code_term>
+      <code_term codenum="35.100.10">Physical layer</code_term>
+      <code_term codenum="35.100.20">Data link layer</code_term>
+    </icscodes>
+    <pubtopicalbrowseset>
+      <pubtopicalbrowse>Communication, Networking and Broadcast Technologies</pubtopicalbrowse>
+    </pubtopicalbrowseset>
+    <copyrightgroup>
+      <copyright>
+        <year>1998</year>
+        <holder>IEEE</holder>
+      </copyright>
+    </copyrightgroup>
+    <publisher>
+      <publishername>IEEE</publishername>
+      <address>
+        <country>USA</country>
+      </address>
+    </publisher>
+    <holdstatus>Hold</holdstatus>
+    <confgroup>
+      <doi_permission>F</doi_permission>
+    </confgroup>
+    <amsid>4039943</amsid>
+  </publicationinfo>
+  <volume>
+    <volumeinfo>
+      <year>1998</year>
+      <idamsid>0b000064820da0ee</idamsid>
+      <issue>
+        <amsid>4039944</amsid>
+        <issuestatus>Complete</issuestatus>
+      </issue>
+    </volumeinfo>
+    <article>
+      <title><![CDATA[IEEE Draft Supplement to Information technology Telecommunications and information exchange between systems Local and metropolitan area networks Part 5: Token Ring access method and physical layer specifications 100 Mbit/s Dedicated Token Ring Operation (Supplement to ISO/IEC 8802-5:1998 and ISO/IEC 8802-5:1998/Amd.1:1998)]]></title>
+      <articleinfo>
+        <articleseqnum>1</articleseqnum>
+        <idamsid>0b000064806a9daf</idamsid>
+        <articlestatus>Active</articlestatus>
+        <articleopenaccess>F</articleopenaccess>
+        <articleshowflag>F</articleshowflag>
+        <articleplagiarizedflag>F</articleplagiarizedflag>
+        <articlenodoiflag>F</articlenodoiflag>
+        <articlecoverimageflag>F</articlecoverimageflag>
+        <articlereferenceflag>F</articlereferenceflag>
+        <articlepeerreviewflag>F</articlepeerreviewflag>
+        <holdstatus>Publish</holdstatus>
+        <articlecopyright holderisieee="Yes" year="0"/>
+        <date datetype="OriginalPub">
+          <year>1998</year>
+        </date>
+        <size>1412807</size>
+        <filename docpartition="5" filetype="MainPDF">04039945.pdf</filename>
+        <artpagenums endpage="" startpage=""/>
+        <amsid>4039945</amsid>
+      </articleinfo>
+    </article>
+  </volume>
+</publication>

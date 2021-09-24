@@ -158,6 +158,25 @@ hash = YAML.load_file 'spec/fixtures/ieee_528_2019.yaml'
  ...
 ----
 
+=== Fetch data
+
+There is an IEEE dataset https://github.com/ietf-ribose/ieee-rawbib which can be converted into BibXML/BibYAML formats. The dataset needs to be placed into local directiory.
+
+The method `RelatonIeee::DataFetcher.fetch(output: "data", format: "yaml")` converts all the documents from the local `ieee-rawbib` directory and save them to the `./data` folder in YAML format.
+Arguments:
+
+- `output` - folder to save documents (default './data').
+- `format` - format in which the documents are saved. Possimle formats are: `yaml`, `xml` (default `yaml`).
+
+[source,ruby]
+----
+RelatonIeee::DataFetcher.fetch
+Started at: 2021-09-24 17:55:07 +0200
+Stopped at: 2021-09-24 17:57:30 +0200
+Done in: 143 sec.
+=> nil
+----
+
 == Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

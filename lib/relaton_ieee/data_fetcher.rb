@@ -1,0 +1,206 @@
+require "zip"
+require "relaton_ieee/data_parser"
+
+module RelatonIeee
+  class DataFetcher
+    RELATION_TYPES = {
+      "S" => { type: "obsoletedBy" },
+      "V" => { type: "updates", description: "revises" },
+      "T" => { type: "updates", description: "amends" },
+      "C" => { type: "updates", description: "corrects" },
+      "O" => { type: "adoptedFrom" },
+      "P" => { type: "complementOf", description: "supplement" },
+      "N" => false, "G" => false,
+      "F" => false, "I" => false,
+      "E" => false, "B" => false, "W" => false
+    }.freeze
+
+    # @return [Hash] list of AMSID => PubID
+    attr_reader :backrefs
+
+    #
+    # Create RelatonIeee::DataFetcher instance
+    #
+    # @param [String] output output dir
+    # @param [Strong] format output format. Allowed values: "yaml" or "xml"
+    #
+    def initialize(output, format)
+      @output = output
+      @format = format
+      @crossrefs = {}
+      @backrefs = {}
+    end
+
+    #
+    # Convert documents from `ieee-rawbib` dir (IEEE dataset) to BibYAML/BibXML
+    #
+    # @param [String] output ('data') output dir
+    # @param [String] format ('yaml') output format.
+    #   Allowed values: "yaml" or "xml"
+    #
+    def self.fetch(output: "data", format: "yaml")
+      t1 = Time.now
+      puts "Started at: #{t1}"
+      FileUtils.mkdir_p output unless Dir.exist? output
+      new(output, format).fetch
+      t2 = Time.now
+      puts "Stopped at: #{t2}"
+      puts "Done in: #{(t2 - t1).round} sec."
+    end
+
+    #
+    # Convert documents from `ieee-rawbib` dir (IEEE dataset) to BibYAML/BibXML
+    #
+    def fetch # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+      Dir["ieee-rawbib/**/*.{xml,zip}"].reject { |f| f["Deleted_"] }.each do |f|
+        xml = case File.extname(f)
+              when ".zip" then read_zip f
+              when ".xml" then File.read f, encoding: "UTF-8"
+              end
+        fetch_doc xml, f
+      rescue StandardError => e
+        warn "File: #{f}"
+        warn e.message
+        warn e.backtrace
+      end
+      update_relations
+    end
+
+    #
+    # Extract XML file from zip archive
+    #
+    # @param [String] file path to achive
+    #
+    # @return [String] file content
+    #
+    def read_zip(file)
+      Zip::File.open(file) do |zf|
+        entry = zf.glob("**/*.xml").first
+        entry.get_input_stream.read
+      end
+    end
+
+    #
+    # Parse document and save it
+    #
+    # @param [String] xml content
+    # @param [String] filename source file
+    #
+    def fetch_doc(xml, filename) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+      doc = Nokogiri::XML(xml).at("/publication")
+      unless doc
+        warn "Empty file: #{filename}"
+        return
+      end
+      bib = DataParser.parse doc, self
+      amsid = doc.at("./publicationinfo/amsid").text
+      if backrefs.value?(bib.docidentifier[0].id) && /updates\.\d+/ !~ filename
+        oamsid = backrefs.key bib.docidentifier[0].id
+        warn "Document exists ID: \"#{bib.docidentifier[0].id}\" AMSID: "\
+             "\"#{amsid}\" source: \"#{filename}\". Other AMSID: \"#{oamsid}\""
+        if bib.docidentifier[0].id.include?(bib.docnumber)
+          save_doc bib # rewrite file if the PubID mathces to the docnumber
+          backrefs[amsid] = bib.docidentifier[0].id
+        end
+      else
+        save_doc bib
+        backrefs[amsid] = bib.docidentifier[0].id
+      end
+    end
+
+    #
+    # Save unresolved relation reference
+    #
+    # @param [String] docnumber of main document
+    # @param [Nokogiri::XML::Element] amsid relation data
+    #
+    def add_crossref(docnumber, amsid)
+      return if RELATION_TYPES[amsid[:type]] == false
+
+      ref = { amsid: amsid.text, type: amsid[:type] }
+      if @crossrefs[docnumber]
+        @crossrefs[docnumber] << ref
+      else @crossrefs[docnumber] = [ref]
+      end
+    end
+
+    #
+    # Save document to file
+    #
+    # @param [RelatonIeee::IeeeBibliographicItem] bib
+    #
+    def save_doc(bib)
+      c = @format == "xml" ? bib.to_xml(bibdata: true) : bib.to_hash.to_yaml
+      File.write file_name(bib.docnumber), c, encoding: "UTF-8"
+    end
+
+    #
+    # Make filename from PubID
+    #
+    # @param [String] docnumber
+    #
+    # @return [String] filename
+    #
+    def file_name(docnumber)
+      name = docnumber.gsub(/[.\s,:\/]/, "_").squeeze("_").upcase
+      File.join @output, "#{name}.#{@format}"
+    end
+
+    #
+    # Update unresoverd relations
+    #
+    def update_relations # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+      @crossrefs.each do |dnum, rfs|
+        bib = nil
+        rfs.each do |rf|
+          if backrefs[rf[:amsid]]
+            rel = create_relation(rf[:type], backrefs[rf[:amsid]])
+            if rel
+              bib ||= read_bib(dnum)
+              bib.relation << rel
+              save_doc bib
+            end
+          else
+            warn "Unresolved relation: '#{rf[:amsid]}' type: '#{rf[:type]}' for '#{dnum}'"
+          end
+        end
+      end
+    end
+
+    #
+    # Create relation instance
+    #
+    # @param [String] type IEEE relation type
+    # @param [String] fref reference
+    #
+    # @return [RelatonBib::DocumentRelation]
+    #
+    def create_relation(type, fref)
+      return if RELATION_TYPES[type] == false
+
+      fr = RelatonBib::FormattedRef.new(content: fref)
+      bib = IeeeBibliographicItem.new formattedref: fr
+      desc = RELATION_TYPES[type][:description]
+      description = desc && RelatonBib::FormattedString.new(content: desc, language: "en", script: "Latn")
+      RelatonBib::DocumentRelation.new(
+        type: RELATION_TYPES[type][:type],
+        description: description,
+        bibitem: bib,
+      )
+    end
+
+    #
+    # Read document form BibXML/BibYAML file
+    #
+    # @param [String] docnumber
+    #
+    # @return [RelatonIeee::IeeeBibliographicItem]
+    #
+    def read_bib(docnumber)
+      c = File.read file_name(docnumber), encoding: "UTF-8"
+      if @format == "xml" then XMLParser.from_xml c
+      else IeeeBibliographicItem.from_hash YAML.safe_load(c)
+      end
+    end
+  end
+end
