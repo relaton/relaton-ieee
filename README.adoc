@@ -138,6 +138,16 @@ RelatonIeee::IeeeBibliography.get("IEEE 528-2019")
 ...
 ----
 
+=== Typed links
+
+Each IEEE document has `src` type link.
+
+[source,ruby]
+----
+item.link
+=> [#<RelatonBib::TypedUri:0x00007fe885219ba0 @content=#<Addressable::URI:0x8ac URI:https://standards.ieee.org/standard/528-2019.html>, @type="src">]
+----
+
 === Create bibliographic item from XML
 [source,ruby]
 ----
