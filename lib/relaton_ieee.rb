@@ -9,6 +9,7 @@ require "relaton_ieee/scrapper"
 require "relaton_ieee/ieee_bibliographic_item"
 require "relaton_ieee/committee"
 require "relaton_ieee/xml_parser"
+require "relaton_ieee/bibxml_parser"
 require "relaton_ieee/hash_converter"
 require "relaton_ieee/data_fetcher"
 

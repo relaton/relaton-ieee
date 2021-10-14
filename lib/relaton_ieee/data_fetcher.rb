@@ -27,6 +27,7 @@ module RelatonIeee
     def initialize(output, format)
       @output = output
       @format = format
+      @ext = format.sub(/^bib/, "")
       @crossrefs = {}
       @backrefs = {}
     end
@@ -130,7 +131,11 @@ module RelatonIeee
     # @param [RelatonIeee::IeeeBibliographicItem] bib
     #
     def save_doc(bib)
-      c = @format == "xml" ? bib.to_xml(bibdata: true) : bib.to_hash.to_yaml
+      c = case @format
+          when "xml" then bib.to_xml(bibdata: true)
+          when "yaml" then bib.to_hash.to_yaml
+          else bib.send("to_#{@format}")
+          end
       File.write file_name(bib.docnumber), c, encoding: "UTF-8"
     end
 
@@ -142,8 +147,8 @@ module RelatonIeee
     # @return [String] filename
     #
     def file_name(docnumber)
-      name = docnumber.gsub(/[.\s,:\/]/, "_").squeeze("_").upcase
-      File.join @output, "#{name}.#{@format}"
+      name = docnumber.gsub(/\s-/, "-").gsub(/[.\s,:\/]/, "_").squeeze("_").upcase
+      File.join @output, "#{name}.#{@ext}"
     end
 
     #
@@ -198,7 +203,9 @@ module RelatonIeee
     #
     def read_bib(docnumber)
       c = File.read file_name(docnumber), encoding: "UTF-8"
-      if @format == "xml" then XMLParser.from_xml c
+      case @format
+      when "xml" then XMLParser.from_xml c
+      when "bibxml" then BibXMLParser.parse c
       else IeeeBibliographicItem.from_hash YAML.safe_load(c)
       end
     end

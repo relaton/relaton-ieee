@@ -121,6 +121,21 @@ RSpec.describe RelatonIeee::DataFetcher do
           </bibitem>
         XML
         df.instance_variable_set :@format, "xml"
+        df.instance_variable_set :@ext, "xml"
+        expect(File).to receive(:read).with("data/5678.xml", encoding: "UTF-8").and_return xml
+        expect(df.read_bib("5678")).to be_instance_of RelatonIeee::IeeeBibliographicItem
+      end
+
+      it "in BibXML format" do
+        xml = <<~XML
+          <reference anchor="IEEEStdP802.11ma/D3.0">
+            <front>
+              <title>Title</title>
+            </front>
+          </reference>
+        XML
+        df.instance_variable_set :@format, "bibxml"
+        df.instance_variable_set :@ext, "xml"
         expect(File).to receive(:read).with("data/5678.xml", encoding: "UTF-8").and_return xml
         expect(df.read_bib("5678")).to be_instance_of RelatonIeee::IeeeBibliographicItem
       end
