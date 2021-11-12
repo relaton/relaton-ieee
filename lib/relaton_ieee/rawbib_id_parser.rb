@@ -2,7 +2,7 @@ require "relaton_ieee/pub_id"
 
 module RelatonIeee
   module RawbibIdParser
-    STAGES = 'DIS\d?|PSI|FCD|FDIS|CD\d?|Pub2|CDV'.freeze
+    STAGES = 'DIS\d?|PSI|FCD|FDIS|CD\d?|Pub2|CDV|TS|SI'.freeze
     APPROVAL = '(?:\s(Unapproved|Approved))'.freeze
     APPROV = '(?:\s(?:Unapproved|Approved))?'.freeze
     STD = "(?:\s(?i)Std\.?(?-i))?".freeze
@@ -23,7 +23,7 @@ module RelatonIeee
       # when /^(\d+)\.(\w+)-(\d{4})\s\(Amendment/ then "IEEE #{$1}-#{$2}.#{$3}"
       # when /^(\d+)\.(\w+)\/(D\d+),\s\w+\s(\d{4})/ then "IEEE #{$1}-#{$2}/#{$3}.#{$4}"
       # when /^(\d+)\.(\w+)-(\d{4})\/(Cor\s\d)-(\d{4})/ then "IEEE #{$1}-#{$2}.#{$3}/#{$4}.#{$5}"
-      # when "A.I.E.E. No. 15 May-1928" then "AIEE 15.1928"
+      when "A.I.E.E. No. 15 May-1928" then PubId.new(publisher: "AIEE", number: "15", year: "1928", month: "05").to_s
       # when /^([A-Z\/]{3,})\s[Nn]o(?:\.?\s|\.)(\w+)(?:\s\(105\))?(?:\s?-|,?\s)(?:\w+\s)?(\d{4})/
       #   "#{$1} #{$2}.#{$3}"
       # when /^([A-Z\/]{3,})\sNo\s(\w+)\.(\d+)-(\d{4})/ then "#{$1} #{$2}-#{$3}.#{$4}"
@@ -69,52 +69,95 @@ module RelatonIeee
         PubId.new(publisher: "IEEE", number: "P802", part: "15.4", rev: "i", draft: "09", year: "2013", month: "04", approval: true).to_s
       when "Draft IEEE P802.15.4REVi/D09, April 2011 (Revision of IEEE Std 802.15.4-2006)"
         PubId.new(publisher: "IEEE", number: "P802", part: "15.4", rev: "i", draft: "09", year: "2011", month: "04").to_s
+      when "ISO/IEC/IEEE DIS P42020:201x(E), June 2017"
+        PubId.new(publisher: "ISO/IEC/IEEE", stage: "DIS", number: "P42020", year: "2017", month: "06").to_s
+      when "IEEE/IEC P62582 CD2 proposal, May 2017"
+        PubId.new(publisher: "IEEE/IEC", number: "P62582", stage: "CD2", year: "2017", month: "05").to_s
+      when "ISO/IEC/IEEE P16326:201x WD.4a, July 2017"
+        PubId.new(publisher: "ISO/IEC/IEEE", number: "P16326", draft: "4a", year: "2017", month: "07").to_s
+      when "ISO/IEC/IEEE CD.1 P21839, October 2017"
+        PubId.new(publisher: "ISO/IEC/IEEE", stage: "CD1", number: "P21839", year: "2017", month: "10").to_s
+      when "IEEE P3001.2/D5, August 2017"
+        PubId.new(publisher: "IEEE", number: "P3001", part: "2", draft: "5", year: "2017", month: "01").to_s
+      when "P3001.2/D5, August 2017"
+        PubId.new(publisher: "IEEE", number: "P3001", part: "2", draft: "5", year: "2017", month: "12").to_s
+      when "ISO/IEC/IEEE P16326:201x WD5, December 2017"
+        PubId.new(publisher: "ISO/IEC/IEEE", number: "P16326", draft: "5", year: "2017", month: "12").to_s
+      when "ISO/IEC/IEEE DIS P16326/201x, December 2018"
+        PubId.new(publisher: "ISO/IEC/IEEE", stage: "DIS", number: "P16326", year: "2018", month: "12").to_s
+      when "ISO/IEC/IEEE/P21839, 2019(E)"
+        PubId.new(publisher: "ISO/IEC/IEEE", number: "P21839", year: "2019").to_s
+      when "ISO/IEC/IEEE P42020/V1.9, August 2018"
+        PubId.new(publisher: "ISO/IEC/IEEE", number: "P42020", year: "2018", month: "08").to_s
+      when "ISO/IEC/IEEE CD2 P12207-2: 201x(E), February 2019"
+        PubId.new(publisher: "ISO/IEC/IEEE", stage: "CD2", number: "P12207", part: "2", year: "2019", month: "02").to_s
+      when "ISO/IEC/IEEE P42010.WD4:2019(E)"
+        PubId.new(publisher: "ISO/IEC/IEEE", number: "P42010", draft: "4", year: "2019").to_s
+      when "IEC/IEEE P63195_CDV/V3, February 2020"
+        PubId.new(publisher: "IEC/IEEE", number: "P63195", stage: "CDV", year: "2020", month: "02").to_s
+      when "ISO /IEC/IEEE P24774_D1, February 2020"
+        PubId.new(publisher: "ISO/IEC/IEEE", number: "P24774", draft: "1", year: "2020", month: "02").to_s
+      when "IEEE/ISO/IEC P42010.CD1-V1.0, April 2020"
+        PubId.new(publisher: "IEEE/ISO/IEC", number: "P42010", stage: "CD1", year: "2020", month: "04").to_s
+      when "ISO/IEC/IEEE/P16085_DIS, March 2020"
+        PubId.new(publisher: "ISO/IEC/IEEE", stage: "DIS", number: "P16085", year: "2020", month: "03").to_s
+      when "ISO /IEC/IEEE P24774/DIS, July 2020"
+        PubId.new(publisher: "ISO/IEC/IEEE", stage: "DIS", number: "P24774", year: "2020", month: "07").to_s
+      when "ANSI/ IEEE C37.23-1969" then PubId.new(publisher: "ANSI/IEEE", number: "C37", part:"23", year: "1969").to_s
+      when "ANSI/IEEE Std: Outdoor Apparatus Bushings"
+        PubId.new(publisher: "ANSI/IEEE", number: "21", year: "1976", month: "11").to_s
+      when "ANSI/ IEEE C37.5-1979" then PubId.new(publisher: "ANSI/IEEE", number: "C37", part:"5", year: "1979").to_s
+      when "Unapproved Draft Std ISO/IEC FDIS 15288:2007(E) IEEE P15288/D3,"
+        PubId.new(publisher: "ISO/IEC/IEEE", stage: "FDIS", number: "P15288", draft: "3", year: "2007").to_s
+      when "Draft National Electrical Safety Code, January 2016"
+        PubId.new(publisher: "IEEE", number: "PC2", year: "2016", month: "01").to_s
+      when "ANSI/ IEEE C62.1-1981 (Revision of IEEE Std 28-1974 and ANSI C62.1-1975)"
+        PubId.new(publisher: "ANSI/IEEE", number: "C62", part: "1", year: "1981").to_s
+      when "ANSI/IEEE-ANS-7-4.3.2-1982" then PubId.new(publisher: "ANSI/IEEE/ANS", number: "7", part: "4-3-2", year: "1982").to_s
+      when "IEEE Unapproved Draft Std P802.1AB/REVD2.2, Dec 2007" # "IEEE P802.1AB/REV/D2.2.2007"
+        PubId.new(publisher: "IEEE", number: "P802", part: "1AB", rev: "", draft: "2.2", year: "2007", month: "12").to_s
 
       # drop all with <standard_id>0</standard_id>
-      when "IEEE Std P1671/D5, June 2006" then "IEEE P1671/D5 June 2006"
-      when "IEEE Std PC37.100.1/D8, Dec 2006" then "IEEE Std PC37-100-1/D8 Dec 2006"
-      when "IEEE Unapproved Draft Std P1578/D17, Mar 2007" then "IEEE Unapproved Draft Std P1578/D17, Mar 2007"
-      when "IEEE Approved Draft Std P1115a/D4, Feb 2007" then "IEEE Approved Draft Std P1115a/D4, Feb 2007"
-      when "IEEE Std P802.16g/D6, Nov 06" then "IEEE Std P802.16g/D6, Nov 06"
-      when "IEEE Unapproved Draft Std P802.1AB/REVD2.2, Dec 2007" then "IEEE P802.1AB/REV/D2.2.2007"
-      when "IEEE Unapproved Draft Std P1588_D2.2, Jan 2008" then "IEEE Unapproved Draft Std P1588_D2.2, Jan 2008"
-      when "IEEE Unapproved Std P90003/D1, Feb 2007.pdf" then "IEEE Unapproved Std P90003/D1, Feb 2007"
-      when "IEEE Unapproved Draft Std PC37.06/D10 Dec 2008" then "IEEE Unapproved Draft Std PC37.06/D10 Dec 2008"
-      when "IEEE P1451.2/D20, February 2011" then "IEEE P1451.2/D20, February 2011"
-      when "IEEE Std P1641.1/D3, July 2006",
+      when "IEEE Std P1671/D5, June 2006", "IEEE Std PC37.100.1/D8, Dec 2006",
+           "IEEE Unapproved Draft Std P1578/D17, Mar 2007", "IEEE Approved Draft Std P1115a/D4, Feb 2007",
+           "IEEE Std P802.16g/D6, Nov 06", "IEEE Unapproved Draft Std P1588_D2.2, Jan 2008",
+           "IEEE Unapproved Std P90003/D1, Feb 2007.pdf", "IEEE Unapproved Draft Std PC37.06/D10 Dec 2008",
+           "IEEE P1451.2/D20, February 2011", "IEEE Std P1641.1/D3, July 2006",
            "IEEE P802.1AR-Rev/D2.2, September 2017 (Draft Revision of IEEE Std 802.1AR\u20132009)",
-           "IEEE Std 108-1955; AIEE No.450-April 1955",
-           "IEEE Std 85-1973 (Revision of IEEE Std 85-1965)",
+           "IEEE Std 108-1955; AIEE No.450-April 1955", "IEEE Std 85-1973 (Revision of IEEE Std 85-1965)",
            "IEEE Std 1003.1/2003.l/lNT, March 1994 Edition" then nil
 
       # publisher1, number1, part1, publisher2, number2, part2, draft, year
-      when /^(\w+)\s(\w+)[-.](\d+)\/(\w+)\s(\w+)[-.](\d+)_D([\d.]+),\s\w+\s(\d{4})/
+      when /^([A-Z\/]+)\s(\w+)[-.](\d+)\/(\w+)\s(\w+)[-.](\d+)_D([\d.]+),\s\w+\s(\d{4})/
         # "#{$1} #{$2}-#{$3}/#{$4} #{$5}-#{$6}/D#{$7}.#{$8}"
         PubId.new([{ publisher: $1, number: $2, part: $3 },
                    { publisher: $4, number: $5, part: $6, draft: $7, year: $8 }]).to_s
 
       # publisher1, number1, part1, number2, part2, draft, year, month
       when /^([A-Z\/]+)\s(\w+)[.-]([\w.-]+)\/(\w+)[.-]([[:alnum:].-]+)[\/_]D([\w.]+),\s(\w+)\s(\d{4})/
-        PubId.new([{ publisher: $1, number: $2, part: $3 }, { number: $4, part: $5, draft: $6, year: $8, month: mn($7) }]).to_s
+        PubId.new([{ publisher: $1, number: $2, part: sp($3) }, { number: $4, part: sp($5), draft: $6, year: $8, month: mn($7) }]).to_s
 
       # publisher, approval, number, part, corrigendum, draft, year
-      when /^(\w+)#{APPROVAL}(?:\sDraft)?\sStd\s(\w+)\.(\d+)-\d{4}[^\/]*\/Cor\s?(\d)\/(D[\d\.]+),\s(?:\w+\s)?(\d{4})/o
+      when /^([A-Z\/]+)#{APPROVAL}(?:\sDraft)?\sStd\s(\w+)\.(\d+)-\d{4}[^\/]*\/Cor\s?(\d)\/(D[\d\.]+),\s(?:\w+\s)?(\d{4})/o
         # "#{$1}#{$2} #{$3}-#{sp $4}/Cor#{$5}/D#{$6}.#{$7}"
         PubId.new(publisher: $1, approval: $2, number: $3, part: sp($4), corr: $5, draft: $6, year: $7).to_s
 
       # publisher, number, part, corrigendum, draft, year, month
-      when /^(\w+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.(\w+)-\d{4}\/Cor\s?(\d(?:-\d+x)?)[\/_]D([\d\.]+),\s?(\w+)\s(\d{4})/o
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.(\w+)-\d{4}\/Cor\s?(\d(?:-\d+x)?)[\/_]D([\d\.]+),\s?(\w+)\s(\d{4})/o
         # "#{$1} #{$2}-#{$3}/Cor#{$4}/D#{$5}.#{$7}-#{mn $6}"
         PubId.new(publisher: $1, number: $2, part: $3, corr: $4, draft: $5, month: mn($6), year: $7).to_s
 
       # publidsher1, number1, year1 publisher2, number2, draft, year2
-      when /^(\w+)\s(\w+)-(\d{4})\/([A-Z]+)\s([[:alnum:]]+)_D([\w.]+),\s(\d{4})/
+      when /^([A-Z\/]+)\s(\w+)-(\d{4})\/([A-Z]+)\s([[:alnum:]]+)_D([\w.]+),\s(\d{4})/
         # "#{$1} #{$2}.#{$3}/#{$4} #{$5}/D#{$6}.#{$7}"
         PubId.new([{ publisher: $1, number: $2, year: $3 }, { publisher: $4, number: $5, draft: $6, year: $7 }]).to_s
 
+      when /^([A-Z\/]+)\s(#{STAGES})\s(\w+)[.-]([[:alnum:].-]+)[\s\/_]ED([\w.]+),\s(\w+)\s(\d{4})/o
+        PubId.new(publisher: $1, stage: $2, number: $3, part: sp($4), edition: $5, month: mn($6), year: $7).to_s
+
       # publidsher1, number1, publisher2, number2, draft, year
-      when /^(\w+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\/([A-Z]+)\s([[:alnum:]]+)_D([\d\.]+),\s\w+\s(\d{4})/o,
-           /^(\w+)\s(\w+)\sand\s([A-Z]+)(?:\sGuideline)?\s([[:alnum:]]+)\/D([\d\.]+),\s\w+\s(\d{4})/o
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\/([A-Z]+)\s([[:alnum:]]+)_D([\d\.]+),\s\w+\s(\d{4})/o,
+           /^([A-Z\/]+)\s(\w+)\sand\s([A-Z]+)(?:\sGuideline)?\s([[:alnum:]]+)\/D([\d\.]+),\s\w+\s(\d{4})/o
         # "#{$1} #{$2}/#{$3} #{$4}/D#{$5}.#{$6}"
         PubId.new([{ publisher: $1, number: $2 }, { publisher: $3, number: $4, draft: $5, year: $6 }]).to_s
 
@@ -127,42 +170,46 @@ module RelatonIeee
         PubId.new([{ publisher: $1, number: $2, part: $3 }, { number: $4, part: $5, draft: $6 }]).to_s
 
       # publidsher, number1, part1, number2, part2, year
-      when /^(\w+)\sStd\s(\w+)\.(\w+)\/(\w+)\.(\w+)\/INT\s\w+\s(\d{4})/
+      when /^([A-Z\/]+)\sStd\s(\w+)\.(\w+)\/(\w+)\.(\w+)\/INT\s\w+\s(\d{4})/
         # "#{$1} #{$2}-#{$3}/#{$4}-#{$5}.#{$6}"
         PubId.new([{ publisher: $1, number: $2, part: $3 }, { number: $4, part: $5, year: $6 }]).to_s
 
       # publisher, number, part, corrigendum, draft, year
-      when /^(\w+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)[.-]([\d-]+)\/Cor\s?(\d)[\/_]D([\d\.]+),\s(?:\w+\s)?(\d{4})/o,
-           /^(\w+)\s(\w+)[.-](\d+)-\d{4}\/Cor\s?(\d)(?:-|,\s|\/)D([\d.]+),?\s\w+\s(\d{4})/,
-           /^(\w+)\s(\w+)\.([[:alnum:].]+)[-_]Cor[\s-]?(\d)\/D([\d.]+),?\s\w+\s(\d{4})/
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)[.-]([\d-]+)\/Cor\s?(\d)[\/_]D([\d\.]+),\s(?:\w+\s)?(\d{4})/o,
+           /^([A-Z\/]+)\s(\w+)[.-](\d+)-\d{4}\/Cor\s?(\d)(?:-|,\s|\/)D([\d.]+),?\s\w+\s(\d{4})/,
+           /^([A-Z\/]+)\s(\w+)\.([[:alnum:].]+)[-_]Cor[\s-]?(\d)\/D([\d.]+),?\s\w+\s(\d{4})/
         # "#{$1} #{$2}-#{sp $3}/Cor#{$4}/D#{$5}.#{$6}"
         PubId.new(publisher: $1, number: $2, part: sp($3), corr: $4, draft: $5, year: $6).to_s
-      when /^(\w+)\s(\w+)\.(\d+)-\d{4}\/Cor(\d)-(\d{4})\/D([\d.]+)/ # "#{$1} #{$2}-#{$3}/Cor#{$4}/D#{$6}.#{$5}"
+      when /^([A-Z\/]+)\s(\w+)\.(\d+)-\d{4}\/Cor(\d)-(\d{4})\/D([\d.]+)/ # "#{$1} #{$2}-#{$3}/Cor#{$4}/D#{$6}.#{$5}"
         PubId.new(publisher: $1, number: $2, part: $3, corr: $4, draft: $6, year: $5).to_s
 
       # publisher, status, number, part, draft, year, month
-      when /^(\w+)(\sActive)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)[.-]([[:alnum:]\.]+)\s?[\/_]D([\w\.]+),?\s(\w+)(?:\s\d{1,2},)?\s?(\d{2,4})/o
+      when /^([A-Z\/]+)(\sActive)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)[.-]([[:alnum:]\.]+)\s?[\/_]D([\w\.]+),?\s(\w+)(?:\s\d{1,2},)?\s?(\d{2,4})/o
         # "#{$1}#{$2} #{$3}-#{sp $4}/D#{$5}.#{yn $7}-#{mn $6}"
         PubId.new(publisher: $1, status: $2, number: $3, part: sp($4), draft: $5, year: $7, month: mn($6)).to_s
 
       # publisher, approval, number, part, draft, year, month
-      when /^(\w+)(?:\sActive)?#{APPROVAL}(?:\sDraft)?#{STD}\s(\w+)[.-]([[:alnum:]\.]+)\s?[\/_]D([\w\.-]+),?\s(\w+)(?:\s\d{1,2},)?\s?(\d{2,4})/o
+      when /^([A-Z\/]+)(?:\sActive)?#{APPROVAL}(?:\sDraft)?#{STD}\s(\w+)[.-]([[:alnum:]\.]+)\s?[\/_]D([\w\.-]+),?\s(\w+)(?:\s\d{1,2},)?\s?(\d{2,4})/o
         # "#{$1}#{$2} #{$3}-#{sp $4}/D#{$5}.#{yn $7}-#{mn $6}"
         PubId.new(publisher: $1, approval: $2, number: $3, part: sp($4), draft: $5, year: $7, month: mn($6)).to_s
       when /^([A-Z\/]+)\s(\w+)\.([\w.]+)\/D([\w.]+),?\s(\w+)[\s_](\d{4})(?:\s-\s\(|\s\(|_)(Unapproved|Approved)/
-        PubId.new(publisher: $1, number: $2, part: $3, draft: $4, year: $6, month: mn($5), approval: $7).to_s
+        PubId.new(publisher: $1, number: $2, part: sp($3), draft: $4, year: $6, month: mn($5), approval: $7).to_s
 
       # publisher, approval, number, draft, year, month
       when /^([A-Z\/]+)\s(\w+)\/D([\w.]+),\s(\w+)\s(\d{4})\s-\s\(?(Approved|Unapproved)/
         PubId.new(publisher: $1, number: $2, draft: $3, year: $5, month: mn($4), approval: $6).to_s
 
       # publisher, approval, number, part, draft, year
-      when /^(\w+)#{APPROVAL}(?:\sDraft)?#{STD}\s(\w+)[.-]([\w.]+)\s?[\/_\s]D([\w\.]+),?\s\w+\s?(\d{4})/o
+      when /^([A-Z\/]+)#{APPROVAL}(?:\sDraft)?#{STD}\s(\w+)[.-]([\w.]+)\s?[\/_\s]D([\w\.]+),?\s\w+\s?(\d{4})/o
         # "#{$1}#{$2} #{$3}-#{sp $4}/D#{$5}.#{$6}"
         PubId.new(publisher: $1, approval: $2, number: $3, part: sp($4), draft: $5, year: $6).to_s
-      when /^(\w+)\s(\w+)\.([\w.]+)\/D([\d.]+),?\s\w+[\s_](\d{4})(?:\s-\s\(|_|\s\()?#{APPROVAL}/o
+      when /^([A-Z\/]+)\s(\w+)\.([\w.]+)\/D([\d.]+),?\s\w+[\s_](\d{4})(?:\s-\s\(|_|\s\()?#{APPROVAL}/o
         # "#{$1} #{$6} #{$2}-#{sp $3}/D#{$4}.#{$5}"
         PubId.new(publisher: $1, number: $2, part: sp($3), draft: $4, year: $5, approval: $6).to_s
+
+      # publisher, stage, number, part, edition, year, month
+      when /^([A-Z\/]+)\s(\w+)[.-]([[:alnum:].-]+)[\/_](#{STAGES})\s(\w+)\sedition,\s(\w+)\s(\d{4})/o
+        PubId.new(publisher: $1, number: $2, part: sp($3), stage: $4, edition: en($5), month: mn($6), year: $7).to_s
 
       # number, part, corrigendum, draft, year
       when /^(\w+)\.([\w.]+)-\d{4}[_\/]Cor\s?(\d)\/D([\w.]+),?\s\w+\s(?:\d{2},\s)?(\d{4})/
@@ -170,14 +217,14 @@ module RelatonIeee
         PubId.new(number: $1, part: sp($2), corr: $3, draft: $4, year: $5).to_s
 
       # publisher, approval, number, part, draft
-      when /^(\w+)\s(\w+)\.(\d+)\/D([\d.]+)\s\([^)]+\)\s-#{APPROVAL}/o
+      when /^([A-Z\/]+)\s(\w+)\.(\d+)\/D([\d.]+)\s\([^)]+\)\s-#{APPROVAL}/o
         # "#{$1} #{$5} #{$2}-#{$3}/D#{$4}"
         PubId.new(publisher: $1, approval: $5, number: $2, part: $3, draft: $4).to_s
 
       # publisher, number, part1, rev, draft, part2
-      when /^(\w+)#{STD}\s(\w+)\.([\d.]+)REV([a-z]+)_D([\w.]+)\sPart\s(\d)/o
+      when /^([A-Z\/]+)#{STD}\s(\w+)\.([\d.]+)REV([a-z]+)_D([\w.]+)\sPart\s(\d)/o
         # "#{$1} #{$2}-#{sp $3}-#{$6}/REV-#{$4}/D#{$5}"
-        PubId.new(publisher: $1, number: $2, part: "#{$3}-#{$6}", rev: $4, draft: $5).to_s
+        PubId.new(publisher: $1, number: $2, part: "#{sp($3)}-#{$6}", rev: $4, draft: $5).to_s
 
       # publisher, number, part, draft, year, month
       when /^([A-Z\/]+)#{STD}\s(\w+)[.-]([[:alnum:].]+)[\/\s_]D([\d.]+)(?:,?\s|_)([[:alpha:]]+)[\s_]?(\d{4})/o
@@ -190,14 +237,22 @@ module RelatonIeee
         PubId.new(publisher: $1, stage: $2, number: $3, part: sp($4), draft: $5, year: $6).to_s
 
       # publisher, number, part, rev, draft, year, month
-      when /^(\w+)\s(\w+)\.([\w.]+)-Rev\/D([\w.]+),\s(\w+)\s(\d{4})/
+      when /^([A-Z\/]+)\s(\w+)\.([\w.]+)-Rev\/D([\w.]+),\s(\w+)\s(\d{4})/
         # "#{$1} #{$2}-#{sp $3}/REV/D#{$4}.#{$6}-#{mn $5}"
         PubId.new(publisher: $1, number: $2, part: sp($3), rev: "", draft: $4, year: $6, month: mn($5)).to_s
 
       # publisher, number, part, rev, draft, year
-      when /^(\w+)\s(\w+)\.([\d.]+)Rev(\w+)-D([\w.]+),\s\w+\s(\d{4})/
+      when /^([A-Z\/]+)\s(\w+)\.([\d.]+)Rev(\w+)-D([\w.]+),\s\w+\s(\d{4})/
         # "#{$1} #{$2}-#{sp $3}/REV-#{$4}/D#{$5}.#{$6}"
         PubId.new(publisher: $1, number: $2, part: sp($3), rev: $4, draft: $5, year: $6).to_s
+
+      # publisher, stage, number, part, edition, year
+      when /^([A-Z\/]+)\s(#{STAGES})\s(\w+)[.-]([[:alnum:].-]+)[\/\s_]ED([\d.]+),\s(\d{4})/o
+        PubId.new(publisher: $1, stage: $2, number: $3, part: sp($4), edition: $5, year: $6).to_s
+
+      # publisher, stage, number, draft, year, month
+      when /^([A-Z\/]+)\s(\w+)\/(#{STAGES})[\/_]D([\w.]+),\s(\w+)\s(\d{4})/o
+        PubId.new(publisher: $1, number: $2, stage: $3, draft: $4, year: $6, month: mn($5)).to_s
 
       # number, part, draft, year, month
       when /(\w+)[.-]([[:alnum:].]+)[\/\s_]D([\d.]+)(?:,?\s|_)([[:alpha:]]+)[\s_]?(\d{4})/
@@ -208,25 +263,25 @@ module RelatonIeee
         PubId.new(publisher: "IEEE", number: $1, corr: $2, draft: $3, month: mn($4), year: $5).to_s
 
       # publisher, number, corrigendum, draft, year
-      when /^(\w+)#{APPROV}(?:\sDraft)?\sStd\s(\w+)(?:-\d{4})?[\/_]Cor\s?(\d)\/D([\d\.]+),\s\w+\s(\d{4})/o
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?\sStd\s(\w+)(?:-\d{4})?[\/_]Cor\s?(\d)\/D([\d\.]+),\s\w+\s(\d{4})/o
         # "#{$1} #{$2}/Cor#{$3}/D#{$4}.#{$5}"
         PubId.new(publisher: $1, number: $2, corr: $3, draft: $4, year: $5).to_s
 
       # publisher, number, part, rev, corrigendum, draft
-      when /^(\w+)\s(\w+)\.(\w+)-\d{4}-Rev\/Cor(\d)\/D([\d.]+)/
+      when /^([A-Z\/]+)\s(\w+)\.(\w+)-\d{4}-Rev\/Cor(\d)\/D([\d.]+)/
         # "#{$1} #{$2}-#{$3}/REV/Cor#{$4}/D#{$5}"
         PubId.new(publisher: $1, number: $2, part: $3, rev: "", corr: $4, draft: $5).to_s
 
       # publisher, number, part, corrigendum, draft
-      when /^(\w+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.([\w.]+)\/[Cc]or\s?(\d)\/D([\w\.]+)/o,
-           /^(\w+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.(\w+)-\d{4}\/Cor\s?(\d)[\/_]D([\d\.]+)/o
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.([\w.]+)\/[Cc]or\s?(\d)\/D([\w\.]+)/o,
+           /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.(\w+)-\d{4}\/Cor\s?(\d)[\/_]D([\d\.]+)/o
         # "#{$1} #{$2}-#{sp $3}/Cor#{$4}/D#{$5}"
         PubId.new(publisher: $1, number: $2, part: sp($3), corr: $4, draft: $5).to_s
 
       # publisher, number, part, corrigendum, year
-      when /^(\w+)#{STD}\s(\w+)\.([\w.]+)-\d{4}\/Cor\s?(\d)-(\d{4})/o
+      when /^([A-Z\/]+)#{STD}\s(\w+)[.-]([\w.]+)[:-]\d{4}[\/-]Cor[\s.]?(\d)[:-](\d{4})/o
         # "#{$1} #{$2}-#{$3}/Cor#{$4}.#{$5}"
-        PubId.new(publisher: $1, number: $2, part: $3, corr: $4, year: $5).to_s
+        PubId.new(publisher: $1, number: $2, part: sp($3), corr: $4, year: $5).to_s
 
       # publisher, number, part, draft, year
       when /^([\w\/]+)(?:\sActive)?#{APPROV}(?:\sDraft)?#{STD}\s(\w+)[.-]([[:alnum:]\.]+)(?:\s?\/\s?|_|,\s|-)D([\w\.]+)\s?,?\s\w+(?:\s\d{1,2},)?\s?(\d{2,4})/o,
@@ -236,23 +291,23 @@ module RelatonIeee
         PubId.new(publisher: $1, number: $2, part: sp($3), draft: $4, year: $5).to_s
 
       # publisher, approval, number, draft, year
-      when /^(\w+)#{APPROVAL}(?:\sDraft)?#{STD}\s([[:alnum:]]+)\s?[\/_]\s?D([\w\.]+),?\s\w+\s(\d{2,4})/o
+      when /^([A-Z\/]+)#{APPROVAL}(?:\sDraft)?#{STD}\s([[:alnum:]]+)\s?[\/_]\s?D([\w\.]+),?\s\w+\s(\d{2,4})/o
         # "#{$1}#{$2} #{$3}/D#{$4}.#{yn $5}"
         PubId.new(publisher: $1, approval: $2, number: $3, draft: $4, year: $5).to_s
-      when /^(\w+)\s(\w+)\/D([\d.]+),\s\w+[\s_](\d{4})(?:\s-\s\(?|_)?#{APPROVAL}/o
+      when /^([A-Z\/]+)\s(\w+)\/D([\d.]+),\s\w+[\s_](\d{4})(?:\s-\s\(?|_)?#{APPROVAL}/o
         # "#{$1} #{$5} #{$2}/D#{$3}.#{$4}"
         PubId.new(publisher: $1, number: $2, draft: $3, year: $4, approval: $5).to_s
 
       # publisher, number, part, rev, draft
-      when /^(\w+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.([\w.]+)[-\s\/]?REV-?(\w+)\/D([\d.]+)/o
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.([\w.]+)[-\s\/]?REV-?(\w+)\/D([\d.]+)/o
         # "#{$1} #{$2}-#{sp $3}/REV-#{$4}/D#{$5}"
         PubId.new(publisher: $1, number: $2, part: sp($3), rev: $4, draft: $5).to_s
-      when /^(\w+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.([\w.]+)-REV\/D([\d.]+)/o
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.([\w.]+)-REV\/D([\d.]+)/o
         # "#{$1} #{$2}-#{sp $3}/REV/D#{$4}"
         PubId.new(publisher: $1, number: $2, part: sp($3), rev: "", draft: $4).to_s
 
       # publisher, number, part, rev, year
-      when /^(\w+)#{APPROV}(?:\sDraft)?\sStd\s(\w+)\.(\d+)\/rev(\d+),\s\w+\s(\d+)/o
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?\sStd\s(\w+)\.(\d+)\/rev(\d+),\s\w+\s(\d+)/o
         # "#{$1} #{$2}-#{sp $3}/REV-#{$4}.#{$5}}"
         PubId.new(publisher: $1, number: $2, part: sp($3), rev: $4, year: $5).to_s
 
@@ -262,18 +317,20 @@ module RelatonIeee
         PubId.new(publisher: $1, stage: $2, number: $3, draft: $4, year: $5).to_s
 
       # publisher, stage, number, part, year, month
-      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)[.-](\d+)[\/_-](#{STAGES}),?\s(\w+)\s(\d{4})/o,
-           /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)[.-]([\w-]+)[\/_](#{STAGES}),?\s(\w+)\s(\d{4})/o
-        # "#{$1} #{$4} #{$2}-#{sp $3}.#{$6}-#{mn $5}"
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)[.-]([[:alnum:].-]+)(?:[\/_-]|,\s)(#{STAGES}),?\s(\w+)\s(\d{4})/o
         PubId.new(publisher: $1, number: $2, part: sp($3), stage: $4, year: $6, month: mn($5)).to_s
-      when /^([A-Z\/]+)\s(#{STAGES})\s(\w+)-(\w+),\s(\w+)\s(\d{4})/o
+      when /^([A-Z\/]+)\s(#{STAGES})\s(\w+)[.-](\w+),\s(\w+)\s(\d{4})/o
         # "#{$1} #{$2} #{$3}-#{sp $4}.#{$6}-#{mn $5}"
         PubId.new(publisher: $1, number: $3, part: sp($4), stage: $2, year: $6, month: mn($5)).to_s
+
+      # publisher, number, part, edition, year, month
+      when /^([A-Z\/]+)\s(\w+)[.-]([\w.-]+)[\/\s]ED([\d+]),\s(\w+)\s(\d{4})/
+        PubId.new(publisher: $1, number: $2, part: sp($3), edition: $4, month: mn($5), year: $6).to_s
 
       # publisher, stage, number, part, year
       when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)[.-](\d+)[\/_-](#{STAGES}),?\s\w+\s(\d{4})/o,
            /^([A-Z\/]+)\s(\w+)-(\d+)[\/-](#{STAGES})(?:_|,\s|-)\w+\s?(\d{4})/o,
-           /^([A-Z\/]+)\s(\w+)-(\d+)[\/-](#{STAGES})-(\d{4})/o
+           /^([A-Z\/]+)\s(\w+)[.-](\d+)[\/-_](#{STAGES})[\s-](\d{4})/o
         # "#{$1} #{$4} #{$2}-#{sp $3}.#{$5}"
         PubId.new(publisher: $1, number: $2, part: sp($3), stage: $4, year: $5).to_s
       when /^([A-Z\/]+)\s(#{STAGES})\s(\w+)-([\w-]+),\s(\d{4})/o
@@ -284,25 +341,29 @@ module RelatonIeee
       when /^([A-Z\/]+)\s(#{STAGES})\s(\w+)(?:\s\g<2>)?,\s(\w+)\s(\d{4})/o
         # "#{$1} #{$2} #{$3}.#{$5}-#{mn $4}"
         PubId.new(publisher: $1, number: $3, stage: $2, year: $5, month: mn($4)).to_s
+      when /^([A-Z\/]+)\s([[:alnum:]]+)(?:\s|_|\/\s?)?(#{STAGES}),?\s(\w+)\s(\d{4})/o
+        PubId.new(publisher: $1, number: $2, stage: $3, year: $5, month: mn($4)).to_s
+
+      # publisher, stage, number, part, draft
+      when /^([A-Z\/]+)[.-]([[:alnum:].-]+)[\/_]D([[:alnum:].]+)[\/_](#{STAGES})/o
+        PubId.new(publisher: "IEEE", number: $1, part: sp($2), draft: $3, stage: $4).to_s
 
       # publisher, stage, number, year
       when /^([A-Z\/]+)\s(#{STAGES})\s(\w+)(?:,\s\w+\s|:)(\d{4})/o
-        # "#{$1} #{$2} #{$3}.#{$4}"
         PubId.new(publisher: $1, number: $3, stage: $2, year: $4).to_s
-      when /^([A-Z\/]+)\s(\w+)\/(#{STAGES})-(\d{4})/o
-        # "#{$1} #{$3} #{$2}.#{$4}"
+      when /^([A-Z\/]+)\s(\w+)(?:\/|,\s)(#{STAGES})-(\d{4})/o
         PubId.new(publisher: $1, number: $2, stage: $3, year: $4).to_s
 
       # publisher, stage, number, part
-      when /^([A-Z\/]+)\s(\w+)-([\w-]+)\s(#{STAGES})/o
-        # "#{$1} #{$4} #{$2}-#{$3}"
+      when /^([A-Z\/]+)\s(\w+)-([\w-]+)[\s-](#{STAGES})/o
         PubId.new(publisher: $1, number: $2, part: $3, stage: $4).to_s
       when /^([A-Z\/]+)\s(\w+)-(#{STAGES})-(\w+)/o
-        # "#{$1} #{$3} #{$2}-#{$4}"
         PubId.new(publisher: $1, number: $2, part: $4, stage: $3).to_s
+      when /^([A-Z\/]+)\s(#{STAGES})\s(\w+)[.-]([[:alnum:].-]+)/o
+        PubId.new(publisher: $1, number: $3, part: sp($4), stage: $2).to_s
 
       # publisher, number, corrigendum, year
-      when /^(\w+)#{STD}\s(\w+)-\d{4}\/Cor\s?(\d)-(\d{4})/o
+      when /^([A-Z\/]+)#{STD}\s(\w+)-\d{4}\/Cor\s?(\d)-(\d{4})/o
         # "#{$1} #{$2}/Cor#{$3}.#{$4}"
         PubId.new(publisher: $1, number: $2, corrigendum: $3, year: $4).to_s
 
@@ -313,33 +374,40 @@ module RelatonIeee
 
       # publisher, number, part, year, month
       when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)-([\w-]+),\s(\w+)\s?(\d{4})/o,
-           /^(\w+)\sStd\s(\w+)\.(\w+)-\d{4}\/INT,?\s(\w+)\.?\s(\d{4})/
+           /^([A-Z\/]+)\sStd\s(\w+)\.(\w+)-\d{4}\/INT,?\s(\w+)\.?\s(\d{4})/
         # "#{$1} #{$2}-#{$3}.#{$5}-#{mn $4}"
         PubId.new(publisher: $1, number: $2, part: sp($3), year: $5, month: mn($4)).to_s
 
       # publisher, number, part, amendment, year
-      when /^(\w+)\sStd\s(\w+)-(\w+)-(\d{4})\/Amd(\d)/o
+      when /^([A-Z\/]+)#{STD}\s(\w+)-(\w+)[:-](\d{4})\/Amd(?:\s|.\s?)?(\d)/o
         # "#{$1} #{$2}-#{$3}/Amd#{$5}.#{$4}"
-        PubId.new(publisher: $1, number: $2, part: $3, amd: $5, year: $4).to_s
+        PubId.new(publisher: $1, number: $2, part: sp($3), amd: $5, year: $4).to_s
+
+      # publisher, number, part, year, redline
+      when /^([A-Z\/]+)#{STD}\s(\w+)[.-]([\w.]+)[:-](\d{4}).*?\s-\s(Redline)/o,
+           /^([A-Z\/]+)#{STD}\s(\w+)[.-]([\w.-]+):(\d{4}).*?\s-\s(Redline)/o
+        PubId.new(publisher: $1, number: $2, part: $3, year: $4, redline: true).to_s
 
       # publisher, number, part, year
       when /^([A-Z\/]+)\s(\w+)-(\d{1,3}),\s\w+\s(\d{4})/,
-           /^([A-Z\/]+)#{STD}\s(\w+)[.-](?!(?:19|20)\d{2}\D)([\w.]+)(?:,\s\w+\s|-|,\s)(\d{4})/o,
-           /^(\w+)#{STD}\sNo(?:\.?\s|\.)(\w+)\.(\d+)\s?-(?:\w+\s)?(\d{4})/o
+           /^([A-Z\/]+)#{STD}\s(\w+)[.-](?!(?:19|20)\d{2}\D)([\w.]+)(?:,\s\w+\s|-|:|,\s|\.|:)(\d{4})/o,
+           /^([A-Z\/]+)#{STD}\s(\w+)[.-](?!(?:19|20)\d{2}\D)([\w.-]+)(?:,\s\w+\s|:|,\s|\.|:)(\d{4})/o,
+           /^([A-Z\/]+)#{STD}\sNo(?:\.?\s|\.)(\w+)\.(\d+)\s?-(?:\w+\s)?(\d{4})/o
         # "#{$1} #{$2}-#{$3}.#{$4}"
         PubId.new(publisher: $1, number: $2, part: sp($3), year: $4).to_s
 
       # publisher, number, edition, year
-      when /^([A-Z\/]+)\s(\w+)\s(\w+)\sEdition,\s\w+\s(\d+)/ # "#{$1} #{$2}/E#{en $3}.#{$4}"
+      when /^([A-Z\/]+)\s(\w+)\s(\w+)\sEdition,\s\w+\s(\d+)/,
+           /^([A-Z\/]+)\s(\w+)[\/_]ED([\d.]+),\s(\d{4})/
         PubId.new(publisher: $1, number: $2, edition: en($3), year: $4).to_s
 
       # publisher, number, part, conformance, draft
-      when /^(\w+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.([[:alnum:].]+)[\/-]Conformance(\d+)[\/_]D([\w\.]+)/o
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.([[:alnum:].]+)[\/-]Conformance(\d+)[\/_]D([\w\.]+)/o
         # "#{$1} #{$2}-#{sp $3}/#{$4}/D#{$5}"
         PubId.new(publisher: $1, number: $2, part: "#{sp($3)}-#{$4}", draft: $5).to_s
 
       # publisher, number, part, conformance, year
-      when /^(\w+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.([[:alnum:].]+)\s?\/\s?Conformance(\d+)-(\d{4})/o
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.([[:alnum:].]+)\s?\/\s?Conformance(\d+)-(\d{4})/o
         # "#{$1} #{$2}-#{sp $3}/#{$4}.#{$5}"
         PubId.new(publisher: $1, number: $2, part: "#{sp($3)}-#{$4}", year: $5).to_s
 
@@ -351,7 +419,7 @@ module RelatonIeee
         PubId.new(publisher: $1, number: $2, part: sp($3), draft: $4).to_s
 
       # number, part, draft, year
-      when /^(\w+)[.-]([[:alnum:].-]+)(?:\/|,\s|_)D([\d.]+),?\s\w+,?\s(\d{4})/
+      when /^(\w+)[.-]([[:alnum:].-]+)(?:\/|,\s|_)D([\d.]+),?\s(?:\w+,?\s)?(\d{4})/
         # "IEEE #{$1}-#{sp $2}/D#{$3}.#{$4}"
         PubId.new(publisher: "IEEE", number: $1, part: sp($2), draft: $3, year: $4).to_s
 
@@ -362,14 +430,14 @@ module RelatonIeee
       # publisher, number, draft, year
       when /^([\w\/]+)(?:\sActive)?#{APPROV}(?:\sDraft)?#{STD}\s([[:alnum:]]+)\s?[\/_]\s?D([\w\.-]+),?\s(?:\w+\s)?(\d{2,4})/o,
            /^([\w\/]+)(?:\sActive)?#{APPROV}(?:\sDraft)?#{STD}\s([[:alnum:]]+)\/?D?([\d\.]+),?\s\w+\s(\d{4})/o,
-           /^(\w+)\s(\w+)\/Draft\s([\d.]+),\s\w+\s(\d{4})/
+           /^([A-Z\/]+)\s(\w+)\/Draft\s([\d.]+),\s\w+\s(\d{4})/
         # "#{$1} #{$2}/D#{dn $3}.#{yn $4}"
         PubId.new(publisher: $1, number: $2, draft: dn($3), year: yn($4)).to_s
-      when /^(\w+)\sStd\s(\w+)-(\d{4})\sDraft\s([\d.]+)/ # "#{$1} #{$2}/D#{$4}.#{$3}"
+      when /^([A-Z\/]+)\sStd\s(\w+)-(\d{4})\sDraft\s([\d.]+)/ # "#{$1} #{$2}/D#{$4}.#{$3}"
         PubId.new(publisher: $1, number: $2, draft: $4, year: $3).to_s
 
       # publisher, approval, number, draft
-      when /^(\w+)#{APPROVAL}(?:\sDraft)?#{STD}\s([[:alnum:]]+)[\/_]D([\w.]+)/o
+      when /^([A-Z\/]+)#{APPROVAL}(?:\sDraft)?#{STD}\s([[:alnum:]]+)[\/_]D([\w.]+)/o
         # "#{$1}#{$2} #{$3}/D#{$4}"
         PubId.new(publisher: $1, approval: $2, number: $3, draft: $4).to_s
 
@@ -389,37 +457,43 @@ module RelatonIeee
         PubId.new(publisher: $1, number: $2, draft: $3).to_s
 
       # publisher, number, year, month
-      when /^(\w+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)(?:-\d{4})?,\s(\w+)\s(\d{4})/o
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)(?:-\d{4})?,\s(\w+)\s(\d{4})/o
         # "#{$1} #{$2}.#{$4}-#{mn $3}"
         PubId.new(publisher: $1, number: $2, year: $4, month: mn($3)).to_s
 
       # publisher, number, year, redline
-      when /^([A-Z\/]+)#{STD}\s(\w+)-(\d{4})\s-\s(Redline)/o
+      when /^([A-Z\/]+)#{STD}\s(\w+)[:-](\d{4}).*?\s-\s(Redline)/o
         PubId.new(publisher: $1, number: $2, year: $3, redline: true).to_s
 
       # publisher, number, year
-      when /^(\w+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)(?:-|,\s(?:\w+\s)?)(\d{2,4})/o,
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)(?:-|:|,\s(?:\w+\s)?)(\d{2,4})/o,
            /^(\w+)#{APPROV}(?:\sDraft)?\sStd\s(\w+)\/\w+\s(\d{4})/o,
            /^([\w\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\/FCD-\w+(\d{4})/o,
            /^(\w+)#{STD}\sNo(?:\.?\s|\.)(\w+)\s?(?:-|,\s)(?:\w+\s)?(\d{4})/o,
-           /^(\w+)\sStd\s(\w+)\/INT-(\d{4})/
+           /^([A-Z\/]+)\sStd\s(\w+)\/INT-(\d{4})/
         # "#{$1} #{$2}.#{yn $3}"
         PubId.new(publisher: $1, number: $2, year: yn($3)).to_s
+      when /^ANSI\/\sIEEE#{STD}\s(\w+)-(\d{4})/o
+        PubId.new(publisher: "ANSI/IEEE", number: $1, year: $2).to_s
 
       # publisher, number, part
-      when /^(\w+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)\.([\d.]+)/o # "#{$1} #{$2}-#{sp $3}"
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}\s(\w+)[.-]([\d.]+)/o # "#{$1} #{$2}-#{sp $3}"
         PubId.new(publisher: $1, number: $2, part: sp($3)).to_s
 
       # number, part, draft
       when /^(\w+)\.([\w.]+)\/D([\w.]+)/
-        PubId.new(publisher: "IEEE", number: $1, part: $2, draft: $3).to_s
+        PubId.new(publisher: "IEEE", number: $1, part: sp($2), draft: $3).to_s
 
       # number, part, year
       when /^(\d{2})\sIRE\s(\w+)[\s.](\w+)/ # "IRE #{$2}-#{$3}.#{yn $1}"
         PubId.new(publisher: "IRE", number: $2, part: $3, year: yn($1)).to_s
+      when /^(\w+)\.(\w+)-(|d{4})/ then PubId.new(publisher: "IEEE", number: $1, part: $2, year: $3).to_s
+
+      # number, year
+      when /^(\w+)-(\d{4})\D/ then PubId.new(publisher: "IEEE", number: $1, year: $2).to_s
 
       # publisher, number
-      when /^(\w+)#{APPROV}(?:\sDraft)?#{STD}(?:\sNo\.?)?\s(\w+)/o # "#{$1} #{$2}"
+      when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}(?:\sNo\.?)?\s(\w+)/o # "#{$1} #{$2}"
         PubId.new(publisher: $1, number: $2).to_s
 
       else
@@ -479,6 +553,7 @@ module RelatonIeee
     def en(edition)
       case edition
       when "First" then 1
+      when "Second" then 2
       else edition
       end
     end
