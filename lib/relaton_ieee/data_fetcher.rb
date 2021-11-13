@@ -1,5 +1,6 @@
 require "zip"
 require "relaton_ieee/data_parser"
+require "relaton_ieee/rawbib_id_parser"
 
 module RelatonIeee
   class DataFetcher
@@ -30,6 +31,7 @@ module RelatonIeee
       @ext = format.sub(/^bib/, "")
       @crossrefs = {}
       @backrefs = {}
+      # @normtitles = []
     end
 
     #
@@ -64,6 +66,7 @@ module RelatonIeee
         warn e.message
         warn e.backtrace
       end
+      # File.write "normtitles.txt", @normtitles.join("\n")
       update_relations
     end
 
@@ -87,20 +90,33 @@ module RelatonIeee
     # @param [String] xml content
     # @param [String] filename source file
     #
-    def fetch_doc(xml, filename) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+    def fetch_doc(xml, filename) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
       doc = Nokogiri::XML(xml).at("/publication")
       unless doc
         warn "Empty file: #{filename}"
         return
       end
+      stdid = doc.at("./publicationinfo/standard_id").text
+      if stdid == "0"
+        # nt = doc&.at("./normtitle")&.text
+        # ntid = @normtitles.index nt
+        # @normtitles << nt if nt && !ntid
+        warn "Zero standard_id in #{filename}"
+        return
+      end
       bib = DataParser.parse doc, self
+      if bib.docnumber.nil?
+        nt = doc&.at("./normtitle")&.text
+        warn "PubID parse error. Normtitle: #{nt}, file: #{filename}"
+        return
+      end
       amsid = doc.at("./publicationinfo/amsid").text
       if backrefs.value?(bib.docidentifier[0].id) && /updates\.\d+/ !~ filename
         oamsid = backrefs.key bib.docidentifier[0].id
         warn "Document exists ID: \"#{bib.docidentifier[0].id}\" AMSID: "\
              "\"#{amsid}\" source: \"#{filename}\". Other AMSID: \"#{oamsid}\""
-        if bib.docidentifier[0].id.include?(bib.docnumber)
-          save_doc bib # rewrite file if the PubID mathces to the docnumber
+        if bib.docidentifier[0].id.include?(doc.at("./publicationinfo/stdnumber").text)
+          save_doc bib # rewrite file if the PubID matches to the stdnumber
           backrefs[amsid] = bib.docidentifier[0].id
         end
       else
@@ -147,7 +163,7 @@ module RelatonIeee
     # @return [String] filename
     #
     def file_name(docnumber)
-      name = docnumber.gsub(/\s-/, "-").gsub(/[.\s,:\/]/, "_").squeeze("_").upcase
+      name = docnumber.gsub(/\s-/, "-").gsub(/[\s,:\/]/, "_").squeeze("_").upcase
       File.join @output, "#{name}.#{@ext}"
     end
 

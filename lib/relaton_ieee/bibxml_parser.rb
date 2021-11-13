@@ -3,7 +3,7 @@ module RelatonIeee
     extend RelatonBib::BibXMLParser
     extend BibXMLParser
 
-    FLAVOR = "IEEE"
+    FLAVOR = "IEEE".freeze
 
     # @param attrs [Hash]
     # @return [RelatonBib::IetfBibliographicItem]

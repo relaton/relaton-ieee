@@ -4,8 +4,8 @@ RSpec.describe RelatonIeee::DataFetcher do
     expect(FileUtils).to receive(:mkdir_p).with("data")
     files = Dir["spec/fixtures/rawbib/**/*.{xml,zip}"]
     expect(Dir).to receive(:[]).with("ieee-rawbib/**/*.{xml,zip}").and_return files
-    expect(File).to receive(:write).with("data/P802_5T_D2_5.yaml", kind_of(String), encoding: "UTF-8")
-    expect(File).to receive(:write).with("data/P802_22_D3_0_MAR_2011.yaml", kind_of(String), encoding: "UTF-8")
+    expect(File).to receive(:write).with("data/IEEE_P802-22_D-3.0.2011-03.yaml", kind_of(String), encoding: "UTF-8")
+    # expect(File).to receive(:write).with("data/P802_22_D3_0_MAR_2011.yaml", kind_of(String), encoding: "UTF-8")
     RelatonIeee::DataFetcher.fetch
   end
 
@@ -43,6 +43,8 @@ RSpec.describe RelatonIeee::DataFetcher do
             <title>Title</title>
             <publicationinfo>
               <amsid>1234</amsid>
+              <standard_id>4321</standard_id>
+              <stdnumber>5677</stdnumber>
             </publicationinfo>
           </publication>
         XML
@@ -58,6 +60,8 @@ RSpec.describe RelatonIeee::DataFetcher do
             <title>IEEE 5678 Title</title>
             <publicationinfo>
               <amsid>1234</amsid>
+              <standard_id>4321</standard_id>
+              <stdnumber>5678</stdnumber>
             </publicationinfo>
           </publication>
         XML
@@ -141,4 +145,8 @@ RSpec.describe RelatonIeee::DataFetcher do
       end
     end
   end
+
+  # it do
+  #   RelatonIeee::DataFetcher.fetch
+  # end
 end

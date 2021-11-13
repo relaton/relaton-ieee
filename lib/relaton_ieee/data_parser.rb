@@ -110,7 +110,7 @@ module RelatonIeee
     # @return [Array<RelatonBib::DocumentIdentifier>]
     #
     def parse_docid
-      ids = [{ id: doc.at("./title").text, type: "IEEE" }]
+      ids = [{ id: pubid.to_s, type: "IEEE" }]
       isbn = doc.at("./publicationinfo/isbn")
       ids << { id: isbn.text, type: "ISBN" } if isbn
       doi = doc.at("./volume/article/articleinfo/articledoi")
@@ -120,13 +120,20 @@ module RelatonIeee
       end
     end
 
+    def pubid
+      @pubid ||= begin
+        nt = doc.at("./normtitle").text
+        RawbibIdParser.parse(nt)
+      end
+    end
+
     #
     # Parse docnumber
     #
     # @return [String] PubID
     #
     def docnumber
-      @docnumber ||= doc.at("./publicationinfo/stdnumber").text
+      @docnumber ||= pubid&.to_id # doc.at("./publicationinfo/stdnumber").text
     end
 
     #
@@ -223,7 +230,8 @@ module RelatonIeee
         if (ref = fetcher.backrefs[r.text])
           rel = fetcher.create_relation(r[:type], ref)
           rels << rel if rel
-        elsif !/Inactive Date/.match?(r) then fetcher.add_crossref(docnumber, r)
+        elsif !/Inactive Date/.match?(r) && docnumber
+          fetcher.add_crossref(docnumber, r)
         end
       end
       RelatonBib::DocRelationCollection.new rels
