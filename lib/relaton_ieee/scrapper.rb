@@ -6,40 +6,39 @@ module RelatonIeee
       # papam hit [Hash]
       # @return [RelatonOgc::OrcBibliographicItem]
       def parse_page(hit)
-        doc = Nokogiri::HTML Faraday.get(hit["recordURL"]).body
+        doc = Nokogiri::HTML Faraday.get(hit[:url]).body
         IeeeBibliographicItem.new(
           fetched: Date.today.to_s,
-          title: fetch_title(hit["recordTitle"]),
-          docid: fetch_docid(hit["recordTitle"]),
-          link: fetch_link(hit["recordURL"]),
+          title: fetch_title(doc),
+          docid: fetch_docid(hit[:ref]),
+          link: fetch_link(hit[:url]),
           docstatus: fetch_status(doc),
           abstract: fetch_abstract(doc),
           contributor: fetch_contributor(doc),
           language: ["en"],
           script: ["Latn"],
           date: fetch_date(doc),
-          committee: fetch_committee(doc)
+          committee: fetch_committee(doc),
         )
       end
       # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
       private
 
-      # @param title [String]
+      # @param doc [String] Nokogiri::HTML4::Document
       # @return [Array<RelatonBib::TypedTitleString>]
-      def fetch_title(title)
-        [
+      def fetch_title(doc)
+        doc.xpath("//h2[@id='stnd-title']").map do |t|
           RelatonBib::TypedTitleString.new(
-            type: "main", content: title, language: "en", script: "Latn"
-          ),
-        ]
+            type: "main", content: t.text, language: "en", script: "Latn",
+          )
+        end
       end
 
-      # @param title [String]
+      # @param ref [String]
       # @return [Array<RelatonBib::DocumentIdentifier>]
-      def fetch_docid(title)
-        /^(?<identifier>(?:\w+\s)?\S+)/ =~ title
-        [RelatonBib::DocumentIdentifier.new(id: identifier, type: "IEEE")]
+      def fetch_docid(ref)
+        [RelatonBib::DocumentIdentifier.new(id: ref, type: "IEEE")]
       end
 
       # @param url [String]
@@ -51,10 +50,10 @@ module RelatonIeee
       # @param doc [Nokogiri::HTML::Document]
       # @return [RelatonBib::DocumentStatus, NilClass]
       def fetch_status(doc)
-        stage = doc.at("//td[.='Status']/following-sibling::td/div")
+        stage = doc.at("//dd[@id='stnd-status']")
         return unless stage
 
-        RelatonBib::DocumentStatus.new(stage: stage.text)
+        RelatonBib::DocumentStatus.new(stage: stage.text.split.first)
       end
 
       # @param identifier [String]
@@ -67,33 +66,30 @@ module RelatonIeee
       # @param doc [Nokogiri::HTML::Document]
       # @return [Array<RelatonBib::FormattedString>]
       def fetch_abstract(doc)
-        content = doc.at("//div[@class='description']")
-        return [] unless content
-
-        [RelatonBib::FormattedString.new(content: content.text, language: "en",
-                                         script: "Latn")]
+        doc.xpath("//div[@id='stnd-description']").map do |a|
+          RelatonBib::FormattedString.new(
+            content: a.text.strip, language: "en", script: "Latn",
+          )
+        end
       end
 
       # @param doc [Nokogiri::HTML::Document]
       # @return [Array<RelatonBib::ContributionInfo>]
       def fetch_contributor(doc)
-        name = doc.at(
-          "//td[.='IEEE Program Manager']/following-sibling::td/div/a"
-        )
-        return [] unless name
-
-        [personn_contrib(name.text)]
+        doc.xpath("//dd[@id='stnd-staff-liaison']/text()").map do |name|
+          person_contrib(name.text.strip)
+        end
       end
 
       # @param name [String]
       # @return [RelatonBib::ContributionInfo]
-      def personn_contrib(name)
+      def person_contrib(name)
         fname = RelatonBib::FullName.new(
-          completename: RelatonBib::LocalizedString.new(name)
+          completename: RelatonBib::LocalizedString.new(name),
         )
         entity = RelatonBib::Person.new(name: fname)
         RelatonBib::ContributionInfo.new(
-          entity: entity, role: [type: "author"]
+          entity: entity, role: [type: "author"],
         )
       end
 
@@ -112,16 +108,13 @@ module RelatonIeee
       # @return [Array<RelatonBib::BibliographicDate>]
       def fetch_date(doc)
         dates = []
-        issued = doc.at "//td[.='Board Approval']/following-sibling::td/div"
-        if issued
-          dates << RelatonBib::BibliographicDate.new(type: "issued",
-                                                     on: issued.text)
+        id = doc.at "//dd[@id='stnd-approval-date']"
+        if id
+          dates << RelatonBib::BibliographicDate.new(type: "issued", on: id.text)
         end
-        published = doc.at("//td[.='History']/following-sibling::td/div")
-          &.text&.match(/(?<=Published Date:)[\d-]+/)&.to_s
-        if published
-          dates << RelatonBib::BibliographicDate.new(type: "published",
-                                                     on: published)
+        pd = doc.at("//dd[@id='stnd-published-date']")
+        if pd
+          dates << RelatonBib::BibliographicDate.new(type: "published", on: pd.text)
         end
         dates
       end
@@ -132,23 +125,23 @@ module RelatonIeee
       # @return [Array<RelatonIeee::Committee>]
       def fetch_committee(doc)
         committees = []
-        sponsor = doc.at "//td[.='Sponsor Committee']/following-sibling::td/div"
+        sponsor = doc.at "//dd[@id='stnd-committee']/text()"
         if sponsor
-          committees << Committee.new(type: "sponsor", name: sponsor.text)
+          committees << Committee.new(type: "sponsor", name: sponsor.text.strip)
         end
         sponsor = doc.at "//td[.='Standards Committee']/following-sibling::td/div/a"
         if sponsor
           committees << Committee.new(type: "standard", name: sponsor.text)
         end
-        working = doc.at "//td[.='Working Group']/following-sibling::td/div"
-        chair = doc.at "//td[.='Working Group Chair']/following-sibling::td/div"
+        working = doc.at "//dd[@id='stnd-working-group']/text()"
         if working
-          committees << Committee.new(type: "working", name: working.text,
+          chair = doc.at "//dd[@id='stnd-working-group-chair']"
+          committees << Committee.new(type: "working", name: working.text.strip,
                                       chair: chair.text)
         end
-        society = doc.at "//td[.='Society']/following-sibling::td/div"
+        society = doc.at "//dd[@id='stnd-society']/text()"
         if society
-          committees << Committee.new(type: "society", name: society.text)
+          committees << Committee.new(type: "society", name: society.text.strip)
         end
         committees
       end

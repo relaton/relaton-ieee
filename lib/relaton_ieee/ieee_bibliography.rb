@@ -15,7 +15,7 @@ module RelatonIeee
       #
       # @return [Hash, NilClass] returns { ret: RelatonBib::BibliographicItem }
       #   if document is found else returns NilClass
-      def get(code, year = nil, _opts = {})
+      def get(code, year = nil, _opts = {}) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
         warn "[relaton-ieee] (\"#{code}\") fetching..."
         result = search(code) || (return nil)
         year ||= code.match(/(?<=-)\d{4}/)&.to_s
@@ -42,11 +42,11 @@ module RelatonIeee
       # @param opts [Hash] options
       #
       # @return [Hash]
-      def bib_results_filter(result, ref, year)
+      def bib_results_filter(result, ref, year) # rubocop:disable Metrics/AbcSize
         rp1 = ref_parts ref
         missed_years = []
         result.each do |hit|
-          rp2 = ref_parts hit.hit["recordTitle"]
+          rp2 = ref_parts hit.hit[:ref]
           next if rp1[:code] != rp2[:code] || rp1[:corr] != rp2[:corr]
 
           return { ret: hit } if !year

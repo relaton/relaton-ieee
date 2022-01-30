@@ -35,7 +35,7 @@ RSpec.describe RelatonIeee do
     it "corrigendum" do
       VCR.use_cassette "ieee_802_1ae_2018_cor_1_2020" do
         result = RelatonIeee::IeeeBibliography.get "802.1AE-2018/Cor 1-2020"
-        expect(result.docidentifier[0].id).to eq "IEEE 802.1AE-2018/Cor"
+        expect(result.docidentifier[0].id).to eq "IEEE 802.1AE-2018/Cor 1-2020"
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe RelatonIeee do
       end
 
       it do
-        VCR.use_cassette "ieee 754" do
+        VCR.use_cassette "ieee_754" do
           bib = RelatonIeee::IeeeBibliography.get "IEEE 754"
           expect(bib.docidentifier[0].id).to eq "IEEE 754-2019"
         end
