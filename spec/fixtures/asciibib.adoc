@@ -8,6 +8,7 @@ title.language:: en
 title.script:: Latn
 title.format:: text/plain
 docid.type:: IEEE
+docid.primary:: true
 docid.id:: 528-2019
 language:: en
 script:: Latn

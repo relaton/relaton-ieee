@@ -1,8 +1,8 @@
 <bibdata>
-  <fetched>2022-01-29</fetched>
+  <fetched>2022-02-04</fetched>
   <title type="main" format="text/plain" language="en" script="Latn">IEEE Standard for Inertial Sensor Terminology</title>
   <uri type="src">https://standards.ieee.org/ieee/528/7292/</uri>
-  <docidentifier type="IEEE">IEEE 528-2019</docidentifier>
+  <docidentifier type="IEEE" primary="true">IEEE 528-2019</docidentifier>
   <date type="issued">
     <on>2019-06-13</on>
   </date>

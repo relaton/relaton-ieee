@@ -21,10 +21,7 @@ module RelatonIeee
       resp = Faraday.post url, { action: "ieee_cloudsearch", q: query }
       json = JSON.parse resp.body
       html = Nokogiri::HTML json["html"]
-      # @array = json["results"]["hits"]["hit"].reduce([]) do |s, hit|
       @array = html.xpath("//h4/a").reduce([]) do |s, hit|
-        # fields = hit["fields"]
-        # ref = html.at("//h4/a[@href='#{fields['doc_id_l']}']").text.strip
         ref = hit.text.strip
         /^(?:\w+\s)?(?<code2>[A-Z\d.]+)(?:-(?<year>\d{4}))?/ =~ ref
         next s unless code2 && code1 =~ %r{^#{code2}}

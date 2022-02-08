@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 29 Jan 2022 16:51:25 GMT
+      - Tue, 08 Feb 2022 16:54:24 GMT
       Content-Type:
       - text/html; charset=UTF-8
       Transfer-Encoding:
@@ -51,12 +51,12 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 6d53f710282d1c2f-SOF
+      - 6da6612dff598ee4-SOF
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: '{"status":"ok","total_pages":4,"results":{"status":{"rid":"udL+teovpBQK1EES","time-ms":1},"hits":{"found":34,"start":0,"hit":[{"id":"deeda866247869adbe7716926c50b0aea728828163d9051da267c8b2e13b07d4fdff6886247478c01473f52876f0f704b6e8f55e87a8c1238c9b1eee7a2cf6ee","fields":{"meta_keywords_la":["Aerospace
+      string: '{"status":"ok","total_pages":4,"results":{"status":{"rid":"nvSH0u0vvdwBCtRFRw==","time-ms":1},"hits":{"found":34,"start":0,"hit":[{"id":"deeda866247869adbe7716926c50b0aea728828163d9051da267c8b2e13b07d4fdff6886247478c01473f52876f0f704b6e8f55e87a8c1238c9b1eee7a2cf6ee","fields":{"meta_keywords_la":["Aerospace
         Electronics"],"doc_type_l":"text\/html","meta_type_la":["Standard"],"meta_description_l":"SUPERSEDED
         BY IEEE STD 528-2001.   Terms and definitions relating to inertial sensors
         are presented. Usage as understood by the inertial sensor community is given
@@ -1122,19 +1122,14 @@ http_interactions:
         . A not-for-profit organization, IEEE is the world\u2019s largest technical
         professional organization dedicated to advancing technology for the benefit
         of humanity. Subscribe Newswire Sign up for our monthly newsletter to learn
-        about new developments, including resources, insights and more. "}},{"id":"417d99a37a89b4111b7bc1619f19726d1ab6a092235b6f3f68257dbfc26f55108f71965f44f58344641e674d518e15d40ca211830ab3c8a09cf3212772ab1c67","fields":{"meta_keywords_la":["Aerospace
+        about new developments, including resources, insights and more. "}},{"id":"3fc0c715deec41762b0998457967e6feb2e27945928e2467bfb2f2923a4976a89ba4567595790403dcd8f650e2906a80c9826aa4cd52d5af78f7195707928ce0","fields":{"meta_keywords_la":["Aerospace
         Electronics"],"doc_type_l":"text\/html","meta_type_la":["Standard"],"meta_description_l":"A
-        guide is presented for the preparation of a specification and test procedure
-        for an inertial angular sensor that provides a common meeting ground of terminology
-        and practice for manufacturers and users of an array of sensors that have
-        been developed to meet needs not easily met by traditional spinning-rotor
-        gyroscopes. A test procedure for verifying that the specifications have been
-        met is given. The standard is not intended to compete with existing standards
-        for specific devices with highly specific models and error sources, such as
-        spring-restrained rate gyros, but to provide a uniform guide for those inertial
-        angular sensors that have not been covered elsewhere.","meta_topic_la":["Aerospace
-        Electronics"],"doc_id_l":"https:\/\/standards.ieee.org\/ieee\/671\/926\/","doc_title_t":"IEEE
-        SA - IEEE 671-1985","doc_text_t":"IEEE SA - IEEE 671-1985 IEEE.org IEEE Xplore
+        specification format guide for the preparation of a rate-integrating gyro
+        specification that provides a common meeting ground of terminology and practice
+        for manufacturers and users is presented. A compilation of recommended procedures
+        for testing a rate-integrating gyro is given.","meta_topic_la":["Aerospace
+        Electronics"],"doc_id_l":"https:\/\/standards.ieee.org\/ieee\/517\/760\/","doc_title_t":"IEEE
+        SA - IEEE 517-1974","doc_text_t":"IEEE SA - IEEE 517-1974 IEEE.org IEEE Xplore
         Digital Library IEEE Standards IEEE Spectrum More Sites eTools Standards Access
         Standards Search Standards Standards Development Standards Adoption Choose
         from the many ways to access IEEE SA Standards. Choose from individual or
@@ -1187,26 +1182,267 @@ http_interactions:
         and organizational effectiveness program to enable the success of our vital
         volunteers. Read the latest news on IEEE SA. Subscribe to our newsletter and
         keep up to date on the latest standards, event, and activities. MAC Address
-        Inactive-Reserved Standard IEEE 671-1985 IEEE Standard Specification Format
-        Guide and Test Procedure for Nongyroscopic Inertial Angular Sensors: Jerk,
-        Acceleration, Velocity, and Displacement Purchase Access via Subscription
-        Home Standards IEEE 671-1985 A guide is presented for the preparation of a
-        specification and test procedure for an inertial angular sensor that provides
-        a common meeting ground of terminology and practice for manufacturers and
-        users of an array of sensors that have been developed to meet needs not easily
-        met by traditional spinning-rotor gyroscopes. A test procedure for verifying
-        that the specifications have been met is given. The standard is not intended
-        to compete with existing standards for specific devices with highly specific
-        models and error sources, such as spring-restrained rate gyros, but to provide
-        a uniform guide for those inertial angular sensors that have not been covered
-        elsewhere. Sponsor Committee AES\/GA - Gyro Accelerometer Panel Learn More
-        Status Inactive-Reserved Standard Corrigendum 671-1985\/Cor 1-2010 Board Approval
-        1983-06-23 History ANSI Approved: 1992-05-06 Published: 1984-11-30 Reaffirmed:
-        2008-12-10 Inactivated Date: 2019-11-07 Working Group Details Society IEEE
-        Aerospace and Electronic Systems Society Learn More Sponsor Committee AES\/GA
-        - Gyro Accelerometer Panel Learn More Working Group SENSR_WG - Sensors Working
-        Group IEEE Program Manager Dan Perez Contact Working Group Chair Harry Davis
-        Active Projects Active Standards Superseded Standards Inactive-Withdrawn Standards
+        Inactive-Reserved Standard IEEE 517-1974 IEEE Standard Specification Format
+        Guide and Test Procedure for Single-Degree-of-Freedom Rate-Integrating Gyros
+        Purchase Access via Subscription Home Standards IEEE 517-1974 A specification
+        format guide for the preparation of a rate-integrating gyro specification
+        that provides a common meeting ground of terminology and practice for manufacturers
+        and users is presented. A compilation of recommended procedures for testing
+        a rate-integrating gyro is given. Sponsor Committee AES\/GA - Gyro Accelerometer
+        Panel Learn More Status Inactive-Reserved Standard Board Approval 1973-12-13
+        History ANSI Approved: 1983-05-30 Published: 1974-10-17 Reaffirmed: 2010-09-30
+        Inactivated Date: 2021-03-25 Additional Resources Erratas 517-1974_errata.pdf
+        Working Group Details Society IEEE Aerospace and Electronic Systems Society
+        Learn More Sponsor Committee AES\/GA - Gyro Accelerometer Panel Learn More
+        Working Group SENSR_WG - Sensors Working Group IEEE Program Manager Dan Perez
+        Contact Working Group Chair Harry Davis Active Projects Active Standards Superseded
+        Standards Inactive-Withdrawn Standards Inactive-Reserved Standards P1431 Standard
+        for Specifying and Testing Coriolis Vibratory Gyros This standard defines
+        requirements and test procedures for a single-axis Coriolis vibratory gyro
+        (CVG) for use as a sensor in attitude control systems, angular displacement
+        measuring systems, and angular rate measuring systems. Informative annexes
+        cover CVG design features and theoretical principles of operation. Learn More
+        1293-2018 IEEE Standard Specification Format Guide and Test Procedure for
+        Linear Single-Axis, Nongyroscopic Accelerometers The specification and test
+        requirements for a linear, single-axis, nongyroscopic accelerometer for use
+        in inertial navigation, guidance, and leveling systems are defined. A standard
+        specification guide and a compilation of recommended test procedures for such
+        accelerometers are provided. Informative annexes are given on the various
+        types of such accelerometers (force or pendulous torque rebalance with analog
+        or digital output, vibrating beam, and micromechanical) and error effects,
+        on filtering, noise, and transient analysis techniques, and on calibration
+        and modeling techniques (multipoint tumble analysis, vibration and shock test
+        analyses, and geophysical effects in inertial instrument testing). Learn More
+        1554-2005 IEEE Recommended Practice for Inertial Sensor Test Equipment, Instrumentation,
+        Data Acquisition, and Analysis Test equipment, data acquisition equipment,
+        instrumentation, test facilities, and data analysis techniques used in inertial
+        sensor testing are described in this recommended practice. Learn More 528-2019
+        IEEE Standard for Inertial Sensor Terminology Terms and definitions relating
+        to inertial sensors are presented in this standard. Usage as understood by
+        the inertial sensor community is given preference over general technical usage
+        of the terms herein. The criterion for inclusion of a term and its definition
+        in this standard is usefulness as related to inertial sensor technology. Learn
+        More 647-2006 IEEE Standard Specification Format Guide and Test Procedure
+        for Single-Axis Laser Gyros Specification and test requirements for a single-axis
+        ring laser gyro (RLG) for use as a sensor in attitude control systems, angular
+        displacement measuring systems, and angular rate measuring systems are defined.
+        A standard specification format guide for the preparation of a single-axis
+        RLG is provided. A compilation of recommended procedures for testing an RLG,
+        derived from those presently used in the industry, is also provided. Learn
+        More 813-1988 IEEE Specification Format Guide and Test Procedure for Two-Degree-of-Freedom
+        Dynamically Tuned Gyros A format guide for the preparation of a two-degree-of-freedom
+        dynamically tuned gyro (DTG) specification is given that provides a common
+        ground of terminology and practice for manufacturers and users. A compilation
+        of recommended procedures for testing a DTG is also given. The requirements
+        and test procedures are defined in terms unique to the DTG. They cover applications
+        of the gyro as an angular motion sensor in navigation and control systems.
+        They apply to two modes of use: (1) as a strap-down sensor in operating environments
+        typical of aircraft and missile applications, and (2) as a sensor in gimballed
+        platform applications in which the dynamic angular inputs to which the gyro
+        is subjected are benign relative to the accuracy required. In the case of
+        the strap-down DTG, the characteristics of the external capture loops are
+        considered to the extent necessary to define the gyro performance. Learn More
+        952-2020 IEEE Standard for Specifying and Testing Single-Axis Interferometric
+        Fiber Optic Gyros Specification and test procedures for a single-axis interferometric
+        fiber optic gyro (IFOG) for use as a sensor in attitude control systems, angular
+        displacement measuring systems, and angular rate measuring systems are defined.
+        The test procedures are derived from those presently used in the industry.
+        Learn More 1293-1998\/Cor 1-2008 IEEE Standard Specification Format Guide
+        and Test Procedure for Linear,Single-Axis, Nongyroscopic Accelerometers Corrigendum
+        1: Changes to Annex K and Annex L Corrigendum to IEEE Std 1293-1998. Specification
+        and test requirements for linear, single-axis, nongyroscopic accelerometers
+        for use as a sensor in attitude control systems, linear displacement measuring
+        systems, and linear rate measuring systems are defined. The specification
+        format guide and test procedure standard applies to force-rebalance accelerometers
+        (pendulous or translational proof mass), vibrating beam accelerometers (VBAs),
+        and micromechanical accelerometers that range from lesser accuracy to high
+        accuracy devices. Learn More 528-2001 IEEE Standard for Inertial Sensor Terminology
+        Terms and definitions relating to inertial senors are presented in this standard.
+        Usage as understood by the inertial sensor community is given preference over
+        general technical usage of the terms herein. The criterion for inclusion of
+        a term and its definition in this standard is usefulness as related to inertial
+        sensor technology. Learn More 952-1997 IEEE Standard Specification Format
+        Guide and Test Procedure for Single-Axis Interferometric Fiber Optic Gyros
+        Specification and test requirements for a single-axis interferometric fiber
+        optic gyro (IFOG) for use as a sensor in attitude control systems, angular
+        displacement measuring systems, and angular rate measuring systems are defined.
+        A standard specification format guide for the preparation of a single-axis
+        IFOG is provided. A compilation of recommended procedures for testing a fiber
+        optic gyro, derived from those presently used in the industry, is also provided.
+        Learn More 952-1997\/Cor 1-2016 IEEE Standard Specification Format Guide and
+        Test Procedure for Single-Axis Interferometric Fiber Optic Gyros -- Corrigendum
+        1: Figure 1 and Subclauses 5.3.4, 8.3, 12.11.4.3.2, 12.11.4.3.3, 12.11.4.3.4,
+        12.12.3.1, and 12.12.4.1 Errors identified in IEEE Std 952-1997 are corrected
+        in this corrigendum. Corrections are made to Figure 1 and in subclauses 5.3.4,
+        8.3, 12.11.4.3.2, 12.11.4.3.3, 12.11.4.3.4, 12.12.3.1, and 12.12.4.1. Learn
+        More No Inactive-Withdrawn Standards 1431-2004 IEEE Standard Specification
+        Format Guide and Test Procedure for Coriolis Vibratory Gyros Specification
+        and test requirements for a single-axis Coriolis vibratory gyro (CVG) for
+        use as a sensor in attitude control systems, angular displacement measuring
+        systems, and angular rate measuring systems are defined. A stadard specification
+        format guide for the preparation of a single-axis CVG is provided. A complilation
+        of recommended procedures for testing a CVG, derived from those presently
+        used in the industry, is also provided. Informative annexes cover CVG design
+        features and theoretical principles of operation. Learn More 1431-2004\/Cor
+        1-2008 IEEE Standard Specification Format Guide and Test Procedure for Coriolis
+        Vibratory Gyros - Corrigendum 1 Corrigendum to IEEE Std 1431-2004. Learn More
+        292-1969 IEEE Specification Format for Single-Degree-of-Freedom Spring-Restrained
+        Rate Gyros This specification defines the requirements for a single-degree-of-freedom
+        spring-restrained rate gyro for [aircraft, missile, spacecraft,______] applications.
+        The rate gyro shall be capable of providing [(dc, ac) voltage outputs proportional
+        to angular rate inputs up to______ degrees per second, a switch closure(s)
+        at angular rates (exceeding,less than)______ (+,-,u00b1)______ degrees per
+        second]. Learn More 293-1969 IEEE Test Procedure for Single-Degree-of-Freedom
+        Spring-Restrained Rate Gyros Recommended rate gyro test procedures derived
+        from those currently in use, including test conditions to be considered, are
+        compiled. In some cases alternate methods for measuring a performance characteristic
+        have been included. This standard is intended to be a guide in the preparation
+        of Section 4 of a specification that follows the format of IEEE Std 292, Specification
+        Format for Single-Degree-of-Freedom Spring-Restrained Rate Gyros. Learn More
+        293-1969\/Cor 1-2014 IEEE Standard for IEEE Test Procedure for Single-Degree-of-Freedom
+        Spring-Restrained Rate Gyros -- Corrigendum 1: Table 1 Heading Correction
+        to Table 1 on page 14 of IEEE Std 293-1969 Learn More 529-1980 Supplement
+        for Strapdown Applications to IEEE Standard Specification Format Guide and
+        Test Procedure for Single-Degree-of-Freedom Rate-Integrating Gyros A specification
+        format guide for the preparation of a rate-integrating gyroscope specification
+        is presented. Recommended procedures for testing a rate-integrating gyroscope
+        are compiled. This standard, when combined with IEEE Std 517-1974 (R1980),
+        defines the requirements and test procedures in terms of characteristics unique
+        to the gyroscope or those applications in which the dynamic angular inputs
+        are significantly greater than the limitations identified in IEEE Std 517.
+        Learn More 529-1980\/Cor 1-2017 IEEE Standard Supplement for Strapdown Applications
+        to IEEE Standard Specification Format Guide and Test Procedure for Single-Degree-of-Freedom
+        Rate-Integrating Gyros - Corrigendum 1: 3.3.9.2.2, 3.6.4.1.1, 3.6.4.1.2, 6.3,
+        and 10.10.4.1 Corrections are made by this corrigendum to material already
+        published in IEEE Std 529-1980. Learn More 671-1985 IEEE Standard Specification
+        Format Guide and Test Procedure for Nongyroscopic Inertial Angular Sensors:
+        Jerk, Acceleration, Velocity, and Displacement A guide is presented for the
+        preparation of a specification and test procedure for an inertial angular
+        sensor that provides a common meeting ground of terminology and practice for
+        manufacturers and users of an array of sensors that have been developed to
+        meet needs not easily met by traditional spinning-rotor gyroscopes. A test
+        procedure for verifying that the specifications have been met is given. The
+        standard is not intended to compete with existing standards for specific devices
+        with highly specific models and error sources, such as spring-restrained rate
+        gyros, but to provide a uniform guide for those inertial angular sensors that
+        have not been covered elsewhere. Learn More 671-1985\/Cor 1-2010 IEEE Standard
+        Specification Format Guide and Test Procedure for Nongyroscopic Inertial Angular
+        Sensors: Jerk, Acceleration, Velocity, and Displacement Corrigendum 1: 4.7.2.6
+        Short-Term Stability and Annex A Sensor Dynamic Block Diagrams IEEE Std 671-1985
+        provides specifications and test requirements for a non-gyroscopic inertial
+        angular sensor that may measure angular jerk, acceleration, rate, or displacement
+        with or without response down to zero frequency. A standard specification
+        format is provided. A compilation of recommended test procedures, derived
+        from those presently used in the industry, is also provided. Informative annexes
+        cover design features and theoretical principles of operation. This corrigendum
+        makes changes to 4.7.2.6 to delete a sentence that does not belong there,
+        to add a subclause that was inadvertently left out, and to renumber the existing
+        subclauses. Changes are also being made to fix the block diagrams in Annex
+        A, to correct a misspelling of inertia, and to add a missing symbol. Learn
+        More 836-2009 IEEE Recommended Practice for Precision Centrifuge Testing of
+        Linear Accelerometers This recommended practice describes the conduct and
+        analysis of precision tests that are to be performed on linear accelerometers
+        using centrifuge techniques. The term u201cprecision,u201d in this context,
+        refers to tests that are conducted to evaluate accelerometer parameters, as
+        opposed to those conducted to establish environmental survivability only.
+        Evaluation may take the form of determining the coefficients of the accelerometer''s
+        model equation, except for bias and scale factor, which are most accurately
+        determined by static multi-position tests. Alternatively, evaluation may only
+        establish that the accelerometer output complies with specific error limit
+        criteria. Learn More Facebook Twitter LinkedIn Instagram YouTube IEEE SA About
+        Us IEEE SA Membership Corporate Program Training & Development Policies &
+        Procedures Contact Us Board of Governors About Board of Governors Awards Committee
+        Corporate Advisory Group Industry Connections Committee Registration Authority
+        Committee Strategic Planning Coordination Committee Standards Board About
+        Standards Board Board Approvals Audit Committee New Standards Committee Patent
+        Committee Procedures Committee Standards Review Committee News & Events News
+        IEEE SA Newsletter Events Home Sitemap Contact & Support Accessibility Nondiscrimination
+        Policy IEEE Ethics Reporting IEEE Privacy Policy IEEE SA Copyright Policy
+        \u00a9 Copyright 2021 IEEE \u2013 All rights reserved. Use of this website
+        signifies your agreement to the IEEE Terms and Conditions . A not-for-profit
+        organization, IEEE is the world\u2019s largest technical professional organization
+        dedicated to advancing technology for the benefit of humanity. Subscribe Newswire
+        Sign up for our monthly newsletter to learn about new developments, including
+        resources, insights and more. "}},{"id":"a674d52e409083c2a3e8a7cd0e76347d823ce81a54877277a2405ec1c0873b970f04bfcd394962998a1e67920381e7469c4a930cc7428a98b5d8c7018f5432c1","fields":{"meta_keywords_la":["Aerospace
+        Electronics,Power and Energy"],"doc_type_l":"text\/html","meta_type_la":["Standard"],"meta_description_l":"A
+        specification format guide for the preparation of a rate-integrating gyroscope
+        specification is presented. Recommended procedures for testing a rate-integrating
+        gyroscope are compiled. This standard, when combined with IEEE Std 517-1974
+        (R1980), defines the requirements and test procedures in terms of characteristics
+        unique to the gyroscope or those applications in which the dynamic angular
+        inputs are significantly greater than the limitations identified in IEEE Std
+        517.","meta_topic_la":["Aerospace Electronics,Power and Energy"],"doc_id_l":"https:\/\/standards.ieee.org\/ieee\/529\/781\/","doc_title_t":"IEEE
+        SA - IEEE 529-1980","doc_text_t":"IEEE SA - IEEE 529-1980 IEEE.org IEEE Xplore
+        Digital Library IEEE Standards IEEE Spectrum More Sites eTools Standards Access
+        Standards Search Standards Standards Development Standards Adoption Choose
+        from the many ways to access IEEE SA Standards. Choose from individual or
+        organizational access options to get the standards you need. Find the standards
+        you\u2019re looking for. Get involved in the development of market-driven
+        technology standards with proven expertise and dedicated support. Learn more
+        about how to adopt IEEE standards. Products & Programs Alliance Management
+        Services Conformity Assessment & Certification IEEE SA Open Source Industry
+        Affiliate Network (IAN) Industry Connections The National Electrical Safety
+        Code\u00ae (NESC\u00ae) Registration Authority Government Engagement Program
+        on Standards Standards Fellowship All Products & Programs Full ecosystem of
+        standards-related solutions to help drive awareness, activation, and adoption.
+        Providing support services to help manage the day-to-day operations of industry
+        groups, allowing key stakeholders to focus on the work at hand. Focused on
+        development and implementation of rigorous conformity assessment programs
+        designed to help accelerate market adoption, reduce costs and more. A vendor-neutral,
+        inclusive, open source platform\u2014for all, from independent software developers
+        and start ups to industry, academic and research institutions. Open to consortia,
+        industry alliance or other industry organizations, looking to bring forward
+        specifications for standards development and market adoption. Facilitating
+        collaboration among organizations and individuals as they hone and refine
+        their thinking on rapidly changing technologies. Guidelines for practical
+        safeguarding during the installation, operation, and maintenance of electric
+        supply, communication lines and associated equipment. Assigns and maintains
+        unique identifiers and unambiguous names to objects for those wishing to register
+        them. Program for policymakers providing tailored standards information, access
+        to the IEEE SA standardization ecosystem, and standardization resources. Providing
+        global standards professionals the opportunity to observe the IEEE standards
+        development process and learn about technical areas of interest. See all the
+        programs, products, and services that IEEE SA has to offer. Focuses Artificial
+        Intelligence Systems (AIS) Connectivity & Telecom Energy Foundational Technologies
+        Healthcare and Life Sciences Mobility Government Engagement Strategic focuses
+        and industries where IEEE SA is raising the world\u2019s standards. Developing
+        accessible and sustainable approaches and solutions for practical application
+        of AIS principles and frameworks. Advancing robust, responsible, and affordable
+        connectivity. Enabling sustainable, efficient, and accessible energy through
+        technological advances on a global scale. Working to standardize seamless
+        and ubiquitous connectivity across all applications of connected technologies.
+        Focused on enabling affordable healthcare, access to medicine, and innovation
+        to improve overall global wellness. Working to help the evolving mobility
+        ecosystem address some of its greatest business opportunities that have the
+        potential to solve major societal challenges. Building bridges between the
+        worlds of technology, standards, and policy making. Get Involved Events IEEE
+        SA Membership How to Get Involved Learn about opportunities to engage with
+        IEEE SA. Join us at upcoming virtual or in-person events. Flexible membership
+        options that offer enhanced participation in IEEE SA activities, standards
+        development, and governance. There are many opportunities for participation,
+        find the right one for you. Resources Training & Development News IEEE SA
+        Newsletter Training and communication resources to stay connected. Individual
+        and organizational effectiveness program to enable the success of our vital
+        volunteers. Read the latest news on IEEE SA. Subscribe to our newsletter and
+        keep up to date on the latest standards, event, and activities. MAC Address
+        Inactive-Reserved Standard IEEE 529-1980 Supplement for Strapdown Applications
+        to IEEE Standard Specification Format Guide and Test Procedure for Single-Degree-of-Freedom
+        Rate-Integrating Gyros Purchase Access via Subscription Home Standards IEEE
+        529-1980 A specification format guide for the preparation of a rate-integrating
+        gyroscope specification is presented. Recommended procedures for testing a
+        rate-integrating gyroscope are compiled. This standard, when combined with
+        IEEE Std 517-1974 (R1980), defines the requirements and test procedures in
+        terms of characteristics unique to the gyroscope or those applications in
+        which the dynamic angular inputs are significantly greater than the limitations
+        identified in IEEE Std 517. Sponsor Committee AES\/GA - Gyro Accelerometer
+        Panel Learn More Status Inactive-Reserved Standard Corrigendum 529-1980\/Cor
+        1-2017 Board Approval 1979-09-27 History ANSI Approved: 1983-05-05 Published:
+        1981-01-29 Reaffirmed: 2010-09-30 Inactivated Date: 2021-03-25 Additional
+        Resources Erratas 529-1980_errata.pdf Working Group Details Society IEEE Aerospace
+        and Electronic Systems Society Learn More Sponsor Committee AES\/GA - Gyro
+        Accelerometer Panel Learn More Working Group SENSR_WG - Sensors Working Group
+        IEEE Program Manager Dan Perez Contact Working Group Chair Harry Davis Active
+        Projects Active Standards Superseded Standards Inactive-Withdrawn Standards
         Inactive-Reserved Standards P1431 Standard for Specifying and Testing Coriolis
         Vibratory Gyros This standard defines requirements and test procedures for
         a single-axis Coriolis vibratory gyro (CVG) for use as a sensor in attitude
@@ -1317,6 +1553,239 @@ http_interactions:
         a rate-integrating gyro specification that provides a common meeting ground
         of terminology and practice for manufacturers and users is presented. A compilation
         of recommended procedures for testing a rate-integrating gyro is given. Learn
+        More 529-1980\/Cor 1-2017 IEEE Standard Supplement for Strapdown Applications
+        to IEEE Standard Specification Format Guide and Test Procedure for Single-Degree-of-Freedom
+        Rate-Integrating Gyros - Corrigendum 1: 3.3.9.2.2, 3.6.4.1.1, 3.6.4.1.2, 6.3,
+        and 10.10.4.1 Corrections are made by this corrigendum to material already
+        published in IEEE Std 529-1980. Learn More 671-1985 IEEE Standard Specification
+        Format Guide and Test Procedure for Nongyroscopic Inertial Angular Sensors:
+        Jerk, Acceleration, Velocity, and Displacement A guide is presented for the
+        preparation of a specification and test procedure for an inertial angular
+        sensor that provides a common meeting ground of terminology and practice for
+        manufacturers and users of an array of sensors that have been developed to
+        meet needs not easily met by traditional spinning-rotor gyroscopes. A test
+        procedure for verifying that the specifications have been met is given. The
+        standard is not intended to compete with existing standards for specific devices
+        with highly specific models and error sources, such as spring-restrained rate
+        gyros, but to provide a uniform guide for those inertial angular sensors that
+        have not been covered elsewhere. Learn More 671-1985\/Cor 1-2010 IEEE Standard
+        Specification Format Guide and Test Procedure for Nongyroscopic Inertial Angular
+        Sensors: Jerk, Acceleration, Velocity, and Displacement Corrigendum 1: 4.7.2.6
+        Short-Term Stability and Annex A Sensor Dynamic Block Diagrams IEEE Std 671-1985
+        provides specifications and test requirements for a non-gyroscopic inertial
+        angular sensor that may measure angular jerk, acceleration, rate, or displacement
+        with or without response down to zero frequency. A standard specification
+        format is provided. A compilation of recommended test procedures, derived
+        from those presently used in the industry, is also provided. Informative annexes
+        cover design features and theoretical principles of operation. This corrigendum
+        makes changes to 4.7.2.6 to delete a sentence that does not belong there,
+        to add a subclause that was inadvertently left out, and to renumber the existing
+        subclauses. Changes are also being made to fix the block diagrams in Annex
+        A, to correct a misspelling of inertia, and to add a missing symbol. Learn
+        More 836-2009 IEEE Recommended Practice for Precision Centrifuge Testing of
+        Linear Accelerometers This recommended practice describes the conduct and
+        analysis of precision tests that are to be performed on linear accelerometers
+        using centrifuge techniques. The term u201cprecision,u201d in this context,
+        refers to tests that are conducted to evaluate accelerometer parameters, as
+        opposed to those conducted to establish environmental survivability only.
+        Evaluation may take the form of determining the coefficients of the accelerometer''s
+        model equation, except for bias and scale factor, which are most accurately
+        determined by static multi-position tests. Alternatively, evaluation may only
+        establish that the accelerometer output complies with specific error limit
+        criteria. Learn More Facebook Twitter LinkedIn Instagram YouTube IEEE SA About
+        Us IEEE SA Membership Corporate Program Training & Development Policies &
+        Procedures Contact Us Board of Governors About Board of Governors Awards Committee
+        Corporate Advisory Group Industry Connections Committee Registration Authority
+        Committee Strategic Planning Coordination Committee Standards Board About
+        Standards Board Board Approvals Audit Committee New Standards Committee Patent
+        Committee Procedures Committee Standards Review Committee News & Events News
+        IEEE SA Newsletter Events Home Sitemap Contact & Support Accessibility Nondiscrimination
+        Policy IEEE Ethics Reporting IEEE Privacy Policy IEEE SA Copyright Policy
+        \u00a9 Copyright 2021 IEEE \u2013 All rights reserved. Use of this website
+        signifies your agreement to the IEEE Terms and Conditions . A not-for-profit
+        organization, IEEE is the world\u2019s largest technical professional organization
+        dedicated to advancing technology for the benefit of humanity. Subscribe Newswire
+        Sign up for our monthly newsletter to learn about new developments, including
+        resources, insights and more. "}},{"id":"5aeb29f1e173895ec06817ac31c30346a78b19bac25d687dbdf0076af571b3da207db66e51b3210131b259579c184141df47fc570ecdb419cc84500bdcf99b6a","fields":{"meta_keywords_la":["Aerospace
+        Electronics"],"doc_type_l":"text\/html","meta_type_la":["Standard"],"meta_description_l":"Specification
+        and test requirements for a single-axis ring laser gyro (RLG) for use as a  sensor
+        in attitude control systems, angular displacement measuring systems, and angular
+        rate  measuring systems are defined. A standard specification format guide
+        for the preparation of a  single-axis RLG is provided. A compilation of recommended
+        procedures for testing an RLG,  derived from those presently used in the industry,
+        is also provided.","meta_topic_la":["Aerospace Electronics"],"doc_id_l":"https:\/\/standards.ieee.org\/ieee\/647\/3134\/","doc_title_t":"IEEE
+        SA - IEEE 647-2006","doc_text_t":"IEEE SA - IEEE 647-2006 IEEE.org IEEE Xplore
+        Digital Library IEEE Standards IEEE Spectrum More Sites eTools Standards Access
+        Standards Search Standards Standards Development Standards Adoption Choose
+        from the many ways to access IEEE SA Standards. Choose from individual or
+        organizational access options to get the standards you need. Find the standards
+        you\u2019re looking for. Get involved in the development of market-driven
+        technology standards with proven expertise and dedicated support. Learn more
+        about how to adopt IEEE standards. Products & Programs Alliance Management
+        Services Conformity Assessment & Certification IEEE SA Open Source Industry
+        Affiliate Network (IAN) Industry Connections The National Electrical Safety
+        Code\u00ae (NESC\u00ae) Registration Authority Government Engagement Program
+        on Standards Standards Fellowship All Products & Programs Full ecosystem of
+        standards-related solutions to help drive awareness, activation, and adoption.
+        Providing support services to help manage the day-to-day operations of industry
+        groups, allowing key stakeholders to focus on the work at hand. Focused on
+        development and implementation of rigorous conformity assessment programs
+        designed to help accelerate market adoption, reduce costs and more. A vendor-neutral,
+        inclusive, open source platform\u2014for all, from independent software developers
+        and start ups to industry, academic and research institutions. Open to consortia,
+        industry alliance or other industry organizations, looking to bring forward
+        specifications for standards development and market adoption. Facilitating
+        collaboration among organizations and individuals as they hone and refine
+        their thinking on rapidly changing technologies. Guidelines for practical
+        safeguarding during the installation, operation, and maintenance of electric
+        supply, communication lines and associated equipment. Assigns and maintains
+        unique identifiers and unambiguous names to objects for those wishing to register
+        them. Program for policymakers providing tailored standards information, access
+        to the IEEE SA standardization ecosystem, and standardization resources. Providing
+        global standards professionals the opportunity to observe the IEEE standards
+        development process and learn about technical areas of interest. See all the
+        programs, products, and services that IEEE SA has to offer. Focuses Artificial
+        Intelligence Systems (AIS) Connectivity & Telecom Energy Foundational Technologies
+        Healthcare and Life Sciences Mobility Government Engagement Strategic focuses
+        and industries where IEEE SA is raising the world\u2019s standards. Developing
+        accessible and sustainable approaches and solutions for practical application
+        of AIS principles and frameworks. Advancing robust, responsible, and affordable
+        connectivity. Enabling sustainable, efficient, and accessible energy through
+        technological advances on a global scale. Working to standardize seamless
+        and ubiquitous connectivity across all applications of connected technologies.
+        Focused on enabling affordable healthcare, access to medicine, and innovation
+        to improve overall global wellness. Working to help the evolving mobility
+        ecosystem address some of its greatest business opportunities that have the
+        potential to solve major societal challenges. Building bridges between the
+        worlds of technology, standards, and policy making. Get Involved Events IEEE
+        SA Membership How to Get Involved Learn about opportunities to engage with
+        IEEE SA. Join us at upcoming virtual or in-person events. Flexible membership
+        options that offer enhanced participation in IEEE SA activities, standards
+        development, and governance. There are many opportunities for participation,
+        find the right one for you. Resources Training & Development News IEEE SA
+        Newsletter Training and communication resources to stay connected. Individual
+        and organizational effectiveness program to enable the success of our vital
+        volunteers. Read the latest news on IEEE SA. Subscribe to our newsletter and
+        keep up to date on the latest standards, event, and activities. MAC Address
+        Active Standard IEEE 647-2006 IEEE Standard Specification Format Guide and
+        Test Procedure for Single-Axis Laser Gyros Purchase Access via Subscription
+        Home Standards IEEE 647-2006 Specification and test requirements for a single-axis
+        ring laser gyro (RLG) for use as a sensor in attitude control systems, angular
+        displacement measuring systems, and angular rate measuring systems are defined.
+        A standard specification format guide for the preparation of a single-axis
+        RLG is provided. A compilation of recommended procedures for testing an RLG,
+        derived from those presently used in the industry, is also provided. Sponsor
+        Committee AES\/GA - Gyro Accelerometer Panel Learn More Status Active Standard
+        PAR Approval 2001-05-30 Superseding 647-1995 Board Approval 2006-03-30 History
+        ANSI Approved: 2006-08-08 ANSI Withdrawn Date: 2016-08-19 Published: 2006-09-18
+        Reaffirmed: 2011-12-07 Additional Resources Erratas 647-2006.pdf Working Group
+        Details Society IEEE Aerospace and Electronic Systems Society Learn More Sponsor
+        Committee AES\/GA - Gyro Accelerometer Panel Learn More Working Group SENSR_WG
+        - Sensors Working Group IEEE Program Manager Dan Perez Contact Working Group
+        Chair Harry Davis Active Projects Active Standards Superseded Standards Inactive-Withdrawn
+        Standards Inactive-Reserved Standards P1431 Standard for Specifying and Testing
+        Coriolis Vibratory Gyros This standard defines requirements and test procedures
+        for a single-axis Coriolis vibratory gyro (CVG) for use as a sensor in attitude
+        control systems, angular displacement measuring systems, and angular rate
+        measuring systems. Informative annexes cover CVG design features and theoretical
+        principles of operation. Learn More 1293-2018 IEEE Standard Specification
+        Format Guide and Test Procedure for Linear Single-Axis, Nongyroscopic Accelerometers
+        The specification and test requirements for a linear, single-axis, nongyroscopic
+        accelerometer for use in inertial navigation, guidance, and leveling systems
+        are defined. A standard specification guide and a compilation of recommended
+        test procedures for such accelerometers are provided. Informative annexes
+        are given on the various types of such accelerometers (force or pendulous
+        torque rebalance with analog or digital output, vibrating beam, and micromechanical)
+        and error effects, on filtering, noise, and transient analysis techniques,
+        and on calibration and modeling techniques (multipoint tumble analysis, vibration
+        and shock test analyses, and geophysical effects in inertial instrument testing).
+        Learn More 1554-2005 IEEE Recommended Practice for Inertial Sensor Test Equipment,
+        Instrumentation, Data Acquisition, and Analysis Test equipment, data acquisition
+        equipment, instrumentation, test facilities, and data analysis techniques
+        used in inertial sensor testing are described in this recommended practice.
+        Learn More 528-2019 IEEE Standard for Inertial Sensor Terminology Terms and
+        definitions relating to inertial sensors are presented in this standard. Usage
+        as understood by the inertial sensor community is given preference over general
+        technical usage of the terms herein. The criterion for inclusion of a term
+        and its definition in this standard is usefulness as related to inertial sensor
+        technology. Learn More 813-1988 IEEE Specification Format Guide and Test Procedure
+        for Two-Degree-of-Freedom Dynamically Tuned Gyros A format guide for the preparation
+        of a two-degree-of-freedom dynamically tuned gyro (DTG) specification is given
+        that provides a common ground of terminology and practice for manufacturers
+        and users. A compilation of recommended procedures for testing a DTG is also
+        given. The requirements and test procedures are defined in terms unique to
+        the DTG. They cover applications of the gyro as an angular motion sensor in
+        navigation and control systems. They apply to two modes of use: (1) as a strap-down
+        sensor in operating environments typical of aircraft and missile applications,
+        and (2) as a sensor in gimballed platform applications in which the dynamic
+        angular inputs to which the gyro is subjected are benign relative to the accuracy
+        required. In the case of the strap-down DTG, the characteristics of the external
+        capture loops are considered to the extent necessary to define the gyro performance.
+        Learn More 952-2020 IEEE Standard for Specifying and Testing Single-Axis Interferometric
+        Fiber Optic Gyros Specification and test procedures for a single-axis interferometric
+        fiber optic gyro (IFOG) for use as a sensor in attitude control systems, angular
+        displacement measuring systems, and angular rate measuring systems are defined.
+        The test procedures are derived from those presently used in the industry.
+        Learn More 1293-1998\/Cor 1-2008 IEEE Standard Specification Format Guide
+        and Test Procedure for Linear,Single-Axis, Nongyroscopic Accelerometers Corrigendum
+        1: Changes to Annex K and Annex L Corrigendum to IEEE Std 1293-1998. Specification
+        and test requirements for linear, single-axis, nongyroscopic accelerometers
+        for use as a sensor in attitude control systems, linear displacement measuring
+        systems, and linear rate measuring systems are defined. The specification
+        format guide and test procedure standard applies to force-rebalance accelerometers
+        (pendulous or translational proof mass), vibrating beam accelerometers (VBAs),
+        and micromechanical accelerometers that range from lesser accuracy to high
+        accuracy devices. Learn More 528-2001 IEEE Standard for Inertial Sensor Terminology
+        Terms and definitions relating to inertial senors are presented in this standard.
+        Usage as understood by the inertial sensor community is given preference over
+        general technical usage of the terms herein. The criterion for inclusion of
+        a term and its definition in this standard is usefulness as related to inertial
+        sensor technology. Learn More 952-1997 IEEE Standard Specification Format
+        Guide and Test Procedure for Single-Axis Interferometric Fiber Optic Gyros
+        Specification and test requirements for a single-axis interferometric fiber
+        optic gyro (IFOG) for use as a sensor in attitude control systems, angular
+        displacement measuring systems, and angular rate measuring systems are defined.
+        A standard specification format guide for the preparation of a single-axis
+        IFOG is provided. A compilation of recommended procedures for testing a fiber
+        optic gyro, derived from those presently used in the industry, is also provided.
+        Learn More 952-1997\/Cor 1-2016 IEEE Standard Specification Format Guide and
+        Test Procedure for Single-Axis Interferometric Fiber Optic Gyros -- Corrigendum
+        1: Figure 1 and Subclauses 5.3.4, 8.3, 12.11.4.3.2, 12.11.4.3.3, 12.11.4.3.4,
+        12.12.3.1, and 12.12.4.1 Errors identified in IEEE Std 952-1997 are corrected
+        in this corrigendum. Corrections are made to Figure 1 and in subclauses 5.3.4,
+        8.3, 12.11.4.3.2, 12.11.4.3.3, 12.11.4.3.4, 12.12.3.1, and 12.12.4.1. Learn
+        More No Inactive-Withdrawn Standards 1431-2004 IEEE Standard Specification
+        Format Guide and Test Procedure for Coriolis Vibratory Gyros Specification
+        and test requirements for a single-axis Coriolis vibratory gyro (CVG) for
+        use as a sensor in attitude control systems, angular displacement measuring
+        systems, and angular rate measuring systems are defined. A stadard specification
+        format guide for the preparation of a single-axis CVG is provided. A complilation
+        of recommended procedures for testing a CVG, derived from those presently
+        used in the industry, is also provided. Informative annexes cover CVG design
+        features and theoretical principles of operation. Learn More 1431-2004\/Cor
+        1-2008 IEEE Standard Specification Format Guide and Test Procedure for Coriolis
+        Vibratory Gyros - Corrigendum 1 Corrigendum to IEEE Std 1431-2004. Learn More
+        292-1969 IEEE Specification Format for Single-Degree-of-Freedom Spring-Restrained
+        Rate Gyros This specification defines the requirements for a single-degree-of-freedom
+        spring-restrained rate gyro for [aircraft, missile, spacecraft,______] applications.
+        The rate gyro shall be capable of providing [(dc, ac) voltage outputs proportional
+        to angular rate inputs up to______ degrees per second, a switch closure(s)
+        at angular rates (exceeding,less than)______ (+,-,u00b1)______ degrees per
+        second]. Learn More 293-1969 IEEE Test Procedure for Single-Degree-of-Freedom
+        Spring-Restrained Rate Gyros Recommended rate gyro test procedures derived
+        from those currently in use, including test conditions to be considered, are
+        compiled. In some cases alternate methods for measuring a performance characteristic
+        have been included. This standard is intended to be a guide in the preparation
+        of Section 4 of a specification that follows the format of IEEE Std 292, Specification
+        Format for Single-Degree-of-Freedom Spring-Restrained Rate Gyros. Learn More
+        293-1969\/Cor 1-2014 IEEE Standard for IEEE Test Procedure for Single-Degree-of-Freedom
+        Spring-Restrained Rate Gyros -- Corrigendum 1: Table 1 Heading Correction
+        to Table 1 on page 14 of IEEE Std 293-1969 Learn More 517-1974 IEEE Standard
+        Specification Format Guide and Test Procedure for Single-Degree-of-Freedom
+        Rate-Integrating Gyros A specification format guide for the preparation of
+        a rate-integrating gyro specification that provides a common meeting ground
+        of terminology and practice for manufacturers and users is presented. A compilation
+        of recommended procedures for testing a rate-integrating gyro is given. Learn
         More 529-1980 Supplement for Strapdown Applications to IEEE Standard Specification
         Format Guide and Test Procedure for Single-Degree-of-Freedom Rate-Integrating
         Gyros A specification format guide for the preparation of a rate-integrating
@@ -1330,25 +1799,36 @@ http_interactions:
         Guide and Test Procedure for Single-Degree-of-Freedom Rate-Integrating Gyros
         - Corrigendum 1: 3.3.9.2.2, 3.6.4.1.1, 3.6.4.1.2, 6.3, and 10.10.4.1 Corrections
         are made by this corrigendum to material already published in IEEE Std 529-1980.
-        Learn More 671-1985\/Cor 1-2010 IEEE Standard Specification Format Guide and
-        Test Procedure for Nongyroscopic Inertial Angular Sensors: Jerk, Acceleration,
-        Velocity, and Displacement Corrigendum 1: 4.7.2.6 Short-Term Stability and
-        Annex A Sensor Dynamic Block Diagrams IEEE Std 671-1985 provides specifications
-        and test requirements for a non-gyroscopic inertial angular sensor that may
-        measure angular jerk, acceleration, rate, or displacement with or without
-        response down to zero frequency. A standard specification format is provided.
-        A compilation of recommended test procedures, derived from those presently
-        used in the industry, is also provided. Informative annexes cover design features
-        and theoretical principles of operation. This corrigendum makes changes to
-        4.7.2.6 to delete a sentence that does not belong there, to add a subclause
-        that was inadvertently left out, and to renumber the existing subclauses.
-        Changes are also being made to fix the block diagrams in Annex A, to correct
-        a misspelling of inertia, and to add a missing symbol. Learn More 836-2009
-        IEEE Recommended Practice for Precision Centrifuge Testing of Linear Accelerometers
-        This recommended practice describes the conduct and analysis of precision
-        tests that are to be performed on linear accelerometers using centrifuge techniques.
-        The term u201cprecision,u201d in this context, refers to tests that are conducted
-        to evaluate accelerometer parameters, as opposed to those conducted to establish
+        Learn More 671-1985 IEEE Standard Specification Format Guide and Test Procedure
+        for Nongyroscopic Inertial Angular Sensors: Jerk, Acceleration, Velocity,
+        and Displacement A guide is presented for the preparation of a specification
+        and test procedure for an inertial angular sensor that provides a common meeting
+        ground of terminology and practice for manufacturers and users of an array
+        of sensors that have been developed to meet needs not easily met by traditional
+        spinning-rotor gyroscopes. A test procedure for verifying that the specifications
+        have been met is given. The standard is not intended to compete with existing
+        standards for specific devices with highly specific models and error sources,
+        such as spring-restrained rate gyros, but to provide a uniform guide for those
+        inertial angular sensors that have not been covered elsewhere. Learn More
+        671-1985\/Cor 1-2010 IEEE Standard Specification Format Guide and Test Procedure
+        for Nongyroscopic Inertial Angular Sensors: Jerk, Acceleration, Velocity,
+        and Displacement Corrigendum 1: 4.7.2.6 Short-Term Stability and Annex A Sensor
+        Dynamic Block Diagrams IEEE Std 671-1985 provides specifications and test
+        requirements for a non-gyroscopic inertial angular sensor that may measure
+        angular jerk, acceleration, rate, or displacement with or without response
+        down to zero frequency. A standard specification format is provided. A compilation
+        of recommended test procedures, derived from those presently used in the industry,
+        is also provided. Informative annexes cover design features and theoretical
+        principles of operation. This corrigendum makes changes to 4.7.2.6 to delete
+        a sentence that does not belong there, to add a subclause that was inadvertently
+        left out, and to renumber the existing subclauses. Changes are also being
+        made to fix the block diagrams in Annex A, to correct a misspelling of inertia,
+        and to add a missing symbol. Learn More 836-2009 IEEE Recommended Practice
+        for Precision Centrifuge Testing of Linear Accelerometers This recommended
+        practice describes the conduct and analysis of precision tests that are to
+        be performed on linear accelerometers using centrifuge techniques. The term
+        u201cprecision,u201d in this context, refers to tests that are conducted to
+        evaluate accelerometer parameters, as opposed to those conducted to establish
         environmental survivability only. Evaluation may take the form of determining
         the coefficients of the accelerometer''s model equation, except for bias and
         scale factor, which are most accurately determined by static multi-position
@@ -1613,487 +2093,6 @@ http_interactions:
         the world\u2019s largest technical professional organization dedicated to
         advancing technology for the benefit of humanity. Subscribe Newswire Sign
         up for our monthly newsletter to learn about new developments, including resources,
-        insights and more. "}},{"id":"52eae60b2e77539af2d00032c19addb836f63a63838a98a1e1415ce8b7dc2251a177a0b3bc0831e7f951dfebfee24916a61d3623dbfda9f11f2e8eea97d28e2f","fields":{"meta_keywords_la":["Aerospace
-        Electronics"],"doc_type_l":"text\/html","meta_type_la":["Standard"],"meta_description_l":"Test
-        equipment, data acquisition equipment, instrumentation, test facilities, and
-        data analysis techniques used in inertial sensor testing are described in
-        this recommended practice.","meta_topic_la":["Aerospace Electronics"],"doc_id_l":"https:\/\/standards.ieee.org\/ieee\/1554\/2292\/","doc_title_t":"IEEE
-        SA - IEEE 1554-2005","doc_text_t":"IEEE SA - IEEE 1554-2005 IEEE.org IEEE
-        Xplore Digital Library IEEE Standards IEEE Spectrum More Sites eTools Standards
-        Access Standards Search Standards Standards Development Standards Adoption
-        Choose from the many ways to access IEEE SA Standards. Choose from individual
-        or organizational access options to get the standards you need. Find the standards
-        you\u2019re looking for. Get involved in the development of market-driven
-        technology standards with proven expertise and dedicated support. Learn more
-        about how to adopt IEEE standards. Products & Programs Alliance Management
-        Services Conformity Assessment & Certification IEEE SA Open Source Industry
-        Affiliate Network (IAN) Industry Connections The National Electrical Safety
-        Code\u00ae (NESC\u00ae) Registration Authority Government Engagement Program
-        on Standards Standards Fellowship All Products & Programs Full ecosystem of
-        standards-related solutions to help drive awareness, activation, and adoption.
-        Providing support services to help manage the day-to-day operations of industry
-        groups, allowing key stakeholders to focus on the work at hand. Focused on
-        development and implementation of rigorous conformity assessment programs
-        designed to help accelerate market adoption, reduce costs and more. A vendor-neutral,
-        inclusive, open source platform\u2014for all, from independent software developers
-        and start ups to industry, academic and research institutions. Open to consortia,
-        industry alliance or other industry organizations, looking to bring forward
-        specifications for standards development and market adoption. Facilitating
-        collaboration among organizations and individuals as they hone and refine
-        their thinking on rapidly changing technologies. Guidelines for practical
-        safeguarding during the installation, operation, and maintenance of electric
-        supply, communication lines and associated equipment. Assigns and maintains
-        unique identifiers and unambiguous names to objects for those wishing to register
-        them. Program for policymakers providing tailored standards information, access
-        to the IEEE SA standardization ecosystem, and standardization resources. Providing
-        global standards professionals the opportunity to observe the IEEE standards
-        development process and learn about technical areas of interest. See all the
-        programs, products, and services that IEEE SA has to offer. Focuses Artificial
-        Intelligence Systems (AIS) Connectivity & Telecom Energy Foundational Technologies
-        Healthcare and Life Sciences Mobility Government Engagement Strategic focuses
-        and industries where IEEE SA is raising the world\u2019s standards. Developing
-        accessible and sustainable approaches and solutions for practical application
-        of AIS principles and frameworks. Advancing robust, responsible, and affordable
-        connectivity. Enabling sustainable, efficient, and accessible energy through
-        technological advances on a global scale. Working to standardize seamless
-        and ubiquitous connectivity across all applications of connected technologies.
-        Focused on enabling affordable healthcare, access to medicine, and innovation
-        to improve overall global wellness. Working to help the evolving mobility
-        ecosystem address some of its greatest business opportunities that have the
-        potential to solve major societal challenges. Building bridges between the
-        worlds of technology, standards, and policy making. Get Involved Events IEEE
-        SA Membership How to Get Involved Learn about opportunities to engage with
-        IEEE SA. Join us at upcoming virtual or in-person events. Flexible membership
-        options that offer enhanced participation in IEEE SA activities, standards
-        development, and governance. There are many opportunities for participation,
-        find the right one for you. Resources Training & Development News IEEE SA
-        Newsletter Training and communication resources to stay connected. Individual
-        and organizational effectiveness program to enable the success of our vital
-        volunteers. Read the latest news on IEEE SA. Subscribe to our newsletter and
-        keep up to date on the latest standards, event, and activities. MAC Address
-        Active Standard IEEE 1554-2005 IEEE Recommended Practice for Inertial Sensor
-        Test Equipment, Instrumentation, Data Acquisition, and Analysis Purchase Access
-        via Subscription Home Standards IEEE 1554-2005 Test equipment, data acquisition
-        equipment, instrumentation, test facilities, and data analysis techniques
-        used in inertial sensor testing are described in this recommended practice.
-        Sponsor Committee AES\/GA - Gyro Accelerometer Panel Learn More Status Active
-        Standard PAR Approval 1999-09-16 Board Approval 2005-06-09 History ANSI Approved:
-        2005-10-05 Published: 2005-11-28 Reaffirmed: 2011-03-31 Additional Resources
-        Erratas 1554-2005_errata.pdf Working Group Details Society IEEE Aerospace
-        and Electronic Systems Society Learn More Sponsor Committee AES\/GA - Gyro
-        Accelerometer Panel Learn More Working Group SENSR_WG - Sensors Working Group
-        IEEE Program Manager Dan Perez Contact Working Group Chair Harry Davis Active
-        Projects Active Standards Superseded Standards Inactive-Withdrawn Standards
-        Inactive-Reserved Standards P1431 Standard for Specifying and Testing Coriolis
-        Vibratory Gyros This standard defines requirements and test procedures for
-        a single-axis Coriolis vibratory gyro (CVG) for use as a sensor in attitude
-        control systems, angular displacement measuring systems, and angular rate
-        measuring systems. Informative annexes cover CVG design features and theoretical
-        principles of operation. Learn More 1293-2018 IEEE Standard Specification
-        Format Guide and Test Procedure for Linear Single-Axis, Nongyroscopic Accelerometers
-        The specification and test requirements for a linear, single-axis, nongyroscopic
-        accelerometer for use in inertial navigation, guidance, and leveling systems
-        are defined. A standard specification guide and a compilation of recommended
-        test procedures for such accelerometers are provided. Informative annexes
-        are given on the various types of such accelerometers (force or pendulous
-        torque rebalance with analog or digital output, vibrating beam, and micromechanical)
-        and error effects, on filtering, noise, and transient analysis techniques,
-        and on calibration and modeling techniques (multipoint tumble analysis, vibration
-        and shock test analyses, and geophysical effects in inertial instrument testing).
-        Learn More 528-2019 IEEE Standard for Inertial Sensor Terminology Terms and
-        definitions relating to inertial sensors are presented in this standard. Usage
-        as understood by the inertial sensor community is given preference over general
-        technical usage of the terms herein. The criterion for inclusion of a term
-        and its definition in this standard is usefulness as related to inertial sensor
-        technology. Learn More 647-2006 IEEE Standard Specification Format Guide and
-        Test Procedure for Single-Axis Laser Gyros Specification and test requirements
-        for a single-axis ring laser gyro (RLG) for use as a sensor in attitude control
-        systems, angular displacement measuring systems, and angular rate measuring
-        systems are defined. A standard specification format guide for the preparation
-        of a single-axis RLG is provided. A compilation of recommended procedures
-        for testing an RLG, derived from those presently used in the industry, is
-        also provided. Learn More 813-1988 IEEE Specification Format Guide and Test
-        Procedure for Two-Degree-of-Freedom Dynamically Tuned Gyros A format guide
-        for the preparation of a two-degree-of-freedom dynamically tuned gyro (DTG)
-        specification is given that provides a common ground of terminology and practice
-        for manufacturers and users. A compilation of recommended procedures for testing
-        a DTG is also given. The requirements and test procedures are defined in terms
-        unique to the DTG. They cover applications of the gyro as an angular motion
-        sensor in navigation and control systems. They apply to two modes of use:
-        (1) as a strap-down sensor in operating environments typical of aircraft and
-        missile applications, and (2) as a sensor in gimballed platform applications
-        in which the dynamic angular inputs to which the gyro is subjected are benign
-        relative to the accuracy required. In the case of the strap-down DTG, the
-        characteristics of the external capture loops are considered to the extent
-        necessary to define the gyro performance. Learn More 952-2020 IEEE Standard
-        for Specifying and Testing Single-Axis Interferometric Fiber Optic Gyros Specification
-        and test procedures for a single-axis interferometric fiber optic gyro (IFOG)
-        for use as a sensor in attitude control systems, angular displacement measuring
-        systems, and angular rate measuring systems are defined. The test procedures
-        are derived from those presently used in the industry. Learn More 1293-1998\/Cor
-        1-2008 IEEE Standard Specification Format Guide and Test Procedure for Linear,Single-Axis,
-        Nongyroscopic Accelerometers Corrigendum 1: Changes to Annex K and Annex L
-        Corrigendum to IEEE Std 1293-1998. Specification and test requirements for
-        linear, single-axis, nongyroscopic accelerometers for use as a sensor in attitude
-        control systems, linear displacement measuring systems, and linear rate measuring
-        systems are defined. The specification format guide and test procedure standard
-        applies to force-rebalance accelerometers (pendulous or translational proof
-        mass), vibrating beam accelerometers (VBAs), and micromechanical accelerometers
-        that range from lesser accuracy to high accuracy devices. Learn More 528-2001
-        IEEE Standard for Inertial Sensor Terminology Terms and definitions relating
-        to inertial senors are presented in this standard. Usage as understood by
-        the inertial sensor community is given preference over general technical usage
-        of the terms herein. The criterion for inclusion of a term and its definition
-        in this standard is usefulness as related to inertial sensor technology. Learn
-        More 952-1997 IEEE Standard Specification Format Guide and Test Procedure
-        for Single-Axis Interferometric Fiber Optic Gyros Specification and test requirements
-        for a single-axis interferometric fiber optic gyro (IFOG) for use as a sensor
-        in attitude control systems, angular displacement measuring systems, and angular
-        rate measuring systems are defined. A standard specification format guide
-        for the preparation of a single-axis IFOG is provided. A compilation of recommended
-        procedures for testing a fiber optic gyro, derived from those presently used
-        in the industry, is also provided. Learn More 952-1997\/Cor 1-2016 IEEE Standard
-        Specification Format Guide and Test Procedure for Single-Axis Interferometric
-        Fiber Optic Gyros -- Corrigendum 1: Figure 1 and Subclauses 5.3.4, 8.3, 12.11.4.3.2,
-        12.11.4.3.3, 12.11.4.3.4, 12.12.3.1, and 12.12.4.1 Errors identified in IEEE
-        Std 952-1997 are corrected in this corrigendum. Corrections are made to Figure
-        1 and in subclauses 5.3.4, 8.3, 12.11.4.3.2, 12.11.4.3.3, 12.11.4.3.4, 12.12.3.1,
-        and 12.12.4.1. Learn More No Inactive-Withdrawn Standards 1431-2004 IEEE Standard
-        Specification Format Guide and Test Procedure for Coriolis Vibratory Gyros
-        Specification and test requirements for a single-axis Coriolis vibratory gyro
-        (CVG) for use as a sensor in attitude control systems, angular displacement
-        measuring systems, and angular rate measuring systems are defined. A stadard
-        specification format guide for the preparation of a single-axis CVG is provided.
-        A complilation of recommended procedures for testing a CVG, derived from those
-        presently used in the industry, is also provided. Informative annexes cover
-        CVG design features and theoretical principles of operation. Learn More 1431-2004\/Cor
-        1-2008 IEEE Standard Specification Format Guide and Test Procedure for Coriolis
-        Vibratory Gyros - Corrigendum 1 Corrigendum to IEEE Std 1431-2004. Learn More
-        292-1969 IEEE Specification Format for Single-Degree-of-Freedom Spring-Restrained
-        Rate Gyros This specification defines the requirements for a single-degree-of-freedom
-        spring-restrained rate gyro for [aircraft, missile, spacecraft,______] applications.
-        The rate gyro shall be capable of providing [(dc, ac) voltage outputs proportional
-        to angular rate inputs up to______ degrees per second, a switch closure(s)
-        at angular rates (exceeding,less than)______ (+,-,u00b1)______ degrees per
-        second]. Learn More 293-1969 IEEE Test Procedure for Single-Degree-of-Freedom
-        Spring-Restrained Rate Gyros Recommended rate gyro test procedures derived
-        from those currently in use, including test conditions to be considered, are
-        compiled. In some cases alternate methods for measuring a performance characteristic
-        have been included. This standard is intended to be a guide in the preparation
-        of Section 4 of a specification that follows the format of IEEE Std 292, Specification
-        Format for Single-Degree-of-Freedom Spring-Restrained Rate Gyros. Learn More
-        293-1969\/Cor 1-2014 IEEE Standard for IEEE Test Procedure for Single-Degree-of-Freedom
-        Spring-Restrained Rate Gyros -- Corrigendum 1: Table 1 Heading Correction
-        to Table 1 on page 14 of IEEE Std 293-1969 Learn More 517-1974 IEEE Standard
-        Specification Format Guide and Test Procedure for Single-Degree-of-Freedom
-        Rate-Integrating Gyros A specification format guide for the preparation of
-        a rate-integrating gyro specification that provides a common meeting ground
-        of terminology and practice for manufacturers and users is presented. A compilation
-        of recommended procedures for testing a rate-integrating gyro is given. Learn
-        More 529-1980 Supplement for Strapdown Applications to IEEE Standard Specification
-        Format Guide and Test Procedure for Single-Degree-of-Freedom Rate-Integrating
-        Gyros A specification format guide for the preparation of a rate-integrating
-        gyroscope specification is presented. Recommended procedures for testing a
-        rate-integrating gyroscope are compiled. This standard, when combined with
-        IEEE Std 517-1974 (R1980), defines the requirements and test procedures in
-        terms of characteristics unique to the gyroscope or those applications in
-        which the dynamic angular inputs are significantly greater than the limitations
-        identified in IEEE Std 517. Learn More 529-1980\/Cor 1-2017 IEEE Standard
-        Supplement for Strapdown Applications to IEEE Standard Specification Format
-        Guide and Test Procedure for Single-Degree-of-Freedom Rate-Integrating Gyros
-        - Corrigendum 1: 3.3.9.2.2, 3.6.4.1.1, 3.6.4.1.2, 6.3, and 10.10.4.1 Corrections
-        are made by this corrigendum to material already published in IEEE Std 529-1980.
-        Learn More 671-1985 IEEE Standard Specification Format Guide and Test Procedure
-        for Nongyroscopic Inertial Angular Sensors: Jerk, Acceleration, Velocity,
-        and Displacement A guide is presented for the preparation of a specification
-        and test procedure for an inertial angular sensor that provides a common meeting
-        ground of terminology and practice for manufacturers and users of an array
-        of sensors that have been developed to meet needs not easily met by traditional
-        spinning-rotor gyroscopes. A test procedure for verifying that the specifications
-        have been met is given. The standard is not intended to compete with existing
-        standards for specific devices with highly specific models and error sources,
-        such as spring-restrained rate gyros, but to provide a uniform guide for those
-        inertial angular sensors that have not been covered elsewhere. Learn More
-        671-1985\/Cor 1-2010 IEEE Standard Specification Format Guide and Test Procedure
-        for Nongyroscopic Inertial Angular Sensors: Jerk, Acceleration, Velocity,
-        and Displacement Corrigendum 1: 4.7.2.6 Short-Term Stability and Annex A Sensor
-        Dynamic Block Diagrams IEEE Std 671-1985 provides specifications and test
-        requirements for a non-gyroscopic inertial angular sensor that may measure
-        angular jerk, acceleration, rate, or displacement with or without response
-        down to zero frequency. A standard specification format is provided. A compilation
-        of recommended test procedures, derived from those presently used in the industry,
-        is also provided. Informative annexes cover design features and theoretical
-        principles of operation. This corrigendum makes changes to 4.7.2.6 to delete
-        a sentence that does not belong there, to add a subclause that was inadvertently
-        left out, and to renumber the existing subclauses. Changes are also being
-        made to fix the block diagrams in Annex A, to correct a misspelling of inertia,
-        and to add a missing symbol. Learn More 836-2009 IEEE Recommended Practice
-        for Precision Centrifuge Testing of Linear Accelerometers This recommended
-        practice describes the conduct and analysis of precision tests that are to
-        be performed on linear accelerometers using centrifuge techniques. The term
-        u201cprecision,u201d in this context, refers to tests that are conducted to
-        evaluate accelerometer parameters, as opposed to those conducted to establish
-        environmental survivability only. Evaluation may take the form of determining
-        the coefficients of the accelerometer''s model equation, except for bias and
-        scale factor, which are most accurately determined by static multi-position
-        tests. Alternatively, evaluation may only establish that the accelerometer
-        output complies with specific error limit criteria. Learn More Facebook Twitter
-        LinkedIn Instagram YouTube IEEE SA About Us IEEE SA Membership Corporate Program
-        Training & Development Policies & Procedures Contact Us Board of Governors
-        About Board of Governors Awards Committee Corporate Advisory Group Industry
-        Connections Committee Registration Authority Committee Strategic Planning
-        Coordination Committee Standards Board About Standards Board Board Approvals
-        Audit Committee New Standards Committee Patent Committee Procedures Committee
-        Standards Review Committee News & Events News IEEE SA Newsletter Events Home
-        Sitemap Contact & Support Accessibility Nondiscrimination Policy IEEE Ethics
-        Reporting IEEE Privacy Policy IEEE SA Copyright Policy \u00a9 Copyright 2021
-        IEEE \u2013 All rights reserved. Use of this website signifies your agreement
-        to the IEEE Terms and Conditions . A not-for-profit organization, IEEE is
-        the world\u2019s largest technical professional organization dedicated to
-        advancing technology for the benefit of humanity. Subscribe Newswire Sign
-        up for our monthly newsletter to learn about new developments, including resources,
-        insights and more. "}},{"id":"0e5f59ed4630b7396c4a857f43f6bb32af4c28844fefb77ff93fe62204b6b900a7db16a6b235b40889e7c1b34cbfd885f9f106827f93026cac353fc730a1df39","fields":{"meta_keywords_la":["Aerospace
-        Electronics"],"doc_type_l":"text\/html","meta_type_la":["Standard"],"meta_description_l":"This
-        specification defines the requirements for a single-degree-of-freedom spring-restrained
-        rate gyro for [aircraft, missile, spacecraft,______] applications. The rate
-        gyro shall be capable of providing [(dc, ac) voltage outputs proportional
-        to angular rate inputs up to______ degrees per second, a switch closure(s)
-        at angular rates (exceeding,less than)______ (+,-,\u00b1)______ degrees per
-        second].","meta_topic_la":["Aerospace Electronics"],"doc_id_l":"https:\/\/standards.ieee.org\/ieee\/292\/485\/","doc_title_t":"IEEE
-        SA - IEEE 292-1969","doc_text_t":"IEEE SA - IEEE 292-1969 IEEE.org IEEE Xplore
-        Digital Library IEEE Standards IEEE Spectrum More Sites eTools Standards Access
-        Standards Search Standards Standards Development Standards Adoption Choose
-        from the many ways to access IEEE SA Standards. Choose from individual or
-        organizational access options to get the standards you need. Find the standards
-        you\u2019re looking for. Get involved in the development of market-driven
-        technology standards with proven expertise and dedicated support. Learn more
-        about how to adopt IEEE standards. Products & Programs Alliance Management
-        Services Conformity Assessment & Certification IEEE SA Open Source Industry
-        Affiliate Network (IAN) Industry Connections The National Electrical Safety
-        Code\u00ae (NESC\u00ae) Registration Authority Government Engagement Program
-        on Standards Standards Fellowship All Products & Programs Full ecosystem of
-        standards-related solutions to help drive awareness, activation, and adoption.
-        Providing support services to help manage the day-to-day operations of industry
-        groups, allowing key stakeholders to focus on the work at hand. Focused on
-        development and implementation of rigorous conformity assessment programs
-        designed to help accelerate market adoption, reduce costs and more. A vendor-neutral,
-        inclusive, open source platform\u2014for all, from independent software developers
-        and start ups to industry, academic and research institutions. Open to consortia,
-        industry alliance or other industry organizations, looking to bring forward
-        specifications for standards development and market adoption. Facilitating
-        collaboration among organizations and individuals as they hone and refine
-        their thinking on rapidly changing technologies. Guidelines for practical
-        safeguarding during the installation, operation, and maintenance of electric
-        supply, communication lines and associated equipment. Assigns and maintains
-        unique identifiers and unambiguous names to objects for those wishing to register
-        them. Program for policymakers providing tailored standards information, access
-        to the IEEE SA standardization ecosystem, and standardization resources. Providing
-        global standards professionals the opportunity to observe the IEEE standards
-        development process and learn about technical areas of interest. See all the
-        programs, products, and services that IEEE SA has to offer. Focuses Artificial
-        Intelligence Systems (AIS) Connectivity & Telecom Energy Foundational Technologies
-        Healthcare and Life Sciences Mobility Government Engagement Strategic focuses
-        and industries where IEEE SA is raising the world\u2019s standards. Developing
-        accessible and sustainable approaches and solutions for practical application
-        of AIS principles and frameworks. Advancing robust, responsible, and affordable
-        connectivity. Enabling sustainable, efficient, and accessible energy through
-        technological advances on a global scale. Working to standardize seamless
-        and ubiquitous connectivity across all applications of connected technologies.
-        Focused on enabling affordable healthcare, access to medicine, and innovation
-        to improve overall global wellness. Working to help the evolving mobility
-        ecosystem address some of its greatest business opportunities that have the
-        potential to solve major societal challenges. Building bridges between the
-        worlds of technology, standards, and policy making. Get Involved Events IEEE
-        SA Membership How to Get Involved Learn about opportunities to engage with
-        IEEE SA. Join us at upcoming virtual or in-person events. Flexible membership
-        options that offer enhanced participation in IEEE SA activities, standards
-        development, and governance. There are many opportunities for participation,
-        find the right one for you. Resources Training & Development News IEEE SA
-        Newsletter Training and communication resources to stay connected. Individual
-        and organizational effectiveness program to enable the success of our vital
-        volunteers. Read the latest news on IEEE SA. Subscribe to our newsletter and
-        keep up to date on the latest standards, event, and activities. MAC Address
-        Inactive-Reserved Standard IEEE 292-1969 IEEE Specification Format for Single-Degree-of-Freedom
-        Spring-Restrained Rate Gyros Purchase Access via Subscription Home Standards
-        IEEE 292-1969 This specification defines the requirements for a single-degree-of-freedom
-        spring-restrained rate gyro for [aircraft, missile, spacecraft,______] applications.
-        The rate gyro shall be capable of providing [(dc, ac) voltage outputs proportional
-        to angular rate inputs up to______ degrees per second, a switch closure(s)
-        at angular rates (exceeding,less than)______ (+,-,\u00b1)______ degrees per
-        second]. Sponsor Committee AES\/GA - Gyro Accelerometer Panel Learn More Status
-        Inactive-Reserved Standard History ANSI Approved: 1986-11-17 Published: 1968-11-30
-        Reaffirmed: 2010-06-17 Inactivated Date: 2021-03-25 Additional Resources Erratas
-        292-1969.pdf Working Group Details Society IEEE Aerospace and Electronic Systems
-        Society Learn More Sponsor Committee AES\/GA - Gyro Accelerometer Panel Learn
-        More Working Group SENSR_WG - Sensors Working Group IEEE Program Manager Dan
-        Perez Contact Working Group Chair Harry Davis Active Projects Active Standards
-        Superseded Standards Inactive-Withdrawn Standards Inactive-Reserved Standards
-        P1431 Standard for Specifying and Testing Coriolis Vibratory Gyros This standard
-        defines requirements and test procedures for a single-axis Coriolis vibratory
-        gyro (CVG) for use as a sensor in attitude control systems, angular displacement
-        measuring systems, and angular rate measuring systems. Informative annexes
-        cover CVG design features and theoretical principles of operation. Learn More
-        1293-2018 IEEE Standard Specification Format Guide and Test Procedure for
-        Linear Single-Axis, Nongyroscopic Accelerometers The specification and test
-        requirements for a linear, single-axis, nongyroscopic accelerometer for use
-        in inertial navigation, guidance, and leveling systems are defined. A standard
-        specification guide and a compilation of recommended test procedures for such
-        accelerometers are provided. Informative annexes are given on the various
-        types of such accelerometers (force or pendulous torque rebalance with analog
-        or digital output, vibrating beam, and micromechanical) and error effects,
-        on filtering, noise, and transient analysis techniques, and on calibration
-        and modeling techniques (multipoint tumble analysis, vibration and shock test
-        analyses, and geophysical effects in inertial instrument testing). Learn More
-        1554-2005 IEEE Recommended Practice for Inertial Sensor Test Equipment, Instrumentation,
-        Data Acquisition, and Analysis Test equipment, data acquisition equipment,
-        instrumentation, test facilities, and data analysis techniques used in inertial
-        sensor testing are described in this recommended practice. Learn More 528-2019
-        IEEE Standard for Inertial Sensor Terminology Terms and definitions relating
-        to inertial sensors are presented in this standard. Usage as understood by
-        the inertial sensor community is given preference over general technical usage
-        of the terms herein. The criterion for inclusion of a term and its definition
-        in this standard is usefulness as related to inertial sensor technology. Learn
-        More 647-2006 IEEE Standard Specification Format Guide and Test Procedure
-        for Single-Axis Laser Gyros Specification and test requirements for a single-axis
-        ring laser gyro (RLG) for use as a sensor in attitude control systems, angular
-        displacement measuring systems, and angular rate measuring systems are defined.
-        A standard specification format guide for the preparation of a single-axis
-        RLG is provided. A compilation of recommended procedures for testing an RLG,
-        derived from those presently used in the industry, is also provided. Learn
-        More 813-1988 IEEE Specification Format Guide and Test Procedure for Two-Degree-of-Freedom
-        Dynamically Tuned Gyros A format guide for the preparation of a two-degree-of-freedom
-        dynamically tuned gyro (DTG) specification is given that provides a common
-        ground of terminology and practice for manufacturers and users. A compilation
-        of recommended procedures for testing a DTG is also given. The requirements
-        and test procedures are defined in terms unique to the DTG. They cover applications
-        of the gyro as an angular motion sensor in navigation and control systems.
-        They apply to two modes of use: (1) as a strap-down sensor in operating environments
-        typical of aircraft and missile applications, and (2) as a sensor in gimballed
-        platform applications in which the dynamic angular inputs to which the gyro
-        is subjected are benign relative to the accuracy required. In the case of
-        the strap-down DTG, the characteristics of the external capture loops are
-        considered to the extent necessary to define the gyro performance. Learn More
-        952-2020 IEEE Standard for Specifying and Testing Single-Axis Interferometric
-        Fiber Optic Gyros Specification and test procedures for a single-axis interferometric
-        fiber optic gyro (IFOG) for use as a sensor in attitude control systems, angular
-        displacement measuring systems, and angular rate measuring systems are defined.
-        The test procedures are derived from those presently used in the industry.
-        Learn More 1293-1998\/Cor 1-2008 IEEE Standard Specification Format Guide
-        and Test Procedure for Linear,Single-Axis, Nongyroscopic Accelerometers Corrigendum
-        1: Changes to Annex K and Annex L Corrigendum to IEEE Std 1293-1998. Specification
-        and test requirements for linear, single-axis, nongyroscopic accelerometers
-        for use as a sensor in attitude control systems, linear displacement measuring
-        systems, and linear rate measuring systems are defined. The specification
-        format guide and test procedure standard applies to force-rebalance accelerometers
-        (pendulous or translational proof mass), vibrating beam accelerometers (VBAs),
-        and micromechanical accelerometers that range from lesser accuracy to high
-        accuracy devices. Learn More 528-2001 IEEE Standard for Inertial Sensor Terminology
-        Terms and definitions relating to inertial senors are presented in this standard.
-        Usage as understood by the inertial sensor community is given preference over
-        general technical usage of the terms herein. The criterion for inclusion of
-        a term and its definition in this standard is usefulness as related to inertial
-        sensor technology. Learn More 952-1997 IEEE Standard Specification Format
-        Guide and Test Procedure for Single-Axis Interferometric Fiber Optic Gyros
-        Specification and test requirements for a single-axis interferometric fiber
-        optic gyro (IFOG) for use as a sensor in attitude control systems, angular
-        displacement measuring systems, and angular rate measuring systems are defined.
-        A standard specification format guide for the preparation of a single-axis
-        IFOG is provided. A compilation of recommended procedures for testing a fiber
-        optic gyro, derived from those presently used in the industry, is also provided.
-        Learn More 952-1997\/Cor 1-2016 IEEE Standard Specification Format Guide and
-        Test Procedure for Single-Axis Interferometric Fiber Optic Gyros -- Corrigendum
-        1: Figure 1 and Subclauses 5.3.4, 8.3, 12.11.4.3.2, 12.11.4.3.3, 12.11.4.3.4,
-        12.12.3.1, and 12.12.4.1 Errors identified in IEEE Std 952-1997 are corrected
-        in this corrigendum. Corrections are made to Figure 1 and in subclauses 5.3.4,
-        8.3, 12.11.4.3.2, 12.11.4.3.3, 12.11.4.3.4, 12.12.3.1, and 12.12.4.1. Learn
-        More No Inactive-Withdrawn Standards 1431-2004 IEEE Standard Specification
-        Format Guide and Test Procedure for Coriolis Vibratory Gyros Specification
-        and test requirements for a single-axis Coriolis vibratory gyro (CVG) for
-        use as a sensor in attitude control systems, angular displacement measuring
-        systems, and angular rate measuring systems are defined. A stadard specification
-        format guide for the preparation of a single-axis CVG is provided. A complilation
-        of recommended procedures for testing a CVG, derived from those presently
-        used in the industry, is also provided. Informative annexes cover CVG design
-        features and theoretical principles of operation. Learn More 1431-2004\/Cor
-        1-2008 IEEE Standard Specification Format Guide and Test Procedure for Coriolis
-        Vibratory Gyros - Corrigendum 1 Corrigendum to IEEE Std 1431-2004. Learn More
-        293-1969 IEEE Test Procedure for Single-Degree-of-Freedom Spring-Restrained
-        Rate Gyros Recommended rate gyro test procedures derived from those currently
-        in use, including test conditions to be considered, are compiled. In some
-        cases alternate methods for measuring a performance characteristic have been
-        included. This standard is intended to be a guide in the preparation of Section
-        4 of a specification that follows the format of IEEE Std 292, Specification
-        Format for Single-Degree-of-Freedom Spring-Restrained Rate Gyros. Learn More
-        293-1969\/Cor 1-2014 IEEE Standard for IEEE Test Procedure for Single-Degree-of-Freedom
-        Spring-Restrained Rate Gyros -- Corrigendum 1: Table 1 Heading Correction
-        to Table 1 on page 14 of IEEE Std 293-1969 Learn More 517-1974 IEEE Standard
-        Specification Format Guide and Test Procedure for Single-Degree-of-Freedom
-        Rate-Integrating Gyros A specification format guide for the preparation of
-        a rate-integrating gyro specification that provides a common meeting ground
-        of terminology and practice for manufacturers and users is presented. A compilation
-        of recommended procedures for testing a rate-integrating gyro is given. Learn
-        More 529-1980 Supplement for Strapdown Applications to IEEE Standard Specification
-        Format Guide and Test Procedure for Single-Degree-of-Freedom Rate-Integrating
-        Gyros A specification format guide for the preparation of a rate-integrating
-        gyroscope specification is presented. Recommended procedures for testing a
-        rate-integrating gyroscope are compiled. This standard, when combined with
-        IEEE Std 517-1974 (R1980), defines the requirements and test procedures in
-        terms of characteristics unique to the gyroscope or those applications in
-        which the dynamic angular inputs are significantly greater than the limitations
-        identified in IEEE Std 517. Learn More 529-1980\/Cor 1-2017 IEEE Standard
-        Supplement for Strapdown Applications to IEEE Standard Specification Format
-        Guide and Test Procedure for Single-Degree-of-Freedom Rate-Integrating Gyros
-        - Corrigendum 1: 3.3.9.2.2, 3.6.4.1.1, 3.6.4.1.2, 6.3, and 10.10.4.1 Corrections
-        are made by this corrigendum to material already published in IEEE Std 529-1980.
-        Learn More 671-1985 IEEE Standard Specification Format Guide and Test Procedure
-        for Nongyroscopic Inertial Angular Sensors: Jerk, Acceleration, Velocity,
-        and Displacement A guide is presented for the preparation of a specification
-        and test procedure for an inertial angular sensor that provides a common meeting
-        ground of terminology and practice for manufacturers and users of an array
-        of sensors that have been developed to meet needs not easily met by traditional
-        spinning-rotor gyroscopes. A test procedure for verifying that the specifications
-        have been met is given. The standard is not intended to compete with existing
-        standards for specific devices with highly specific models and error sources,
-        such as spring-restrained rate gyros, but to provide a uniform guide for those
-        inertial angular sensors that have not been covered elsewhere. Learn More
-        671-1985\/Cor 1-2010 IEEE Standard Specification Format Guide and Test Procedure
-        for Nongyroscopic Inertial Angular Sensors: Jerk, Acceleration, Velocity,
-        and Displacement Corrigendum 1: 4.7.2.6 Short-Term Stability and Annex A Sensor
-        Dynamic Block Diagrams IEEE Std 671-1985 provides specifications and test
-        requirements for a non-gyroscopic inertial angular sensor that may measure
-        angular jerk, acceleration, rate, or displacement with or without response
-        down to zero frequency. A standard specification format is provided. A compilation
-        of recommended test procedures, derived from those presently used in the industry,
-        is also provided. Informative annexes cover design features and theoretical
-        principles of operation. This corrigendum makes changes to 4.7.2.6 to delete
-        a sentence that does not belong there, to add a subclause that was inadvertently
-        left out, and to renumber the existing subclauses. Changes are also being
-        made to fix the block diagrams in Annex A, to correct a misspelling of inertia,
-        and to add a missing symbol. Learn More 836-2009 IEEE Recommended Practice
-        for Precision Centrifuge Testing of Linear Accelerometers This recommended
-        practice describes the conduct and analysis of precision tests that are to
-        be performed on linear accelerometers using centrifuge techniques. The term
-        u201cprecision,u201d in this context, refers to tests that are conducted to
-        evaluate accelerometer parameters, as opposed to those conducted to establish
-        environmental survivability only. Evaluation may take the form of determining
-        the coefficients of the accelerometer''s model equation, except for bias and
-        scale factor, which are most accurately determined by static multi-position
-        tests. Alternatively, evaluation may only establish that the accelerometer
-        output complies with specific error limit criteria. Learn More Facebook Twitter
-        LinkedIn Instagram YouTube IEEE SA About Us IEEE SA Membership Corporate Program
-        Training & Development Policies & Procedures Contact Us Board of Governors
-        About Board of Governors Awards Committee Corporate Advisory Group Industry
-        Connections Committee Registration Authority Committee Strategic Planning
-        Coordination Committee Standards Board About Standards Board Board Approvals
-        Audit Committee New Standards Committee Patent Committee Procedures Committee
-        Standards Review Committee News & Events News IEEE SA Newsletter Events Home
-        Sitemap Contact & Support Accessibility Nondiscrimination Policy IEEE Ethics
-        Reporting IEEE Privacy Policy IEEE SA Copyright Policy \u00a9 Copyright 2021
-        IEEE \u2013 All rights reserved. Use of this website signifies your agreement
-        to the IEEE Terms and Conditions . A not-for-profit organization, IEEE is
-        the world\u2019s largest technical professional organization dedicated to
-        advancing technology for the benefit of humanity. Subscribe Newswire Sign
-        up for our monthly newsletter to learn about new developments, including resources,
         insights and more. "}}]},"facets":{"meta_categories_la":{"buckets":[{"value":"NESC","count":1}]},"meta_topic_la":{"buckets":[{"value":"Aerospace
         Electronics","count":21},{"value":"Aerospace Electronics,Power and Energy","count":3},{"value":"Nuclear
         Power","count":1}]},"meta_type_la":{"buckets":[{"value":"Standard","count":24},{"value":"Page","count":2},{"value":"Products","count":1},{"value":"Project","count":1}]}}},"html":"<h3
@@ -2129,26 +2128,28 @@ http_interactions:
         class=\"content\">The National Electrical Safety Code (NESC) Committee maintains
         an Interpretations Subcommittee to provide consensus responses regarding the
         intended application of the NESC.<\/div><\/div><div class=\"hit\"><h4 class=\"title\"><a
-        href=\"https:\/\/standards.ieee.org\/ieee\/671\/926\/\"> IEEE 671-1985<\/a><\/h4><div
-        class=\"content\">A guide is presented for the preparation of a specification
-        and test procedure for an inertial angular sensor that provides a common meeting
-        ground of terminology and practice for manufacturers and users of an array
-        of sensors that have been&hellip;<\/div><\/div><div class=\"hit\"><h4 class=\"title\"><a
-        href=\"https:\/\/standards.ieee.org\/ieee\/1293\/5590\/\"> IEEE 1293-2018<\/a><\/h4><div
-        class=\"content\">The specification and test requirements for a linear, single-axis,
-        nongyroscopic accelerometer for use in inertial navigation, guidance, and
-        leveling systems are defined. A standard specification guide and a compilation
-        of recommended test procedures for such accelerometers are provided. Informative
-        annexes&hellip;<\/div><\/div><div class=\"hit\"><h4 class=\"title\"><a href=\"https:\/\/standards.ieee.org\/ieee\/1554\/2292\/\">
-        IEEE 1554-2005<\/a><\/h4><div class=\"content\">Test equipment, data acquisition
-        equipment, instrumentation, test facilities, and data analysis techniques
-        used in inertial sensor testing are described in this recommended practice.<\/div><\/div><div
-        class=\"hit\"><h4 class=\"title\"><a href=\"https:\/\/standards.ieee.org\/ieee\/292\/485\/\">
-        IEEE 292-1969<\/a><\/h4><div class=\"content\">This specification defines
-        the requirements for a single-degree-of-freedom spring-restrained rate gyro
-        for [aircraft, missile, spacecraft,______] applications. The rate gyro shall
-        be capable of providing [(dc, ac) voltage outputs proportional to angular
-        rate inputs up to______ degrees per second, a switch&hellip;<\/div><\/div><div
+        href=\"https:\/\/standards.ieee.org\/ieee\/517\/760\/\"> IEEE 517-1974<\/a><\/h4><div
+        class=\"content\">A specification format guide for the preparation of a rate-integrating
+        gyro specification that provides a common meeting ground of terminology and
+        practice for manufacturers and users is presented. A compilation of recommended
+        procedures for testing a rate-integrating gyro is given.<\/div><\/div><div
+        class=\"hit\"><h4 class=\"title\"><a href=\"https:\/\/standards.ieee.org\/ieee\/529\/781\/\">
+        IEEE 529-1980<\/a><\/h4><div class=\"content\">A specification format guide
+        for the preparation of a rate-integrating gyroscope specification is presented.
+        Recommended procedures for testing a rate-integrating gyroscope are compiled.
+        This standard, when combined with IEEE Std 517-1974 (R1980), defines the requirements
+        and test procedures in terms&hellip;<\/div><\/div><div class=\"hit\"><h4 class=\"title\"><a
+        href=\"https:\/\/standards.ieee.org\/ieee\/647\/3134\/\"> IEEE 647-2006<\/a><\/h4><div
+        class=\"content\">Specification and test requirements for a single-axis ring
+        laser gyro (RLG) for use as a sensor in attitude control systems, angular
+        displacement measuring systems, and angular rate measuring systems are defined.
+        A standard specification format guide for the preparation of&hellip;<\/div><\/div><div
+        class=\"hit\"><h4 class=\"title\"><a href=\"https:\/\/standards.ieee.org\/ieee\/1293\/5590\/\">
+        IEEE 1293-2018<\/a><\/h4><div class=\"content\">The specification and test
+        requirements for a linear, single-axis, nongyroscopic accelerometer for use
+        in inertial navigation, guidance, and leveling systems are defined. A standard
+        specification guide and a compilation of recommended test procedures for such
+        accelerometers are provided. Informative annexes&hellip;<\/div><\/div><div
         class=\"pagination\"><nav aria-label=\"Search results page navigation\">\n<ul
         class=\"pagination justify-content-center\">\n<li class=\"page-item active\"
         aria-current=\"page\"><a class=\"page-link\" href=\"#1\">1<\/a><\/li>\n<li
@@ -2182,5 +2183,5 @@ http_interactions:
         Power\">Nuclear Power<\/a><\/li><\/ul><div class=\"reset\"><a href=\"#\" class=\"filter-reset\"
         data-filter=\"topic\" data-value=\"all\">Reset<\/a><\/div><\/div><!-- end
         filter -->"}'
-  recorded_at: Sat, 29 Jan 2022 16:51:26 GMT
+  recorded_at: Tue, 08 Feb 2022 16:54:24 GMT
 recorded_with: VCR 6.0.0

@@ -38,7 +38,7 @@ module RelatonIeee
       # @param ref [String]
       # @return [Array<RelatonBib::DocumentIdentifier>]
       def fetch_docid(ref)
-        [RelatonBib::DocumentIdentifier.new(id: ref, type: "IEEE")]
+        [RelatonBib::DocumentIdentifier.new(id: ref, type: "IEEE", primary: true)]
       end
 
       # @param url [String]
