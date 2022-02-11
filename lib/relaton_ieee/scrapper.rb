@@ -19,6 +19,7 @@ module RelatonIeee
           script: ["Latn"],
           date: fetch_date(doc),
           committee: fetch_committee(doc),
+          place: ["Piscataway, NJ, USA"],
         )
       end
       # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
@@ -75,10 +76,19 @@ module RelatonIeee
 
       # @param doc [Nokogiri::HTML::Document]
       # @return [Array<RelatonBib::ContributionInfo>]
-      def fetch_contributor(doc)
+      def fetch_contributor(doc) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+        address = RelatonBib::Address.new(
+          street: ["445 Hoes Lane"], postcode: "08854-4141", city: "Piscataway",
+          state: "NJ", country: "USA"
+        )
+        org = RelatonBib::Organization.new(
+          name: "Institute of Electrical and Electronics Engineers",
+          abbreviation: "IEEE", contact: [address]
+        )
+        contrib = RelatonBib::ContributionInfo.new(entity: org, role: [type: "publisher"])
         doc.xpath("//dd[@id='stnd-staff-liaison']/text()").map do |name|
           person_contrib(name.text.strip)
-        end
+        end << contrib
       end
 
       # @param name [String]
