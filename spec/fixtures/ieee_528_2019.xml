@@ -1,5 +1,5 @@
 <bibdata>
-  <fetched>2022-02-11</fetched>
+  <fetched>2022-04-08</fetched>
   <title type="main" format="text/plain" language="en" script="Latn">IEEE Standard for Inertial Sensor Terminology</title>
   <uri type="src">https://standards.ieee.org/ieee/528/7292/</uri>
   <docidentifier type="IEEE" primary="true">IEEE 528-2019</docidentifier>
@@ -13,7 +13,7 @@
     <role type="author"/>
     <person>
       <name>
-        <completename>Dan Perez</completename>
+        <completename>Soo Kim</completename>
       </name>
     </person>
   </contributor>
