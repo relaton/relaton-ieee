@@ -25,6 +25,18 @@ RSpec.describe RelatonIeee::DataFetcher do
       end.to output(/Empty file: file\.xml/).to_stderr
     end
 
+    it "create relation" do
+      rel = df.create_relation "V", "AIEE 15.1928-05"
+      expect(rel).to be_a RelatonBib::DocumentRelation
+      expect(rel.type).to eq "updates"
+      expect(rel.description.content).to eq "revises"
+      expect(rel.bibitem).to be_instance_of RelatonIeee::IeeeBibliographicItem
+      expect(rel.bibitem.docidentifier[0].id).to eq "AIEE 15.1928-05"
+      expect(rel.bibitem.docidentifier[0].type).to eq "IEEE"
+      expect(rel.bibitem.docidentifier[0].primary).to be true
+      expect(rel.bibitem.formattedref.content).to eq "AIEE 15.1928-05"
+    end
+
     context "when ouput file exists" do
       let(:bib) do
         docid = RelatonBib::DocumentIdentifier.new id: "IEEE 5678"

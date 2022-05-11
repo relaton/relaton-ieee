@@ -96,7 +96,7 @@ module RelatonIeee
         warn "Empty file: #{filename}"
         return
       end
-      stdid = doc.at("./publicationinfo/standard_id").text
+      stdid = doc.at("./publicationinfo/standard_id")&.text
       if stdid == "0"
         # nt = doc&.at("./normtitle")&.text
         # ntid = @normtitles.index nt
@@ -196,11 +196,12 @@ module RelatonIeee
     #
     # @return [RelatonBib::DocumentRelation]
     #
-    def create_relation(type, fref)
+    def create_relation(type, fref) # rubocop:disable Metrics/MethodLength
       return if RELATION_TYPES[type] == false
 
       fr = RelatonBib::FormattedRef.new(content: fref)
-      bib = IeeeBibliographicItem.new formattedref: fr
+      docid = RelatonBib::DocumentIdentifier.new(type: "IEEE", id: fref, primary: true)
+      bib = IeeeBibliographicItem.new formattedref: fr, docid: [docid]
       desc = RELATION_TYPES[type][:description]
       description = desc && RelatonBib::FormattedString.new(content: desc, language: "en", script: "Latn")
       RelatonBib::DocumentRelation.new(
