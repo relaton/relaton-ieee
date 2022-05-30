@@ -20,13 +20,22 @@ module RelatonIeee
       query = reference.gsub("/", " ")
       resp = Faraday.post url, { action: "ieee_cloudsearch", q: query }
       json = JSON.parse resp.body
-      html = Nokogiri::HTML json["html"]
-      @array = html.xpath("//h4/a").reduce([]) do |s, hit|
-        ref = hit.text.strip
-        /^(?:\w+\s)?(?<code2>[A-Z\d.]+)(?:-(?<year>\d{4}))?/ =~ ref
+      # html = Nokogiri::HTML json["html"]
+      # @array = html.xpath("//h4/a").reduce([]) do |s, hit|
+      @array = json["results"]["hits"]["hit"].reduce([]) do |s, hit|
+        flds = hit["fields"]
+        # ref = hit.text.strip
+        # /^(?:\w+\s)?(?<code2>[A-Z\d.]+)(?:-(?<year>\d{4}))?/ =~ ref
+        /^(?:\w+\s)?(?<code2>[A-Z\d.]+)(?:-(?<year>\d{4}))?/ =~ flds["meta_designation_l"]
         next s unless code2 && code1 =~ %r{^#{code2}}
 
-        hit_data = { ref: ref, year: year.to_i, url: hit[:href] }
+        hit_data = {
+          ref: flds["meta_designation_l"],
+          # title: flds["meta_title_t"],
+          # abstract: flds["meta_description_l"],
+          year: year.to_i,
+          url: flds["doc_id_l"],
+        }
         s << Hit.new(hit_data, self)
       end.sort_by { |h| h.hit[:year].to_s + h.hit[:url] }.reverse
     end
