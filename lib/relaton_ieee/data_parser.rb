@@ -190,7 +190,7 @@ module RelatonIeee
     # @return [Array<RelatonBib::FormattedString>]
     #
     def parse_abstract
-      doc.xpath("./volume/article/articleinfo/abstract").map do |a|
+      doc.xpath("./volume/article/articleinfo/abstract")[0...1].map do |a|
         RelatonBib::FormattedString.new(
           content: a.text, language: "en", script: "Latn",
         )
