@@ -1,3 +1,3 @@
 module RelatonIeee
-  VERSION = "1.11.3".freeze
+  VERSION = "1.12.0".freeze
 end
