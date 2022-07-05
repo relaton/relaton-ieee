@@ -1,6 +1,5 @@
 RSpec.describe RelatonIeee::DataFetcher do
   it "fetch data" do
-    expect(Dir).to receive(:exist?).with("data").and_return false
     expect(FileUtils).to receive(:mkdir_p).with("data")
     files = Dir["spec/fixtures/rawbib/**/*.{xml,zip}"]
     expect(Dir).to receive(:[]).with("ieee-rawbib/**/*.{xml,zip}").and_return files

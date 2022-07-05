@@ -33,9 +33,9 @@ RSpec.describe RelatonIeee do
     end
 
     it "corrigendum" do
-      VCR.use_cassette "ieee_802_1ae_2018_cor_1_2020" do
-        result = RelatonIeee::IeeeBibliography.get "802.1AE-2018/Cor 1-2020"
-        expect(result.docidentifier[0].id).to eq "IEEE 802.1AE-2018/Cor 1-2020"
+      VCR.use_cassette "corrigendum" do
+        result = RelatonIeee::IeeeBibliography.get "IEEE 802.16-2004/Cor 1-2005"
+        expect(result.docidentifier[0].id).to eq "IEEE 802.16-2004/Cor 1-2005"
       end
     end
 
@@ -69,6 +69,11 @@ RSpec.describe RelatonIeee do
         result = RelatonIeee::IeeeBibliography.get "IEEE Std 1619-2007"
         expect(result.docidentifier[0].id).to eq "IEEE 1619-2007"
       end
+    end
+
+    it "not found", vcr: { cassette_name: "not_found" } do
+      result = RelatonIeee::IeeeBibliography.get "IEEE 802.1Xck-2018"
+      expect(result).to be_nil
     end
   end
 end

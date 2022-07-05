@@ -44,7 +44,7 @@ module RelatonIeee
     def self.fetch(output: "data", format: "yaml")
       t1 = Time.now
       puts "Started at: #{t1}"
-      FileUtils.mkdir_p output unless Dir.exist? output
+      FileUtils.mkdir_p output # unless Dir.exist? output
       new(output, format).fetch
       t2 = Time.now
       puts "Stopped at: #{t2}"
@@ -113,7 +113,7 @@ module RelatonIeee
       amsid = doc.at("./publicationinfo/amsid").text
       if backrefs.value?(bib.docidentifier[0].id) && /updates\.\d+/ !~ filename
         oamsid = backrefs.key bib.docidentifier[0].id
-        warn "Document exists ID: \"#{bib.docidentifier[0].id}\" AMSID: "\
+        warn "Document exists ID: \"#{bib.docidentifier[0].id}\" AMSID: " \
              "\"#{amsid}\" source: \"#{filename}\". Other AMSID: \"#{oamsid}\""
         if bib.docidentifier[0].id.include?(doc.at("./publicationinfo/stdnumber").text)
           save_doc bib # rewrite file if the PubID matches to the stdnumber
