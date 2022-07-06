@@ -170,7 +170,7 @@ hash = YAML.load_file 'spec/fixtures/ieee_528_2019.yaml'
 
 === Fetch data
 
-There is an IEEE dataset https://github.com/ietf-ribose/ieee-rawbib which can be converted into BibXML/BibYAML formats. The dataset needs to be placed into local directiory.
+There is an IEEE dataset https://github.com/relaton/ieee-rawbib which can be converted into BibXML/BibYAML formats. The dataset needs to be placed into local directiory.
 
 The method `RelatonIeee::DataFetcher.fetch(output: "data", format: "yaml")` converts all the documents from the local `ieee-rawbib` directory and save them to the `./data` folder in YAML format.
 Arguments:

@@ -458,7 +458,7 @@ module RelatonIeee
     #
     # @return [String]
     def sp(parts)
-      parts.gsub ".", "-"
+      parts # .gsub ".", "-"
     end
 
     #

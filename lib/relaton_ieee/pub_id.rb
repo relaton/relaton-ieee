@@ -28,7 +28,7 @@ module RelatonIeee
       # @option args [String] :year
       # @option args [String] :month
       #
-      def initialize(number:, **args) # rubocop:disable Metrics/MethodLength
+      def initialize(number:, **args) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         @publisher = args[:publisher]
         @stage = args[:stage]
         @number = number
@@ -56,7 +56,7 @@ module RelatonIeee
         out = "#{approval} #{out}" if approval
         out = "#{status} #{out}" if status
         out = "#{publisher} #{out}" if publisher
-        out += "-#{part}" if part
+        out += ".#{part}" if part
         out += edition_to_s + draft_to_s + rev_to_s + corr_to_s + amd_to_s
         out + year_to_s + month_to_s + redline_to_s
       end
@@ -82,7 +82,7 @@ module RelatonIeee
       end
 
       def year_to_s
-        year ? ".#{year}" : ""
+        year ? "-#{year}" : ""
       end
 
       def month_to_s
