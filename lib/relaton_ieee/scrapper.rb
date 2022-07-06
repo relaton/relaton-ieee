@@ -39,7 +39,9 @@ module RelatonIeee
       # @param ref [String]
       # @return [Array<RelatonBib::DocumentIdentifier>]
       def fetch_docid(ref)
-        [RelatonBib::DocumentIdentifier.new(id: ref, type: "IEEE", primary: true)]
+        args = { id: ref, type: "IEEE", primary: true }
+        args[:scope] = "trademark" if ref.match?(/^IEEE\s(?:Std\s)?(?:802|2030)/)
+        [RelatonBib::DocumentIdentifier.new(**args)]
       end
 
       # @param url [String]
