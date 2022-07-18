@@ -48,15 +48,20 @@ module RelatonIeee
       #
       # PubId string representation
       #
+      # @param [Boolean] trademark if true, add trademark symbol
+      #
       # @return [String]
       #
-      def to_s # rubocop:disable Metrics/AbcSize
+      def to_s(trademark: false) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         out = number
         out = "#{stage} #{out}" if stage
         out = "#{approval} #{out}" if approval
         out = "#{status} #{out}" if status
         out = "#{publisher} #{out}" if publisher
         out += ".#{part}" if part
+        if trademark
+          out += out.match?(/^IEEE\s(Std\s)?(802|2030)/) ? "\u00AE" : "\u2122"
+        end
         out += edition_to_s + draft_to_s + rev_to_s + corr_to_s + amd_to_s
         out + year_to_s + month_to_s + redline_to_s
       end
@@ -120,10 +125,12 @@ module RelatonIeee
     #
     # PubId string representation
     #
+    # @param [Boolean] trademark if true, add trademark symbol
+    #
     # @return [String]
     #
-    def to_s
-      pubid.map(&:to_s).join("/")
+    def to_s(trademark: false)
+      pubid.map { |id| id.to_s(trademark: trademark) }.join("/")
     end
 
     #

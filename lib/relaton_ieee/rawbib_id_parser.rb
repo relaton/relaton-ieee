@@ -471,9 +471,10 @@ module RelatonIeee
     def yn(year)
       return year if year.size == 4
 
+      y = Date.today.year.to_s[2..4].to_i + 1
       case year.to_i
-      when 0..25 then "20#{year}"
-      when 26..99 then "19#{year}"
+      when 0...y then "20#{year}"
+      when y..99 then "19#{year}"
       end
     end
 
@@ -496,7 +497,7 @@ module RelatonIeee
     #
     # @param [Strin] edition
     #
-    # @return [String]
+    # @return [String, Integer]
     #
     def en(edition)
       case edition

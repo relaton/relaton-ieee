@@ -113,8 +113,11 @@ module RelatonIeee
     #
     # @return [Array<RelatonBib::DocumentIdentifier>]
     #
-    def parse_docid
-      ids = [{ id: pubid.to_s, type: "IEEE", primary: true }]
+    def parse_docid # rubocop:disable Metrics/MethodLength
+      ids = [
+        { id: pubid.to_s, type: "IEEE", primary: true },
+        { id: pubid.to_s(trademark: true), scope: "trademark", type: "IEEE", primary: true },
+      ]
       isbn = doc.at("./publicationinfo/isbn")
       ids << { id: isbn.text, type: "ISBN" } if isbn
       doi = doc.at("./volume/article/articleinfo/articledoi")

@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 05 Jul 2022 16:38:32 GMT
+      - Sun, 17 Jul 2022 16:49:34 GMT
       Content-Type:
       - text/html; charset=UTF-8
       Transfer-Encoding:
@@ -51,12 +51,12 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 726188129ee4787f-VIE
+      - 72c478bc78181c43-SOF
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: '{"status":"ok","total_pages":0,"html":"<div class=\"no-results-found\">Sorry,
         but no results were found for your search<\/div>","filters_html":""}'
-  recorded_at: Tue, 05 Jul 2022 16:38:32 GMT
+  recorded_at: Sun, 17 Jul 2022 16:49:34 GMT
 recorded_with: VCR 6.1.0
