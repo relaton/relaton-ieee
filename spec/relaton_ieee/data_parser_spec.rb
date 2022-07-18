@@ -72,4 +72,43 @@ RSpec.describe RelatonIeee::DataParser do
       expect(abs[0].content).to eq "Abstract"
     end
   end
+
+  context "parse PubId" do
+    let(:doc) do
+      Nokogiri::XML <<~XML
+        <publication>
+          <normtitle><![CDATA[IEEE Std P802.5t/D2.5]]></normtitle>
+          <publicationinfo>
+            <isbn isbntype="New-2005" mediatype="Electronic">978-1-5044-3975-6</isbn>
+          </publicationinfo>
+          <volume>
+            <article>
+              <articleinfo>
+                <articledoi>10.1109/IEEE.2012.624</articledoi>
+              </articleinfo>
+            </article>
+          </volume>
+        </publication>
+      XML
+    end
+
+    let(:docids) { subject.parse_docid }
+    it { expect(docids.size).to eq 4 }
+    it { expect(docids[0].type).to eq "IEEE" }
+    it { expect(docids[0].id).to eq "IEEE P802.5t/D-2.5" }
+    it { expect(docids[0].primary).to be true }
+    it { expect(docids[0].scope).to be_nil }
+    it { expect(docids[1].type).to eq "IEEE" }
+    it { expect(docids[1].id).to eq "IEEE P802.5t\u2122/D-2.5" }
+    it { expect(docids[1].primary).to be true }
+    it { expect(docids[1].scope).to eq "trademark" }
+    it { expect(docids[2].type).to eq "ISBN" }
+    it { expect(docids[2].id).to eq "978-1-5044-3975-6" }
+    it { expect(docids[2].primary).to be_nil }
+    it { expect(docids[2].scope).to be_nil }
+    it { expect(docids[3].type).to eq "DOI" }
+    it { expect(docids[3].id).to eq "10.1109/IEEE.2012.624" }
+    it { expect(docids[3].primary).to be_nil }
+    it { expect(docids[3].scope).to be_nil }
+  end
 end
