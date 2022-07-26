@@ -73,6 +73,26 @@ RSpec.describe RelatonIeee::DataParser do
     end
   end
 
+  context "parse title" do
+    let(:doc) do
+      Nokogiri::XML <<~XML
+        <publication>
+          <volume>
+            <article>
+              <title><![CDATA[Title - Redline]]></title>
+            </article>
+          </volume>
+        </publication>
+      XML
+    end
+    let(:title) { subject.parse_title }
+    it { expect(title).to be_instance_of Array }
+    it { expect(title.size).to eq 2 }
+    it { expect(title[0]).to be_instance_of RelatonBib::TypedTitleString }
+    it { expect(title[0].title.content).to eq "Title" }
+    it { expect(title[1].title.content).to eq "Title - Redline" }
+  end
+
   context "parse PubId" do
     let(:doc) do
       Nokogiri::XML <<~XML

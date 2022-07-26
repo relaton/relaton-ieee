@@ -1,39 +1,49 @@
 [%bibitem]
 == {blank}
-id:: 528-2019
-fetched:: 2020-05-28
+id:: IEEE528-2019
+fetched:: 2022-07-26
 title.type:: main
-title.content:: 528-2019 - IEEE Standard for Inertial Sensor Terminology
+title.content:: IEEE Standard for Inertial Sensor Terminology
 title.language:: en
 title.script:: Latn
 title.format:: text/plain
+docid::
 docid.type:: IEEE
 docid.primary:: true
-docid.id:: 528-2019
+docid.id:: IEEE 528-2019
+docid::
+docid.type:: IEEE
+docid.scope:: trademark
+docid.primary:: true
+docid.id:: IEEE 528™-2019
 language:: en
 script:: Latn
 docstatus.stage:: Active
 date::
 date.type:: issued
-date.on:: 2019-01-01
+date.on:: 2019-06-13
 date::
 date.type:: published
-date.on:: 2019-01-01
+date.on:: 2019-10-08
 abstract.content:: Terms and definitions relating to inertial sensors are presented in this standard. Usage as understood by the inertial sensor community is given preference over general technical usage of the terms herein. The criterion for inclusion of a term and its definition in this standard is usefulness as related to inertial sensor technology.
 abstract.language:: en
 abstract.script:: Latn
 abstract.format:: text/plain
 link.type:: src
-link.content:: https://standards.ieee.org/content/ieee-standards/en/standard/528-2019.html
-contributor.person.name.completename:: Ashley Moran
+link.content:: https://standards.ieee.org/ieee/528/7292/
+place.name:: Piscataway, NJ, USA
+contributor::
+contributor.person.name.completename:: Soo Kim
 contributor.role.type:: author
-committee::
-committee.type:: sponsor
-committee.name:: AES/GA - Gyro Accelerometer Panel
-committee::
-committee.type:: working
-committee.name:: SENSR_WG - Sensors Working Group
-committee.chair:: Harry Davis
-committee::
-committee.type:: society
-committee.name:: IEEE Aerospace and Electronic Systems Society
+contributor::
+contributor.organization.name:: Institute of Electrical and Electronics Engineers
+contributor.organization.abbreviation:: IEEE
+contributor.organization.address.street:: 445 Hoes Lane
+contributor.organization.address.city:: Piscataway
+contributor.organization.address.state:: NJ
+contributor.organization.address.country:: USA
+contributor.organization.address.postcode:: 08854-4141
+contributor.role.type:: publisher
+editorialgroup.society:: IEEE Aerospace and Electronic Systems Society
+editorialgroup.working-group:: SENSR_WG - Sensors Working Group
+editorialgroup.committee:: AES/GA - Gyro Accelerometer Panel

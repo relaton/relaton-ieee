@@ -1,54 +1,62 @@
-<bibdata>
-  <fetched>2022-07-17</fetched>
-  <title type="main" format="text/plain" language="en" script="Latn">IEEE Standard for Inertial Sensor Terminology</title>
-  <uri type="src">https://standards.ieee.org/ieee/528/7292/</uri>
+<bibdata type="standard">
+  <title type="main" format="text/plain">IEEE Standard for Inertial Sensor Terminology</title>
+  <uri type="src">https://ieeexplore.ieee.org/document/8863799</uri>
   <docidentifier type="IEEE" primary="true">IEEE 528-2019</docidentifier>
   <docidentifier type="IEEE" scope="trademark" primary="true">IEEE 528™-2019</docidentifier>
+  <docidentifier type="ISBN">978-1-5044-5983-9</docidentifier>
+  <docidentifier type="DOI">10.1109/IEEESTD.2019.8863799</docidentifier>
+  <docnumber>IEEE 528-2019</docnumber>
+  <date type="updated">
+    <on>2020-06-05</on>
+  </date>
+  <date type="created">
+    <on>2019-10-08</on>
+  </date>
+  <date type="published">
+    <on>2019-10-09</on>
+  </date>
   <date type="issued">
     <on>2019-06-13</on>
   </date>
-  <date type="published">
-    <on>2019-10-08</on>
-  </date>
-  <contributor>
-    <role type="author"/>
-    <person>
-      <name>
-        <completename>Soo Kim</completename>
-      </name>
-    </person>
-  </contributor>
   <contributor>
     <role type="publisher"/>
     <organization>
       <name>Institute of Electrical and Electronics Engineers</name>
       <abbreviation>IEEE</abbreviation>
+      <uri>http://www.ieee.org</uri>
       <address>
-        <street>445 Hoes Lane</street>
-        <city>Piscataway</city>
-        <state>NJ</state>
+        <city>New York</city>
         <country>USA</country>
-        <postcode>08854-4141</postcode>
       </address>
     </organization>
   </contributor>
   <language>en</language>
   <script>Latn</script>
   <abstract format="text/plain" language="en" script="Latn">Terms and definitions relating to inertial sensors are presented in this standard. Usage as understood by the inertial sensor community is given preference over general technical usage of the terms herein. The criterion for inclusion of a term and its definition in this standard is usefulness as related to inertial sensor technology.</abstract>
-  <status>
-    <stage>Active</stage>
-  </status>
-  <place>Piscataway, NJ, USA</place>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>Institute of Electrical and Electronics Engineers</name>
+        <abbreviation>IEEE</abbreviation>
+        <uri>http://www.ieee.org</uri>
+      </organization>
+    </owner>
+  </copyright>
+  <keyword>IEEE Standards</keyword>
+  <keyword>Sensors</keyword>
+  <keyword>Terminology</keyword>
+  <keyword>IEEE 528&amp;#8482;</keyword>
+  <keyword>inertial sensor technology</keyword>
+  <keyword>inertial sensor terminology</keyword>
   <ext>
-    <committee type="sponsor">
-      <name>AES/GA - Gyro Accelerometer Panel</name>
-    </committee>
-    <committee type="working">
-      <name>SENSR_WG - Sensors Working Group</name>
-      <chair>Harry Davis</chair>
-    </committee>
-    <committee type="society">
-      <name>IEEE Aerospace and Electronic Systems Society</name>
-    </committee>
+    <ics>
+      <code>01.040.17</code>
+      <text>Metrology and measurement. Physical phenomena (Vocabularies)</text>
+    </ics>
+    <ics>
+      <code>17.020</code>
+      <text>Metrology and measurement in general</text>
+    </ics>
   </ext>
 </bibdata>

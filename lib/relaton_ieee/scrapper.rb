@@ -18,7 +18,7 @@ module RelatonIeee
           language: ["en"],
           script: ["Latn"],
           date: fetch_date(doc),
-          committee: fetch_committee(doc),
+          editorialgroup: fetch_editorialgroup(doc),
           place: ["Piscataway, NJ, USA"],
         )
       end
@@ -59,7 +59,7 @@ module RelatonIeee
         stage = doc.at("//dd[@id='stnd-status']")
         return unless stage
 
-        RelatonBib::DocumentStatus.new(stage: stage.text.split.first)
+        DocumentStatus.new(stage: stage.text.split.first)
       end
 
       # @param identifier [String]
@@ -117,8 +117,6 @@ module RelatonIeee
       #   )
       # end
 
-      # rubocop:disable Metrics/MethodLength
-
       # @param date [Nokogiri::HTML::Document]
       # @return [Array<RelatonBib::BibliographicDate>]
       def fetch_date(doc)
@@ -134,33 +132,23 @@ module RelatonIeee
         dates
       end
 
-      # rubocop:disable Metrics/AbcSize
-
+      #
       # @param doc [Nokogiri::HTML::Document]
-      # @return [Array<RelatonIeee::Committee>]
-      def fetch_committee(doc)
-        committees = []
-        sponsor = doc.at "//dd[@id='stnd-committee']/text()"
-        if sponsor
-          committees << Committee.new(type: "sponsor", name: sponsor.text.strip)
-        end
-        sponsor = doc.at "//td[.='Standards Committee']/following-sibling::td/div/a"
-        if sponsor
-          committees << Committee.new(type: "standard", name: sponsor.text)
-        end
-        working = doc.at "//dd[@id='stnd-working-group']/text()"
-        if working
-          chair = doc.at "//dd[@id='stnd-working-group-chair']"
-          committees << Committee.new(type: "working", name: working.text.strip,
-                                      chair: chair.text)
-        end
-        society = doc.at "//dd[@id='stnd-society']/text()"
-        if society
-          committees << Committee.new(type: "society", name: society.text.strip)
-        end
-        committees
+      #
+      # @return [RelatonIeee::EditorialGroup]
+      #
+      def fetch_editorialgroup(doc) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+        committees = doc.xpath(
+          "//dd[@id='stnd-committee']/text()",
+          "//td[.='Standards Committee']/following-sibling::td/div/a",
+        ).map { |c| c.text.strip }
+        wg = doc.at("//dd[@id='stnd-working-group']/text()")&.text&.strip
+        # chair = doc.at "//dd[@id='stnd-working-group-chair']"
+        society = doc.at("//dd[@id='stnd-society']/text()")&.text&.strip
+        return unless committees.any? || wg || society
+
+        EditorialGroup.new(society: society, working_group: wg, committee: committees)
       end
-      # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
     end
   end
 end

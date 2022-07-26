@@ -1,32 +1,50 @@
 ---
-id: 528-2019
+id: IEEE528-2019
 title:
 - type: main
-  content: 528-2019 - IEEE Standard for Inertial Sensor Terminology
+  content: IEEE Standard for Inertial Sensor Terminology
   language:
   - en
   script:
   - Latn
   format: text/plain
 link:
-- content: https://standards.ieee.org/content/ieee-standards/en/standard/528-2019.html
+- content: https://standards.ieee.org/ieee/528/7292/
   type: src
 docid:
-- id: 528-2019
+- id: IEEE 528-2019
   type: IEEE
+  primary: true
+- id: IEEE 528™-2019
+  type: IEEE
+  scope: trademark
   primary: true
 date:
 - type: issued
-  value: '2019-01-01'
+  value: '2019-06-13'
 - type: published
-  value: '2019-01-01'
+  value: '2019-10-08'
 contributor:
 - person:
     name:
-      completename: Ashley Moran
+      completename: Soo Kim
   role:
   - author
-revdate: '2019-01-01'
+- organization:
+    name:
+    - Institute of Electrical and Electronics Engineers
+    abbreviation: IEEE
+    contact:
+    - address:
+        street:
+        - 445 Hoes Lane
+        city: Piscataway
+        state: NJ
+        country: USA
+        postcode: '08854-4141'
+  role:
+  - publisher
+revdate: '2019-10-08'
 language:
 - en
 script:
@@ -45,12 +63,11 @@ abstract:
 docstatus:
   stage:
     value: Active
-fetched: '2020-05-28'
-committee:
-- type: sponsor
-  name: AES/GA - Gyro Accelerometer Panel
-- type: working
-  name: SENSR_WG - Sensors Working Group
-  chair: Harry Davis
-- type: society
-  name: IEEE Aerospace and Electronic Systems Society
+place:
+- Piscataway, NJ, USA
+fetched: '2022-07-26'
+editorialgroup:
+  society: IEEE Aerospace and Electronic Systems Society
+  working_group: SENSR_WG - Sensors Working Group
+  committee:
+  - AES/GA - Gyro Accelerometer Panel

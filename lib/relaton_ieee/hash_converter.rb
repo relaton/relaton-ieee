@@ -4,13 +4,13 @@ module RelatonIeee
       # @param args [Hash]
       # @param neated [TrueClas, FalseClass] default true
       # @return [Hash]
-      def hash_to_bib(args)
-        hash = super
-        return nil unless hash.is_a?(Hash)
+      # def hash_to_bib(args)
+      #   hash = super
+      #   return nil unless hash.is_a?(Hash)
 
-        committee_hash_to_bib hash
-        hash
-      end
+      #   editorialgroup_hash_to_bib hash
+      #   hash
+      # end
 
       # @param item_hash [Hash]
       # @return [RelatonIeee::IeeeBibliographicItem]
@@ -19,10 +19,10 @@ module RelatonIeee
       end
 
       # @param hash [Hash]
-      def committee_hash_to_bib(hash)
-        return unless hash[:committee]
+      def editorialgroup_hash_to_bib(hash)
+        return unless hash[:editorialgroup]
 
-        hash[:committee] = hash[:committee].map { |c| Committee.new(**c) }
+        hash[:editorialgroup] = EditorialGroup.new(**hash[:editorialgroup])
       end
     end
   end

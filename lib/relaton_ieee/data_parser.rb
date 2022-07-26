@@ -35,6 +35,7 @@ module RelatonIeee
     #
     def parse # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
       args = {
+        fetched: Date.today.to_s,
         type: "standard",
         docnumber: docnumber,
         title: parse_title,
@@ -127,6 +128,11 @@ module RelatonIeee
       end
     end
 
+    #
+    # Create PubID
+    #
+    # @return [RelatonIeee::RawbibIdParser] PubID
+    #
     def pubid
       @pubid ||= begin
         nt = doc.at("./normtitle").text
@@ -223,7 +229,7 @@ module RelatonIeee
     #
     def parse_status
       stage = doc.at("./publicationinfo/standard_status").text
-      RelatonBib::DocumentStatus.new stage: stage
+      DocumentStatus.new stage: stage
     end
 
     #

@@ -9,4 +9,16 @@ RSpec.describe RelatonIeee::IeeeBibliographicItem do
     File.write file, bib, encodint: "UTF-8" unless File.exist? file
     expect(bib).to eq File.read(file, encoding: "UTF-8")
   end
+
+  it "warn when doctype is invalid" do
+    expect do
+      described_class.new doctype: "invalid"
+    end.to output("[relaton-ieee] doctype should be one of guide, recommended-practice, standard\n").to_stderr
+  end
+
+  it "warn when subdoctype is invalid" do
+    expect do
+      described_class.new docsubtype: "invalid"
+    end.to output("[relaton-ieee] docsubtype should be one of amendment, corrigendum, erratum\n").to_stderr
+  end
 end

@@ -154,6 +154,45 @@ RSpec.describe RelatonIeee::DataFetcher do
         expect(df.read_bib("5678")).to be_instance_of RelatonIeee::IeeeBibliographicItem
       end
     end
+
+    it "return nil and warn if docnumber is nil" do
+      xml = <<~XML
+        <publication>
+          <normtitle>Title</normtitle>
+        </publication>
+      XML
+      bib = double "bib", docnumber: nil
+      expect(RelatonIeee::DataParser).to receive(:parse).with(kind_of(Nokogiri::XML::Element), df).and_return bib
+      expect do
+        expect(df.fetch_doc(xml, "filename")).to be_nil
+      end.to output("PubID parse error. Normtitle: Title, file: filename\n").to_stderr
+    end
+
+    context "save document" do
+      let(:bib) { double "bib", docnumber: "5678" }
+
+      it "in XML format" do
+        df.instance_variable_set :@format, "xml"
+        df.instance_variable_set :@ext, "xml"
+        expect(bib).to receive(:to_xml).with(bibdata: true).and_return "<xml/>"
+        expect(File).to receive(:write).with("data/5678.xml", "<xml/>", encoding: "UTF-8")
+        df.save_doc bib
+      end
+
+      it "in YAML format" do
+        expect(bib).to receive(:to_hash).and_return({ "title" => "Title" })
+        expect(File).to receive(:write).with("data/5678.yaml", { "title" => "Title" }.to_yaml, encoding: "UTF-8")
+        df.save_doc bib
+      end
+
+      it "in BibXML format" do
+        df.instance_variable_set :@format, "bibxml"
+        df.instance_variable_set :@ext, "xml"
+        expect(bib).to receive(:to_bibxml).and_return "<bibxml/>"
+        expect(File).to receive(:write).with("data/5678.xml", "<bibxml/>", encoding: "UTF-8")
+        df.save_doc bib
+      end
+    end
   end
 
   # it do

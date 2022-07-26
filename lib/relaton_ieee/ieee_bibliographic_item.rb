@@ -1,12 +1,30 @@
 module RelatonIeee
   class IeeeBibliographicItem < RelatonBib::BibliographicItem
-    # @return [Array<RelatonIeee::Committee>]
-    attr_reader :committee
+    TYPES = %w[guide recommended-practice standard].freeze
+    SUBTYPES = %w[amendment corrigendum erratum].freeze
 
-    # @param committee [Array<RelatonIeee::Committee>]
+    # @return [RelatonIeee::EditorialGroup, nil]
+    attr_reader :editorialgroup
+
+    # @return [Boolean, nil] Trial use
+    attr_reader :trialuse
+
+    #
+    # @param [Hash] args
+    # @option args [Boolean, nil] :trialuse Trial use
+    # @option args [Array<RelatonIeee::EditorialGroup>] :editorialgroup Editorial group
+    #
     def initialize(**args)
-      @committee = args.delete(:committee) || []
+      if args[:doctype] && !TYPES.include?(args[:doctype])
+        warn "[relaton-ieee] doctype should be one of #{TYPES.join(', ')}"
+      end
+      if args[:docsubtype] && !SUBTYPES.include?(args[:docsubtype])
+        warn "[relaton-ieee] docsubtype should be one of #{SUBTYPES.join(', ')}"
+      end
+      eg = args.delete(:editorialgroup)
+      @trialuse = args.delete(:trialuse)
       super
+      @editorialgroup = eg
     end
 
     # @param hash [Hash]
@@ -21,11 +39,15 @@ module RelatonIeee
     # @option opts [Boolean] :bibdata
     # @option opts [String] :lang language
     # @return [String] XML
-    def to_xml(**opts)
+    def to_xml(**opts) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       super(**opts) do |bldr|
-        if opts[:bibdata] && committee.any?
+        if opts[:bibdata] && (doctype || subdoctype || !trialuse.nil? || editorialgroup || ics.any?)
           bldr.ext do |b|
-            committee.each { |c| c.to_xml b }
+            b.doctype doctype if doctype
+            b.subdoctype subdoctype if subdoctype
+            b.send :"trial-use", trialuse unless trialuse.nil?
+            editorialgroup&.to_xml(b)
+            ics.each { |ic| ic.to_xml(b) }
           end
         end
       end
@@ -34,7 +56,7 @@ module RelatonIeee
     # @return [Hash]
     def to_hash
       hash = super
-      hash["committee"] = committee.map &:to_hash if committee.any?
+      hash["trialuse"] = trialuse unless trialuse.nil?
       hash
     end
 
@@ -42,7 +64,7 @@ module RelatonIeee
     # @return [String]
     def to_asciibib(prefix = "")
       out = super
-      committee.each { |c| out += c.to_asciibib prefix, committee.size }
+      out += "#{prefix}.trialuse:: #{trialuse}\n" unless trialuse.nil?
       out
     end
   end

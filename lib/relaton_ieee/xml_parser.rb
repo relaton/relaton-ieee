@@ -11,18 +11,47 @@ module RelatonIeee
         ext = item.at "./ext"
         return data unless ext
 
-        data[:committee] = ext.xpath("./committee").map do |c|
-          Committee.new(
-            type: c[:type], name: c.at("name").text, chair: c.at("chair")&.text
-          )
-        end
+        data[:editorialgroup] = parse_editorialgroup(item)
         data
       end
 
       # @param item_hash [Hash]
       # @return [RelatonIeee::IeeeBibliographicItem]
       def bib_item(item_hash)
-        IeeeBibliographicItem.new **item_hash
+        IeeeBibliographicItem.new(**item_hash)
+      end
+
+      #
+      # Parse editorialgroup
+      #
+      # @param [Nokogiri::XML::Element] item XML element
+      #
+      # @return [RelatonIeee::EditorialGroup] Editorial group
+      #
+      def parse_editorialgroup(item)
+        eg = item.at "./ext/editorialgroup"
+        return unless eg
+
+        society = eg.at("./society")&.text
+        bg = parse_balloting_group(eg)
+        wg = eg.at("./working-group")&.text
+        committee = eg.xpath("./committee").map(&:text)
+        EditorialGroup.new(society: society, balloting_group: bg,
+                           working_group: wg, committee: committee)
+      end
+
+      #
+      # Parse balloting group
+      #
+      # @param [Nokogiri::XML::Element] editorialgroup XML element
+      #
+      # @return [RelatonIeee::BallotingGroup] Balloting group
+      #
+      def parse_balloting_group(editorialgroup)
+        bg = editorialgroup.at("./balloting-group")
+        return unless bg
+
+        BallotingGroup.new type: bg[:type], content: bg.text
       end
     end
   end
