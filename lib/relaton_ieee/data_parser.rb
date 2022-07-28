@@ -51,6 +51,7 @@ module RelatonIeee
         link: parse_link,
         keyword: parse_keyword,
         ics: parse_ics,
+        editorialgroup: parse_editorialgroup,
       }
       IeeeBibliographicItem.new(**args)
     end
@@ -282,6 +283,18 @@ module RelatonIeee
       doc.xpath("./publicationinfo/icscodes/code_term").map do |ics|
         RelatonBib::ICS.new code: ics[:codenum], text: ics.text
       end
+    end
+
+    #
+    # Parse editorialgroup
+    #
+    # @return [RelatonIeee::EditorialGroup, nil] editorialgroup or nil
+    #
+    def parse_editorialgroup
+      committee = doc.xpath(
+        "./publicationinfo/pubsponsoringcommitteeset/pubsponsoringcommittee",
+      ).map &:text
+      EditorialGroup.new committee: committee if committee.any?
     end
   end
 end

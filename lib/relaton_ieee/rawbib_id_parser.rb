@@ -309,7 +309,8 @@ module RelatonIeee
         PubId.new(publisher: $1, number: $2, stage: $3, year: $5, month: mn($4))
 
       # publisher, stage, number, part, draft
-      when /^([A-Z\/]+)[.-]([[:alnum:].-]+)[\/_]D([[:alnum:].]+)[\/_](#{STAGES})/o
+      when /^([A-Z\/]+)[.-]([[:alnum:].-]+)[\/_]D([[:alnum:].]+)[\/_](#{STAGES})/o,
+        /^(\w+)[.-]([[:alnum:].]+)[\/\s_]D([\d.]+)_(#{STAGES})/o
         PubId.new(publisher: "IEEE", number: $1, part: sp($2), draft: dn($3), stage: $4)
 
       # publisher, stage, number, year

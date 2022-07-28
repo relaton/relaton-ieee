@@ -131,4 +131,20 @@ RSpec.describe RelatonIeee::DataParser do
     it { expect(docids[3].primary).to be_nil }
     it { expect(docids[3].scope).to be_nil }
   end
+
+  context "parce committee" do
+    let(:doc) do
+      Nokogiri::XML <<~XML
+        <publication>
+          <publicationinfo>
+            <pubsponsoringcommitteeset>
+              <pubsponsoringcommittee>Committee</pubsponsoringcommittee>
+            </pubsponsoringcommitteeset>
+          </publicationinfo>
+        </publication>
+      XML
+    end
+    it { expect(subject.parse_editorialgroup).to be_instance_of RelatonIeee::EditorialGroup }
+    it { expect(subject.parse_editorialgroup.committee).to eq ["Committee"] }
+  end
 end
