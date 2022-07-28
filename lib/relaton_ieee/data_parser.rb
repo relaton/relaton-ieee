@@ -63,8 +63,8 @@ module RelatonIeee
     #
     def parse_title
       t = []
-      content = doc.at("./volume/article/title").text
-      if content =~ /\A(.+)\s-\sredline\z/i
+      content = CGI.unescapeHTML doc.at("./volume/article/title").text
+      if content =~ /\A(.+)\s[-\u2014]\sredline\z/i
         t << RelatonBib::TypedTitleString.new(content: $1, type: "title-main")
       end
       t << RelatonBib::TypedTitleString.new(content: content, type: "main")

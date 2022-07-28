@@ -79,7 +79,7 @@ RSpec.describe RelatonIeee::DataParser do
         <publication>
           <volume>
             <article>
-              <title><![CDATA[Title - Redline]]></title>
+              <title><![CDATA[Title &#8212; Redline]]></title>
             </article>
           </volume>
         </publication>
@@ -90,7 +90,7 @@ RSpec.describe RelatonIeee::DataParser do
     it { expect(title.size).to eq 2 }
     it { expect(title[0]).to be_instance_of RelatonBib::TypedTitleString }
     it { expect(title[0].title.content).to eq "Title" }
-    it { expect(title[1].title.content).to eq "Title - Redline" }
+    it { expect(title[1].title.content).to eq "Title \u2014 Redline" }
   end
 
   context "parse PubId" do
