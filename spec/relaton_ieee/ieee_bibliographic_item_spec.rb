@@ -1,4 +1,6 @@
 RSpec.describe RelatonIeee::IeeeBibliographicItem do
+  let(:type) { "invalid" }
+
   it "returns AsciiBib" do
     file = "spec/fixtures/ieee_528_2019.yaml"
     hash = YAML.safe_load File.read(file, encoding: "UTF-8")
@@ -12,13 +14,19 @@ RSpec.describe RelatonIeee::IeeeBibliographicItem do
 
   it "warn when doctype is invalid" do
     expect do
-      described_class.new doctype: "invalid"
-    end.to output("[relaton-ieee] doctype should be one of guide, recommended-practice, standard\n").to_stderr
+      described_class.new doctype: type
+    end.to output(
+      "[relaton-ieee] invalid doctype \"#{type}\". It should be one of: " \
+      "guide, recommended-practice, standard.\n",
+    ).to_stderr
   end
 
   it "warn when subdoctype is invalid" do
     expect do
-      described_class.new docsubtype: "invalid"
-    end.to output("[relaton-ieee] docsubtype should be one of amendment, corrigendum, erratum\n").to_stderr
+      described_class.new docsubtype: type
+    end.to output(
+      "[relaton-ieee] invalid docsubtype \"#{type}\". It should be one of: " \
+      "amendment, corrigendum, erratum.\n",
+    ).to_stderr
   end
 end

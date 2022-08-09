@@ -46,7 +46,7 @@ module RelatonIeee
         copyright: parse_copyright,
         language: ["en"],
         script: ["Latn"],
-        status: parse_status,
+        docstatus: parse_status,
         relation: parse_relation,
         link: parse_link,
         keyword: parse_keyword,

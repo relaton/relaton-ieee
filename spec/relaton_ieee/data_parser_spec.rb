@@ -15,6 +15,43 @@ RSpec.describe RelatonIeee::DataParser do
     RelatonIeee::DataParser.new doc.at("./publication"), df
   end
 
+  it "parse" do
+    expect(subject).to receive(:docnumber).and_return "1234"
+    expect(subject).to receive(:parse_title).and_return :title
+    expect(subject).to receive(:parse_date).and_return :date
+    expect(subject).to receive(:parse_docid).and_return :docid
+    expect(subject).to receive(:parse_contributor).and_return :contributor
+    expect(subject).to receive(:parse_abstract).and_return :abstract
+    expect(subject).to receive(:parse_copyright).and_return :copyright
+    expect(subject).to receive(:parse_status).and_return :status
+    expect(subject).to receive(:parse_relation).and_return :relation
+    expect(subject).to receive(:parse_link).and_return :link
+    expect(subject).to receive(:parse_keyword).and_return :keyword
+    expect(subject).to receive(:parse_ics).and_return :ics
+    expect(subject).to receive(:parse_editorialgroup).and_return :editorialgroup
+    args = {
+      fetched: Date.today.to_s,
+      type: "standard",
+      docnumber: "1234",
+      title: :title,
+      date: :date,
+      docid: :docid,
+      contributor: :contributor,
+      abstract: :abstract,
+      copyright: :copyright,
+      language: ["en"],
+      script: ["Latn"],
+      docstatus: :status,
+      relation: :relation,
+      link: :link,
+      keyword: :keyword,
+      ics: :ics,
+      editorialgroup: :editorialgroup,
+    }
+    expect(RelatonIeee::IeeeBibliographicItem).to receive(:new).with(args).and_return :item
+    expect(subject.parse).to eq :item
+  end
+
   context "parse date string" do
     it "year" do
       expect(subject.parse_date_string("1999")).to eq "1999"

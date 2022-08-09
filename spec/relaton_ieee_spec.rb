@@ -25,7 +25,8 @@ RSpec.describe RelatonIeee do
         result = RelatonIeee::IeeeBibliography.get "IEEE 528-2019"
         expect(result).to be_instance_of RelatonIeee::IeeeBibliographicItem
         file = "spec/fixtures/ieee_528_2019.xml"
-        xml = result.to_xml bibdata: true
+        xml = result.to_xml(bibdata: true)
+          .gsub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
         File.write file, xml, encoding: "UTF-8" unless File.exist? file
         expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8")
           .gsub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)

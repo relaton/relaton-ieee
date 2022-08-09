@@ -12,14 +12,17 @@ module RelatonIeee
     #
     # @param [Hash] args
     # @option args [Boolean, nil] :trialuse Trial use
-    # @option args [Array<RelatonIeee::EditorialGroup>] :editorialgroup Editorial group
+    # @option args [Array<RelatonIeee::EditorialGroup>] :editorialgroup
+    #   Editorial group
     #
-    def initialize(**args)
+    def initialize(**args) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       if args[:doctype] && !TYPES.include?(args[:doctype])
-        warn "[relaton-ieee] doctype should be one of #{TYPES.join(', ')}"
+        warn "[relaton-ieee] invalid doctype \"#{args[:doctype]}\". " \
+             "It should be one of: #{TYPES.join(', ')}."
       end
       if args[:docsubtype] && !SUBTYPES.include?(args[:docsubtype])
-        warn "[relaton-ieee] docsubtype should be one of #{SUBTYPES.join(', ')}"
+        warn "[relaton-ieee] invalid docsubtype \"#{args[:docsubtype]}\". " \
+             "It should be one of: #{SUBTYPES.join(', ')}."
       end
       eg = args.delete(:editorialgroup)
       @trialuse = args.delete(:trialuse)
