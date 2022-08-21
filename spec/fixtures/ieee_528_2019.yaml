@@ -27,13 +27,15 @@ date:
 contributor:
 - person:
     name:
-      completename: Soo Kim
+      completename:
+        content: Soo Kim
   role:
   - author
 - organization:
     name:
-    - Institute of Electrical and Electronics Engineers
-    abbreviation: IEEE
+    - content: Institute of Electrical and Electronics Engineers
+    abbreviation:
+      content: IEEE
     contact:
     - address:
         street:
