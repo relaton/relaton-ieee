@@ -8,7 +8,7 @@ RSpec.describe RelatonIeee::HashConverter do
 
   it "convert relation" do
     hash = {
-      "title" => { "type" => "main", "contenr" => "title" },
+      "title" => { "type" => "main", "content" => "title" },
       "relation" => {
         "type" => "updatedBy",
         "bibitem" => { "formattedref" => { "content" => "Reference" } },

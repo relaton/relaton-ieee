@@ -30,7 +30,6 @@ RSpec.describe RelatonIeee::DataParser do
     expect(subject).to receive(:parse_ics).and_return :ics
     expect(subject).to receive(:parse_editorialgroup).and_return :editorialgroup
     args = {
-      fetched: Date.today.to_s,
       type: "standard",
       docnumber: "1234",
       title: :title,

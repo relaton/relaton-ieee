@@ -35,7 +35,6 @@ module RelatonIeee
     #
     def parse # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
       args = {
-        fetched: Date.today.to_s,
         type: "standard",
         docnumber: docnumber,
         title: parse_title,
