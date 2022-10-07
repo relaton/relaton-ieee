@@ -38,6 +38,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock"
 
   spec.add_dependency "faraday", "~> 1.0"
+  spec.add_dependency "mini_portile2"
   spec.add_dependency "relaton-bib", "~> 1.13.0"
   spec.add_dependency "rubyzip", "~> 2.3.0"
 end
