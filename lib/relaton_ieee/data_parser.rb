@@ -228,7 +228,8 @@ module RelatonIeee
     # @return [RelatonBib::DocumentStatus]
     #
     def parse_status
-      stage = doc.at("./publicationinfo/standard_status").text
+      stage = doc.at("./publicationinfo/standard_status").text.downcase
+      stage.sub!("active", "approved").sub! "inactive", "withdrawn"
       DocumentStatus.new stage: stage
     end
 

@@ -1,5 +1,5 @@
-<bibdata type="standard">
-  <fetched>2022-08-19</fetched>
+<bibdata type="standard" schema-version="v1.2.1">
+  <fetched>2022-12-03</fetched>
   <title type="main" format="text/plain">IEEE Standard for Inertial Sensor Terminology</title>
   <uri type="src">https://ieeexplore.ieee.org/document/8863799</uri>
   <docidentifier type="IEEE" primary="true">IEEE 528-2019</docidentifier>
@@ -53,7 +53,7 @@
   <keyword>IEEE 528&amp;#8482;</keyword>
   <keyword>inertial sensor technology</keyword>
   <keyword>inertial sensor terminology</keyword>
-  <ext>
+  <ext schema-version="v1.0.0">
     <editorialgroup>
       <committee>Gyro Accelerometer Panel of the IEEE Aerospace and Electronic Systems Society</committee>
     </editorialgroup>

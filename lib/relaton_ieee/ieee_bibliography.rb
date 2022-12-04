@@ -8,7 +8,7 @@ module RelatonIeee
       #
       # @param code [String]
       #
-      # @return [RelatonIeee::HitCollection]
+      # @return [RelatonIeee::IeeeBibliographicItem]
       #
       def search(code)
         ref = code.sub(/Std\s/i, "").gsub(/[\s,:\/]/, "_").squeeze("_").upcase
@@ -16,7 +16,9 @@ module RelatonIeee
         resp = Faraday.get url
         return unless resp.status == 200
 
-        IeeeBibliographicItem.from_hash YAML.safe_load resp.body
+        hash = YAML.safe_load resp.body
+        hash["fetched"] = Date.today.to_s
+        IeeeBibliographicItem.from_hash hash
       rescue Faraday::ConnectionFailed
         raise RelatonBib::RequestError, "Could not access #{GH_URL}"
       end

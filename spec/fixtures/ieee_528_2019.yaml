@@ -1,5 +1,6 @@
 ---
 id: IEEE528-2019
+schema-version: v1.2.1
 title:
 - type: main
   content: IEEE Standard for Inertial Sensor Terminology
@@ -30,7 +31,7 @@ contributor:
       completename:
         content: Soo Kim
   role:
-  - author
+  - type: author
 - organization:
     name:
     - content: Institute of Electrical and Electronics Engineers
@@ -45,7 +46,7 @@ contributor:
         country: USA
         postcode: '08854-4141'
   role:
-  - publisher
+  - type: publisher
 revdate: '2019-10-08'
 language:
 - en
@@ -73,3 +74,5 @@ editorialgroup:
   working_group: SENSR_WG - Sensors Working Group
   committee:
   - AES/GA - Gyro Accelerometer Panel
+ext:
+  schema-version: v1.0.0

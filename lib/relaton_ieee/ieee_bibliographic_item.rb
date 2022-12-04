@@ -30,6 +30,15 @@ module RelatonIeee
       @editorialgroup = eg
     end
 
+    #
+    # Fetch flavor schema version
+    #
+    # @return [String] flavor schema version
+    #
+    def ext_schema
+      @ext_schema ||= schema_versions["relaton-model-ieee"]
+    end
+
     # @param hash [Hash]
     # @return [RelatonIeee::IeeeBibliographicItem]
     def self.from_hash(hash)
@@ -45,13 +54,14 @@ module RelatonIeee
     def to_xml(**opts) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       super(**opts) do |bldr|
         if opts[:bibdata] && (doctype || subdoctype || !trialuse.nil? || editorialgroup || ics.any?)
-          bldr.ext do |b|
+          ext = bldr.ext do |b|
             b.doctype doctype if doctype
             b.subdoctype subdoctype if subdoctype
             b.send :"trial-use", trialuse unless trialuse.nil?
             editorialgroup&.to_xml(b)
             ics.each { |ic| ic.to_xml(b) }
           end
+          ext["schema-version"] = ext_schema unless opts[:embedded]
         end
       end
     end
