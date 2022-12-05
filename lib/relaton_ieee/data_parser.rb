@@ -157,12 +157,12 @@ module RelatonIeee
     def parse_contributor # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
       doc.xpath("./publicationinfo/publisher").map do |contrib|
         n = contrib.at("./publishername").text
-        addr = contrib.xpath("./address").map do |a|
-          RelatonBib::Address.new(
-            street: [],
-            city: a.at("./city")&.text,
-            country: a.at("./country").text,
-          )
+        addr = contrib.xpath("./address").each_with_object([]) do |adr, ob|
+          city = adr.at("./city")
+          next unless city
+
+          ob << RelatonBib::Address.new(street: [], city: city.text,
+                                        country: adr.at("./country").text)
         end
         e = create_org n, addr
         RelatonBib::ContributionInfo.new entity: e, role: [type: "publisher"]

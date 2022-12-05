@@ -61,6 +61,28 @@ RSpec.describe RelatonIeee::DataParser do
     end
   end
 
+  context "parse contributor" do
+    let(:doc) do
+      Nokogiri::XML <<~XML
+        <publication>
+          <publicationinfo>
+            <publisher>
+              <publishername>IEEE</publishername>
+              <address>
+                <country>USA</country>
+              </address>
+            </publisher>
+          </publicationinfo>
+        </publication>
+      XML
+    end
+
+    it "don't parse address without city" do
+      contrib = subject.parse_contributor
+      expect(contrib[0].entity.contact.size).to eq 0
+    end
+  end
+
   context "create organization" do
     it "ANSI" do
       org = subject.create_org("ANSI")

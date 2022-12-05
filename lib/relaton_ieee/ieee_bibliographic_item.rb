@@ -66,8 +66,14 @@ module RelatonIeee
       end
     end
 
+    #
+    # Rnder as Hash
+    #
+    # @param embedded [Boolean] emmbedded in other document
+    #
     # @return [Hash]
-    def to_hash
+    #
+    def to_hash(embedded: false)
       hash = super
       hash["trialuse"] = trialuse unless trialuse.nil?
       hash
