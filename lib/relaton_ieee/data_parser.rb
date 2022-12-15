@@ -74,16 +74,17 @@ module RelatonIeee
     #
     # @return [Array<RelatonBib::BibliographicDate>]
     #
-    def parse_date # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/MethodLength
+    def parse_date # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/MethodLength,Metrics/PerceivedComplexity
       dates = doc.xpath("./volume/article/articleinfo/date").map do |d|
         da = [d.at("./year").text]
         m = d.at("./month")&.text
         if m
-          month = Date::ABBR_MONTHNAMES.index(m.sub(/\./, "")) || m
+          /^(?:(?<day>\d{1,2})\s)?(?<mon>\w+)/ =~ m
+          month = Date::ABBR_MONTHNAMES.index(mon) || m
           da << month.to_s.rjust(2, "0")
         end
-        day = d.at("./day")
-        da << day.text.rjust(2, "0") if day
+        day = d.at("./day")&.text || day
+        da << day.rjust(2, "0") if day
         on = da.compact.join "-"
         RelatonBib::BibliographicDate.new type: DATETYPES[d[:datetype]], on: on
       end
@@ -135,8 +136,9 @@ module RelatonIeee
     #
     def pubid
       @pubid ||= begin
-        nt = doc.at("./normtitle").text
-        RawbibIdParser.parse(nt)
+        normtitle = doc.at("./normtitle").text
+        stdnumber = doc.at("./publicationinfo/stdnumber")&.text
+        RawbibIdParser.parse(normtitle, stdnumber)
       end
     end
 
@@ -228,8 +230,12 @@ module RelatonIeee
     # @return [RelatonBib::DocumentStatus]
     #
     def parse_status
-      stage = doc.at("./publicationinfo/standard_status").text.downcase
-        .sub("active", "approved").sub("inactive", "withdrawn")
+      st = doc.at("./publicationinfo/standard_status").text.downcase
+      stage = case st
+              when "active" then "approved"
+              when "inactive" then "withdrawn"
+              else st
+              end
       DocumentStatus.new stage: stage
     end
 

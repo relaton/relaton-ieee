@@ -51,6 +51,30 @@ RSpec.describe RelatonIeee::DataParser do
     expect(subject.parse).to eq :item
   end
 
+  context "parse_date" do
+    let(:doc) do
+      Nokogiri::XML <<~XML
+        <publication>
+          <volume>
+            <article>
+              <articleinfo>
+                <date>
+                  <year>1999</year>
+                  <month>31 May.</month>
+                </date>
+              </articleinfo>
+            </article>
+          </volume>
+        </publication>
+      XML
+    end
+
+    it "with day in month" do
+      date = subject.parse_date
+      expect(date[0].on).to eq "1999-05-31"
+    end
+  end
+
   context "parse date string" do
     it "year" do
       expect(subject.parse_date_string("1999")).to eq "1999"

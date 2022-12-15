@@ -29,10 +29,9 @@ RSpec.describe RelatonIeee do
         File.write file, xml, encoding: "UTF-8" unless File.exist? file
         expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8")
           .gsub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
-        # @todo: test XML content after relaton-data-ieee is updated
-        # schema = Jing.new "grammars/relaton-ieee-compile.rng"
-        # errors = schema.validate file
-        # expect(errors).to eq []
+        schema = Jing.new "grammars/relaton-ieee-compile.rng"
+        errors = schema.validate file
+        expect(errors).to eq []
       end
     end
 

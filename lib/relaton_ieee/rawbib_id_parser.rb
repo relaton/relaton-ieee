@@ -5,17 +5,18 @@ module RelatonIeee
     STAGES = 'DIS\d?|PSI|FCD|FDIS|CD\d?|Pub2|CDV|TS|SI'.freeze
     APPROVAL = '(?:\s(Unapproved|Approved))'.freeze
     APPROV = '(?:\s(?:Unapproved|Approved))?'.freeze
-    STD = "(?:\s(?i)Std\.?(?-i))?".freeze
+    STD = "(?:\s(?i)Std.?(?-i))?".freeze
 
     #
     # Parse normtitle
     #
-    # @param [String] normtitle <description>
+    # @param [String] normtitle document element "normtitle"
+    # @param [String] stdnumber document element "stdnumber"
     #
     # @return [RelatonIeee::PubId, nil]
     #
-    def parse(normtitle) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      case normtitle
+    def parse(normtitle, stdnumber) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      case normtitle.sub(/^ISO\s(?=\/)/, "ISO").sub(/^ANSI\/\s(?=IEEE)/, "ANSI/")
       # when "2012 NESC Handbook, Seventh Edition" then "NESC HBK ED7.2012"
       # when "2017 NESC(R) Handbook, Premier Edition" then "NESC HBK ED1.2017"
       # when "2017 National Electrical Safety Code(R) (NESC(R)) - Redline" then "NESC C2R.2017"
@@ -31,7 +32,7 @@ module RelatonIeee
       when "IEEE P802.1Qbu/03.0, July 2015" # "IEEE P802.1Qbu/D3.0.2015"
         PubId.new(publisher: "IEEE", number: "P802", part: "1Qbu", draft: "3.0", year: "2015")
       when "IEEE P11073-10422/04, November 2015" # "IEEE P11073-10422/D04.2015"
-        PubId.new(publiisher: "IEEE", number: "P11073", part: "10422", draft: "04", year: "2015")
+        PubId.new(publisher: "IEEE", number: "P11073", part: "10422", draft: "04", year: "2015")
       when "IEEE P802.11aqTM/013.0 October 2017" # "IEEE P802-11aqTM/D13.0.2017"
         PubId.new(publisher: "IEEE", number: "P802", part: "11aqTM", draft: "13.0", year: "2017")
       when "IEEE P844.3/C22.2 293.3/D0, August 2018" # "IEEE P844-3/C22.2-293.3/D0.2018"
@@ -53,7 +54,7 @@ module RelatonIeee
       when "IEEE-P15026-3-DIS-January 2015" # "IEEE DIS P15026-3.2015"
         PubId.new(publisher: "IEEE", stage: "DIS", number: "P15026", year: "2015")
       when "ANSI/IEEE PC63.7/D rev17, December 2014" # "ANSI/IEEE PC63-7/D/REV-17.2014"
-        PubId.new(publusher: "ANSI/IEEE", number: "PC63", part: "7", draft: "", rev: "17", year: "2014")
+        PubId.new(publisher: "ANSI/IEEE", number: "PC63", part: "7", draft: "", rev: "17", year: "2014")
       when "IEC/IEEE P62271-37-013:2015 D13.4" # "IEC/IEEE P62271-37-013/D13.4.2015"
         PubId.new(publisher: "IEC/IEEE", number: "P62271", part: "37-013", draft: "13.4", year: "2015")
       when "PC37.30.2/D043 Rev 18, May 2015" # "IEEE PC37-30-2/D043/REV-18.2015"
@@ -63,7 +64,7 @@ module RelatonIeee
       when "ISO/IEC/IEEE P15289:2016, 3rd Ed FDIS/D2" # "ISO/IEC/IEEE FDIS P15289/E3/D2.2016"
         PubId.new(publisher: "ISO/IEC/IEEE", stage: "FDIS", number: "P15289", part: "", edition: "3", draft: "2", year: "2016")
       when "IEEE P802.15.4REVi/D09, April 2011 (Revision of IEEE Std 802.15.4-2006)"
-        PubId.new(publisher: "IEEE", number: "P802", part: "15.4", rev: "i", draft: "09", year: "2013", month: "04", approval: true)
+        PubId.new(publisher: "IEEE", number: "P802", part: "15.4", rev: "i", draft: "09", year: "2013", month: "04", approval: "Approved")
       when "Draft IEEE P802.15.4REVi/D09, April 2011 (Revision of IEEE Std 802.15.4-2006)"
         PubId.new(publisher: "IEEE", number: "P802", part: "15.4", rev: "i", draft: "09", year: "2011", month: "04")
       when "ISO/IEC/IEEE DIS P42020:201x(E), June 2017"
@@ -92,27 +93,35 @@ module RelatonIeee
         PubId.new(publisher: "ISO/IEC/IEEE", number: "P42010", draft: "4", year: "2019")
       when "IEC/IEEE P63195_CDV/V3, February 2020"
         PubId.new(publisher: "IEC/IEEE", number: "P63195", stage: "CDV", year: "2020", month: "02")
-      when "ISO /IEC/IEEE P24774_D1, February 2020"
-        PubId.new(publisher: "ISO/IEC/IEEE", number: "P24774", draft: "1", year: "2020", month: "02")
       when "IEEE/ISO/IEC P42010.CD1-V1.0, April 2020"
         PubId.new(publisher: "IEEE/ISO/IEC", number: "P42010", stage: "CD1", year: "2020", month: "04")
       when "ISO/IEC/IEEE/P16085_DIS, March 2020"
         PubId.new(publisher: "ISO/IEC/IEEE", stage: "DIS", number: "P16085", year: "2020", month: "03")
-      when "ISO /IEC/IEEE P24774/DIS, July 2020"
-        PubId.new(publisher: "ISO/IEC/IEEE", stage: "DIS", number: "P24774", year: "2020", month: "07")
-      when "ANSI/ IEEE C37.23-1969" then PubId.new(publisher: "ANSI/IEEE", number: "C37", part:"23", year: "1969")
       when "ANSI/IEEE Std: Outdoor Apparatus Bushings"
         PubId.new(publisher: "ANSI/IEEE", number: "21", year: "1976", month: "11")
-      when "ANSI/ IEEE C37.5-1979" then PubId.new(publisher: "ANSI/IEEE", number: "C37", part:"5", year: "1979")
       when "Unapproved Draft Std ISO/IEC FDIS 15288:2007(E) IEEE P15288/D3,"
         PubId.new(publisher: "ISO/IEC/IEEE", stage: "FDIS", number: "P15288", draft: "3", year: "2007")
       when "Draft National Electrical Safety Code, January 2016"
         PubId.new(publisher: "IEEE", number: "PC2", year: "2016", month: "01")
-      when "ANSI/ IEEE C62.1-1981 (Revision of IEEE Std 28-1974 and ANSI C62.1-1975)"
-        PubId.new(publisher: "ANSI/IEEE", number: "C62", part: "1", year: "1981")
       when "ANSI/IEEE-ANS-7-4.3.2-1982" then PubId.new(publisher: "ANSI/IEEE/ANS", number: "7", part: "4-3-2", year: "1982")
       when "IEEE Unapproved Draft Std P802.1AB/REVD2.2, Dec 2007" # "IEEE P802.1AB/REV/D2.2.2007"
         PubId.new(publisher: "IEEE", number: "P802", part: "1AB", rev: "", draft: "2.2", year: "2007", month: "12")
+      when "International Standard ISO/IEC 8802-9: 1996(E) ANSI/IEEE Std 802.9, 1996 Edition"
+        PubId.new(publisher: "ISO/IEC/IEEE", number: "802", part: "9", year: "1996")
+      when "ISO/IEC13210: 1994 (E) ANSI/IEEE Std 1003.3-1991"
+        PubId.new(publisher: "ISO/IEC/IEEE", number: "13210", year: "1994")
+      when "J-STD-016-1995" then PubId.new(publisher: "IEEE", number: "016", year: "1995")
+      when "Std 802.1ak-2007 (Amendment to IEEE Std 802.1QTM-2005)"
+        PubId.new(publisher: "IEEE", number: "802", part: "1ak", year: "2007")
+      when "IS0/IEC/IEEE 8802-11:2012/Amd.5:2015(E) (Adoption of IEEE Std 802.11af-2014)"
+        PubId.new(publisher: "ISO/IEC/IEEE", number: "802", part: "11", year: "2012", amd: "5", year_amendment: "2015")
+      when "National Electrical Safety Code, C2-2012 - Redline"
+        PubId.new(publisher: "IEEE", number: "C2", year: "2012", redline: "true")
+      when "National Electrical Safety Code, C2-2012" then PubId.new(publisher: "IEEE", number: "C2", year: "2012")
+      when "2012 NESC Handbook, Seventh Edition" then PubId.new(publisher: "NESC", number: "HBK", year: "2012")
+      when /^Amendment to IEEE Std 802\.11-2007 as amended by IEEE Std 802\.11k-2008/
+        PubId.new(publisher: "IEEE", number: "802", part: "11u", year: "2007")
+      when "Std 11073-10417-2009" then PubId.new(publisher: "IEEE", number: "11073", part: "10417", year: "2009")
 
       # drop all with <standard_id>0</standard_id>
       # when "IEEE Std P1671/D5, June 2006", "IEEE Std PC37.100.1/D8, Dec 2006",
@@ -380,7 +389,7 @@ module RelatonIeee
         PubId.new(publisher: "IEEE", number: $1, part: sp($2), draft: dn($3), year: $4)
 
       # publisher, number, draft, year, month
-      when /^([A-Z\/]+)\s(\w+)\/D([\d.]+),\s(\w+)\s(\d{4})/
+      when /^([A-Z\/]+)\s(\w+)[\/_]D([\d.]+),\s(\w+)\s(\d{4})/
         PubId.new(publisher: $1, number: $2, draft: dn($3), year: $5, month: mn($4))
 
       # publisher, number, draft, year
@@ -445,9 +454,9 @@ module RelatonIeee
       when /^([A-Z\/]+)#{APPROV}(?:\sDraft)?#{STD}(?:\sNo\.?)?\s(\w+)/o
         PubId.new(publisher: $1, number: $2)
 
-      # else
-      #   warn "Failed to parse normtitle #{normtitle}"
-      #   nil # normtitle
+      else
+        warn %{Use stdnumber "#{stdnumber}" for nortitle "#{normtitle}"}
+        PubId.new(publisher: "IEEE", number: stdnumber)
       end
     rescue ArgumentError => e
       e

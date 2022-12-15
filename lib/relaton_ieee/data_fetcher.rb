@@ -101,7 +101,7 @@ module RelatonIeee
         # nt = doc&.at("./normtitle")&.text
         # ntid = @normtitles.index nt
         # @normtitles << nt if nt && !ntid
-        warn "Zero standard_id in #{filename}"
+        # warn "Zero standard_id in #{filename}"
         return
       end
       bib = DataParser.parse doc, self
