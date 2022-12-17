@@ -122,6 +122,7 @@ module RelatonIeee
       when /^Amendment to IEEE Std 802\.11-2007 as amended by IEEE Std 802\.11k-2008/
         PubId.new(publisher: "IEEE", number: "802", part: "11u", year: "2007")
       when "Std 11073-10417-2009" then PubId.new(publisher: "IEEE", number: "11073", part: "10417", year: "2009")
+      when "Nuclear EQ Sourcebook and Supplement" then PubId.new publisher: "IEEE", number: "7438946"
 
       # drop all with <standard_id>0</standard_id>
       # when "IEEE Std P1671/D5, June 2006", "IEEE Std PC37.100.1/D8, Dec 2006",

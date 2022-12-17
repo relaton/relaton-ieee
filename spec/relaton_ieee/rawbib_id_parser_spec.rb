@@ -114,4 +114,5 @@ RSpec.describe RelatonIeee::RawbibIdParser do
   it_behaves_like "parse normtitle", "Std 11073-10417-2009", "IEEE 11073.10417-2009"
   it_behaves_like "parse normtitle", "ANSI/ IEEE C37.23-1969", "ANSI/IEEE C37.23-1969"
   it_behaves_like "parse normtitle", "ISO /IEC/IEEE P24774_D3, January 2021", "ISO/IEC/IEEE P24774/D-3-2021-01"
+  it_behaves_like "parse normtitle", "Nuclear EQ Sourcebook and Supplement", "IEEE 7438946"
 end
