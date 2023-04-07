@@ -6,12 +6,16 @@ module RelatonIeee
       # Override RelatonBib::XMLParser.item_data method.
       # @param item [Nokogiri::XML::Element]
       # @returtn [Hash]
-      def item_data(item)
+      def item_data(item) # rubocop:disable Metrics/AbcSize
         data = super
         ext = item.at "./ext"
         return data unless ext
 
         data[:editorialgroup] = parse_editorialgroup(item)
+        data[:standard_status] = ext.at("./standard_status")&.text
+        data[:standard_modifier] = ext.at("./standard_modifier")&.text
+        data[:pubstatus] = ext.at("./pubstatus")&.text
+        data[:holdstatus] = ext.at("./holdstatus")&.text
         data
       end
 

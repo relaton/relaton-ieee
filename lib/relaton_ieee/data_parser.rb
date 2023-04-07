@@ -2,6 +2,11 @@ module RelatonIeee
   class DataParser
     DATETYPES = { "OriginalPub" => "created", "ePub" => "published",
                   "LastInspecUpd" => "updated" }.freeze
+    ATTRS = %i[
+      docnumber title date docid contributor abstract copyright docstatus
+      relation link keyword ics editorialgroup standard_status standard_modifier
+      pubstatus holdstatus doctype
+    ].freeze
 
     attr_reader :doc, :fetcher
 
@@ -33,25 +38,9 @@ module RelatonIeee
     #
     # @return [RelatonIeee::IeeeBibliographicItem]
     #
-    def parse # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
-      args = {
-        type: "standard",
-        docnumber: docnumber,
-        title: parse_title,
-        date: parse_date,
-        docid: parse_docid,
-        contributor: parse_contributor,
-        abstract: parse_abstract,
-        copyright: parse_copyright,
-        language: ["en"],
-        script: ["Latn"],
-        docstatus: parse_status,
-        relation: parse_relation,
-        link: parse_link,
-        keyword: parse_keyword,
-        ics: parse_ics,
-        editorialgroup: parse_editorialgroup,
-      }
+    def parse
+      args = { type: "standard", language: ["en"], script: ["Latn"] }
+      ATTRS.each { |attr| args[attr] = send("parse_#{attr}") }
       IeeeBibliographicItem.new(**args)
     end
 
@@ -142,6 +131,10 @@ module RelatonIeee
       end
     end
 
+    def parse_docnumber
+      docnumber
+    end
+
     #
     # Parse docnumber
     #
@@ -227,16 +220,13 @@ module RelatonIeee
     #
     # Parse status
     #
-    # @return [RelatonBib::DocumentStatus]
+    # @return [RelatonIee::DocumentStatus, nil]
     #
-    def parse_status
-      st = doc.at("./publicationinfo/standard_status").text.downcase
-      stage = case st
-              when "active" then "approved"
-              when "inactive" then "withdrawn"
-              else st
-              end
-      DocumentStatus.new stage: stage
+    def parse_docstatus
+      st = parse_standard_modifier
+      return unless %w[Draft Approved Superseded Withdrawn].include?(st)
+
+      DocumentStatus.new stage: st.downcase
     end
 
     #
@@ -250,7 +240,7 @@ module RelatonIeee
         if (ref = fetcher.backrefs[r.text])
           rel = fetcher.create_relation(r[:type], ref)
           rels << rel if rel
-        elsif !/Inactive Date/.match?(r) && docnumber
+        elsif !"Inactive Date".include?(r) && docnumber
           fetcher.add_crossref(docnumber, r)
         end
       end
@@ -301,6 +291,51 @@ module RelatonIeee
         "./publicationinfo/pubsponsoringcommitteeset/pubsponsoringcommittee",
       ).map &:text
       EditorialGroup.new committee: committee if committee.any?
+    end
+
+    #
+    # Parse standard status
+    #
+    # @return [String, nil] standard status or nil
+    #
+    def parse_standard_status
+      doc.at("./publicationinfo/standard_status")&.text
+    end
+
+    #
+    # Parse standard modifier
+    #
+    # @return [String, nil] standard modifier or nil
+    #
+    def parse_standard_modifier
+      doc.at("./publicationinfo/standardmodifierset/standard_modifier")&.text
+    end
+
+    #
+    # Parse pubstatus
+    #
+    # @return [String, nil] pubstatus or nil
+    #
+    def parse_pubstatus
+      doc.at("./publicationinfo/pubstatus")&.text
+    end
+
+    #
+    # Pasrse holdstatus
+    #
+    # @return [String, nil] holdstatus or nil
+    #
+    def parse_holdstatus
+      doc.at("./publicationinfo/holdstatus")&.text
+    end
+
+    #
+    # Parse doctype
+    #
+    # @return [String] doctype
+    #
+    def parse_doctype
+      parse_standard_modifier == "Redline" ? "redline" : "standard"
     end
   end
 end

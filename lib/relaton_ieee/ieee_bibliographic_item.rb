@@ -1,6 +1,6 @@
 module RelatonIeee
   class IeeeBibliographicItem < RelatonBib::BibliographicItem
-    TYPES = %w[guide recommended-practice standard].freeze
+    DOCTYPES = %w[guide recommended-practice standard witepaper redline other].freeze
     SUBTYPES = %w[amendment corrigendum erratum].freeze
 
     # @return [RelatonIeee::EditorialGroup, nil]
@@ -9,16 +9,24 @@ module RelatonIeee
     # @return [Boolean, nil] Trial use
     attr_reader :trialuse
 
+    # @return [String, nil]
+    attr_reader :standard_status, :standard_modifier, :pubstatus, :holdstatus
+
     #
     # @param [Hash] args
     # @option args [Boolean, nil] :trialuse Trial use
     # @option args [Array<RelatonIeee::EditorialGroup>] :editorialgroup
     #   Editorial group
+    # @option args [String, nil] :standard_status Active, Inactive, Superseded
+    # @option args [String, nil] :standard_modifier Draft, Withdrawn, Suspended,
+    #   Approved, Reserved, Redline
+    # @option args [String, nil] :pubstatus Active, Inactive
+    # @option args [String, nil] :holdstatus Held, Publish
     #
     def initialize(**args) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-      if args[:doctype] && !TYPES.include?(args[:doctype])
+      if args[:doctype] && !DOCTYPES.include?(args[:doctype])
         warn "[relaton-ieee] invalid doctype \"#{args[:doctype]}\". " \
-             "It should be one of: #{TYPES.join(', ')}."
+             "It should be one of: #{DOCTYPES.join(', ')}."
       end
       if args[:docsubtype] && !SUBTYPES.include?(args[:docsubtype])
         warn "[relaton-ieee] invalid docsubtype \"#{args[:docsubtype]}\". " \
@@ -26,6 +34,10 @@ module RelatonIeee
       end
       eg = args.delete(:editorialgroup)
       @trialuse = args.delete(:trialuse)
+      @standard_status = args.delete(:standard_status)
+      @standard_modifier = args.delete(:standard_modifier)
+      @pubstatus = args.delete(:pubstatus)
+      @holdstatus = args.delete(:holdstatus)
       super
       @editorialgroup = eg
     end
@@ -53,13 +65,18 @@ module RelatonIeee
     # @return [String] XML
     def to_xml(**opts) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       super(**opts) do |bldr|
-        if opts[:bibdata] && (doctype || subdoctype || !trialuse.nil? || editorialgroup || ics.any?)
+        if opts[:bibdata] && (doctype || subdoctype || !trialuse.nil? || editorialgroup ||
+           ics.any? || standard_status || standard_modifier || pubstatus || holdstatus)
           ext = bldr.ext do |b|
             b.doctype doctype if doctype
             b.subdoctype subdoctype if subdoctype
             b.send :"trial-use", trialuse unless trialuse.nil?
             editorialgroup&.to_xml(b)
             ics.each { |ic| ic.to_xml(b) }
+            b.standard_status standard_status if standard_status
+            b.standard_modifier standard_modifier if standard_modifier
+            b.pubstatus pubstatus if pubstatus
+            b.holdstatus holdstatus if holdstatus
           end
           ext["schema-version"] = ext_schema unless opts[:embedded]
         end
@@ -73,9 +90,13 @@ module RelatonIeee
     #
     # @return [Hash]
     #
-    def to_hash(embedded: false)
+    def to_hash(embedded: false) # rubocop:disable Metrics/AbcSize
       hash = super
       hash["trialuse"] = trialuse unless trialuse.nil?
+      hash["ext"]["standard_status"] = standard_status unless standard_status.nil?
+      hash["ext"]["standard_modifier"] = standard_modifier unless standard_modifier.nil?
+      hash["ext"]["pubstatus"] = pubstatus unless pubstatus.nil?
+      hash["ext"]["holdstatus"] = holdstatus unless holdstatus.nil?
       hash
     end
 

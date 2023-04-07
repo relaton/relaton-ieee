@@ -1,4 +1,4 @@
-<bibdata type="standard" schema-version="v1.2.1">
+<bibdata type="standard" schema-version="v1.2.3">
   <fetched>2022-12-14</fetched>
   <title type="main" format="text/plain">IEEE Standard for Inertial Sensor Terminology</title>
   <uri type="src">https://ieeexplore.ieee.org/document/8863799</uri>
@@ -50,7 +50,7 @@
   <keyword>IEEE Standards</keyword>
   <keyword>Sensors</keyword>
   <keyword>Terminology</keyword>
-  <keyword>IEEE 528&amp;#8482;</keyword>
+  <keyword>IEEE 528™</keyword>
   <keyword>inertial sensor technology</keyword>
   <keyword>inertial sensor terminology</keyword>
   <ext schema-version="v1.0.0">

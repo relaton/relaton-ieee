@@ -2,8 +2,8 @@ RSpec.describe RelatonIeee::IeeeBibliographicItem do
   let(:type) { "invalid" }
 
   it "returns AsciiBib" do
-    file = "spec/fixtures/ieee_528_2019.yaml"
-    hash = YAML.safe_load File.read(file, encoding: "UTF-8")
+    input = "spec/fixtures/ieee_528_2019.yaml"
+    hash = YAML.safe_load File.read(input, encoding: "UTF-8")
     bib_hash = RelatonIeee::HashConverter.hash_to_bib hash
     item = RelatonIeee::IeeeBibliographicItem.new(**bib_hash)
     bib = item.to_asciibib
@@ -17,7 +17,7 @@ RSpec.describe RelatonIeee::IeeeBibliographicItem do
       described_class.new doctype: type
     end.to output(
       "[relaton-ieee] invalid doctype \"#{type}\". It should be one of: " \
-      "guide, recommended-practice, standard.\n",
+      "guide, recommended-practice, standard, witepaper, redline, other.\n",
     ).to_stderr
   end
 

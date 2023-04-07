@@ -97,13 +97,8 @@ module RelatonIeee
         return
       end
       stdid = doc.at("./publicationinfo/standard_id")&.text
-      if stdid == "0"
-        # nt = doc&.at("./normtitle")&.text
-        # ntid = @normtitles.index nt
-        # @normtitles << nt if nt && !ntid
-        # warn "Zero standard_id in #{filename}"
-        return
-      end
+      return if stdid == "0"
+
       bib = DataParser.parse doc, self
       if bib.docnumber.nil?
         nt = doc&.at("./normtitle")&.text

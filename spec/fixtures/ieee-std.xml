@@ -1,0 +1,53 @@
+<bibdata type="standard" schema-version="v1.2.3">
+  <title type="main" format="text/plain">IEEE Draft Supplement to Information technology Telecommunications and information exchange between systems Local and metropolitan area networks Part 5: Token Ring access method and physical layer specifications 100 Mbit/s Dedicated Token Ring Operation (Supplement to ISO/IEC 8802-5:1998 and ISO/IEC 8802-5:1998/Amd.1:1998)</title>
+  <uri type="src">https://ieeexplore.ieee.org/document/4039945</uri>
+  <docidentifier type="IEEE" primary="true">IEEE P802.5t/D-2.5</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">IEEE P802.5t™/D-2.5</docidentifier>
+  <docidentifier type="ISBN">978-1-5044-3975-6</docidentifier>
+  <docnumber>IEEE P802.5t/D-2.5</docnumber>
+  <date type="created">
+    <on>1998</on>
+  </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Institute of Electrical and Electronics Engineers</name>
+      <abbreviation>IEEE</abbreviation>
+      <uri>http://www.ieee.org</uri>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <status>
+    <stage>draft</stage>
+  </status>
+  <copyright>
+    <from>1998</from>
+    <owner>
+      <organization>
+        <name>Institute of Electrical and Electronics Engineers</name>
+        <abbreviation>IEEE</abbreviation>
+        <uri>http://www.ieee.org</uri>
+      </organization>
+    </owner>
+  </copyright>
+  <ext schema-version="v1.0.0">
+    <doctype>standard</doctype>
+    <ics>
+      <code>35.110</code>
+      <text>Networking</text>
+    </ics>
+    <ics>
+      <code>35.100.10</code>
+      <text>Physical layer</text>
+    </ics>
+    <ics>
+      <code>35.100.20</code>
+      <text>Data link layer</text>
+    </ics>
+    <standard_status>Inactive</standard_status>
+    <standard_modifier>Draft</standard_modifier>
+    <pubstatus>Active</pubstatus>
+    <holdstatus>Hold</holdstatus>
+  </ext>
+</bibdata>

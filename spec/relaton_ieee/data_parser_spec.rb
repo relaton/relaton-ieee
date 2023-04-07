@@ -23,12 +23,17 @@ RSpec.describe RelatonIeee::DataParser do
     expect(subject).to receive(:parse_contributor).and_return :contributor
     expect(subject).to receive(:parse_abstract).and_return :abstract
     expect(subject).to receive(:parse_copyright).and_return :copyright
-    expect(subject).to receive(:parse_status).and_return :status
+    expect(subject).to receive(:parse_docstatus).and_return :status
     expect(subject).to receive(:parse_relation).and_return :relation
     expect(subject).to receive(:parse_link).and_return :link
     expect(subject).to receive(:parse_keyword).and_return :keyword
     expect(subject).to receive(:parse_ics).and_return :ics
     expect(subject).to receive(:parse_editorialgroup).and_return :editorialgroup
+    expect(subject).to receive(:parse_standard_status).and_return :standard_status
+    expect(subject).to receive(:parse_standard_modifier).and_return :standard_modifier
+    expect(subject).to receive(:parse_pubstatus).and_return :pubstatus
+    expect(subject).to receive(:parse_holdstatus).and_return :holdstatus
+    expect(subject).to receive(:parse_doctype).and_return :doctype
     args = {
       type: "standard",
       docnumber: "1234",
@@ -46,6 +51,11 @@ RSpec.describe RelatonIeee::DataParser do
       keyword: :keyword,
       ics: :ics,
       editorialgroup: :editorialgroup,
+      standard_status: :standard_status,
+      standard_modifier: :standard_modifier,
+      pubstatus: :pubstatus,
+      holdstatus: :holdstatus,
+      doctype: :doctype,
     }
     expect(RelatonIeee::IeeeBibliographicItem).to receive(:new).with(args).and_return :item
     expect(subject.parse).to eq :item
@@ -214,7 +224,7 @@ RSpec.describe RelatonIeee::DataParser do
     it { expect(docids[3].scope).to be_nil }
   end
 
-  context "parce committee" do
+  context "parse committee" do
     let(:doc) do
       Nokogiri::XML <<~XML
         <publication>
@@ -228,5 +238,55 @@ RSpec.describe RelatonIeee::DataParser do
     end
     it { expect(subject.parse_editorialgroup).to be_instance_of RelatonIeee::EditorialGroup }
     it { expect(subject.parse_editorialgroup.committee).to eq ["Committee"] }
+  end
+
+  context "parse docstatus" do
+    it "not present" do
+      expect(subject.parse_docstatus).to be_nil
+    end
+
+    it "active" do
+      doc = Nokogiri::XML <<~XML
+        <publication>
+          <publicationinfo>
+            <standardmodifierset>
+              <standard_modifier>Approved</standard_modifier>
+            </standardmodifierset>
+          </publicationinfo>
+        </publication>
+      XML
+      subject.instance_variable_set(:@doc, doc.at("/publication"))
+      docstatus = subject.parse_docstatus
+      expect(docstatus).to be_instance_of RelatonIeee::DocumentStatus
+      expect(docstatus.stage.value).to eq "approved"
+    end
+
+    it "other" do
+      doc = Nokogiri::XML <<~XML
+        <publication>
+          <publicationinfo>
+            <standardmodifierset>
+              <standard_status>Other</standard_status>
+            </standardmodifierset>
+          </publicationinfo>
+        </publication>
+      XML
+      subject.instance_variable_set(:@doc, doc.at("/publication"))
+      docstatus = subject.parse_docstatus
+      expect(docstatus).to be_nil
+    end
+  end
+
+  it "parse document" do
+    source = "spec/fixtures/rawbib/cache/IEEEDraftStd/1998/4039943/4039944/04039945.xml"
+    doc = Nokogiri::XML File.read(source, encoding: "UTF-8")
+    publication = doc.at "/publication"
+    subject.instance_variable_set(:@doc, publication)
+    bib = subject.parse
+    xml = bib.to_xml bibdata: true
+    ouput = "spec/fixtures/ieee-std.xml"
+    File.write ouput, xml, encoding: "UTF-8" unless File.exist? ouput
+    expect(xml).to be_equivalent_to File.read(ouput, encoding: "UTF-8")
+      .gsub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
   end
 end
