@@ -13,7 +13,7 @@ module RelatonIeee
 
         data[:editorialgroup] = parse_editorialgroup(item)
         data[:standard_status] = ext.at("./standard_status")&.text
-        data[:standard_modifier] = ext.at("./standard_modifier")&.text
+        data[:standard_modified] = ext.at("./standard_modified")&.text
         data[:pubstatus] = ext.at("./pubstatus")&.text
         data[:holdstatus] = ext.at("./holdstatus")&.text
         data

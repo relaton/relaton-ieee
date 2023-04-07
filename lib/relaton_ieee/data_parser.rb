@@ -4,7 +4,7 @@ module RelatonIeee
                   "LastInspecUpd" => "updated" }.freeze
     ATTRS = %i[
       docnumber title date docid contributor abstract copyright docstatus
-      relation link keyword ics editorialgroup standard_status standard_modifier
+      relation link keyword ics editorialgroup standard_status standard_modified
       pubstatus holdstatus doctype
     ].freeze
 
@@ -223,7 +223,7 @@ module RelatonIeee
     # @return [RelatonIee::DocumentStatus, nil]
     #
     def parse_docstatus
-      st = parse_standard_modifier
+      st = parse_standard_modified
       return unless %w[Draft Approved Superseded Withdrawn].include?(st)
 
       DocumentStatus.new stage: st.downcase
@@ -307,7 +307,7 @@ module RelatonIeee
     #
     # @return [String, nil] standard modifier or nil
     #
-    def parse_standard_modifier
+    def parse_standard_modified
       doc.at("./publicationinfo/standardmodifierset/standard_modifier")&.text
     end
 
@@ -335,7 +335,7 @@ module RelatonIeee
     # @return [String] doctype
     #
     def parse_doctype
-      parse_standard_modifier == "Redline" ? "redline" : "standard"
+      parse_standard_modified == "Redline" ? "redline" : "standard"
     end
   end
 end

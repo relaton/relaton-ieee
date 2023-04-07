@@ -30,7 +30,7 @@ module RelatonIeee
         ext = hash.delete(:ext)
         return unless ext
 
-        attrs = %i[standard_status standard_modifier pubstatus holdstatus]
+        attrs = %i[standard_status standard_modified pubstatus holdstatus]
         ext.select { |k, _| attrs.include? k }.each do |k, v|
           hash[k] = v
         end

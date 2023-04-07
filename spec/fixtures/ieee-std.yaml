@@ -63,6 +63,6 @@ ics:
 ext:
   schema-version: v1.0.0
   standard_status: Inactive
-  standard_modifier: Draft
+  standard_modified: Draft
   pubstatus: Active
   holdstatus: Hold

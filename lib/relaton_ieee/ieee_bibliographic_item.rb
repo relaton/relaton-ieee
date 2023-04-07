@@ -10,7 +10,7 @@ module RelatonIeee
     attr_reader :trialuse
 
     # @return [String, nil]
-    attr_reader :standard_status, :standard_modifier, :pubstatus, :holdstatus
+    attr_reader :standard_status, :standard_modified, :pubstatus, :holdstatus
 
     #
     # @param [Hash] args
@@ -18,7 +18,7 @@ module RelatonIeee
     # @option args [Array<RelatonIeee::EditorialGroup>] :editorialgroup
     #   Editorial group
     # @option args [String, nil] :standard_status Active, Inactive, Superseded
-    # @option args [String, nil] :standard_modifier Draft, Withdrawn, Suspended,
+    # @option args [String, nil] :standard_modified Draft, Withdrawn, Suspended,
     #   Approved, Reserved, Redline
     # @option args [String, nil] :pubstatus Active, Inactive
     # @option args [String, nil] :holdstatus Held, Publish
@@ -35,7 +35,7 @@ module RelatonIeee
       eg = args.delete(:editorialgroup)
       @trialuse = args.delete(:trialuse)
       @standard_status = args.delete(:standard_status)
-      @standard_modifier = args.delete(:standard_modifier)
+      @standard_modified = args.delete(:standard_modified)
       @pubstatus = args.delete(:pubstatus)
       @holdstatus = args.delete(:holdstatus)
       super
@@ -66,7 +66,7 @@ module RelatonIeee
     def to_xml(**opts) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       super(**opts) do |bldr|
         if opts[:bibdata] && (doctype || subdoctype || !trialuse.nil? || editorialgroup ||
-           ics.any? || standard_status || standard_modifier || pubstatus || holdstatus)
+           ics.any? || standard_status || standard_modified || pubstatus || holdstatus)
           ext = bldr.ext do |b|
             b.doctype doctype if doctype
             b.subdoctype subdoctype if subdoctype
@@ -74,7 +74,7 @@ module RelatonIeee
             editorialgroup&.to_xml(b)
             ics.each { |ic| ic.to_xml(b) }
             b.standard_status standard_status if standard_status
-            b.standard_modifier standard_modifier if standard_modifier
+            b.standard_modified standard_modified if standard_modified
             b.pubstatus pubstatus if pubstatus
             b.holdstatus holdstatus if holdstatus
           end
@@ -94,7 +94,7 @@ module RelatonIeee
       hash = super
       hash["trialuse"] = trialuse unless trialuse.nil?
       hash["ext"]["standard_status"] = standard_status unless standard_status.nil?
-      hash["ext"]["standard_modifier"] = standard_modifier unless standard_modifier.nil?
+      hash["ext"]["standard_modified"] = standard_modified unless standard_modified.nil?
       hash["ext"]["pubstatus"] = pubstatus unless pubstatus.nil?
       hash["ext"]["holdstatus"] = holdstatus unless holdstatus.nil?
       hash

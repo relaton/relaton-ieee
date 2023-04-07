@@ -30,7 +30,7 @@ RSpec.describe RelatonIeee::DataParser do
     expect(subject).to receive(:parse_ics).and_return :ics
     expect(subject).to receive(:parse_editorialgroup).and_return :editorialgroup
     expect(subject).to receive(:parse_standard_status).and_return :standard_status
-    expect(subject).to receive(:parse_standard_modifier).and_return :standard_modifier
+    expect(subject).to receive(:parse_standard_modified).and_return :standard_modified
     expect(subject).to receive(:parse_pubstatus).and_return :pubstatus
     expect(subject).to receive(:parse_holdstatus).and_return :holdstatus
     expect(subject).to receive(:parse_doctype).and_return :doctype
@@ -52,7 +52,7 @@ RSpec.describe RelatonIeee::DataParser do
       ics: :ics,
       editorialgroup: :editorialgroup,
       standard_status: :standard_status,
-      standard_modifier: :standard_modifier,
+      standard_modified: :standard_modified,
       pubstatus: :pubstatus,
       holdstatus: :holdstatus,
       doctype: :doctype,
@@ -284,9 +284,12 @@ RSpec.describe RelatonIeee::DataParser do
     subject.instance_variable_set(:@doc, publication)
     bib = subject.parse
     xml = bib.to_xml bibdata: true
-    ouput = "spec/fixtures/ieee-std.xml"
-    File.write ouput, xml, encoding: "UTF-8" unless File.exist? ouput
-    expect(xml).to be_equivalent_to File.read(ouput, encoding: "UTF-8")
+    output = "spec/fixtures/ieee-std.xml"
+    File.write output, xml, encoding: "UTF-8" unless File.exist? output
+    expect(xml).to be_equivalent_to File.read(output, encoding: "UTF-8")
       .gsub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
+    schema = Jing.new "grammars/relaton-ieee-compile.rng"
+    errors = schema.validate output
+    expect(errors).to eq []
   end
 end
