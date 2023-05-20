@@ -31,7 +31,7 @@ module RelatonIeee
       @ext = format.sub(/^bib/, "")
       @crossrefs = {}
       @backrefs = {}
-      # @normtitles = []
+      @index = Relaton::Index.find_or_create :IEEE
     end
 
     #
@@ -44,7 +44,7 @@ module RelatonIeee
     def self.fetch(output: "data", format: "yaml")
       t1 = Time.now
       puts "Started at: #{t1}"
-      FileUtils.mkdir_p output # unless Dir.exist? output
+      FileUtils.mkdir_p output
       new(output, format).fetch
       t2 = Time.now
       puts "Stopped at: #{t2}"
@@ -99,7 +99,8 @@ module RelatonIeee
       stdid = doc.at("./publicationinfo/standard_id")&.text
       return if stdid == "0"
 
-      bib = DataParser.parse doc, self
+      fetcher = DataParser.new doc, self
+      bib = fetcher.parse
       if bib.docnumber.nil?
         nt = doc&.at("./normtitle")&.text
         warn "PubID parse error. Normtitle: #{nt}, file: #{filename}"

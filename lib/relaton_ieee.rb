@@ -1,6 +1,7 @@
 require "digest/md5"
 require "faraday"
 require "yaml"
+require "relaton/index"
 require "relaton_bib"
 require "relaton_ieee/version"
 require "relaton_ieee/document_status"

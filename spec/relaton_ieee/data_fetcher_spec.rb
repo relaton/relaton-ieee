@@ -43,7 +43,9 @@ RSpec.describe RelatonIeee::DataFetcher do
       end
 
       before(:each) do
-        expect(RelatonIeee::DataParser).to receive(:parse).and_return bib
+        parser = double "parser"
+        expect(RelatonIeee::DataParser).to receive(:new).and_return parser
+        expect(parser).to receive(:parse).and_return bib
         df.instance_variable_get(:@backrefs)["4321"] = "IEEE 5678"
       end
 
@@ -162,7 +164,8 @@ RSpec.describe RelatonIeee::DataFetcher do
         </publication>
       XML
       bib = double "bib", docnumber: nil
-      expect(RelatonIeee::DataParser).to receive(:parse).with(kind_of(Nokogiri::XML::Element), df).and_return bib
+      dp = double "dp", parse: bib
+      expect(RelatonIeee::DataParser).to receive(:new).with(kind_of(Nokogiri::XML::Element), df).and_return dp
       expect do
         expect(df.fetch_doc(xml, "filename")).to be_nil
       end.to output("PubID parse error. Normtitle: Title, file: filename\n").to_stderr

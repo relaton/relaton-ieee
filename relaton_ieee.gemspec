@@ -32,15 +32,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "equivalent-xml", "~> 0.6"
-  spec.add_development_dependency "pry-byebug"
-  spec.add_development_dependency "ruby-jing"
-  spec.add_development_dependency "simplecov"
-  spec.add_development_dependency "vcr"
-  spec.add_development_dependency "webmock"
-  spec.add_development_dependency "webrick"
 
-  spec.add_dependency "faraday", "~> 1.0"
-  spec.add_dependency "mini_portile2"
+  spec.add_dependency "faraday", "~> 2.7.0"
+  spec.add_dependency "mini_portile2", "~> 2.8.0"
   spec.add_dependency "relaton-bib", "~> 1.14.0"
+  spec.add_dependency "relaton-index", "~> 0.2.0"
   spec.add_dependency "rubyzip", "~> 2.3.0"
 end
