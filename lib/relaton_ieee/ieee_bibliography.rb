@@ -1,8 +1,9 @@
 module RelatonIeee
   class IeeeBibliography
-    class << self
-      GH_URL = "https://raw.githubusercontent.com/relaton/relaton-data-ieee/main/data/".freeze
+    GH_URL = "https://raw.githubusercontent.com/relaton/relaton-data-ieee/main/".freeze
+    INDEX_FILE = "index-v1.yaml".freeze
 
+    class << self
       #
       # Search IEEE bibliography item by reference.
       #
@@ -10,10 +11,13 @@ module RelatonIeee
       #
       # @return [RelatonIeee::IeeeBibliographicItem]
       #
-      def search(code)
-        ref = code.sub(/Std\s/i, "").gsub(/[\s,:\/]/, "_").squeeze("_").upcase
-        url = "#{GH_URL}#{ref}.yaml"
-        resp = Faraday.get url
+      def search(code) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+        ref = code.sub(/Std\s/i, "") # .gsub(/[\s,:\/]/, "_").squeeze("_").upcase
+        index = Relaton::Index.find_or_create :ieee, url: "#{GH_URL}index-v1.zip", file: INDEX_FILE
+        row = index.search(ref).min_by { |r| r[:id] }
+        return unless row
+
+        resp = Faraday.get "#{GH_URL}#{row[:file]}"
         return unless resp.status == 200
 
         hash = YAML.safe_load resp.body

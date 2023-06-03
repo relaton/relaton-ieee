@@ -31,7 +31,6 @@ module RelatonIeee
       @ext = format.sub(/^bib/, "")
       @crossrefs = {}
       @backrefs = {}
-      @index = Relaton::Index.find_or_create :IEEE
     end
 
     #
