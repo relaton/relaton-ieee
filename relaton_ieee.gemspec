@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "faraday", "~> 2.7.0"
   spec.add_dependency "mini_portile2", "~> 2.8.0"
-  spec.add_dependency "relaton-bib", "~> 1.14.0"
+  spec.add_dependency "relaton-bib", "~> 1.16.0"
   spec.add_dependency "relaton-index", "~> 0.2.0"
   spec.add_dependency "rubyzip", "~> 2.3.0"
 end
