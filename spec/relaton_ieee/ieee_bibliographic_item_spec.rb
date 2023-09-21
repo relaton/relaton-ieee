@@ -1,5 +1,6 @@
 RSpec.describe RelatonIeee::IeeeBibliographicItem do
   let(:type) { "invalid" }
+  before { RelatonIeee.instance_variable_set :@configuration, nil }
 
   it "returns AsciiBib" do
     input = "spec/fixtures/ieee_528_2019.yaml"
@@ -16,8 +17,8 @@ RSpec.describe RelatonIeee::IeeeBibliographicItem do
     expect do
       described_class.new doctype: type
     end.to output(
-      "[relaton-ieee] invalid doctype \"#{type}\". It should be one of: " \
-      "guide, recommended-practice, standard, witepaper, redline, other.\n",
+      "[relaton-ieee] invalid doctype `#{type}`. It should be one of: " \
+      "`guide`, `recommended-practice`, `standard`, `witepaper`, `redline`, `other`.\n",
     ).to_stderr
   end
 
@@ -25,8 +26,8 @@ RSpec.describe RelatonIeee::IeeeBibliographicItem do
     expect do
       described_class.new docsubtype: type
     end.to output(
-      "[relaton-ieee] invalid docsubtype \"#{type}\". It should be one of: " \
-      "amendment, corrigendum, erratum.\n",
+      "[relaton-ieee] invalid docsubtype `#{type}`. It should be one of: " \
+      "`amendment`, `corrigendum`, `erratum`.\n",
     ).to_stderr
   end
 end

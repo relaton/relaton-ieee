@@ -1,4 +1,6 @@
 RSpec.describe RelatonIeee do
+  before { RelatonIeee.instance_variable_set :@configuration, nil }
+
   it "has a version number" do
     expect(RelatonIeee::VERSION).not_to be nil
   end
@@ -60,10 +62,10 @@ RSpec.describe RelatonIeee do
 
     it "by reference and wrong year" do
       VCR.use_cassette "ieee_528" do
-        # expect do
-        result = RelatonIeee::IeeeBibliography.get "IEEE 528-2018"
-        expect(result).to be_nil
-        # end.to output(/no match found online for IEEE 528 year 2018/).to_stderr
+        expect do
+          result = RelatonIeee::IeeeBibliography.get "IEEE 528-2018"
+          expect(result).to be_nil
+        end.to output(/\[relaton-ieee\] \(IEEE 528-2018\) not found/).to_stderr
       end
     end
 

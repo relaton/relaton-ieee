@@ -25,12 +25,12 @@ module RelatonIeee
     #
     def initialize(**args) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       if args[:doctype] && !DOCTYPES.include?(args[:doctype])
-        warn "[relaton-ieee] invalid doctype \"#{args[:doctype]}\". " \
-             "It should be one of: #{DOCTYPES.join(', ')}."
+        Util.warn "invalid doctype `#{args[:doctype]}`. " \
+                  "It should be one of: `#{DOCTYPES.join('`, `')}`."
       end
       if args[:docsubtype] && !SUBTYPES.include?(args[:docsubtype])
-        warn "[relaton-ieee] invalid docsubtype \"#{args[:docsubtype]}\". " \
-             "It should be one of: #{SUBTYPES.join(', ')}."
+        Util.warn "invalid docsubtype `#{args[:docsubtype]}`. " \
+                  "It should be one of: `#{SUBTYPES.join('`, `')}`."
       end
       eg = args.delete(:editorialgroup)
       @trialuse = args.delete(:trialuse)

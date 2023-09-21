@@ -456,7 +456,7 @@ module RelatonIeee
         PubId.new(publisher: $1, number: $2)
 
       else
-        warn %{Use stdnumber "#{stdnumber}" for nortitle "#{normtitle}"}
+        Util.warn %{Use stdnumber "#{stdnumber}" for nortitle "#{normtitle}"}
         PubId.new(publisher: "IEEE", number: stdnumber)
       end
     rescue ArgumentError => e

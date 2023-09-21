@@ -13,7 +13,7 @@ module RelatonIeee
     #
     def initialize(type:, content:)
       unless TYPES.include?(type)
-        warn "[relaton-ieee] WARNING: type of Balloting group must be one of #{TYPES.join(', ')}"
+        Util.warn "WARNING: type of Balloting group must be one of `#{TYPES.join('`, `')}`"
       end
 
       @type = type

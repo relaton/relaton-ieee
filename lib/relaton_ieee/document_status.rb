@@ -5,7 +5,7 @@ module RelatonIeee
 
       def initialize(value:, abbreviation: nil)
         unless STAGES.include?(value.downcase)
-          warn "[relaton-ieee] Stage value must be one of #{STAGES.join(', ')}"
+          Util.warn "Stage value must be one of `#{STAGES.join('`, `')}`"
         end
         super
       end
