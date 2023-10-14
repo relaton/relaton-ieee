@@ -65,7 +65,7 @@ RSpec.describe RelatonIeee do
         expect do
           result = RelatonIeee::IeeeBibliography.get "IEEE 528-2018"
           expect(result).to be_nil
-        end.to output(/\[relaton-ieee\] \(IEEE 528-2018\) not found/).to_stderr
+        end.to output(/\[relaton-ieee\] \(IEEE 528-2018\) Not found\./).to_stderr
       end
     end
 

@@ -17,7 +17,7 @@ RSpec.describe RelatonIeee::IeeeBibliographicItem do
     expect do
       described_class.new doctype: type
     end.to output(
-      "[relaton-ieee] invalid doctype `#{type}`. It should be one of: " \
+      "[relaton-ieee] Invalid doctype: `#{type}`. It should be one of: " \
       "`guide`, `recommended-practice`, `standard`, `witepaper`, `redline`, `other`.\n",
     ).to_stderr
   end
@@ -26,7 +26,7 @@ RSpec.describe RelatonIeee::IeeeBibliographicItem do
     expect do
       described_class.new docsubtype: type
     end.to output(
-      "[relaton-ieee] invalid docsubtype `#{type}`. It should be one of: " \
+      "[relaton-ieee] Invalid docsubtype: `#{type}`. It should be one of: " \
       "`amendment`, `corrigendum`, `erratum`.\n",
     ).to_stderr
   end
