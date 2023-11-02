@@ -7,7 +7,7 @@ module RelatonIeee
     def initialize # rubocop:disable Lint/MissingSuper
       @short = :relaton_ieee
       @prefix = "IEEE"
-      @defaultprefix = %r{^(?:ANSI/)?IEEE\s}
+      @defaultprefix = %r{^(?:(?:(?:ANSI|NACE)/)?IEEE|ANSI|AIEE|ASA|NACE|IRE)\s}
       @idtype = "IEEE"
       @datasets = %w[ieee-rawbib]
     end
