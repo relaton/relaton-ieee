@@ -153,15 +153,23 @@ module RelatonIeee
       doc.xpath("./publicationinfo/publisher").map do |contrib|
         n = contrib.at("./publishername").text
         addr = contrib.xpath("./address").each_with_object([]) do |adr, ob|
-          city = adr.at("./city")
-          next unless city
+          city, country, state = parse_country_city adr
+          next unless city && country
 
-          ob << RelatonBib::Address.new(street: [], city: city.text,
-                                        country: adr.at("./country").text)
+          ob << RelatonBib::Address.new(street: [], city: city, state: state, country: country)
         end
         e = create_org n, addr
         RelatonBib::ContributionInfo.new entity: e, role: [type: "publisher"]
       end
+    end
+
+    def parse_country_city(address)
+      city = address.at("./city")
+      return unless city
+
+      city, state = city.text.split(", ")
+      country = address.at("./country")&.text || "USA"
+      [city, country, state]
     end
 
     #
@@ -335,7 +343,8 @@ module RelatonIeee
     # @return [String] doctype
     #
     def parse_doctype
-      parse_standard_modified == "Redline" ? "redline" : "standard"
+      type = parse_standard_modified == "Redline" ? "redline" : "standard"
+      DocumentType.new type: type
     end
   end
 end

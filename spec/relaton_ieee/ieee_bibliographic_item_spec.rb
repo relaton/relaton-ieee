@@ -1,5 +1,4 @@
 RSpec.describe RelatonIeee::IeeeBibliographicItem do
-  let(:type) { "invalid" }
   before { RelatonIeee.instance_variable_set :@configuration, nil }
 
   it "returns AsciiBib" do
@@ -13,20 +12,11 @@ RSpec.describe RelatonIeee::IeeeBibliographicItem do
     expect(bib).to eq File.read(file, encoding: "UTF-8")
   end
 
-  it "warn when doctype is invalid" do
-    expect do
-      described_class.new doctype: type
-    end.to output(
-      "[relaton-ieee] Invalid doctype: `#{type}`. It should be one of: " \
-      "`guide`, `recommended-practice`, `standard`, `witepaper`, `redline`, `other`.\n",
-    ).to_stderr
-  end
-
   it "warn when subdoctype is invalid" do
     expect do
-      described_class.new docsubtype: type
+      described_class.new docsubtype: "invalid"
     end.to output(
-      "[relaton-ieee] Invalid docsubtype: `#{type}`. It should be one of: " \
+      "[relaton-ieee] Invalid docsubtype: `invalid`. It should be one of: " \
       "`amendment`, `corrigendum`, `erratum`.\n",
     ).to_stderr
   end

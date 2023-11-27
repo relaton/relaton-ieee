@@ -1,6 +1,5 @@
 module RelatonIeee
   class IeeeBibliographicItem < RelatonBib::BibliographicItem
-    DOCTYPES = %w[guide recommended-practice standard witepaper redline other].freeze
     SUBTYPES = %w[amendment corrigendum erratum].freeze
 
     # @return [RelatonIeee::EditorialGroup, nil]
@@ -24,10 +23,6 @@ module RelatonIeee
     # @option args [String, nil] :holdstatus Held, Publish
     #
     def initialize(**args) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-      if args[:doctype] && !DOCTYPES.include?(args[:doctype])
-        Util.warn "Invalid doctype: `#{args[:doctype]}`. " \
-                  "It should be one of: `#{DOCTYPES.join('`, `')}`."
-      end
       if args[:docsubtype] && !SUBTYPES.include?(args[:docsubtype])
         Util.warn "Invalid docsubtype: `#{args[:docsubtype]}`. " \
                   "It should be one of: `#{SUBTYPES.join('`, `')}`."
@@ -68,7 +63,7 @@ module RelatonIeee
         if opts[:bibdata] && (doctype || subdoctype || !trialuse.nil? || editorialgroup ||
            ics.any? || standard_status || standard_modified || pubstatus || holdstatus)
           ext = bldr.ext do |b|
-            b.doctype doctype if doctype
+            doctype&.to_xml b
             b.subdoctype subdoctype if subdoctype
             b.send :"trial-use", trialuse unless trialuse.nil?
             editorialgroup&.to_xml(b)

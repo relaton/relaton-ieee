@@ -117,6 +117,39 @@ RSpec.describe RelatonIeee::DataParser do
     end
   end
 
+  context "parse country city" do
+    it "without city" do
+      doc = Nokogiri::XML <<~XML
+        <address>
+          <country>USA</country>
+        </address>
+      XML
+      addr = doc.at "/address"
+      expect(subject.parse_country_city(addr)).to be_nil
+    end
+
+    it "with city, state, and country" do
+      doc = Nokogiri::XML <<~XML
+        <address>
+          <city>City, State</city>
+          <country>Country</country>
+        </address>
+      XML
+      addr = doc.at "/address"
+      expect(subject.parse_country_city(addr)).to eq ["City", "Country", "State"]
+    end
+
+    it "use USA as default country" do
+      doc = Nokogiri::XML <<~XML
+        <address>
+          <city>City</city>
+        </address>
+      XML
+      addr = doc.at "/address"
+      expect(subject.parse_country_city(addr)).to eq ["City", "USA", nil]
+    end
+  end
+
   context "create organization" do
     it "ANSI" do
       org = subject.create_org("ANSI")

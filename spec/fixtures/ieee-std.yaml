@@ -1,5 +1,5 @@
 ---
-schema-version: v1.2.4
+schema-version: v1.2.5
 id: IEEEP802.5t-D-2.5
 title:
 - content: 'IEEE Draft Supplement to Information technology Telecommunications and
@@ -52,7 +52,8 @@ copyright:
     contact:
     - uri: http://www.ieee.org
   from: '1998'
-doctype: standard
+doctype:
+  type: standard
 ics:
 - code: '35.110'
   text: Networking
