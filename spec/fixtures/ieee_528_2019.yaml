@@ -1,6 +1,6 @@
 ---
 id: IEEE528-2019
-schema-version: v1.2.5
+schema-version: v1.2.8
 title:
 - type: main
   content: IEEE Standard for Inertial Sensor Terminology
@@ -75,4 +75,4 @@ editorialgroup:
   committee:
   - AES/GA - Gyro Accelerometer Panel
 ext:
-  schema-version: v1.0.0
+  schema-version: v1.0.1

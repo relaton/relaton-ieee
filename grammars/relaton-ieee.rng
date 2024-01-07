@@ -75,6 +75,9 @@
       <optional>
         <ref name="holdstatus"/>
       </optional>
+      <optional>
+        <ref name="program"/>
+      </optional>
     </define>
   </include>
   <define name="standard_status">
@@ -112,6 +115,11 @@
         <value>Hold</value>
         <value>Publish</value>
       </choice>
+    </element>
+  </define>
+  <define name="program">
+    <element name="program">
+      <text/>
     </element>
   </define>
   <define name="BibliographicDateType" combine="choice">

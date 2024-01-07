@@ -71,7 +71,7 @@ item.to_xml bibdata: true
       <uri type="src">https://ieeexplore.ieee.org/document/8863799</uri>
       <docidentifier type="IEEE" primary="true">IEEE 528-2019</docidentifier>
       ...
-      <ext schema-version="v1.0.0">
+      <ext schema-version="v1.0.1">
         <editorialgroup>
           <committee>Gyro Accelerometer Panel of the IEEE Aerospace and Electronic Systems Society</committee>
         </editorialgroup>

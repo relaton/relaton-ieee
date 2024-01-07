@@ -1,5 +1,5 @@
 ---
-schema-version: v1.2.5
+schema-version: v1.2.8
 id: IEEEP802.5t-D-2.5
 title:
 - content: 'IEEE Draft Supplement to Information technology Telecommunications and
@@ -62,7 +62,7 @@ ics:
 - code: 35.100.20
   text: Data link layer
 ext:
-  schema-version: v1.0.0
+  schema-version: v1.0.1
   standard_status: Inactive
   standard_modified: Draft
   pubstatus: Active
