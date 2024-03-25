@@ -14,13 +14,13 @@ RSpec.describe RelatonIeee::DataFetcher do
       files = Dir["spec/fixtures/rawbib/**/*.{xml,zip}"]
       expect(Dir).to receive(:[]).with("ieee-rawbib/**/*.{xml,zip}").and_return files
       expect(df).to receive(:fetch_doc).and_raise(StandardError).twice
-      expect { df.fetch }.to output(/File: spec\/fixtures\/rawbib/).to_stderr
+      expect { df.fetch }.to output(/File: spec\/fixtures\/rawbib/).to_stderr_from_any_process
     end
 
     it "handle empty file" do
       expect do
         expect(df.fetch_doc("", "file.xml")).to be_nil
-      end.to output(/Empty file: file\.xml/).to_stderr
+      end.to output(/WARN: Empty file: `file\.xml`/).to_stderr_from_any_process
     end
 
     it "create relation" do
@@ -62,8 +62,8 @@ RSpec.describe RelatonIeee::DataFetcher do
         XML
         bib.instance_variable_set :@docnumber, "3412"
         expect { df.fetch_doc(doc, "file.xml") }.to output(
-          /Document exists ID: "IEEE 5678" AMSID: "1234" source: "file\.xml"\. Other AMSID: "4321"/,
-        ).to_stderr
+          /WARN: Document exists ID: `IEEE 5678` AMSID: `1234` source: `file\.xml`\. Other AMSID: `4321`/,
+        ).to_stderr_from_any_process
       end
 
       it "rewrite file if PubID includes a docnumber" do
@@ -79,8 +79,8 @@ RSpec.describe RelatonIeee::DataFetcher do
         XML
         expect(File).to receive(:write).with("data/5678.yaml", kind_of(String), encoding: "UTF-8")
         expect { df.fetch_doc(doc, "file.xml") }.to output(
-          /Document exists ID: "IEEE 5678" AMSID: "1234" source: "file\.xml"\. Other AMSID: "4321"/,
-        ).to_stderr
+          /WARN: Document exists ID: `IEEE 5678` AMSID: `1234` source: `file\.xml`\. Other AMSID: `4321`/,
+        ).to_stderr_from_any_process
       end
     end
 
@@ -168,7 +168,9 @@ RSpec.describe RelatonIeee::DataFetcher do
       expect(RelatonIeee::DataParser).to receive(:new).with(kind_of(Nokogiri::XML::Element), df).and_return dp
       expect do
         expect(df.fetch_doc(xml, "filename")).to be_nil
-      end.to output("PubID parse error. Normtitle: Title, file: filename\n").to_stderr
+      end.to output(
+        "[relaton-ieee] WARN: PubID parse error. Normtitle: `Title`, file: `filename`\n"
+      ).to_stderr_from_any_process
     end
 
     context "save document" do

@@ -1,6 +1,4 @@
 RSpec.describe RelatonIeee::IeeeBibliographicItem do
-  before { RelatonIeee.instance_variable_set :@configuration, nil }
-
   it "returns AsciiBib" do
     input = "spec/fixtures/ieee_528_2019.yaml"
     hash = YAML.safe_load File.read(input, encoding: "UTF-8")
@@ -16,8 +14,8 @@ RSpec.describe RelatonIeee::IeeeBibliographicItem do
     expect do
       described_class.new docsubtype: "invalid"
     end.to output(
-      "[relaton-ieee] Invalid docsubtype: `invalid`. It should be one of: " \
+      "[relaton-ieee] WARN: Invalid docsubtype: `invalid`. It should be one of: " \
       "`amendment`, `corrigendum`, `erratum`.\n",
-    ).to_stderr
+    ).to_stderr_from_any_process
   end
 end

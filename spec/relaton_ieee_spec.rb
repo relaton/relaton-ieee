@@ -1,6 +1,4 @@
 RSpec.describe RelatonIeee do
-  before { RelatonIeee.instance_variable_set :@configuration, nil }
-
   it "has a version number" do
     expect(RelatonIeee::VERSION).not_to be nil
   end
@@ -65,7 +63,7 @@ RSpec.describe RelatonIeee do
         expect do
           result = RelatonIeee::IeeeBibliography.get "IEEE 528-2018"
           expect(result).to be_nil
-        end.to output(/\[relaton-ieee\] \(IEEE 528-2018\) Not found\./).to_stderr
+        end.to output(/\[relaton-ieee\] INFO: \(IEEE 528-2018\) Not found\./).to_stderr_from_any_process
       end
     end
 

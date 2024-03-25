@@ -38,13 +38,13 @@ module RelatonIeee
       #   if document is found else returns NilClass
       #
       def get(code, _year = nil, _opts = {}) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-        Util.warn "(#{code}) Fetching from Relaton repository ..."
+        Util.info "Fetching from Relaton repository ...", key: code
         item = search(code)
         if item
-          Util.warn "(#{code}) Found: `#{item.docidentifier.first.id}`"
+          Util.info "Found: `#{item.docidentifier.first.id}`", key: code
           item
         else
-          Util.warn "(#{code}) Not found."
+          Util.info "Not found.", key: code
           nil
         end
       end

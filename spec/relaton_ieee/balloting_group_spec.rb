@@ -3,7 +3,9 @@ describe RelatonIeee::BallotingGroup do
     it "warn when type is invalid" do
       expect do
         described_class.new type: "invalid", content: "Group"
-      end.to output("[relaton-ieee] WARNING: type of Balloting group must be one of `individual`, `entity`\n").to_stderr
+      end.to output(
+        "[relaton-ieee] WARN: type of Balloting group must be one of `individual`, `entity`\n"
+      ).to_stderr_from_any_process
     end
   end
 
