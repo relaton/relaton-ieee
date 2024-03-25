@@ -61,9 +61,7 @@ module RelatonIeee
               end
         fetch_doc xml, f
       rescue StandardError => e
-        warn "File: #{f}"
-        warn e.message
-        warn e.backtrace
+        Util.error "File: #{f}\n#{e.message}\n#{e.backtrace}"
       end
       # File.write "normtitles.txt", @normtitles.join("\n")
       update_relations
@@ -92,7 +90,7 @@ module RelatonIeee
     def fetch_doc(xml, filename) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
       doc = Nokogiri::XML(xml).at("/publication")
       unless doc
-        warn "Empty file: #{filename}"
+        Util.warn "Empty file: `#{filename}`"
         return
       end
       stdid = doc.at("./publicationinfo/standard_id")&.text
@@ -102,14 +100,14 @@ module RelatonIeee
       bib = fetcher.parse
       if bib.docnumber.nil?
         nt = doc&.at("./normtitle")&.text
-        warn "PubID parse error. Normtitle: #{nt}, file: #{filename}"
+        Util.warn "PubID parse error. Normtitle: `#{nt}`, file: `#{filename}`"
         return
       end
       amsid = doc.at("./publicationinfo/amsid").text
       if backrefs.value?(bib.docidentifier[0].id) && /updates\.\d+/ !~ filename
         oamsid = backrefs.key bib.docidentifier[0].id
-        warn "Document exists ID: \"#{bib.docidentifier[0].id}\" AMSID: " \
-             "\"#{amsid}\" source: \"#{filename}\". Other AMSID: \"#{oamsid}\""
+        Util.warn "Document exists ID: `#{bib.docidentifier[0].id}` AMSID: " \
+             "`#{amsid}` source: `#{filename}`. Other AMSID: `#{oamsid}`"
         if bib.docidentifier[0].id.include?(doc.at("./publicationinfo/stdnumber").text)
           save_doc bib # rewrite file if the PubID matches to the stdnumber
           backrefs[amsid] = bib.docidentifier[0].id
@@ -177,7 +175,7 @@ module RelatonIeee
               save_doc bib
             end
           else
-            warn "Unresolved relation: '#{rf[:amsid]}' type: '#{rf[:type]}' for '#{dnum}'"
+            Util.warn "Unresolved relation: '#{rf[:amsid]}' type: '#{rf[:type]}' for '#{dnum}'"
           end
         end
       end

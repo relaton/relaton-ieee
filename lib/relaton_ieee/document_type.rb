@@ -9,8 +9,7 @@ module RelatonIeee
 
     def check_type(type)
       unless DOCTYPES.include? type
-        Util.warn "Invalid doctype: `#{type}`. " \
-                  "It should be one of: `#{DOCTYPES.join('`, `')}`."
+        Util.warn "Invalid doctype: `#{type}`. It should be one of: `#{DOCTYPES.join('`, `')}`."
       end
     end
   end
