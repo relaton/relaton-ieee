@@ -85,7 +85,7 @@ module RelatonIeee
     #
     # @return [Hash]
     #
-    def to_hash(embedded: false) # rubocop:disable Metrics/AbcSize
+    def to_h(embedded: false) # rubocop:disable Metrics/AbcSize
       hash = super
       hash["trialuse"] = trialuse unless trialuse.nil?
       hash["ext"]["standard_status"] = standard_status unless standard_status.nil?

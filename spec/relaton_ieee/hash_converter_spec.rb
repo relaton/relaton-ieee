@@ -3,7 +3,7 @@ RSpec.describe RelatonIeee::HashConverter do
     file = "spec/fixtures/ieee-std.yaml"
     hash = YAML.safe_load File.read(file, encoding: "UTF-8")
     item = RelatonIeee::IeeeBibliographicItem.from_hash hash
-    expect(item.to_hash).to eq hash
+    expect(item.to_h).to eq hash
   end
 
   it "convert relation" do

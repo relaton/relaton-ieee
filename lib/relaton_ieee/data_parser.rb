@@ -159,7 +159,7 @@ module RelatonIeee
           ob << RelatonBib::Address.new(street: [], city: city, state: state, country: country)
         end
         e = create_org n, addr
-        RelatonBib::ContributionInfo.new entity: e, role: [type: "publisher"]
+        RelatonBib::Contributor.new entity: e, role: [type: "publisher"]
       end
     end
 
@@ -217,7 +217,7 @@ module RelatonIeee
     def parse_copyright
       doc.xpath("./publicationinfo/copyrightgroup/copyright").map do |c|
         owner = c.at("./holder").text.split("/").map do |own|
-          RelatonBib::ContributionInfo.new entity: create_org(own)
+          create_org(own)
         end
         RelatonBib::CopyrightAssociation.new(
           owner: owner, from: c.at("./year").text,
@@ -263,7 +263,7 @@ module RelatonIeee
     def parse_link
       doc.xpath("./volume/article/articleinfo/amsid").map do |id|
         l = "https://ieeexplore.ieee.org/document/#{id.text}"
-        RelatonBib::TypedUri.new content: l, type: "src"
+        RelatonBib::Source.new content: l, type: "src"
       end
     end
 

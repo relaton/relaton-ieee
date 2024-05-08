@@ -6,7 +6,6 @@ title.type:: main
 title.content:: IEEE Standard for Inertial Sensor Terminology
 title.language:: en
 title.script:: Latn
-title.format:: text/plain
 docid::
 docid.type:: IEEE
 docid.primary:: true
@@ -28,7 +27,6 @@ date.on:: 2019-10-08
 abstract.content:: Terms and definitions relating to inertial sensors are presented in this standard. Usage as understood by the inertial sensor community is given preference over general technical usage of the terms herein. The criterion for inclusion of a term and its definition in this standard is usefulness as related to inertial sensor technology.
 abstract.language:: en
 abstract.script:: Latn
-abstract.format:: text/plain
 link.type:: src
 link.content:: https://standards.ieee.org/ieee/528/7292/
 place.name:: Piscataway, NJ, USA

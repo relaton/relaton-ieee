@@ -17,8 +17,8 @@ describe RelatonIeee::BallotingGroup do
       XML
     end
 
-    it "#to_hash" do
-      expect(subject.to_hash).to eq("type" => "entity", "content" => "Group")
+    it "#to_h" do
+      expect(subject.to_h).to eq("type" => "entity", "content" => "Group")
     end
 
     it "#to_asciibib" do
