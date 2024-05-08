@@ -144,7 +144,7 @@ module RelatonIeee
     def save_doc(bib)
       c = case @format
           when "xml" then bib.to_xml(bibdata: true)
-          when "yaml" then bib.to_hash.to_yaml
+          when "yaml" then bib.to_h.to_yaml
           else bib.send("to_#{@format}")
           end
       File.write file_name(bib.docnumber), c, encoding: "UTF-8"
@@ -194,7 +194,7 @@ module RelatonIeee
     def create_relation(type, fref) # rubocop:disable Metrics/MethodLength
       return if RELATION_TYPES[type] == false
 
-      fr = RelatonBib::FormattedRef.new(content: fref)
+      fr = RelatonBib::FormattedRef.new(fref)
       docid = RelatonBib::DocumentIdentifier.new(type: "IEEE", id: fref, primary: true)
       bib = IeeeBibliographicItem.new formattedref: fr, docid: [docid]
       desc = RELATION_TYPES[type][:description]

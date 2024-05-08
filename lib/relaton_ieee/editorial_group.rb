@@ -53,10 +53,10 @@ module RelatonIeee
     #
     # @return [Hash] editorial group as Hash
     #
-    def to_hash
+    def to_h
       hash = {}
       hash["society"] = society if society
-      hash["balloting_group"] = balloting_group.to_hash if balloting_group
+      hash["balloting_group"] = balloting_group.to_h if balloting_group
       hash["working_group"] = working_group if working_group
       hash["committee"] = committee if committee
       hash

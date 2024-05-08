@@ -1,6 +1,6 @@
 ---
 id: IEEE528-2019
-schema-version: v1.2.8
+schema-version: v1.3.0
 title:
 - type: main
   content: IEEE Standard for Inertial Sensor Terminology
@@ -8,7 +8,6 @@ title:
   - en
   script:
   - Latn
-  format: text/plain
 link:
 - content: https://standards.ieee.org/ieee/528/7292/
   type: src
@@ -62,7 +61,6 @@ abstract:
   - en
   script:
   - Latn
-  format: text/plain
 docstatus:
   stage:
     value: Active

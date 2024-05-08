@@ -32,7 +32,7 @@ RSpec.describe RelatonIeee::DataFetcher do
       expect(rel.bibitem.docidentifier[0].id).to eq "AIEE 15.1928-05"
       expect(rel.bibitem.docidentifier[0].type).to eq "IEEE"
       expect(rel.bibitem.docidentifier[0].primary).to be true
-      expect(rel.bibitem.formattedref.content).to eq "AIEE 15.1928-05"
+      expect(rel.bibitem.formattedref.to_s).to eq "AIEE 15.1928-05"
     end
 
     context "when ouput file exists" do
@@ -107,7 +107,7 @@ RSpec.describe RelatonIeee::DataFetcher do
         expect(df).to receive(:save_doc) do |arg|
           expect(arg.relation[0].type).to eq "updates"
           expect(arg.relation[0].description.content).to eq "revises"
-          expect(arg.relation[0].bibitem.formattedref.content).to eq "7809"
+          expect(arg.relation[0].bibitem.formattedref.to_s).to eq "7809"
         end
         df.update_relations
       end
@@ -183,7 +183,7 @@ RSpec.describe RelatonIeee::DataFetcher do
       end
 
       it "in YAML format" do
-        expect(bib).to receive(:to_hash).and_return({ "title" => "Title" })
+        expect(bib).to receive(:to_h).and_return({ "title" => "Title" })
         expect(File).to receive(:write).with("data/5678.yaml", { "title" => "Title" }.to_yaml, encoding: "UTF-8")
         df.save_doc bib
       end

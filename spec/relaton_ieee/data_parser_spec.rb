@@ -171,7 +171,7 @@ RSpec.describe RelatonIeee::DataParser do
     expect(rel).to be_instance_of RelatonBib::DocRelationCollection
     expect(rel.size).to eq 1
     expect(rel[0].type).to eq "updates"
-    expect(rel[0].bibitem.formattedref.content).to eq "IEEE 5678"
+    expect(rel[0].bibitem.formattedref.to_s).to eq "IEEE 5678"
   end
 
   context "parse abstract" do
@@ -214,8 +214,8 @@ RSpec.describe RelatonIeee::DataParser do
     it { expect(title).to be_instance_of Array }
     it { expect(title.size).to eq 2 }
     it { expect(title[0]).to be_instance_of RelatonBib::TypedTitleString }
-    it { expect(title[0].title.content).to eq "Title" }
-    it { expect(title[1].title.content).to eq "Title \u2014 Redline" }
+    it { expect(title[0].to_s).to eq "Title" }
+    it { expect(title[1].to_s).to eq "Title \u2014 Redline" }
   end
 
   context "parse PubId" do

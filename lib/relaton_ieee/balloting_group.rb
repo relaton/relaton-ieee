@@ -34,7 +34,7 @@ module RelatonIeee
     #
     # @return [Hash] balloting group as Hash
     #
-    def to_hash
+    def to_h
       { "type" => type, "content" => content }
     end
 
