@@ -69,7 +69,7 @@ module RelatonIeee
         m = d.at("./month")&.text
         if m
           /^(?:(?<day>\d{1,2})\s)?(?<mon>\w+)/ =~ m
-          month = Date::ABBR_MONTHNAMES.index(mon) || m
+          month = Date::ABBR_MONTHNAMES.index(mon) || Date::MONTHNAMES.index(mon) || m
           da << month.to_s.rjust(2, "0")
         end
         day = d.at("./day")&.text || day
