@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE publication PUBLIC "-//IEEE//IDAMS Exchange V2.0.0//EN" "ieee_idams_exchange.dtd">
+<publication>
+  <title><![CDATA[IEEE Unapproved Draft Std P802.3-2008 (P802.3bb)/Cor 1/D2.0, Jul 2009]]></title>
+  <normtitle><![CDATA[IEEE Unapproved Draft Std P802.3-2008 (P802.3bb)/Cor 1/D2.0, Jul 2009]]></normtitle>
+  <standardsfamilytitle>IEEE Standard for Information Technology - Telecommunications and Information Exchange Between Systems - Local and Metropolitan Area Networks - Specific Requirements Part 3: Carrier Sense Multiple Access With Collision Detection (CSMA/CD) Access Method and Physical Layer Specifications</standardsfamilytitle>
+  <publicationinfo>
+    <idamsid>0b00006481043d7f</idamsid>
+    <stdnumber>P802.3-2008 (P802.3bb)/Cor 1/D2.0, Jul 2009</stdnumber>
+    <publicationtype>Standard</publicationtype>
+    <publicationsubtype>Standard Docs</publicationsubtype>
+    <standard_subtype>IEEE Standard</standard_subtype>
+    <ieeeabbrev>IEEESTD</ieeeabbrev>
+    <pubstatus>Active</pubstatus>
+    <publicationopenaccess>F</publicationopenaccess>
+    <standard_id>4562</standard_id>
+    <standard_status>Inactive</standard_status>
+    <standardmodifierset>
+      <standard_modifier>Draft</standard_modifier>
+    </standardmodifierset>
+    <packagememberset>
+      <packagemember>STDSELECT</packagemember>
+    </packagememberset>
+    <standard_family>802.3</standard_family>
+    <standardpackageset>
+      <standard_package>Local and Metropolitan Area Networks (LAN/MAN)</standard_package>
+      <standard_package>Communications</standard_package>
+      <standard_package>Foundations for Smart Grid</standard_package>
+    </standardpackageset>
+    <icscodes>
+      <code_term codenum="35.110">Networking</code_term>
+      <code_term codenum="35.100.20">Data link layer</code_term>
+      <code_term codenum="35.100.10">Physical layer</code_term>
+    </icscodes>
+    <pubtopicalbrowseset>
+      <pubtopicalbrowse>Communication, Networking and Broadcast Technologies</pubtopicalbrowse>
+    </pubtopicalbrowseset>
+    <copyrightgroup>
+      <copyright>
+        <year>2009</year>
+        <holder>IEEE</holder>
+      </copyright>
+    </copyrightgroup>
+    <publisher>
+      <publishername>IEEE</publishername>
+      <address>
+        <country>USA</country>
+      </address>
+    </publisher>
+    <holdstatus>Hold</holdstatus>
+    <confgroup>
+      <doi_permission>F</doi_permission>
+    </confgroup>
+    <amsid>5200236</amsid>
+  </publicationinfo>
+  <volume>
+    <volumeinfo>
+      <year>2009</year>
+      <idamsid>0b000064820db75a</idamsid>
+      <issue>
+        <amsid>5200237</amsid>
+        <issuestatus>Complete</issuestatus>
+      </issue>
+    </volumeinfo>
+    <article>
+      <title><![CDATA[IEEE Draft Standard for Information technology--Telecommunications and information exchange between systems--Local and metropolitan area networks--Specific requirements Part 3: Carrier Sense Multiple Access with Collision Detection (CSMA/CD) Access Method and Physical Layer Specifications Amendment: Corrigendum 1]]></title>
+      <articleinfo>
+        <articleseqnum>1</articleseqnum>
+        <idamsid>0b00006481043d83</idamsid>
+        <articlestatus>Active</articlestatus>
+        <articleopenaccess>F</articleopenaccess>
+        <articleshowflag>T</articleshowflag>
+        <articleplagiarizedflag>F</articleplagiarizedflag>
+        <articlenodoiflag>F</articlenodoiflag>
+        <articlecoverimageflag>F</articlecoverimageflag>
+        <articlereferenceflag>F</articlereferenceflag>
+        <articlepeerreviewflag>F</articlepeerreviewflag>
+        <holdstatus>Publish</holdstatus>
+        <articlecopyright holderisieee="Yes" year="0"/>
+        <abstract abstracttype="Standard"><![CDATA[This Corrigendum to IEEE Std 802.3-2008 corrects the PAUSE reaction timing delay for the 10GBASE-T port type.]]></abstract>
+        <date datetype="OriginalPub">
+          <year>2009</year>
+        </date>
+        <size>60908</size>
+        <filename docpartition="5" filetype="MainPDF">05200238.pdf</filename>
+        <artpagenums endpage="" startpage=""/>
+        <amsid>5200238</amsid>
+        <keywordset keywordtype="IEEEFree">
+          <keyword>
+            <keywordterm><![CDATA[802.3]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[802.3bb]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[802.3-2008/Cor 1]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[PAUSE]]></keywordterm>
+          </keyword>
+        </keywordset>
+      </articleinfo>
+    </article>
+  </volume>
+</publication>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE publication PUBLIC "-//IEEE//IDAMS Exchange V2.0.0//EN" "ieee_idams_exchange.dtd">
+<publication>
+  <title><![CDATA[IEEE Std 1012-1998 - Redline]]></title>
+  <normtitle><![CDATA[IEEE Std 1012-1998 - Redline]]></normtitle>
+  <standardsfamilytitle>IEEE Standard for Software Verification and Validation Plans</standardsfamilytitle>
+  <publicationinfo>
+    <idamsid>0b00006485c13ca1</idamsid>
+    <stdnumber>1012-1998</stdnumber>
+    <publicationtype>Standard</publicationtype>
+    <publicationsubtype>Standard Docs</publicationsubtype>
+    <standard_subtype>IEEE Standard</standard_subtype>
+    <ieeeabbrev>IEEESTD</ieeeabbrev>
+    <pubstatus>Active</pubstatus>
+    <publicationopenaccess>F</publicationopenaccess>
+    <standard_id>1468</standard_id>
+    <associated_punumber>5672</associated_punumber>
+    <standard_status>Superseded</standard_status>
+    <standardmodifierset>
+      <standard_modifier>Redline</standard_modifier>
+    </standardmodifierset>
+    <standard_bundle>
+      <bundle_name>IEEE Standard for Software Verification and Validation - Redline</bundle_name>
+      <bundle_type>Suggested</bundle_type>
+      <bundle_product_number>STDSURL94625</bundle_product_number>
+    </standard_bundle>
+    <standard_relationship prodnum="" relationship_date="12/31/1969 7:00:00 PM" type="V">2487</standard_relationship>
+    <standard_relationship prodnum="" relationship_date="12/31/1969 7:00:00 PM" type="S">9958</standard_relationship>
+    <packagememberset>
+      <packagemember>IEL</packagemember>
+      <packagemember>STDSELECT</packagemember>
+    </packagememberset>
+    <isbn isbntype="New-2005" mediatype="Electronic">978-1-5044-3894-0</isbn>
+    <standard_family>1012</standard_family>
+    <standardpackageset>
+      <standard_package>Software</standard_package>
+    </standardpackageset>
+    <icscodes>
+      <code_term codenum="35.080">Software</code_term>
+    </icscodes>
+    <pubsponsoringcommitteeset>
+      <pubsponsoringcommittee><![CDATA[Software &amp; Systems Engineering Standards Committee of the IEEE Computer Society]]></pubsponsoringcommittee>
+    </pubsponsoringcommitteeset>
+    <pubtopicalbrowseset>
+      <pubtopicalbrowse>Computing and Processing</pubtopicalbrowse>
+    </pubtopicalbrowseset>
+    <copyrightgroup>
+      <copyright>
+        <year>2017</year>
+        <holder>IEEE</holder>
+      </copyright>
+    </copyrightgroup>
+    <publisher>
+      <publishername>IEEE</publishername>
+      <address>
+        <city>New York</city>
+        <country>USA</country>
+      </address>
+    </publisher>
+    <productnumber pubtype="Online">STDSURL94625</productnumber>
+    <PubApprovalDate>19 March 1998</PubApprovalDate>
+    <holdstatus>Publish</holdstatus>
+    <confgroup>
+      <doi_permission>F</doi_permission>
+    </confgroup>
+    <amsid>7873193</amsid>
+  </publicationinfo>
+  <volume>
+    <volumeinfo>
+      <year>1998</year>
+      <idamsid>0b00006485c13ca2</idamsid>
+      <issue>
+        <amsid>7873194</amsid>
+        <issuestatus>Complete</issuestatus>
+      </issue>
+    </volumeinfo>
+    <article>
+      <title><![CDATA[IEEE Standard for Software Verification and Validation - Redline]]></title>
+      <articleinfo>
+        <articleseqnum>1</articleseqnum>
+        <idamsid>0b00006485c13ca3</idamsid>
+        <articlestatus>Active</articlestatus>
+        <articleopenaccess>F</articleopenaccess>
+        <articleshowflag>T</articleshowflag>
+        <articleplagiarizedflag>F</articleplagiarizedflag>
+        <articlenodoiflag>F</articlenodoiflag>
+        <articlecoverimageflag>F</articlecoverimageflag>
+        <articlereferenceflag>F</articlereferenceflag>
+        <articlepeerreviewflag>F</articlepeerreviewflag>
+        <holdstatus>Publish</holdstatus>
+        <articlecopyright holderisieee="Yes" year="0"/>
+        <abstract abstracttype="Standard"><![CDATA[Software verification and validation (V&amp;V) processes, which determine whether development products of a given activity conform to the requirements of that activity, and whether the software satisfies its intended use and user needs, are described. This determination may includeanalysis, evaluation, review, inspection, assessment, and testing of software products andprocesses. V&amp;V processes assess the software in the context of the system, including the operational environment, hardware, interfacing software, operators, and users.]]></abstract>
+        <articlestdscope><![CDATA[Expand the scope of the standard to include the use of software integrity levels as applied to software V&V, minimum V&V activities and tasks associated with each integrity level, V&V of reusable software, definition of independent V&V and V&V metrics.]]></articlestdscope>
+        <articlestdpurpose><![CDATA[To clarify the use of terminology in the document, incorporate essons learned during field experience of users, and clarify definition of V&V processes.]]></articlestdpurpose>
+        <date datetype="OriginalPub">
+          <year>1998</year>
+          <month>July</month>
+          <day>20</day>
+        </date>
+        <date datetype="ePub">
+          <year>2017</year>
+          <month>3</month>
+          <day>7</day>
+        </date>
+        <size>9616840</size>
+        <filename docpartition="7" filetype="MainPDF">07873195.pdf</filename>
+        <artpagenums endpage="139" startpage="1">1-139</artpagenums>
+        <amsid>7873195</amsid>
+        <keywordset keywordtype="IEEE">
+          <keyword>
+            <keywordterm><![CDATA[IEEE Standards]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[Product life cycle management]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[Software reliability]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[Verification]]></keywordterm>
+          </keyword>
+        </keywordset>
+        <keywordset keywordtype="IEEEFree">
+          <keyword>
+            <keywordterm><![CDATA[software integrity]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[software life cycle processes]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[verification and validation]]></keywordterm>
+          </keyword>
+        </keywordset>
+      </articleinfo>
+    </article>
+  </volume>
+</publication>

@@ -1,0 +1,53 @@
+<bibdata type="standard" schema-version="v1.2.9">
+  <title type="main" format="text/plain">ISO/IEC Standard for Information Technology--Portable Operating System Interface (POSIX®) System--Test Methods for Measuring Conformance to POSIX®--Part 1: System Interfaces</title>
+  <uri type="src">https://ieeexplore.ieee.org/document/4140777</uri>
+  <docidentifier type="IEEE" primary="true">ISO/IEC 14515.1-2000</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">ISO/IEC 14515.1™-2000</docidentifier>
+  <docidentifier type="ISBN">0-7381-2691-8</docidentifier>
+  <docidentifier type="DOI">10.1109/IEEESTD.2000.339567</docidentifier>
+  <docnumber>ISO/IEC 14515.1-2000</docnumber>
+  <date type="created">
+    <on>2000</on>
+  </date>
+  <date type="issued">
+    <on>2000-03-01</on>
+  </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Institute of Electrical and Electronics Engineers</name>
+      <abbreviation>IEEE</abbreviation>
+      <uri>http://www.ieee.org</uri>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">ISO/IEC 14515-1:2000(E) (IEEE Std 2003.1-1992) provides a definition of the requirements placed upon providers of POSIX test methods for POSIX.1 (ISO/IEC 9945-1:1990; IEEE Std 1003.1-1990). These requirements consist of a POSIX.1-ordered list of assertions defining those aspects of POSIX.1 that are to be tested and the associated test methods that are to be used in performing those tests. This standard is aimed primarily at POSIX.1 test suite providers and POSIX.1 implementors. This standard specifies those aspects of POSIX.1 that shall be verified by conformance test methods.</abstract>
+  <status>
+    <stage>approved</stage>
+  </status>
+  <copyright>
+    <from>2000</from>
+    <owner>
+      <organization>
+        <name>Institute of Electrical and Electronics Engineers</name>
+        <abbreviation>IEEE</abbreviation>
+        <uri>http://www.ieee.org</uri>
+      </organization>
+    </owner>
+  </copyright>
+  <ext schema-version="v1.0.1">
+    <doctype>standard</doctype>
+    <editorialgroup>
+      <committee>Portable Applications Standards Committee of the IEEE Computer Society</committee>
+    </editorialgroup>
+    <ics>
+      <code>35.060</code>
+      <text>Languages used in information technology</text>
+    </ics>
+    <standard_status>Active</standard_status>
+    <standard_modified>Approved</standard_modified>
+    <pubstatus>Active</pubstatus>
+    <holdstatus>Publish</holdstatus>
+  </ext>
+</bibdata>

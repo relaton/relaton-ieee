@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE publication PUBLIC "-//IEEE//IDAMS Exchange V2.0.0//EN" "ieee_idams_exchange.dtd">
+<publication>
+  <title><![CDATA[ANSI C37.12-1991 (Revision of ANSI C37.12-1981)]]></title>
+  <normtitle><![CDATA[ANSI C37.12-1991 (Revision of ANSI C37.12-1981)]]></normtitle>
+  <standardsfamilytitle>American Standard Guide to s AC High-Voltage Circuit Breakers Rated on a Symmetrical Current Basis and a Total Current Basis</standardsfamilytitle>
+  <publicationinfo>
+    <idamsid>0b00006485de91f3</idamsid>
+    <stdnumber>C37.12-1991</stdnumber>
+    <publicationtype>Standard</publicationtype>
+    <publicationsubtype>Standard Docs</publicationsubtype>
+    <standard_subtype>IEEE Standard</standard_subtype>
+    <ieeeabbrev>IEEESTD</ieeeabbrev>
+    <pubstatus>Active</pubstatus>
+    <publicationopenaccess>F</publicationopenaccess>
+    <standard_id>7110</standard_id>
+    <standard_status>Superseded</standard_status>
+    <packagememberset>
+      <packagemember>IEL</packagemember>
+      <packagemember>STDSELECT</packagemember>
+    </packagememberset>
+    <isbn isbntype="New-2005" mediatype="Electronic">978-1-5044-4170-4</isbn>
+    <standard_family>C37.12</standard_family>
+    <standardpackageset>
+      <standard_package>Power Switchgear, Circuits and Fuses</standard_package>
+      <standard_package>Reading Room</standard_package>
+    </standardpackageset>
+    <pubsponsoringcommitteeset>
+      <pubsponsoringcommittee><![CDATA[Switchgear of the IEEE Power and Energy Society]]></pubsponsoringcommittee>
+    </pubsponsoringcommitteeset>
+    <pubtopicalbrowseset>
+      <pubtopicalbrowse>Components, Circuits, Devices and Systems</pubtopicalbrowse>
+      <pubtopicalbrowse>Power, Energy and Industry Applications</pubtopicalbrowse>
+    </pubtopicalbrowseset>
+    <copyrightgroup>
+      <copyright>
+        <year>1991</year>
+        <holder>IEEE/ANSI</holder>
+      </copyright>
+    </copyrightgroup>
+    <publisher>
+      <publishername>IEEE</publishername>
+      <address>
+        <city>New York</city>
+        <country>USA</country>
+      </address>
+    </publisher>
+    <productnumber pubtype="Online">STDSU22674</productnumber>
+    <PubApprovalDate>1991</PubApprovalDate>
+    <holdstatus>Publish</holdstatus>
+    <confgroup>
+      <doi_permission>F</doi_permission>
+    </confgroup>
+    <amsid>7970248</amsid>
+  </publicationinfo>
+  <volume>
+    <volumeinfo>
+      <year>1990</year>
+      <idamsid>0b00006488f6fdbe</idamsid>
+      <issue>
+        <amsid>8684486</amsid>
+        <issuestatus>Complete</issuestatus>
+      </issue>
+    </volumeinfo>
+    <article>
+      <title><![CDATA[American National Standard for AC High-Voltage Circuit Breakers Rated on a Symmetrical Current Basis&#8212; Specifications Guide]]></title>
+      <articleinfo>
+        <articleseqnum>1</articleseqnum>
+        <articledoi>10.1109/IEEESTD.1990.8684487</articledoi>
+        <idamsid>0b00006488f6fdbf</idamsid>
+        <articlestatus>Active</articlestatus>
+        <articleopenaccess>F</articleopenaccess>
+        <articleshowflag>T</articleshowflag>
+        <articleplagiarizedflag>F</articleplagiarizedflag>
+        <articlenodoiflag>F</articlenodoiflag>
+        <articlecoverimageflag>F</articlecoverimageflag>
+        <articlereferenceflag>F</articlereferenceflag>
+        <articlepeerreviewflag>F</articlepeerreviewflag>
+        <holdstatus>Publish</holdstatus>
+        <articlecopyright holderisieee="Yes" year="0"/>
+        <abstract abstracttype="Standard"><![CDATA[These specifications apply to all indoor and outdoor types of ac high-voltage circuit breakers rated above 1000 volts. This document is issued only as a guide for use in compiling specifications for ac high-voltage circuit breakers. The imperative mode of the language is illustrative of that used in specifications. It does not imply that this document is anything other than advisory in its scope.]]></abstract>
+        <date datetype="OriginalPub">
+          <year>1990</year>
+          <month>Nov.</month>
+          <day>30</day>
+        </date>
+        <date datetype="ePub">
+          <year>2019</year>
+          <month>4</month>
+          <day>5</day>
+        </date>
+        <size>82727</size>
+        <filename docpartition="7" filetype="MainPDF">08684487.pdf</filename>
+        <artpagenums endpage="33" startpage="1">1-33</artpagenums>
+        <amsid>8684487</amsid>
+      </articleinfo>
+    </article>
+  </volume>
+</publication>

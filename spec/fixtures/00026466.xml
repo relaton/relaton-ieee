@@ -1,0 +1,52 @@
+<bibdata type="standard" schema-version="v1.2.9">
+  <title type="main" format="text/plain">An American National Standard IEEE Standard for Mechanical Core Specifications for Microcomputers</title>
+  <uri type="src">https://ieeexplore.ieee.org/document/26466</uri>
+  <docidentifier type="IEEE" primary="true">ANSI/IEEE 8</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">ANSI/IEEE 8™</docidentifier>
+  <docidentifier type="ISBN">0-7381-4593-9</docidentifier>
+  <docidentifier type="DOI">10.1109/IEEESTD.1988.122133</docidentifier>
+  <docnumber>ANSI/IEEE 8</docnumber>
+  <date type="created">
+    <on>1988</on>
+  </date>
+  <date type="issued">
+    <on>1987-12-10</on>
+  </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Institute of Electrical and Electronics Engineers</name>
+      <abbreviation>IEEE</abbreviation>
+      <uri>http://www.ieee.org</uri>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <status>
+    <stage>withdrawn</stage>
+  </status>
+  <copyright>
+    <from>1988</from>
+    <owner>
+      <organization>
+        <name>Institute of Electrical and Electronics Engineers</name>
+        <abbreviation>IEEE</abbreviation>
+        <uri>http://www.ieee.org</uri>
+      </organization>
+    </owner>
+  </copyright>
+  <ext schema-version="v1.0.1">
+    <doctype>standard</doctype>
+    <editorialgroup>
+      <committee>Technical Committee on Microprocessors and Microcomputers of the IEEE Computer Society</committee>
+    </editorialgroup>
+    <ics>
+      <code>35.160</code>
+      <text>Microprocessor systems</text>
+    </ics>
+    <standard_status>Inactive</standard_status>
+    <standard_modified>Withdrawn</standard_modified>
+    <pubstatus>Active</pubstatus>
+    <holdstatus>Publish</holdstatus>
+  </ext>
+</bibdata>

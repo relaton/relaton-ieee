@@ -1,0 +1,49 @@
+<bibdata type="standard" schema-version="v1.2.9">
+  <title type="main" format="text/plain">IEEE Draft Standard for Qualification of Class 1E Static Battery Chargers and Inverters for Nuclear Power Generating Stations</title>
+  <uri type="src">https://ieeexplore.ieee.org/document/4152543</uri>
+  <docidentifier type="IEEE" primary="true">IEEE P650/D-9.-2006</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">IEEE P650™/D-9.-2006</docidentifier>
+  <docidentifier type="ISBN">978-1-5044-3212-2</docidentifier>
+  <docnumber>IEEE P650/D-9.-2006</docnumber>
+  <date type="created">
+    <on>2006</on>
+  </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Institute of Electrical and Electronics Engineers</name>
+      <abbreviation>IEEE</abbreviation>
+      <uri>http://www.ieee.org</uri>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <status>
+    <stage>draft</stage>
+  </status>
+  <copyright>
+    <from>2006</from>
+    <owner>
+      <organization>
+        <name>Institute of Electrical and Electronics Engineers</name>
+        <abbreviation>IEEE</abbreviation>
+        <uri>http://www.ieee.org</uri>
+      </organization>
+    </owner>
+  </copyright>
+  <ext schema-version="v1.0.1">
+    <doctype>standard</doctype>
+    <ics>
+      <code>27.120.99</code>
+      <text>Other standards related to nuclear energy</text>
+    </ics>
+    <ics>
+      <code>29.200</code>
+      <text>Rectifiers. Converters. Stabilized power supply</text>
+    </ics>
+    <standard_status>Inactive</standard_status>
+    <standard_modified>Draft</standard_modified>
+    <pubstatus>Active</pubstatus>
+    <holdstatus>Hold</holdstatus>
+  </ext>
+</bibdata>

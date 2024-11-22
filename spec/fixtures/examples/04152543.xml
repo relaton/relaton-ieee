@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE publication PUBLIC "-//IEEE//IDAMS Exchange V2.0.0//EN" "ieee_idams_exchange.dtd">
+<publication>
+  <title><![CDATA[IEEE Std P650/D9. Feb 2006]]></title>
+  <normtitle><![CDATA[IEEE Std P650/D9. Feb 2006]]></normtitle>
+  <standardsfamilytitle>IEEE Standard for Qualification of Class 1E Static Battery Chargers and Inverters for Nuclear Power Generating Stations</standardsfamilytitle>
+  <publicationinfo>
+    <idamsid>0b000064807b4508</idamsid>
+    <stdnumber>P650/D9. Feb 2006</stdnumber>
+    <publicationtype>Standard</publicationtype>
+    <publicationsubtype>Standard Docs</publicationsubtype>
+    <standard_subtype>IEEE Standard</standard_subtype>
+    <ieeeabbrev>IEEESTD</ieeeabbrev>
+    <pubstatus>Active</pubstatus>
+    <publicationopenaccess>F</publicationopenaccess>
+    <standard_id>3883</standard_id>
+    <standard_status>Inactive</standard_status>
+    <standardmodifierset>
+      <standard_modifier>Draft</standard_modifier>
+    </standardmodifierset>
+    <packagememberset>
+      <packagemember>STDSELECT</packagemember>
+    </packagememberset>
+    <isbn isbntype="New-2005" mediatype="Electronic">978-1-5044-3212-2</isbn>
+    <standard_family>650</standard_family>
+    <standardpackageset>
+      <standard_package>Nuclear Engineering</standard_package>
+    </standardpackageset>
+    <icscodes>
+      <code_term codenum="27.120.99">Other standards related to nuclear energy</code_term>
+      <code_term codenum="29.200">Rectifiers. Converters. Stabilized power supply</code_term>
+    </icscodes>
+    <pubtopicalbrowseset>
+      <pubtopicalbrowse>Nuclear Engineering</pubtopicalbrowse>
+    </pubtopicalbrowseset>
+    <copyrightgroup>
+      <copyright>
+        <year>2006</year>
+        <holder>IEEE</holder>
+      </copyright>
+    </copyrightgroup>
+    <publisher>
+      <publishername>IEEE</publishername>
+      <address>
+        <country>USA</country>
+      </address>
+    </publisher>
+    <holdstatus>Hold</holdstatus>
+    <confgroup>
+      <doi_permission>F</doi_permission>
+    </confgroup>
+    <amsid>4152541</amsid>
+  </publicationinfo>
+  <volume>
+    <volumeinfo>
+      <year>2006</year>
+      <idamsid>0b000064820da861</idamsid>
+      <issue>
+        <amsid>4152542</amsid>
+        <issuestatus>Complete</issuestatus>
+      </issue>
+    </volumeinfo>
+    <article>
+      <title><![CDATA[IEEE Draft Standard for Qualification of Class 1E Static Battery Chargers and Inverters for Nuclear Power Generating Stations]]></title>
+      <articleinfo>
+        <articleseqnum>1</articleseqnum>
+        <idamsid>0b000064807b450c</idamsid>
+        <articlestatus>Active</articlestatus>
+        <articleopenaccess>F</articleopenaccess>
+        <articleshowflag>F</articleshowflag>
+        <articleplagiarizedflag>F</articleplagiarizedflag>
+        <articlenodoiflag>F</articlenodoiflag>
+        <articlecoverimageflag>F</articlecoverimageflag>
+        <articlereferenceflag>F</articlereferenceflag>
+        <articlepeerreviewflag>F</articlepeerreviewflag>
+        <holdstatus>Publish</holdstatus>
+        <articlecopyright holderisieee="Yes" year="0"/>
+        <date datetype="OriginalPub">
+          <year>2006</year>
+        </date>
+        <size>239128</size>
+        <filename docpartition="5" filetype="MainPDF">04152543.pdf</filename>
+        <artpagenums endpage="" startpage=""/>
+        <amsid>4152543</amsid>
+      </articleinfo>
+    </article>
+  </volume>
+</publication>

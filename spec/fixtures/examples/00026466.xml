@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE publication PUBLIC "-//IEEE//IDAMS Exchange V2.0.0//EN" "ieee_idams_exchange.dtd">
+<publication>
+  <title><![CDATA[ANSI/IEEE Std: 8-Bit Backplane Interface - STEbus,]]></title>
+  <normtitle><![CDATA[ANSI/IEEE Std: 8-Bit Backplane Interface - STEbus,]]></normtitle>
+  <standardsfamilytitle>IEEE Standard for an 8-Bit Backplane Interface: STEbus</standardsfamilytitle>
+  <publicationinfo>
+    <idamsid>0b000064801a5723</idamsid>
+    <stdnumber>1000-1987</stdnumber>
+    <publicationtype>Standard</publicationtype>
+    <publicationsubtype>Standard Docs</publicationsubtype>
+    <standard_subtype>IEEE Standard</standard_subtype>
+    <ieeeabbrev>IEEESTD</ieeeabbrev>
+    <pubstatus>Active</pubstatus>
+    <publicationopenaccess>F</publicationopenaccess>
+    <standard_id>1378</standard_id>
+    <standard_status>Inactive</standard_status>
+    <standardmodifierset>
+      <standard_modifier>Withdrawn</standard_modifier>
+    </standardmodifierset>
+    <packagememberset>
+      <packagemember>IEL</packagemember>
+      <packagemember>STDSELECT</packagemember>
+    </packagememberset>
+    <isbn isbntype="Historical" mediatype="Electronic">0-7381-4593-9</isbn>
+    <standard_family>1000</standard_family>
+    <standardpackageset>
+      <standard_package>BusArchitecture/Microprocessor/Microcomputer</standard_package>
+    </standardpackageset>
+    <icscodes>
+      <code_term codenum="35.160">Microprocessor systems</code_term>
+    </icscodes>
+    <pubsponsoringcommitteeset>
+      <pubsponsoringcommittee><![CDATA[Technical Committee on Microprocessors and Microcomputers of the IEEE Computer Society]]></pubsponsoringcommittee>
+    </pubsponsoringcommitteeset>
+    <pubtopicalbrowseset>
+      <pubtopicalbrowse>Components, Circuits, Devices and Systems</pubtopicalbrowse>
+    </pubtopicalbrowseset>
+    <copyrightgroup>
+      <copyright>
+        <year>1988</year>
+        <holder>IEEE</holder>
+      </copyright>
+    </copyrightgroup>
+    <publisher>
+      <publishername>IEEE</publishername>
+    </publisher>
+    <productnumber pubtype="Online">STDWD12112</productnumber>
+    <PubApprovalDate>10 December 1987</PubApprovalDate>
+    <holdstatus>Publish</holdstatus>
+    <confgroup>
+      <doi_permission>F</doi_permission>
+    </confgroup>
+    <amsid>2607</amsid>
+  </publicationinfo>
+  <volume>
+    <volumeinfo>
+      <year>1988</year>
+      <idamsid>0b000064820d9d9a</idamsid>
+      <issue>
+        <amsid>977</amsid>
+        <issuestatus>Complete</issuestatus>
+      </issue>
+    </volumeinfo>
+    <article>
+      <title><![CDATA[An American National Standard IEEE Standard for Mechanical Core Specifications for Microcomputers]]></title>
+      <articleinfo>
+        <articleseqnum>1</articleseqnum>
+        <articledoi>10.1109/IEEESTD.1988.122133</articledoi>
+        <idamsid>0b000064801a5727</idamsid>
+        <articlestatus>Active</articlestatus>
+        <articleopenaccess>F</articleopenaccess>
+        <articleshowflag>F</articleshowflag>
+        <articleplagiarizedflag>F</articleplagiarizedflag>
+        <articlenodoiflag>F</articlenodoiflag>
+        <articlecoverimageflag>F</articlecoverimageflag>
+        <articlereferenceflag>F</articlereferenceflag>
+        <articlepeerreviewflag>F</articlepeerreviewflag>
+        <holdstatus>Publish</holdstatus>
+        <articlecopyright holderisieee="Yes" year="0"/>
+        <date datetype="OriginalPub">
+          <year>1988</year>
+        </date>
+        <size>4153921</size>
+        <filename docpartition="1" filetype="MainPDF">00026466.pdf</filename>
+        <artpagenums endpage="" startpage="0_1">0_1</artpagenums>
+        <amsid>26466</amsid>
+      </articleinfo>
+    </article>
+  </volume>
+</publication>

@@ -1,0 +1,71 @@
+<bibdata type="standard" schema-version="v1.2.9">
+  <title type="main" format="text/plain">IEEE Draft Standard for Information Technology-Telecommunications and information exchange between systems-Local and metropolitan networks-Specific requirements-Part II: Wireless LAN Medium Access Control (MAC) and Physical Layer (PHY) Specifications: Amendment 7: Interworking with External Networks</title>
+  <uri type="src">https://ieeexplore.ieee.org/document/5491847</uri>
+  <docidentifier type="IEEE" primary="true">IEEE P802.11u/D-9.0</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">IEEE P802.11u™/D-9.0</docidentifier>
+  <docidentifier type="ISBN">978-0-7381-5758-0</docidentifier>
+  <docidentifier type="DOI">10.1109/IEEESTD.2010.5491847</docidentifier>
+  <docnumber>IEEE P802.11u/D-9.0</docnumber>
+  <date type="updated">
+    <on>2010-07-09</on>
+  </date>
+  <date type="created">
+    <on>2010-06-15</on>
+  </date>
+  <date type="issued">
+    <on>2010-06-15</on>
+  </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Institute of Electrical and Electronics Engineers</name>
+      <abbreviation>IEEE</abbreviation>
+      <uri>http://www.ieee.org</uri>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">This amendment specifies enhancements to the 802.11 MAC that support WLAN Interworking with External Networks. It enables higher layer functionalities to provide overall end-to-end solutions. The main goals of 802.1 lu are aiding network discovery and selection, enabling information transfer from external networks, enabling emergency services, and interfacing Subscription Service Provider Networks (SSPN) to 802.11 Networks that support Interworking with External Networks.</abstract>
+  <abstract format="text/plain" language="en" script="Latn">This amendment specifies enhancements to the 802.11 MAC that support WLAN Interworking with External Networks. It enables higher layer functionalities to provide overall end-to-end solutions. The main goals of 802.11u are aiding network discovery and selection, enabling information transfer from external networks, enabling emergency services, and interfacing Subscription Service Provider Networks (SSPN) to 802.11 Networks that support Interworking with External Networks.</abstract>
+  <status>
+    <stage>draft</stage>
+  </status>
+  <copyright>
+    <from>2010</from>
+    <owner>
+      <organization>
+        <name>Institute of Electrical and Electronics Engineers</name>
+        <abbreviation>IEEE</abbreviation>
+        <uri>http://www.ieee.org</uri>
+      </organization>
+    </owner>
+  </copyright>
+  <keyword>IEEE standards</keyword>
+  <keyword>Multiaccess communication</keyword>
+  <keyword>Emergency services</keyword>
+  <keyword>Wireless LAN</keyword>
+  <keyword>Consumer electronics</keyword>
+  <keyword>Advertising</keyword>
+  <ext schema-version="v1.0.1">
+    <doctype>standard</doctype>
+    <editorialgroup>
+      <committee>Local and Metropolitan Area Networks of IEEE Computer Society</committee>
+    </editorialgroup>
+    <ics>
+      <code>35.110</code>
+      <text>Networking</text>
+    </ics>
+    <ics>
+      <code>35.100.20</code>
+      <text>Data link layer</text>
+    </ics>
+    <ics>
+      <code>35.100.10</code>
+      <text>Physical layer</text>
+    </ics>
+    <standard_status>Inactive</standard_status>
+    <standard_modified>Draft</standard_modified>
+    <pubstatus>Active</pubstatus>
+    <holdstatus>Publish</holdstatus>
+  </ext>
+</bibdata>

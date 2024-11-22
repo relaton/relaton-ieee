@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE publication PUBLIC "-//IEEE//IDAMS Exchange V2.0.0//EN" "ieee_idams_exchange.dtd">
+<publication>
+  <title><![CDATA[IEEE Std P802.11u/D9.0]]></title>
+  <normtitle><![CDATA[IEEE Std P802.11u/D9.0]]></normtitle>
+  <standardsfamilytitle>IEEE Standard for Information technology--Telecommunications and information exchange between systems Local and metropolitan area networks--Specific requirements Part 11: Wireless LAN Medium Access Control (MAC) and Physical Layer (PHY) Specifications</standardsfamilytitle>
+  <publicationinfo>
+    <idamsid>0b000064812a1c3d</idamsid>
+    <stdnumber>P802.11u</stdnumber>
+    <publicationtype>Standard</publicationtype>
+    <publicationsubtype>Standard Docs</publicationsubtype>
+    <standard_subtype>IEEE Standard</standard_subtype>
+    <ieeeabbrev>IEEESTD</ieeeabbrev>
+    <pubstatus>Active</pubstatus>
+    <publicationopenaccess>F</publicationopenaccess>
+    <standard_id>3694</standard_id>
+    <standard_status>Inactive</standard_status>
+    <standardmodifierset>
+      <standard_modifier>Draft</standard_modifier>
+    </standardmodifierset>
+    <packagememberset>
+      <packagemember>STDSELECT</packagemember>
+    </packagememberset>
+    <isbn isbntype="New-2005" mediatype="Electronic">978-0-7381-5758-0</isbn>
+    <standard_family>802.11</standard_family>
+    <standardpackageset>
+      <standard_package>Local and Metropolitan Area Networks (LAN/MAN)</standard_package>
+      <standard_package>Communications</standard_package>
+      <standard_package>Foundations for Smart Grid</standard_package>
+    </standardpackageset>
+    <icscodes>
+      <code_term codenum="35.110">Networking</code_term>
+      <code_term codenum="35.100.20">Data link layer</code_term>
+      <code_term codenum="35.100.10">Physical layer</code_term>
+    </icscodes>
+    <pubsponsoringcommitteeset>
+      <pubsponsoringcommittee><![CDATA[Local and Metropolitan Area Networks of IEEE Computer Society]]></pubsponsoringcommittee>
+    </pubsponsoringcommitteeset>
+    <pubtopicalbrowseset>
+      <pubtopicalbrowse>Communication, Networking and Broadcast Technologies</pubtopicalbrowse>
+    </pubtopicalbrowseset>
+    <copyrightgroup>
+      <copyright>
+        <year>2010</year>
+        <holder>IEEE</holder>
+      </copyright>
+    </copyrightgroup>
+    <publisher>
+      <publishername>IEEE</publishername>
+      <publisherloc>New York, NY</publisherloc>
+      <address>
+        <country>USA</country>
+      </address>
+    </publisher>
+    <productnumber pubtype="Online">STDUD5618</productnumber>
+    <PubApprovalDate>15 June 2010</PubApprovalDate>
+    <holdstatus>Publish</holdstatus>
+    <confgroup>
+      <doi_permission>F</doi_permission>
+    </confgroup>
+    <amsid>5491845</amsid>
+  </publicationinfo>
+  <volume>
+    <volumeinfo>
+      <year>2010</year>
+      <idamsid>0b000064820dbc2c</idamsid>
+      <issue>
+        <amsid>5491846</amsid>
+        <issuestatus>Complete</issuestatus>
+      </issue>
+    </volumeinfo>
+    <article>
+      <title><![CDATA[IEEE Draft Standard for Information Technology-Telecommunications and information exchange between systems-Local and metropolitan networks-Specific requirements-Part II: Wireless LAN Medium Access Control (MAC) and Physical Layer (PHY) Specifications: Amendment 7: Interworking with External Networks]]></title>
+      <articleinfo>
+        <articleseqnum>1</articleseqnum>
+        <articledoi>10.1109/IEEESTD.2010.5491847</articledoi>
+        <idamsid>0b000064812a1c3f</idamsid>
+        <articlestatus>Active</articlestatus>
+        <articleopenaccess>F</articleopenaccess>
+        <articleshowflag>T</articleshowflag>
+        <articleplagiarizedflag>F</articleplagiarizedflag>
+        <articlenodoiflag>F</articlenodoiflag>
+        <articlecoverimageflag>F</articlecoverimageflag>
+        <articlereferenceflag>F</articlereferenceflag>
+        <articlepeerreviewflag>F</articlepeerreviewflag>
+        <holdstatus>Publish</holdstatus>
+        <articlecopyright holderisieee="Yes" year="0"/>
+        <abstract abstracttype="Regular"><![CDATA[This amendment specifies enhancements to the 802.11 MAC that support WLAN Interworking with External Networks. It enables higher layer functionalities to provide overall end-to-end solutions. The main goals of 802.1 lu are aiding network discovery and selection, enabling information transfer from external networks, enabling emergency services, and interfacing Subscription Service Provider Networks (SSPN) to 802.11 Networks that support Interworking with External Networks.]]></abstract>
+        <abstract abstracttype="Standard"><![CDATA[This amendment specifies enhancements to the 802.11 MAC that support WLAN Interworking with External Networks. It enables higher layer functionalities to provide overall end-to-end solutions. The main goals of 802.11u are aiding network discovery and selection, enabling information transfer from external networks, enabling emergency services, and interfacing Subscription Service Provider Networks (SSPN) to 802.11 Networks that support Interworking with External Networks.]]></abstract>
+        <date datetype="LastInspecUpd">
+          <year>2010</year>
+          <month>7</month>
+          <day>9</day>
+        </date>
+        <date datetype="OriginalPub">
+          <year>2010</year>
+          <month>June</month>
+          <day>15</day>
+        </date>
+        <size>3254948</size>
+        <filename docpartition="5" filetype="MainPDF">05491847.pdf</filename>
+        <artpagenums endpage="186" startpage="1">1-186</artpagenums>
+        <amsid>5491847</amsid>
+        <keywordset keywordtype="IEEE">
+          <keyword>
+            <keywordterm><![CDATA[IEEE standards]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[Multiaccess communication]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[Emergency services]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[Wireless LAN]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[Consumer electronics]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[Advertising]]></keywordterm>
+          </keyword>
+        </keywordset>
+        <keywordset keywordtype="IEEEFree">
+          <keyword>
+            <keywordterm><![CDATA[P802.11u]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[802.11]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[wireless LAN]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[interworking]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[interworking with external networks]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[E911]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[emergency services]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[interface]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[QoS mapping]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[MIH]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[media independent handover]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[network advertisement]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[network discovery]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[network selection]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[emergency alert system]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[SSP]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[SSPN]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[subscriber service provider]]></keywordterm>
+          </keyword>
+          <keyword>
+            <keywordterm><![CDATA[generic advertisement service]]></keywordterm>
+          </keyword>
+        </keywordset>
+      </articleinfo>
+    </article>
+  </volume>
+</publication>
