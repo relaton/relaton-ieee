@@ -1,0 +1,59 @@
+<bibdata type="standard" schema-version="v1.2.9">
+  <title type="main" format="text/plain">American National Standard for AC High-Voltage Circuit Breakers Rated on a Symmetrical Current Basis— Specifications Guide</title>
+  <uri type="src">https://ieeexplore.ieee.org/document/8684487</uri>
+  <docidentifier type="IEEE" primary="true">ANSI C37.12-1991</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">ANSI C37.12™-1991</docidentifier>
+  <docidentifier type="ISBN">978-1-5044-4170-4</docidentifier>
+  <docidentifier type="DOI">10.1109/IEEESTD.1990.8684487</docidentifier>
+  <docnumber>ANSI C37.12-1991</docnumber>
+  <date type="created">
+    <on>1990-11-30</on>
+  </date>
+  <date type="published">
+    <on>2019-04-05</on>
+  </date>
+  <date type="issued">
+    <on>1991</on>
+  </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Institute of Electrical and Electronics Engineers</name>
+      <abbreviation>IEEE</abbreviation>
+      <uri>http://www.ieee.org</uri>
+      <address>
+        <city>New York</city>
+        <country>USA</country>
+      </address>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">These specifications apply to all indoor and outdoor types of ac high-voltage circuit breakers rated above 1000 volts. This document is issued only as a guide for use in compiling specifications for ac high-voltage circuit breakers. The imperative mode of the language is illustrative of that used in specifications. It does not imply that this document is anything other than advisory in its scope.</abstract>
+  <copyright>
+    <from>1991</from>
+    <owner>
+      <organization>
+        <name>Institute of Electrical and Electronics Engineers</name>
+        <abbreviation>IEEE</abbreviation>
+        <uri>http://www.ieee.org</uri>
+      </organization>
+    </owner>
+    <owner>
+      <organization>
+        <name>American National Standards Institute</name>
+        <abbreviation>ANSI</abbreviation>
+        <uri>https://www.ansi.org</uri>
+      </organization>
+    </owner>
+  </copyright>
+  <ext schema-version="v1.0.1">
+    <doctype>standard</doctype>
+    <editorialgroup>
+      <committee>Switchgear of the IEEE Power and Energy Society</committee>
+    </editorialgroup>
+    <standard_status>Superseded</standard_status>
+    <pubstatus>Active</pubstatus>
+    <holdstatus>Publish</holdstatus>
+  </ext>
+</bibdata>

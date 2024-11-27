@@ -1,0 +1,68 @@
+<bibdata type="standard" schema-version="v1.2.9">
+  <title type="title-main" format="text/plain">IEEE Standard for Software Verification and Validation</title>
+  <title type="main" format="text/plain">IEEE Standard for Software Verification and Validation - Redline</title>
+  <uri type="src">https://ieeexplore.ieee.org/document/7873195</uri>
+  <docidentifier type="IEEE" primary="true">IEEE 1012-1998 Redline</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">IEEE 1012™-1998 Redline</docidentifier>
+  <docidentifier type="ISBN">978-1-5044-3894-0</docidentifier>
+  <docnumber>IEEE 1012-1998 Redline</docnumber>
+  <date type="created">
+    <on>1998-07-20</on>
+  </date>
+  <date type="published">
+    <on>2017-03-07</on>
+  </date>
+  <date type="issued">
+    <on>1998-03-19</on>
+  </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Institute of Electrical and Electronics Engineers</name>
+      <abbreviation>IEEE</abbreviation>
+      <uri>http://www.ieee.org</uri>
+      <address>
+        <city>New York</city>
+        <country>USA</country>
+      </address>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">Software verification and validation (V&amp;V) processes, which determine whether development products of a given activity conform to the requirements of that activity, and whether the software satisfies its intended use and user needs, are described. This determination may includeanalysis, evaluation, review, inspection, assessment, and testing of software products andprocesses. V&amp;V processes assess the software in the context of the system, including the operational environment, hardware, interfacing software, operators, and users.</abstract>
+  <copyright>
+    <from>2017</from>
+    <owner>
+      <organization>
+        <name>Institute of Electrical and Electronics Engineers</name>
+        <abbreviation>IEEE</abbreviation>
+        <uri>http://www.ieee.org</uri>
+      </organization>
+    </owner>
+  </copyright>
+  <relation type="updates">
+    <description format="text/plain" language="en" script="Latn">revises</description>
+    <bibitem>
+      <formattedref format="text/plain">IEEE P650</formattedref>
+      <docidentifier type="IEEE" primary="true">IEEE P650</docidentifier>
+    </bibitem>
+  </relation>
+  <keyword>IEEE Standards</keyword>
+  <keyword>Product life cycle management</keyword>
+  <keyword>Software reliability</keyword>
+  <keyword>Verification</keyword>
+  <ext schema-version="v1.0.1">
+    <doctype>redline</doctype>
+    <editorialgroup>
+      <committee>Software &amp;amp; Systems Engineering Standards Committee of the IEEE Computer Society</committee>
+    </editorialgroup>
+    <ics>
+      <code>35.080</code>
+      <text>Software</text>
+    </ics>
+    <standard_status>Superseded</standard_status>
+    <standard_modified>Redline</standard_modified>
+    <pubstatus>Active</pubstatus>
+    <holdstatus>Publish</holdstatus>
+  </ext>
+</bibdata>

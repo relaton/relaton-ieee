@@ -1,5 +1,5 @@
 require "zip"
-require "relaton_ieee/data_parser"
+require "relaton_ieee/idams_parser"
 require "relaton_ieee/rawbib_id_parser"
 
 module RelatonIeee
@@ -88,27 +88,25 @@ module RelatonIeee
     # @param [String] filename source file
     #
     def fetch_doc(xml, filename) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
-      doc = Nokogiri::XML(xml).at("/publication")
-      unless doc
+      begin
+        doc = Ieee::Idams::Publication.from_xml(xml)
+      rescue StandardError
         Util.warn "Empty file: `#{filename}`"
         return
       end
-      stdid = doc.at("./publicationinfo/standard_id")&.text
-      return if stdid == "0"
+      return if doc.publicationinfo&.standard_id == "0"
 
-      fetcher = DataParser.new doc, self
-      bib = fetcher.parse
+      bib = IdamsParser.new(doc, self).parse
       if bib.docnumber.nil?
-        nt = doc&.at("./normtitle")&.text
-        Util.warn "PubID parse error. Normtitle: `#{nt}`, file: `#{filename}`"
+        Util.warn "PubID parse error. Normtitle: `#{doc.normtitle}`, file: `#{filename}`"
         return
       end
-      amsid = doc.at("./publicationinfo/amsid").text
+      amsid = doc.publicationinfo.amsid
       if backrefs.value?(bib.docidentifier[0].id) && /updates\.\d+/ !~ filename
         oamsid = backrefs.key bib.docidentifier[0].id
         Util.warn "Document exists ID: `#{bib.docidentifier[0].id}` AMSID: " \
              "`#{amsid}` source: `#{filename}`. Other AMSID: `#{oamsid}`"
-        if bib.docidentifier[0].id.include?(doc.at("./publicationinfo/stdnumber").text)
+        if bib.docidentifier.find(&:primary).id.include?(doc.publicationinfo.stdnumber)
           save_doc bib # rewrite file if the PubID matches to the stdnumber
           backrefs[amsid] = bib.docidentifier[0].id
         end
@@ -125,9 +123,9 @@ module RelatonIeee
     # @param [Nokogiri::XML::Element] amsid relation data
     #
     def add_crossref(docnumber, amsid)
-      return if RELATION_TYPES[amsid[:type]] == false
+      return if RELATION_TYPES[amsid.type] == false
 
-      ref = { amsid: amsid.text, type: amsid[:type] }
+      ref = { amsid: amsid.date_string, type: amsid.type }
       if @crossrefs[docnumber]
         @crossrefs[docnumber] << ref
       else @crossrefs[docnumber] = [ref]

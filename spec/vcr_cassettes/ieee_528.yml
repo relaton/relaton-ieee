@@ -39,21 +39,21 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 0A87:27958F:3404B8:37B7D0:6740F753
+      - B135:307D20:8CBAE:9993A:6740C3CB
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 22 Nov 2024 21:27:50 GMT
+      - Fri, 22 Nov 2024 18:15:16 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kjyo7100129-IAD
+      - cache-iad-kjyo7100069-IAD
       X-Cache:
       - HIT
       X-Cache-Hits:
-      - '1'
+      - '0'
       X-Timer:
-      - S1732310871.942906,VS0,VE1
+      - S1732299317.536662,VS0,VE64
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
@@ -61,11 +61,11 @@ http_interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - 774fb03472a47381aa71a0b4de02d39bf05fa22b
+      - 40e591e41d2e7b1aad200c7b030cbac691fb4329
       Expires:
-      - Fri, 22 Nov 2024 21:32:50 GMT
+      - Fri, 22 Nov 2024 18:20:16 GMT
       Source-Age:
-      - '2'
+      - '0'
     body:
       encoding: ASCII-8BIT
       base64_string: |
@@ -2247,127 +2247,5 @@ http_interactions:
         ePnXrPz/AVBLAQIeAxQAAAAIAGKBSVlC0v2IE34BAPgFDAANABgAAAAAAAEA
         AACkgQAAAABpbmRleC12MS55YW1sVVQFAAMYqwZndXgLAAEE6QMAAAR/AAAA
         UEsFBgAAAAABAAEAUwAAAFp+AQAAAA==
-  recorded_at: Fri, 22 Nov 2024 21:27:50 GMT
-- request:
-    method: get
-    uri: https://raw.githubusercontent.com/relaton/relaton-data-ieee/main/data/IEEE_P802.16-2004_D-5_COR1-2005.yaml
-    body:
-      encoding: US-ASCII
-      base64_string: ''
-    headers:
-      User-Agent:
-      - Faraday v2.7.12
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2323'
-      Cache-Control:
-      - max-age=300
-      Content-Security-Policy:
-      - default-src 'none'; style-src 'unsafe-inline'; sandbox
-      Content-Type:
-      - text/plain; charset=utf-8
-      Etag:
-      - W/"4291e6e25e66f49bf5a7330f229358e2efc72bf31925dbcff56ee9b7c7717a85"
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - deny
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Github-Request-Id:
-      - 0DA5:56C5F:35E76F:399F89:6740F757
-      Accept-Ranges:
-      - bytes
-      Date:
-      - Fri, 22 Nov 2024 21:27:51 GMT
-      Via:
-      - 1.1 varnish
-      X-Served-By:
-      - cache-iad-kjyo7100126-IAD
-      X-Cache:
-      - MISS
-      X-Cache-Hits:
-      - '0'
-      X-Timer:
-      - S1732310872.741845,VS0,VE102
-      Vary:
-      - Authorization,Accept-Encoding,Origin
-      Access-Control-Allow-Origin:
-      - "*"
-      Cross-Origin-Resource-Policy:
-      - cross-origin
-      X-Fastly-Request-Id:
-      - 345279b2671d80af0611ed6ee992fc346d4be9bc
-      Expires:
-      - Fri, 22 Nov 2024 21:32:51 GMT
-      Source-Age:
-      - '0'
-    body:
-      encoding: ASCII-8BIT
-      base64_string: |
-        LS0tCnNjaGVtYS12ZXJzaW9uOiB2MS4yLjMKaWQ6IElFRUVQODAyLjE2LTIw
-        MDQtRC01LUNvcjEtMjAwNQp0aXRsZToKLSBjb250ZW50OiAnU3RhbmRhcmQg
-        Zm9yIENvcnJpZ2VuZHVtIHRvIElFRUUgU3RhbmRhcmQgZm9yIExvY2FsIGFu
-        ZCBNZXRyb3BvbGl0YW4gQXJlYQogICAgTmV0d29ya3MgLSBQYXJ0IDE2OiBB
-        aXIgSW50ZXJmYWNlIGZvciBGaXhlZCBCcm9hZGJhbmQgV2lyZWxlc3MgQWNj
-        ZXNzIFN5c3RlbXMnCiAgZm9ybWF0OiB0ZXh0L3BsYWluCiAgdHlwZTogbWFp
-        bgpsaW5rOgotIGNvbnRlbnQ6IGh0dHBzOi8vaWVlZXhwbG9yZS5pZWVlLm9y
-        Zy9kb2N1bWVudC80MDY3MTM5CiAgdHlwZTogc3JjCnR5cGU6IHN0YW5kYXJk
-        CmRvY2lkOgotIGlkOiBJRUVFIFA4MDIuMTYtMjAwNC9ELTUvQ29yMS0yMDA1
-        CiAgdHlwZTogSUVFRQogIHByaW1hcnk6IHRydWUKLSBpZDogSUVFRSBQODAy
-        LjE2LTIwMDTihKIvRC01L0NvcjEtMjAwNQogIHR5cGU6IElFRUUKICBzY29w
-        ZTogdHJhZGVtYXJrCiAgcHJpbWFyeTogdHJ1ZQotIGlkOiA5NzgtMC03Mzgx
-        LTQ2NzQtNAogIHR5cGU6IElTQk4KZG9jbnVtYmVyOiBJRUVFIFA4MDIuMTYt
-        MjAwNC9ELTUvQ29yMS0yMDA1CmRhdGU6Ci0gdHlwZTogY3JlYXRlZAogIHZh
-        bHVlOiAnMjAwNS0wMS0wMScKLSB0eXBlOiBwdWJsaXNoZWQKICB2YWx1ZTog
-        JzIwMTktMDEtMjknCi0gdHlwZTogaXNzdWVkCiAgdmFsdWU6ICcyMDA1LTEx
-        LTA4Jwpjb250cmlidXRvcjoKLSBvcmdhbml6YXRpb246CiAgICBuYW1lOgog
-        ICAgLSBjb250ZW50OiBJbnN0aXR1dGUgb2YgRWxlY3RyaWNhbCBhbmQgRWxl
-        Y3Ryb25pY3MgRW5naW5lZXJzCiAgICBhYmJyZXZpYXRpb246CiAgICAgIGNv
-        bnRlbnQ6IElFRUUKICAgIHVybDogaHR0cDovL3d3dy5pZWVlLm9yZwogICAg
-        Y29udGFjdDoKICAgIC0gYWRkcmVzczoKICAgICAgICBjaXR5OiBOZXcgWW9y
-        awogICAgICAgIGNvdW50cnk6IFVTQQogIHJvbGU6CiAgLSB0eXBlOiBwdWJs
-        aXNoZXIKcmV2ZGF0ZTogJzIwMTktMDEtMjknCmxhbmd1YWdlOgotIGVuCnNj
-        cmlwdDoKLSBMYXRuCmFic3RyYWN0OgotIGNvbnRlbnQ6IFRoaXMgY29ycmln
-        ZW5kdW0gY29udGFpbnMgc3Vic3RhbnRpdmUgY29ycmVjdGlvbnMgdG8gSUVF
-        RSBTdGQgODAyLjE2LTIwMDQuCiAgICBJdCBjb3JyZWN0cyBlcnJvcnMsIGlu
-        Y29uc2lzdGVuY2llcywgYW5kIGFtYmlndWl0aWVzIGluIHRoYXQgc3RhbmRh
-        cmQuIEl0IGRvZXMKICAgIG5vdCBjb250YWluIG5ldyBtYXRlcmlhbC4KICBs
-        YW5ndWFnZToKICAtIGVuCiAgc2NyaXB0OgogIC0gTGF0bgogIGZvcm1hdDog
-        dGV4dC9wbGFpbgpkb2NzdGF0dXM6CiAgc3RhZ2U6CiAgICB2YWx1ZTogZHJh
-        ZnQKY29weXJpZ2h0OgotIG93bmVyOgogIC0gbmFtZToKICAgIC0gY29udGVu
-        dDogSW5zdGl0dXRlIG9mIEVsZWN0cmljYWwgYW5kIEVsZWN0cm9uaWNzIEVu
-        Z2luZWVycwogICAgYWJicmV2aWF0aW9uOgogICAgICBjb250ZW50OiBJRUVF
-        CiAgICB1cmw6IGh0dHA6Ly93d3cuaWVlZS5vcmcKICBmcm9tOiAnMjAwNScK
-        a2V5d29yZDoKLSBjb250ZW50OiBCcm9hZGJhbmQgY29tbXVuaWNhdGlvbgot
-        IGNvbnRlbnQ6IElFRUUgODAyLjE2IFN0YW5kYXJkCi0gY29udGVudDogTWV0
-        cm9wb2xpdGFuIGFyZWEgbmV0d29ya3MKLSBjb250ZW50OiBMaWNlbnNlcwot
-        IGNvbnRlbnQ6IFBhdGVudHMKLSBjb250ZW50OiBmaXhlZCBicm9hZGJhbmQg
-        d2lyZWxlc3MgYWNjZXNzIG5ldHdvcmtzCi0gY29udGVudDogbW9iaWxlIGJy
-        b2FkYmFuZCB3aXJlbGVzcyBhY2Nlc3MgbmV0d29yawotIGNvbnRlbnQ6IG1l
-        dHJvcG9saXRhbiBhcmVhIG5ldHdvcmsKLSBjb250ZW50OiBtaWNyb3dhdmUK
-        LSBjb250ZW50OiBtaWxsaW1ldGVyIHdhdmUKLSBjb250ZW50OiBXaXJlbGVz
-        c01BTiYjODQ4Mjsgc3RhbmRhcmRzCi0gY29udGVudDogSUVFRSA4MDIgRHJh
-        ZnRzCi0gY29udGVudDogSUVFRSBQODAyIERyYWZ0cwpkb2N0eXBlOiBzdGFu
-        ZGFyZAplZGl0b3JpYWxncm91cDoKICBjb21taXR0ZWU6CiAgLSBMQU4vTUFO
-        IFN0YW5kYXJkcyBDb21taXR0ZWUgb2YgdGhlIElFRUUgQ29tcHV0ZXIgU29j
-        aWV0eQppY3M6Ci0gY29kZTogJzM1LjExMCcKICB0ZXh0OiBOZXR3b3JraW5n
-        Ci0gY29kZTogMzUuMTAwLjIwCiAgdGV4dDogRGF0YSBsaW5rIGxheWVyCi0g
-        Y29kZTogMzUuMTAwLjEwCiAgdGV4dDogUGh5c2ljYWwgbGF5ZXIKZXh0Ogog
-        IHNjaGVtYS12ZXJzaW9uOiB2MS4wLjAKICBzdGFuZGFyZF9zdGF0dXM6IElu
-        YWN0aXZlCiAgc3RhbmRhcmRfbW9kaWZpZWQ6IERyYWZ0CiAgcHVic3RhdHVz
-        OiBBY3RpdmUKICBob2xkc3RhdHVzOiBIb2xkCg==
-  recorded_at: Fri, 22 Nov 2024 21:27:51 GMT
+  recorded_at: Fri, 22 Nov 2024 18:15:16 GMT
 recorded_with: VCR 6.3.1

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE publication PUBLIC "-//IEEE//IDAMS Exchange V2.0.0//EN" "ieee_idams_exchange.dtd">
+<publication>
+  <title><![CDATA[ISO/IEC 14515-1:2000 IEEE Std 2003.1-2000]]></title>
+  <normtitle><![CDATA[ISO/IEC 14515-1:2000 IEEE Std 2003.1-2000]]></normtitle>
+  <standardsfamilytitle>ISO/IEC Information technology- Portable Operating System Interface (POSIX)- Test methods for measuring conformance to POSIX- Part 1: System interfaces</standardsfamilytitle>
+  <publicationinfo>
+    <idamsid>0b00006480787470</idamsid>
+    <stdnumber>14515-1:2000 IEEE Std 2003.1-2000</stdnumber>
+    <publicationtype>Standard</publicationtype>
+    <publicationsubtype>Standard Docs</publicationsubtype>
+    <standard_subtype>IEEE Standard</standard_subtype>
+    <ieeeabbrev>IEEESTD</ieeeabbrev>
+    <pubstatus>Active</pubstatus>
+    <publicationopenaccess>F</publicationopenaccess>
+    <standard_id>4674</standard_id>
+    <standard_status>Active</standard_status>
+    <standardmodifierset>
+      <standard_modifier>Approved</standard_modifier>
+    </standardmodifierset>
+    <packagememberset>
+      <packagemember>None</packagemember>
+      <packagemember>IEL</packagemember>
+      <packagemember>STDSELECT</packagemember>
+    </packagememberset>
+    <isbn isbntype="Historical" mediatype="Paper">0-7381-2691-8</isbn>
+    <isbn isbntype="Historical" mediatype="Electronic">0-7381-2692-6</isbn>
+    <standard_family>14515-1</standard_family>
+    <standardpackageset>
+      <standard_package>Portable Applications</standard_package>
+    </standardpackageset>
+    <icscodes>
+      <code_term codenum="35.060">Languages used in information technology</code_term>
+    </icscodes>
+    <pubsponsoringcommitteeset>
+      <pubsponsoringcommittee><![CDATA[Portable Applications Standards Committee of the IEEE Computer Society]]></pubsponsoringcommittee>
+    </pubsponsoringcommitteeset>
+    <pubtopicalbrowseset>
+      <pubtopicalbrowse>Components, Circuits, Devices and Systems</pubtopicalbrowse>
+    </pubtopicalbrowseset>
+    <copyrightgroup>
+      <copyright>
+        <year>2000</year>
+        <holder>IEEE</holder>
+      </copyright>
+    </copyrightgroup>
+    <publisher>
+      <publishername>IEEE</publishername>
+      <address>
+        <country>USA</country>
+      </address>
+    </publisher>
+    <productnumber pubtype="Online">STD94894</productnumber>
+    <PubApprovalDate>1 March 2000</PubApprovalDate>
+    <holdstatus>Publish</holdstatus>
+    <confgroup>
+      <doi_permission>F</doi_permission>
+    </confgroup>
+    <amsid>4140775</amsid>
+  </publicationinfo>
+  <volume>
+    <volumeinfo>
+      <year>2000</year>
+      <idamsid>0b000064820da729</idamsid>
+      <issue>
+        <amsid>4140776</amsid>
+        <issuestatus>Complete</issuestatus>
+      </issue>
+    </volumeinfo>
+    <article>
+      <title><![CDATA[ISO/IEC Standard for Information Technology--Portable Operating System Interface (POSIX&#174;) System--Test Methods for Measuring Conformance to POSIX&#174;--Part 1: System Interfaces]]></title>
+      <articleinfo>
+        <articleseqnum>1</articleseqnum>
+        <articledoi>10.1109/IEEESTD.2000.339567</articledoi>
+        <idamsid>0b00006480787474</idamsid>
+        <articlestatus>Active</articlestatus>
+        <articleopenaccess>F</articleopenaccess>
+        <articleshowflag>F</articleshowflag>
+        <articleplagiarizedflag>F</articleplagiarizedflag>
+        <articlenodoiflag>F</articlenodoiflag>
+        <articlecoverimageflag>F</articlecoverimageflag>
+        <articlereferenceflag>F</articlereferenceflag>
+        <articlepeerreviewflag>F</articlepeerreviewflag>
+        <holdstatus>Publish</holdstatus>
+        <articlecopyright holderisieee="Yes" year="0"/>
+        <abstract abstracttype="Standard"><![CDATA[ISO/IEC 14515-1:2000(E) (IEEE Std 2003.1-1992) provides a definition of the requirements placed upon providers of POSIX test methods for POSIX.1 (ISO/IEC 9945-1:1990; IEEE Std 1003.1-1990). These requirements consist of a POSIX.1-ordered list of assertions defining those aspects of POSIX.1 that are to be tested and the associated test methods that are to be used in performing those tests. This standard is aimed primarily at POSIX.1 test suite providers and POSIX.1 implementors. This standard specifies those aspects of POSIX.1 that shall be verified by conformance test methods.]]></abstract>
+        <date datetype="OriginalPub">
+          <year>2000</year>
+        </date>
+        <size>1680099</size>
+        <filename docpartition="5" filetype="MainPDF">04140777.pdf</filename>
+        <artpagenums endpage="" startpage=""/>
+        <amsid>4140777</amsid>
+      </articleinfo>
+    </article>
+  </volume>
+</publication>

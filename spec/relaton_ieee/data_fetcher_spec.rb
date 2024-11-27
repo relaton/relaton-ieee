@@ -37,14 +37,14 @@ RSpec.describe RelatonIeee::DataFetcher do
 
     context "when ouput file exists" do
       let(:bib) do
-        docid = RelatonBib::DocumentIdentifier.new id: "IEEE 5678"
+        docid = RelatonBib::DocumentIdentifier.new id: "IEEE 5678", primary: true
         title = [{ content: "Title" }]
         RelatonIeee::IeeeBibliographicItem.new docnumber: "5678", title: title, docid: [docid]
       end
 
       before(:each) do
         parser = double "parser"
-        expect(RelatonIeee::DataParser).to receive(:new).and_return parser
+        expect(RelatonIeee::IdamsParser).to receive(:new).and_return parser
         expect(parser).to receive(:parse).and_return bib
         df.instance_variable_get(:@backrefs)["4321"] = "IEEE 5678"
       end
@@ -90,8 +90,7 @@ RSpec.describe RelatonIeee::DataFetcher do
       end
 
       it "add cross-reference to existed PubID" do
-        amsid = double "amsid", text: "1234"
-        expect(amsid).to receive(:[]).with(:type).and_return("C").twice
+        amsid = double "amsid", date_string: "1234", type: "C"
         df.add_crossref "5678", amsid
         expect(df.instance_variable_get(:@crossrefs)["5678"]).to eq [
           { amsid: "3412", type: "V" }, { amsid: "1234", type: "C" }
@@ -165,7 +164,7 @@ RSpec.describe RelatonIeee::DataFetcher do
       XML
       bib = double "bib", docnumber: nil
       dp = double "dp", parse: bib
-      expect(RelatonIeee::DataParser).to receive(:new).with(kind_of(Nokogiri::XML::Element), df).and_return dp
+      expect(RelatonIeee::IdamsParser).to receive(:new).with(kind_of(Ieee::Idams::PubModel), df).and_return dp
       expect do
         expect(df.fetch_doc(xml, "filename")).to be_nil
       end.to output(
