@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "faraday", "~> 2.7.0"
-  spec.add_dependency "ieee-idams", "~> 0.2.9"
+  spec.add_dependency "ieee-idams", "~> 0.2.10"
   spec.add_dependency "mini_portile2", "~> 2.8.0"
   spec.add_dependency "relaton-bib", "~> 1.19.0"
   spec.add_dependency "relaton-index", "~> 0.2.0"

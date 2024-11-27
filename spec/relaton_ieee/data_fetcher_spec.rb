@@ -37,7 +37,7 @@ RSpec.describe RelatonIeee::DataFetcher do
 
     context "when ouput file exists" do
       let(:bib) do
-        docid = RelatonBib::DocumentIdentifier.new id: "IEEE 5678"
+        docid = RelatonBib::DocumentIdentifier.new id: "IEEE 5678", primary: true
         title = [{ content: "Title" }]
         RelatonIeee::IeeeBibliographicItem.new docnumber: "5678", title: title, docid: [docid]
       end
@@ -164,7 +164,7 @@ RSpec.describe RelatonIeee::DataFetcher do
       XML
       bib = double "bib", docnumber: nil
       dp = double "dp", parse: bib
-      expect(RelatonIeee::IdamsParser).to receive(:new).with(kind_of(Ieee::Idams::Publication), df).and_return dp
+      expect(RelatonIeee::IdamsParser).to receive(:new).with(kind_of(Ieee::Idams::PubModel), df).and_return dp
       expect do
         expect(df.fetch_doc(xml, "filename")).to be_nil
       end.to output(

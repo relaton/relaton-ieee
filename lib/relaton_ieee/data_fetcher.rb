@@ -106,7 +106,7 @@ module RelatonIeee
         oamsid = backrefs.key bib.docidentifier[0].id
         Util.warn "Document exists ID: `#{bib.docidentifier[0].id}` AMSID: " \
              "`#{amsid}` source: `#{filename}`. Other AMSID: `#{oamsid}`"
-        if bib.docidentifier[0].id.include?(doc.publicationinfo.stdnumber)
+        if bib.docidentifier.find(&:primary).id.include?(doc.publicationinfo.stdnumber)
           save_doc bib # rewrite file if the PubID matches to the stdnumber
           backrefs[amsid] = bib.docidentifier[0].id
         end
