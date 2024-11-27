@@ -46,6 +46,25 @@
   <keyword>Wireless LAN</keyword>
   <keyword>Consumer electronics</keyword>
   <keyword>Advertising</keyword>
+  <keyword>P802.11u</keyword>
+  <keyword>802.11</keyword>
+  <keyword>wireless LAN</keyword>
+  <keyword>interworking</keyword>
+  <keyword>interworking with external networks</keyword>
+  <keyword>E911</keyword>
+  <keyword>emergency services</keyword>
+  <keyword>interface</keyword>
+  <keyword>QoS mapping</keyword>
+  <keyword>MIH</keyword>
+  <keyword>media independent handover</keyword>
+  <keyword>network advertisement</keyword>
+  <keyword>network discovery</keyword>
+  <keyword>network selection</keyword>
+  <keyword>emergency alert system</keyword>
+  <keyword>SSP</keyword>
+  <keyword>SSPN</keyword>
+  <keyword>subscriber service provider</keyword>
+  <keyword>generic advertisement service</keyword>
   <ext schema-version="v1.0.1">
     <doctype>standard</doctype>
     <editorialgroup>

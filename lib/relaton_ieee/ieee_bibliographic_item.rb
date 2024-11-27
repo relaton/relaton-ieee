@@ -1,3 +1,5 @@
+require_relative "renderer/bibxml"
+
 module RelatonIeee
   class IeeeBibliographicItem < RelatonBib::BibliographicItem
     SUBTYPES = %w[amendment corrigendum erratum].freeze
@@ -101,6 +103,18 @@ module RelatonIeee
       out = super
       out += "#{prefix}.trialuse:: #{trialuse}\n" unless trialuse.nil?
       out
+    end
+
+    #
+    # Render BibXML (RFC)
+    #
+    # @param [Nokogiri::XML::Builder, nil] builder
+    # @param [Boolean] include_keywords (false)
+    #
+    # @return [String, Nokogiri::XML::Builder::NodeBuilder] XML
+    #
+    def to_bibxml(builder = nil, include_keywords: false)
+      Renderer::BibXML.new(self).render builder: builder, include_keywords: include_keywords
     end
   end
 end
