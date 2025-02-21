@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative "lib/relaton_ieee/version"
+require_relative "lib/relaton/ieee/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "relaton-ieee"
-  spec.version       = RelatonIeee::VERSION
+  spec.version       = Relaton::Ieee::VERSION
   spec.authors       = ["Ribose Inc."]
   spec.email         = ["open.source@ribose.com"]
 
-  spec.summary       = "RelatonIeee: retrieve IEEE Standards for bibliographic "\
+  spec.summary       = "Relaton::Ieee: retrieve IEEE Standards for bibliographic "\
                        "use using the IeeeBibliographicItem model"
-  spec.description   = "RelatonIeee: retrieve IEEE Standards for bibliographic "\
+  spec.description   = "Relaton::Ieee: retrieve IEEE Standards for bibliographic "\
                        "use using the IeeeBibliographicItem model"
   spec.homepage      = "https://github.com/relaton/relaton-ieee"
   spec.license       = "BSD-2-Clause"
@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "faraday", "~> 2.7.0"
   spec.add_dependency "ieee-idams", "~> 0.2.10"
   spec.add_dependency "mini_portile2", "~> 2.8.0"
-  spec.add_dependency "relaton-bib", "~> 1.20.0"
+  spec.add_dependency "relaton-bib", "~> 2.0.0-alpha.1"
   spec.add_dependency "relaton-index", "~> 0.2.0"
   spec.add_dependency "rubyzip", "~> 2.3.0"
 end

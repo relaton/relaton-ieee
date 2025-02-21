@@ -1,0 +1,34 @@
+<bibitem id="IEEEP802.5t-D-2.5" type="standard" schema-version="v1.2.9">
+  <title type="main">IEEE Draft Supplement to Information technology Telecommunications and information exchange between systems Local and metropolitan area networks Part 5: Token Ring access method and physical layer specifications 100 Mbit/s Dedicated Token Ring Operation (Supplement to ISO/IEC 8802-5:1998 and ISO/IEC 8802-5:1998/Amd.1:1998)</title>
+  <uri type="src">https://ieeexplore.ieee.org/document/4039945</uri>
+  <docidentifier type="IEEE" primary="true">IEEE P802.5t/D-2.5</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">IEEE P802.5t™/D-2.5</docidentifier>
+  <docidentifier type="ISBN">978-1-5044-3975-6</docidentifier>
+  <docnumber>IEEE P802.5t/D-2.5</docnumber>
+  <date type="created">
+    <on>1998</on>
+  </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Institute of Electrical and Electronics Engineers</name>
+      <abbreviation>IEEE</abbreviation>
+      <uri>http://www.ieee.org</uri>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <status>
+    <stage>draft</stage>
+  </status>
+  <copyright>
+    <from>1998</from>
+    <owner>
+      <organization>
+        <name>Institute of Electrical and Electronics Engineers</name>
+        <abbreviation>IEEE</abbreviation>
+        <uri>http://www.ieee.org</uri>
+      </organization>
+    </owner>
+  </copyright>
+</bibitem>
