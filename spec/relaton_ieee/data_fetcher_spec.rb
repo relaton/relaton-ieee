@@ -159,7 +159,7 @@ RSpec.describe RelatonIeee::DataFetcher do
     it "return nil and warn if docnumber is nil" do
       xml = <<~XML
         <publication>
-          <normtitle>Title</normtitle>
+          <normtitle><![CDATA[Title]]></normtitle>
         </publication>
       XML
       bib = double "bib", docnumber: nil

@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
                        "use using the IeeeBibliographicItem model"
   spec.homepage      = "https://github.com/relaton/relaton-ieee"
   spec.license       = "BSD-2-Clause"
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.7.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 3.1.0")
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "faraday", "~> 2.7.0"
-  spec.add_dependency "ieee-idams", "~> 0.2.10"
+  spec.add_dependency "ieee-idams", "~> 0.2.14"
   spec.add_dependency "mini_portile2", "~> 2.8.0"
   spec.add_dependency "relaton-bib", "~> 1.20.0"
   spec.add_dependency "relaton-index", "~> 0.2.0"
