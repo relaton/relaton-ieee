@@ -1,11 +1,11 @@
 <bibdata type="standard" schema-version="v1.2.9">
   <title type="main" format="text/plain">American National Standard for AC High-Voltage Circuit Breakers Rated on a Symmetrical Current Basis— Specifications Guide</title>
   <uri type="src">https://ieeexplore.ieee.org/document/8684487</uri>
-  <docidentifier type="IEEE" primary="true">ANSI C37.12-1991</docidentifier>
-  <docidentifier type="IEEE" scope="trademark" primary="true">ANSI C37.12™-1991</docidentifier>
+  <docidentifier type="IEEE" primary="true">ANSI C37.12-1991 (Revision of ANSI C37.12-1981)</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">ANSI C37.12-1991 (Revision of ANSI C37.12-1981)™</docidentifier>
   <docidentifier type="ISBN">978-1-5044-4170-4</docidentifier>
   <docidentifier type="DOI">10.1109/IEEESTD.1990.8684487</docidentifier>
-  <docnumber>ANSI C37.12-1991</docnumber>
+  <docnumber>ANSI C37.12-1991 (Revision of ANSI C37.12-1981)</docnumber>
   <date type="created">
     <on>1990-11-30</on>
   </date>
