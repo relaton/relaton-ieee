@@ -34,7 +34,7 @@ module RelatonIeee
     # @return [String] PubID
     #
     def docnumber
-      @docnumber ||= pubid&.to_id
+      @docnumber ||= pubid&.to_s
     end
 
     #
@@ -76,7 +76,7 @@ module RelatonIeee
     def parse_docid # rubocop:disable Metrics/MethodLength
       ids = @doc.isbn_doi
 
-      ids.unshift(id: pubid.to_s(trademark: true), scope: "trademark", type: "IEEE", primary: true)
+      ids.unshift(id: pubid.to_s(with_trademark: true), scope: "trademark", type: "IEEE", primary: true)
       ids.unshift(id: pubid.to_s, type: "IEEE", primary: true)
 
       ids.map { |dcid| RelatonBib::DocumentIdentifier.new(**dcid) }

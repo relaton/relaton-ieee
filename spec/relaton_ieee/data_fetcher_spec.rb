@@ -3,7 +3,9 @@ RSpec.describe RelatonIeee::DataFetcher do
     expect(FileUtils).to receive(:mkdir_p).with("data")
     files = Dir["spec/fixtures/rawbib/**/*.{xml,zip}"]
     expect(Dir).to receive(:[]).with("ieee-rawbib/**/*.{xml,zip}").and_return files
-    expect(File).to receive(:write).with("data/IEEE_P802.22_D-3.0-2011-03.yaml", kind_of(String), encoding: "UTF-8")
+    expect(File).to receive(:write).with(
+      "data/IEEE_DRAFT_STD_P802.22_D3.0_MARCH_2011.yaml", /IEEE Draft/, encoding: "UTF-8"
+    )
     RelatonIeee::DataFetcher.fetch
   end
 

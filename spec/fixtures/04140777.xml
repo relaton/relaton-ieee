@@ -1,11 +1,11 @@
 <bibdata type="standard" schema-version="v1.2.9">
   <title type="main" format="text/plain">ISO/IEC Standard for Information Technology--Portable Operating System Interface (POSIX®) System--Test Methods for Measuring Conformance to POSIX®--Part 1: System Interfaces</title>
   <uri type="src">https://ieeexplore.ieee.org/document/4140777</uri>
-  <docidentifier type="IEEE" primary="true">ISO/IEC 14515.1-2000</docidentifier>
-  <docidentifier type="IEEE" scope="trademark" primary="true">ISO/IEC 14515.1™-2000</docidentifier>
+  <docidentifier type="IEEE" primary="true">ISO/IEC 14515-1:2000 (IEEE 2003.1-2000)</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">ISO/IEC 14515-1:2000 (IEEE 2003.1-2000)™</docidentifier>
   <docidentifier type="ISBN">0-7381-2691-8</docidentifier>
   <docidentifier type="DOI">10.1109/IEEESTD.2000.339567</docidentifier>
-  <docnumber>ISO/IEC 14515.1-2000</docnumber>
+  <docnumber>ISO/IEC 14515-1:2000 (IEEE 2003.1-2000)</docnumber>
   <date type="created">
     <on>2000</on>
   </date>
