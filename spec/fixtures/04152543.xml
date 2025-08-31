@@ -1,10 +1,10 @@
 <bibdata type="standard" schema-version="v1.2.9">
   <title type="main" format="text/plain">IEEE Draft Standard for Qualification of Class 1E Static Battery Chargers and Inverters for Nuclear Power Generating Stations</title>
   <uri type="src">https://ieeexplore.ieee.org/document/4152543</uri>
-  <docidentifier type="IEEE" primary="true">IEEE P650/D-9.-2006</docidentifier>
-  <docidentifier type="IEEE" scope="trademark" primary="true">IEEE P650™/D-9.-2006</docidentifier>
+  <docidentifier type="IEEE" primary="true">IEEE Std P650/D-9.-2006</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">IEEE Std P650™/D-9.-2006</docidentifier>
   <docidentifier type="ISBN">978-1-5044-3212-2</docidentifier>
-  <docnumber>IEEE P650/D-9.-2006</docnumber>
+  <docnumber>IEEE Std P650/D-9.-2006</docnumber>
   <date type="created">
     <on>2006</on>
   </date>

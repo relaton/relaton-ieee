@@ -2,10 +2,10 @@
   <title type="title-main" format="text/plain">IEEE Standard for Software Verification and Validation</title>
   <title type="main" format="text/plain">IEEE Standard for Software Verification and Validation - Redline</title>
   <uri type="src">https://ieeexplore.ieee.org/document/7873195</uri>
-  <docidentifier type="IEEE" primary="true">IEEE 1012-1998 Redline</docidentifier>
-  <docidentifier type="IEEE" scope="trademark" primary="true">IEEE 1012™-1998 Redline</docidentifier>
+  <docidentifier type="IEEE" primary="true">IEEE Std 1012-1998 Redline</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">IEEE Std 1012™-1998 Redline</docidentifier>
   <docidentifier type="ISBN">978-1-5044-3894-0</docidentifier>
-  <docnumber>IEEE 1012-1998 Redline</docnumber>
+  <docnumber>IEEE Std 1012-1998 Redline</docnumber>
   <date type="created">
     <on>1998-07-20</on>
   </date>

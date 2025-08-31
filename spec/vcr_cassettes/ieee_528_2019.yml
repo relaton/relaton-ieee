@@ -39,33 +39,33 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 44A8:207DBD:2A7303:33E191:680FE5C9
+      - A1A9:3901B8:596C85:734713:68ABC952
       Accept-Ranges:
       - bytes
       Date:
-      - Mon, 28 Apr 2025 20:33:31 GMT
+      - Mon, 25 Aug 2025 02:24:18 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kjyo7100035-IAD
+      - cache-iad-kjyo7100120-IAD
       X-Cache:
-      - HIT
+      - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1745872412.784051,VS0,VE1
+      - S1756088658.381339,VS0,VE62
       Vary:
-      - Authorization,Accept-Encoding,Origin
+      - Authorization,Accept-Encoding
       Access-Control-Allow-Origin:
       - "*"
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - 53f853cd696b195970a3f087313607e0a0435792
+      - 7b885d8f077c2cc9b538009a9672c62bb9082eab
       Expires:
-      - Mon, 28 Apr 2025 20:38:31 GMT
+      - Mon, 25 Aug 2025 02:29:18 GMT
       Source-Age:
-      - '81'
+      - '0'
     body:
       encoding: ASCII-8BIT
       base64_string: |
@@ -2247,7 +2247,7 @@ http_interactions:
         ePnXrPz/AVBLAQIeAxQAAAAIAGKBSVlC0v2IE34BAPgFDAANABgAAAAAAAEA
         AACkgQAAAABpbmRleC12MS55YW1sVVQFAAMYqwZndXgLAAEE6QMAAAR/AAAA
         UEsFBgAAAAABAAEAUwAAAFp+AQAAAA==
-  recorded_at: Mon, 28 Apr 2025 20:33:31 GMT
+  recorded_at: Mon, 25 Aug 2025 02:24:18 GMT
 - request:
     method: get
     uri: https://raw.githubusercontent.com/relaton/relaton-data-ieee/main/data/IEEE_528-2019.yaml
@@ -2287,33 +2287,33 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 544C:207DBD:2A734E:33E1FE:680FE5CC
+      - C8FB:1AE900:592B01:730921:68ABC952
       Accept-Ranges:
       - bytes
       Date:
-      - Mon, 28 Apr 2025 20:33:32 GMT
+      - Mon, 25 Aug 2025 02:24:19 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kjyo7100165-IAD
+      - cache-iad-kjyo7100118-IAD
       X-Cache:
-      - HIT
+      - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1745872413.597855,VS0,VE1
+      - S1756088660.544540,VS0,VE79
       Vary:
-      - Authorization,Accept-Encoding,Origin
+      - Authorization,Accept-Encoding
       Access-Control-Allow-Origin:
       - "*"
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - bec02f3feddf64ae10d04cab3569c9f69c7e75c8
+      - f323bb783adec6cabc4b3b6969286bced859de50
       Expires:
-      - Mon, 28 Apr 2025 20:38:32 GMT
+      - Mon, 25 Aug 2025 02:29:19 GMT
       Source-Age:
-      - '80'
+      - '0'
     body:
       encoding: ASCII-8BIT
       base64_string: |
@@ -2366,5 +2366,5 @@ http_interactions:
         Y2hlbWEtdmVyc2lvbjogdjEuMC4wCiAgc3RhbmRhcmRfc3RhdHVzOiBBY3Rp
         dmUKICBzdGFuZGFyZF9tb2RpZmllZDogQXBwcm92ZWQKICBwdWJzdGF0dXM6
         IEFjdGl2ZQogIGhvbGRzdGF0dXM6IFB1Ymxpc2gK
-  recorded_at: Mon, 28 Apr 2025 20:33:32 GMT
+  recorded_at: Mon, 25 Aug 2025 02:24:19 GMT
 recorded_with: VCR 6.3.1

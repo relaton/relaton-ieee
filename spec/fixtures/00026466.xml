@@ -1,11 +1,11 @@
 <bibdata type="standard" schema-version="v1.2.9">
   <title type="main" format="text/plain">An American National Standard IEEE Standard for Mechanical Core Specifications for Microcomputers</title>
   <uri type="src">https://ieeexplore.ieee.org/document/26466</uri>
-  <docidentifier type="IEEE" primary="true">ANSI/IEEE 8</docidentifier>
-  <docidentifier type="IEEE" scope="trademark" primary="true">ANSI/IEEE 8™</docidentifier>
+  <docidentifier type="IEEE" primary="true">ANSI/IEEE Std 8</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">ANSI/IEEE Std 8™</docidentifier>
   <docidentifier type="ISBN">0-7381-4593-9</docidentifier>
   <docidentifier type="DOI">10.1109/IEEESTD.1988.122133</docidentifier>
-  <docnumber>ANSI/IEEE 8</docnumber>
+  <docnumber>ANSI/IEEE Std 8</docnumber>
   <date type="created">
     <on>1988</on>
   </date>

@@ -5,7 +5,7 @@ module RelatonIeee
       attr_reader :number
 
       # @return [String, nil]
-      attr_reader :publisher, :stage, :part, :status, :approval, :edition,
+      attr_reader :publisher, :std, :stage, :part, :status, :approval, :edition,
                   :draft, :rev, :corr, :amd, :redline, :year, :month
 
       #
@@ -15,6 +15,7 @@ module RelatonIeee
       # @param [<Hash>] **args
       # @option args [String] :number
       # @option args [String] :publisher
+      # @option args [Boolean] :std
       # @option args [String] :stage
       # @option args [String] :part
       # @option args [String] :status
@@ -30,6 +31,7 @@ module RelatonIeee
       #
       def initialize(number:, **args) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         @publisher = args[:publisher]
+        @std = args[:std]
         @stage = args[:stage]
         @number = number
         @part = args[:part]
@@ -54,6 +56,7 @@ module RelatonIeee
       #
       def to_s(trademark: false) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         out = number
+        out = "Std #{out}" if std
         out = "#{stage} #{out}" if stage
         out = "#{approval} #{out}" if approval
         out = "#{status} #{out}" if status
