@@ -100,8 +100,10 @@ module RelatonIeee
     # @return [Array<RelatonBib::FormattedString>]
     #
     def parse_abstract
-      @doc.volume.article.articleinfo.abstract.map do |abs|
-        RelatonBib::FormattedString.new(content: abs.value, language: "en", script: "Latn")
+      @doc.volume.article.articleinfo.abstract.each_with_object([]) do |abs, acc|
+        next unless abs.abstract_type == "Standard"
+
+        acc << RelatonBib::FormattedString.new(content: abs.value, language: "en", script: "Latn")
       end
     end
 

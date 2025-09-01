@@ -28,7 +28,7 @@ RSpec.describe RelatonIeee do
   context "get document" do
     it "by refercence with year" do
       VCR.use_cassette "ieee_528_2019" do
-        result = RelatonIeee::IeeeBibliography.get "IEEE 528-2019"
+        result = RelatonIeee::IeeeBibliography.get "IEEE Std 528-2019"
         expect(result).to be_instance_of RelatonIeee::IeeeBibliographicItem
         file = "spec/fixtures/ieee_528_2019.xml"
         xml = result.to_xml(bibdata: true)
@@ -43,8 +43,8 @@ RSpec.describe RelatonIeee do
 
     it "corrigendum" do
       VCR.use_cassette "corrigendum" do
-        result = RelatonIeee::IeeeBibliography.get "IEEE P802.16-2004/D-5/Cor1-2005"
-        expect(result.docidentifier[0].id).to eq "IEEE P802.16-2004/D-5/Cor1-2005"
+        result = RelatonIeee::IeeeBibliography.get "IEEE Std P802.16-2004/D-5/Cor1-2005"
+        expect(result.docidentifier[0].id).to eq "IEEE Std P802.16-2004/D-5/Cor1-2005"
       end
     end
 
@@ -76,7 +76,7 @@ RSpec.describe RelatonIeee do
     it "by reference with Std" do
       VCR.use_cassette "ieee_std_1619_2007" do
         result = RelatonIeee::IeeeBibliography.get "IEEE Std 1619-2007"
-        expect(result.docidentifier[0].id).to eq "IEEE 1619-2007"
+        expect(result.docidentifier[0].id).to eq "IEEE Std 1619-2007"
       end
     end
   end

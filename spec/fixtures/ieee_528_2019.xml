@@ -1,12 +1,12 @@
 <bibdata type="standard" schema-version="v1.2.9">
-  <fetched>2023-05-16</fetched>
+  <fetched>2025-08-31</fetched>
   <title type="main" format="text/plain">IEEE Standard for Inertial Sensor Terminology</title>
   <uri type="src">https://ieeexplore.ieee.org/document/8863799</uri>
-  <docidentifier type="IEEE" primary="true">IEEE 528-2019</docidentifier>
-  <docidentifier type="IEEE" scope="trademark" primary="true">IEEE 528™-2019</docidentifier>
+  <docidentifier type="IEEE" primary="true">IEEE Std 528-2019</docidentifier>
+  <docidentifier type="IEEE" scope="trademark" primary="true">IEEE Std 528™-2019</docidentifier>
   <docidentifier type="ISBN">978-1-5044-5983-9</docidentifier>
   <docidentifier type="DOI">10.1109/IEEESTD.2019.8863799</docidentifier>
-  <docnumber>IEEE 528-2019</docnumber>
+  <docnumber>IEEE Std 528-2019</docnumber>
   <date type="updated">
     <on>2020-06-05</on>
   </date>

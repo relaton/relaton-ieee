@@ -22,9 +22,10 @@ module RelatonIeee
 
     # @param hash [Hash]
     def editorialgroup_hash_to_bib(hash)
-      return unless hash[:editorialgroup]
+      eg = hash.dig(:ext, :editorialgroup) || hash[:editorialgroup]
+      return unless eg
 
-      hash[:editorialgroup] = EditorialGroup.new(**hash[:editorialgroup])
+      hash[:editorialgroup] = EditorialGroup.new(**eg)
     end
 
     def ext_hash_to_bib(hash)

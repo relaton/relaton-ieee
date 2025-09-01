@@ -12,9 +12,9 @@ module RelatonIeee
       # @return [RelatonIeee::IeeeBibliographicItem]
       #
       def search(code) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-        ref = code.sub(/Std\s/i, "") # .gsub(/[\s,:\/]/, "_").squeeze("_").upcase
+        # ref = code.sub(/Std\s/i, "") # .gsub(/[\s,:\/]/, "_").squeeze("_").upcase
         index = Relaton::Index.find_or_create :ieee, url: "#{GH_URL}index-v1.zip", file: INDEX_FILE
-        row = index.search(ref).min_by { |r| r[:id] }
+        row = index.search(code).min_by { |r| r[:id] }
         return unless row
 
         resp = Faraday.get "#{GH_URL}#{row[:file]}"
