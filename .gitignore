@@ -14,3 +14,4 @@
 .vscode/
 ieee-rawbib
 Gemfile.lock
+.claude/settings.local.json

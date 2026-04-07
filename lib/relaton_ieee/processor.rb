@@ -41,7 +41,8 @@ module RelatonIeee
     # @param hash [Hash]
     # @return [RelatonIeee::IeeeBibliographicItem]
     def hash_to_bib(hash)
-      ::RelatonIeee::IeeeBibliographicItem.new(**hash)
+      item_hash = HashConverter.hash_to_bib hash
+      ::RelatonIeee::IeeeBibliographicItem.new(**item_hash)
     end
 
     # Returns hash of XML grammar
