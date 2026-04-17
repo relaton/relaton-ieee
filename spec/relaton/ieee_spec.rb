@@ -65,12 +65,10 @@ RSpec.describe Relaton::Ieee do
     # end
 
     it "by reference and wrong year" do
-      VCR.use_cassette "ieee_528" do
-        expect do
-          result = Relaton::Ieee::Bibliography.get "IEEE 528-2018"
-          expect(result).to be_nil
-        end.to output(/\[relaton-ieee\] INFO: \(IEEE 528-2018\) Not found\./).to_stderr_from_any_process
-      end
+      expect do
+        result = Relaton::Ieee::Bibliography.get "IEEE 528-2018"
+        expect(result).to be_nil
+      end.to output(/\[relaton-ieee\] INFO: \(IEEE 528-2018\) Not found\./).to_stderr_from_any_process
     end
 
     it "by reference with Std" do
