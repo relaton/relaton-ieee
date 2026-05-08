@@ -13,15 +13,16 @@ RSpec.describe Relaton::Ieee::DataFetcher do
     let(:df) { described_class.new "data", "yaml" }
 
     it "warn if error" do
-      files = Dir["spec/fixtures/rawbib/**/*.{xml,zip}"]
-      expect(Dir).to receive(:[]).with("ieee-rawbib/**/*.{xml,zip}").and_return files
-      expect(df).to receive(:fetch_doc).and_raise(StandardError).twice
-      expect { df.fetch }.to output(/File: spec\/fixtures\/rawbib/).to_stderr_from_any_process
+      allow(File).to receive(:read).and_raise(StandardError, "boom")
+      expect do
+        df.send(:parse_entry, 0, "spec/fixtures/rawbib/file.xml")
+      end.to output(/File: spec\/fixtures\/rawbib\/file\.xml/).to_stderr_from_any_process
     end
 
     it "handle empty file" do
+      allow(File).to receive(:read).with("file.xml", encoding: "UTF-8").and_return ""
       expect do
-        expect(df.send(:fetch_doc, "", "file.xml")).to be_nil
+        expect(df.send(:parse_entry, 0, "file.xml")).to be_nil
       end.to output(/WARN: Empty file: `file\.xml`/).to_stderr_from_any_process
     end
 
@@ -45,14 +46,11 @@ RSpec.describe Relaton::Ieee::DataFetcher do
       end
 
       before(:each) do
-        parser = double "parser"
-        expect(Relaton::Ieee::IdamsParser).to receive(:new).and_return parser
-        expect(parser).to receive(:parse).and_return bib
         df.backrefs["4321"] = "IEEE 5678"
       end
 
       it "warn" do
-        doc = <<~XML
+        xml = <<~XML
           <publication>
             <title>Title</title>
             <publicationinfo>
@@ -62,14 +60,15 @@ RSpec.describe Relaton::Ieee::DataFetcher do
             </publicationinfo>
           </publication>
         XML
+        doc = ::Ieee::Idams::Publication.from_xml(xml)
         bib.instance_variable_set :@docnumber, "3412"
-        expect { df.send(:fetch_doc, doc, "file.xml") }.to output(
+        expect { df.send(:commit_doc, doc, bib, "file.xml") }.to output(
           /WARN: Document exists ID: `IEEE 5678` AMSID: `1234` source: `file\.xml`\. Other AMSID: `4321`/,
         ).to_stderr_from_any_process
       end
 
       it "rewrite file if PubID includes a docnumber" do
-        doc = <<~XML
+        xml = <<~XML
           <publication>
             <title>IEEE 5678 Title</title>
             <publicationinfo>
@@ -79,8 +78,9 @@ RSpec.describe Relaton::Ieee::DataFetcher do
             </publicationinfo>
           </publication>
         XML
+        doc = ::Ieee::Idams::Publication.from_xml(xml)
         expect(File).to receive(:write).with("data/5678.yaml", kind_of(String), encoding: "UTF-8")
-        expect { df.send(:fetch_doc, doc, "file.xml") }.to output(
+        expect { df.send(:commit_doc, doc, bib, "file.xml") }.to output(
           /WARN: Document exists ID: `IEEE 5678` AMSID: `1234` source: `file\.xml`\. Other AMSID: `4321`/,
         ).to_stderr_from_any_process
       end
@@ -167,13 +167,14 @@ RSpec.describe Relaton::Ieee::DataFetcher do
           <normtitle><![CDATA[Title]]></normtitle>
         </publication>
       XML
+      allow(File).to receive(:read).with("filename.xml", encoding: "UTF-8").and_return xml
       bib = double "bib", docnumber: nil
       dp = double "dp", parse: bib
       expect(Relaton::Ieee::IdamsParser).to receive(:new).with(kind_of(::Ieee::Idams::PubModel), df, kind_of(Hash)).and_return dp
       expect do
-        expect(df.send(:fetch_doc, xml, "filename")).to be_nil
+        expect(df.send(:parse_entry, 0, "filename.xml")).to be_nil
       end.to output(
-        "[relaton-ieee] WARN: PubID parse error. Normtitle: `Title`, file: `filename`\n"
+        "[relaton-ieee] WARN: PubID parse error. Normtitle: `Title`, file: `filename.xml`\n"
       ).to_stderr_from_any_process
     end
 

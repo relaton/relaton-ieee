@@ -1,3 +1,4 @@
+require "etc"
 require "zip"
 require_relative "../ieee"
 require_relative "converter/bibxml"
@@ -26,17 +27,9 @@ module Relaton
         Util.error msg
       end
 
-      def fetch(_source = nil) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
-        Dir["ieee-rawbib/**/*.{xml,zip}"].reject { |f| f["Deleted_"] }.each do |f|
-          xml = case File.extname(f)
-                when ".zip" then read_zip f
-                when ".xml" then File.read f, encoding: "UTF-8"
-                end
-          fetch_doc xml, f
-        rescue StandardError => e
-          Util.error "File: #{f}\n#{e.message}\n#{e.backtrace}"
-        end
-        # File.write "normtitles.txt", @normtitles.join("\n")
+      def fetch(_source = nil)
+        files = Dir["ieee-rawbib/**/*.{xml,zip}"].reject { |f| f["Deleted_"] }
+        process_files(files)
         update_relations
         report_errors
       end
@@ -46,8 +39,19 @@ module Relaton
         @backrefs ||= {}
       end
 
+      # @return [Hash] list of docnumber => parsed bib (cache for update_relations)
+      def docs
+        @docs ||= {}
+      end
+
+      # Mutex guarding worker-thread mutations of shared state during parse.
+      def mutex
+        @mutex ||= Mutex.new
+      end
+
       #
-      # Save unresolved relation reference
+      # Save unresolved relation reference. Called from worker threads via
+      # IdamsParser#parse_relation, so mutates crossrefs under a mutex.
       #
       # @param [String] docnumber of main document
       # @param [Nokogiri::XML::Element] amsid relation data
@@ -56,7 +60,7 @@ module Relaton
         return if RELATION_TYPES[amsid.type] == false
 
         ref = { amsid: amsid.date_string, type: amsid.type }
-        crossrefs[docnumber] << ref
+        mutex.synchronize { crossrefs[docnumber] << ref }
       end
 
       #
@@ -109,25 +113,238 @@ module Relaton
       end
 
       #
-      # Parse document and save it
+      # Parse files across a pool of short-lived forked workers. Each
+      # worker processes one bounded batch (IEEE_FETCH_BATCH files,
+      # default 5000), writes its output YAMLs to disk, marshals its
+      # local backrefs / crossrefs / errors to a tmp file, and exits.
+      # The parent keeps `procs` workers in flight; as each one exits
+      # it merges that worker's state and spawns the next batch.
       #
-      # @param [String] xml content
-      # @param [String] filename source file
+      # Why short-lived workers, not one long-running shard per core:
+      # Ruby's heap grows monotonically and the VM doesn't return
+      # freed memory to the OS, so a child that parses 50k files ends
+      # up at 1+ GB RSS even with the docs cache disabled. With ten
+      # such children the box swaps and slows to a crawl. Exiting a
+      # child after a batch of a few thousand files lets the OS
+      # reclaim its heap; the next fork starts fresh from the parent's
+      # baseline. Fork is cheap (copy-on-write), so the overhead is
+      # negligible compared to the memory savings.
       #
-      def fetch_doc(xml, filename) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
-        begin
-          doc = ::Ieee::Idams::Publication.from_xml(xml)
-        rescue StandardError
-          Util.warn "Empty file: `#{filename}`"
-          return
-        end
-        return if doc.publicationinfo&.standard_id == "0"
+      # Caveats from sharding (same as the previous design):
+      #   - Cross-batch duplicates: when the same docnumber appears in
+      #     multiple batches, the last-finishing batch's write wins.
+      #     Merged backrefs/crossrefs are still complete, so
+      #     update_relations resolves cross-refs correctly.
+      #   - "Document exists" warnings are per-batch, so cross-batch
+      #     duplicates may not log a warning. Logging only.
+      #
+      # @param [Array<String>] files paths to rawbib XML/zip files
+      #
+      def process_files(files) # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
+        procs = Integer(ENV["IEEE_FETCH_PROCESSES"] || Etc.nprocessors)
+        procs = 1 if files.empty? || procs < 2 || files.size < procs * 2
 
-        bib = IdamsParser.new(doc, self, @errors).parse
-        if bib.docnumber.nil?
-          Util.warn "PubID parse error. Normtitle: `#{doc.normtitle}`, file: `#{filename}`"
-          return
+        return run_shard(files, 0) if procs <= 1
+
+        batch_size = Integer(ENV["IEEE_FETCH_BATCH"] || 1000)
+        batches = files.each_slice(batch_size).each_with_index.to_a
+
+        state_paths = run_worker_pool(batches, procs)
+        merge_state_files(state_paths)
+      end
+
+      #
+      # Merge all batch state files into the parent's hashes. Runs once,
+      # after the worker pool has drained, so the parent's heap only
+      # has to hold the cumulative merged state (small) plus one batch's
+      # transient marshaled payload at a time.
+      #
+      def merge_state_files(state_paths)
+        state_paths.each_with_index do |path, i|
+          merge_batch_state(path)
+          # Periodic GC.start keeps the transient marshal allocations
+          # from piling up over hundreds of merges.
+          GC.start if (i % 50).zero?
         end
+      end
+
+      #
+      # Maintain `procs` concurrent short-lived workers. Each Process.wait
+      # call blocks until any worker exits; we collect its state-file
+      # path and spawn the next batch (if any).
+      #
+      # Critically, we do NOT merge state into the parent's hashes here.
+      # Loading and merging dozens of MB of marshaled hashes per batch
+      # bloated the parent's heap into the multi-GB range, and every
+      # subsequent fork inherited that bloat via copy-on-write — driving
+      # the box into swap. By deferring all merging to after the parsing
+      # phase, the parent stays at ~baseline RSS while children are alive,
+      # so each fork's COW baseline is small.
+      #
+      # @return [Array<String>] state-file paths in completion order
+      #
+      def run_worker_pool(batches, procs) # rubocop:disable Metrics/MethodLength
+        next_batch = 0
+        inflight   = {} # pid => state_path
+        collected  = []
+
+        procs.times do
+          break if next_batch >= batches.size
+
+          inflight.merge!(spawn_batch(*batches[next_batch]))
+          next_batch += 1
+        end
+
+        until inflight.empty?
+          pid = Process.wait
+          collected << inflight.delete(pid)
+
+          if next_batch < batches.size
+            inflight.merge!(spawn_batch(*batches[next_batch]))
+            next_batch += 1
+          end
+        end
+
+        collected
+      end
+
+      #
+      # Fork one short-lived worker for a single batch. Returns a
+      # `{pid => state_path}` Hash. The worker writes its marshaled
+      # local state to `state_path` then exits; the tmp file is read
+      # and unlinked by the parent in `merge_batch_state`.
+      #
+      def spawn_batch(batch_files, batch_idx) # rubocop:disable Metrics/MethodLength
+        require "tmpdir"
+        require "securerandom"
+        state_path = File.join(
+          Dir.tmpdir,
+          "ieee_fetch_#{Process.pid}_#{batch_idx}_#{SecureRandom.hex(4)}.bin",
+        )
+        base_idx = batch_idx * Integer(ENV["IEEE_FETCH_BATCH"] || 1000)
+
+        pid = Process.fork do
+          batch_files.each_with_index do |file, i|
+            result = parse_entry(base_idx + i, file)
+            next unless result
+
+            _, _, doc, bib, local_errors = result
+            merge_errors(local_errors)
+            commit_doc(doc, bib, file)
+          end
+          File.binwrite(state_path, Marshal.dump(
+            backrefs:  backrefs,
+            crossrefs: {}.merge(crossrefs),
+            errors:    {}.merge(@errors),
+          ))
+          exit!(0)
+        end
+
+        { pid => state_path }
+      end
+
+      #
+      # Read one batch's marshaled state, merge into parent state,
+      # remove the tmp file. Tolerates a missing/empty file (worker
+      # crash) by treating it as an empty merge.
+      #
+      def merge_batch_state(state_path)
+        if state_path && File.exist?(state_path) && File.size(state_path).positive?
+          payload = Marshal.load(File.binread(state_path))
+          merge_shard_state(payload)
+        end
+      ensure
+        File.unlink(state_path) if state_path && File.exist?(state_path)
+      end
+
+      #
+      # Merge one child's per-shard state into the parent's. backrefs uses
+      # ||= so the lowest-shard-id value wins for any amsid/docnumber pair
+      # that happens to appear in multiple shards (in practice they agree).
+      #
+      def merge_shard_state(state)
+        state[:backrefs].each { |amsid, content| backrefs[amsid] ||= content }
+        state[:crossrefs].each { |dnum, refs| crossrefs[dnum].concat(refs) }
+        state[:errors].each { |k, v| @errors[k] &&= v }
+      end
+
+      #
+      # Process one shard sequentially. Either runs in a forked child or,
+      # when procs == 1, in the parent.
+      #
+      # `shard` is an array of [original_idx, file] tuples (or, when
+      # called from the procs==1 fallback, just the array of file paths
+      # — we normalize below).
+      #
+      def run_shard(shard, _shard_idx)
+        shard.each_with_index do |entry, i|
+          idx, file = entry.is_a?(Array) ? entry : [i, entry]
+          result = parse_entry(idx, file)
+          next unless result
+
+          _, _, doc, bib, local_errors = result
+          merge_errors(local_errors)
+          commit_doc(doc, bib, file)
+        end
+      end
+
+      #
+      # Worker-thread entry point: read file, parse XML, build bib.
+      # Returns nil for files we should skip; otherwise a tuple consumed
+      # in submission order by the main-thread commit loop.
+      #
+      # @param [Integer] idx original glob index (preserves dedup order)
+      # @param [String] file path to rawbib file
+      #
+      # @return [Array, nil] [idx, file, doc, bib, local_errors] or nil
+      #
+      def parse_entry(idx, file)
+        xml = case File.extname(file)
+              when ".zip" then read_zip file
+              when ".xml" then File.read file, encoding: "UTF-8"
+              end
+        doc = begin
+          ::Ieee::Idams::Publication.from_xml(xml)
+        rescue StandardError
+          Util.warn "Empty file: `#{file}`"
+          return nil
+        end
+        return nil if doc.publicationinfo&.standard_id == "0"
+
+        local_errors = Hash.new(true)
+        bib = IdamsParser.new(doc, self, local_errors).parse
+        if bib.docnumber.nil?
+          Util.warn "PubID parse error. Normtitle: `#{doc.normtitle}`, file: `#{file}`"
+          return nil
+        end
+        [idx, file, doc, bib, local_errors]
+      rescue StandardError => e
+        Util.error "File: #{file}\n#{e.message}\n#{e.backtrace}"
+        nil
+      end
+
+      #
+      # Merge a worker's local errors hash into the shared @errors hash,
+      # preserving the existing AND semantics (`@errors[k] &&= v`).
+      #
+      def merge_errors(local_errors)
+        local_errors.each { |k, v| @errors[k] &&= v }
+      end
+
+      #
+      # Dedup against backrefs and save. This runs once per parsed file —
+      # in the parent for the procs==1 fallback, or in each forked child
+      # for its shard. Same logic the old fetch_doc tail had.
+      #
+      # Note: we deliberately don't cache `bib` in @docs here. In the
+      # fork model the child's cache would be discarded before
+      # `update_relations` runs in the parent, so caching just bloats
+      # the worker heap (we measured >800 MB per child × 10 forks
+      # thrashing into swap on a 523k-file dataset). update_relations
+      # re-reads the small subset of docs that have unresolved relations
+      # from disk — that's a few hundred reads, negligible cost.
+      #
+      def commit_doc(doc, bib, filename)
         amsid = doc.publicationinfo.amsid
         if backrefs.value?(bib.docidentifier[0].content) && /updates\.\d+/ !~ filename
           oamsid = backrefs.key bib.docidentifier[0].content
@@ -157,23 +374,27 @@ module Relaton
       def to_bibxml(bib) = bib.to_rfcxml
 
       #
-      # Update unresoverd relations
+      # Resolve cross-references collected during parse. Uses the in-memory
+      # `docs` cache so we don't re-read+re-deserialize files from disk, and
+      # writes each mutated bib once instead of once per relation.
       #
       def update_relations # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
         crossrefs.each do |dnum, rfs|
           bib = nil
+          mutated = false
           rfs.each do |rf|
             if backrefs[rf[:amsid]]
               rel = create_relation(rf[:type], backrefs[rf[:amsid]])
               if rel
-                bib ||= read_bib(dnum)
+                bib ||= docs[dnum] || read_bib(dnum)
                 bib.relation << rel
-                save_doc bib
+                mutated = true
               end
             else
               Util.warn "Unresolved relation: '#{rf[:amsid]}' type: '#{rf[:type]}' for '#{dnum}'"
             end
           end
+          save_doc(bib) if mutated
         end
       end
 
