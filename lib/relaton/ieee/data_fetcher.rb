@@ -29,6 +29,7 @@ module Relaton
 
       def fetch(_source = nil)
         files = Dir["ieee-rawbib/**/*.{xml,zip}"].reject { |f| f["Deleted_"] }
+        files = prefilter_winners(files) unless ENV["IEEE_FETCH_PREFILTER"] == "0"
         process_files(files)
         update_relations
         report_errors
@@ -118,6 +119,151 @@ module Relaton
           entry = zf.glob("**/*.xml").first
           entry.get_input_stream.read
         end
+      end
+
+      #
+      # Pre-filter the input file list down to the subset that actually
+      # has to be fully parsed.
+      #
+      # The IEEE rawbib dataset has ~50× duplication: every docnumber
+      # appears in `cache/` plus most `updates.YYYYMMDD/` folders. The
+      # original semantic is "latest update wins on disk", so for any
+      # docnumber that has at least one updates-folder file, the cache
+      # file's parse result is just thrown away. Pre-filter avoids
+      # parsing those throwaway files entirely.
+      #
+      # The cheap path here only has to extract three small XML elements
+      # (normtitle, stdnumber, standard_id) per file — done with
+      # regex on the raw XML so we skip lutaml-model's heavy DOM-to-
+      # object construction (which is what dominates fetch time).
+      #
+      # Selection rules:
+      #   - For each docnumber with any updates-folder entry: keep only
+      #     the highest-glob-idx updates-folder file.
+      #   - For docnumbers with cache-folder entries only: keep all
+      #     of them (commit_doc's matches-stdnumber dedup handles them).
+      #   - Files where the cheap parse couldn't compute a docnumber
+      #     are kept as-is — the full parse will surface any real error.
+      #
+      # Disable with IEEE_FETCH_PREFILTER=0.
+      #
+      def prefilter_winners(files)
+        threshold = Integer(ENV["IEEE_FETCH_PREFILTER_MIN"] || 200)
+        return files if files.size < threshold
+
+        procs = Integer(ENV["IEEE_FETCH_PROCESSES"] || Etc.nprocessors)
+        index = procs <= 1 ? prefilter_serial(files) : prefilter_parallel(files, procs)
+        select_prefilter_winners(index, files.size)
+      end
+
+      def prefilter_serial(files)
+        files.each_with_index.map { |f, i| extract_index_entry(i, f) }.compact
+      end
+
+      def prefilter_parallel(files, procs) # rubocop:disable Metrics/MethodLength
+        batch_size = Integer(ENV["IEEE_PREFILTER_BATCH"] || 5000)
+        batches = files.each_slice(batch_size).each_with_index.to_a
+
+        next_batch = 0
+        inflight   = {}
+        collected  = []
+
+        procs.times do
+          break if next_batch >= batches.size
+
+          inflight.merge!(spawn_prefilter_batch(*batches[next_batch], batch_size))
+          next_batch += 1
+        end
+
+        until inflight.empty?
+          pid = Process.wait
+          collected << inflight.delete(pid)
+
+          if next_batch < batches.size
+            inflight.merge!(spawn_prefilter_batch(*batches[next_batch], batch_size))
+            next_batch += 1
+          end
+        end
+
+        index = []
+        collected.each do |path|
+          next unless path && File.exist?(path) && File.size(path).positive?
+
+          index.concat(Marshal.load(File.binread(path)))
+          File.unlink(path)
+        end
+        index
+      end
+
+      def spawn_prefilter_batch(batch_files, batch_idx, batch_size)
+        require "tmpdir"
+        require "securerandom"
+        state_path = File.join(
+          Dir.tmpdir,
+          "ieee_prefilter_#{Process.pid}_#{batch_idx}_#{SecureRandom.hex(4)}.bin",
+        )
+        base_idx = batch_idx * batch_size
+
+        pid = Process.fork do
+          entries = batch_files.each_with_index.map do |file, i|
+            extract_index_entry(base_idx + i, file)
+          end.compact
+          File.binwrite(state_path, Marshal.dump(entries))
+          exit!(0)
+        end
+        { pid => state_path }
+      end
+
+      #
+      # Cheap-parse one file: read XML, regex-extract three fields,
+      # compute docnumber via the existing RawbibIdParser. Returns
+      # `[glob_idx, file, docnumber_or_nil, in_updates_folder?]`.
+      #
+      def extract_index_entry(idx, file)
+        xml = case File.extname(file)
+              when ".zip" then read_zip(file)
+              when ".xml" then File.read(file, encoding: "UTF-8")
+              end
+        return nil unless xml
+        return nil if cheap_extract_field(xml, "standard_id") == "0"
+
+        normtitle = cheap_extract_field(xml, "normtitle")
+        stdnumber = cheap_extract_field(xml, "stdnumber")
+        docnumber = nil
+        if normtitle && stdnumber
+          pubid = RawbibIdParser.parse(normtitle, stdnumber)
+          docnumber = pubid&.to_id
+        end
+        [idx, file, docnumber, file.include?("/updates.")]
+      rescue StandardError
+        # Cheap parse couldn't handle this file — keep it; full parse will
+        # either succeed or surface the real error.
+        [idx, file, nil, file.include?("/updates.")]
+      end
+
+      def cheap_extract_field(xml, tag)
+        m = xml.match(%r{<#{tag}[^>]*?>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?</#{tag}>}m)
+        m && m[1].strip
+      end
+
+      def select_prefilter_winners(index, total)
+        unknown = index.select { |e| e[2].nil? }
+        by_doc  = index.reject { |e| e[2].nil? }.group_by { |e| e[2] }
+
+        selected = []
+        by_doc.each_value do |entries|
+          updates = entries.select { |e| e[3] }
+          if updates.any?
+            selected << updates.max_by { |e| e[0] }
+          else
+            selected.concat(entries)
+          end
+        end
+
+        kept = (selected + unknown).sort_by { |e| e[0] }.map { |e| e[1] }
+        Util.warn "Prefilter: #{total} input files -> #{kept.size} winners " \
+                  "(#{(100.0 * kept.size / total).round(1)}%)"
+        kept
       end
 
       #
