@@ -44,6 +44,14 @@ module Relaton
         @docs ||= {}
       end
 
+      # @return [Hash] docnumber => max global glob-index whose write was
+      # accepted by commit_doc. Populated only when running with parallel
+      # workers (writes are staged to per-glob-index suffixed paths and
+      # reconciled into the final filename after the parsing phase).
+      def saved_writes
+        @saved_writes ||= {}
+      end
+
       # Mutex guarding worker-thread mutations of shared state during parse.
       def mutex
         @mutex ||= Mutex.new
@@ -151,6 +159,33 @@ module Relaton
 
         state_paths = run_worker_pool(batches, procs)
         merge_state_files(state_paths)
+        reconcile_staged_outputs
+      end
+
+      #
+      # Promote the highest-glob-index staged write per docnumber to its
+      # final on-disk filename, then delete any leftover staged files.
+      # Restores exact "latest update wins" semantics across batches:
+      # without this pass, a slow batch finishing late could overwrite a
+      # newer update that an earlier-completing batch had already saved.
+      #
+      def reconcile_staged_outputs
+        return if saved_writes.empty?
+
+        saved_writes.each do |docnumber, max_idx|
+          final  = output_file(docnumber)
+          winner = "#{final}.#{max_idx}"
+          File.rename(winner, final) if File.exist?(winner)
+        end
+
+        # Stragglers: any remaining staged files (losing duplicates,
+        # or bib filenames that didn't end up in saved_writes due to a
+        # crash) get cleaned up so they don't pollute `data/`.
+        Dir.glob(File.join(@output, "*.#{@ext}.*")).each do |f|
+          File.unlink(f)
+        rescue StandardError
+          # ignore — best-effort cleanup
+        end
       end
 
       #
@@ -225,17 +260,19 @@ module Relaton
 
         pid = Process.fork do
           batch_files.each_with_index do |file, i|
-            result = parse_entry(base_idx + i, file)
+            glob_idx = base_idx + i
+            result = parse_entry(glob_idx, file)
             next unless result
 
             _, _, doc, bib, local_errors = result
             merge_errors(local_errors)
-            commit_doc(doc, bib, file)
+            commit_doc(doc, bib, file, glob_idx)
           end
           File.binwrite(state_path, Marshal.dump(
-            backrefs:  backrefs,
-            crossrefs: {}.merge(crossrefs),
-            errors:    {}.merge(@errors),
+            backrefs:     backrefs,
+            crossrefs:    {}.merge(crossrefs),
+            errors:       {}.merge(@errors),
+            saved_writes: saved_writes,
           ))
           exit!(0)
         end
@@ -261,11 +298,18 @@ module Relaton
       # Merge one child's per-shard state into the parent's. backrefs uses
       # ||= so the lowest-shard-id value wins for any amsid/docnumber pair
       # that happens to appear in multiple shards (in practice they agree).
+      # `saved_writes` tracks the highest glob-index at which any worker
+      # saved a doc, so the parent can later rename the winning staged
+      # file to its final name.
       #
       def merge_shard_state(state)
         state[:backrefs].each { |amsid, content| backrefs[amsid] ||= content }
         state[:crossrefs].each { |dnum, refs| crossrefs[dnum].concat(refs) }
         state[:errors].each { |k, v| @errors[k] &&= v }
+        (state[:saved_writes] || {}).each do |dnum, idx|
+          prev = saved_writes[dnum]
+          saved_writes[dnum] = idx if prev.nil? || idx > prev
+        end
       end
 
       #
@@ -334,39 +378,61 @@ module Relaton
       #
       # Dedup against backrefs and save. This runs once per parsed file —
       # in the parent for the procs==1 fallback, or in each forked child
-      # for its shard. Same logic the old fetch_doc tail had.
+      # for its shard. Same logic the old fetch_doc tail had, plus
+      # optional staged-output bookkeeping when `glob_idx` is provided.
       #
-      # Note: we deliberately don't cache `bib` in @docs here. In the
-      # fork model the child's cache would be discarded before
-      # `update_relations` runs in the parent, so caching just bloats
-      # the worker heap (we measured >800 MB per child × 10 forks
-      # thrashing into swap on a 523k-file dataset). update_relations
-      # re-reads the small subset of docs that have unresolved relations
-      # from disk — that's a few hundred reads, negligible cost.
+      # When `glob_idx` is given (parallel mode), save_doc writes to a
+      # per-glob-index suffixed path; the parent reconciles after the
+      # parsing phase and renames the highest-glob-index winner per
+      # docnumber to the final filename. This preserves the original
+      # "latest update wins on disk" semantic across batch boundaries
+      # — without it, a slow batch finishing late could overwrite a
+      # newer update written by an earlier-completing batch.
       #
-      def commit_doc(doc, bib, filename)
+      def commit_doc(doc, bib, filename, glob_idx = nil)
         amsid = doc.publicationinfo.amsid
         if backrefs.value?(bib.docidentifier[0].content) && /updates\.\d+/ !~ filename
           oamsid = backrefs.key bib.docidentifier[0].content
           Util.warn "Document exists ID: `#{bib.docidentifier[0].content}` AMSID: " \
               "`#{amsid}` source: `#{filename}`. Other AMSID: `#{oamsid}`"
           if bib.docidentifier.find(&:primary).content.include?(doc.publicationinfo.stdnumber)
-            save_doc bib # rewrite file if the PubID matches to the stdnumber
+            save_doc(bib, glob_idx) # rewrite file if the PubID matches to the stdnumber
             backrefs[amsid] = bib.docidentifier[0].content
+            track_save(bib.docnumber, glob_idx)
           end
         else
-          save_doc bib
+          save_doc(bib, glob_idx)
           backrefs[amsid] = bib.docidentifier[0].content
+          track_save(bib.docnumber, glob_idx)
         end
       end
 
       #
-      # Save document to file
+      # Record that we wrote a staged copy of `docnumber` at this
+      # `glob_idx`. The parent later picks the highest tracked idx
+      # per docnumber as the surviving on-disk version.
+      #
+      def track_save(docnumber, glob_idx)
+        return unless glob_idx
+
+        prev = saved_writes[docnumber]
+        saved_writes[docnumber] = glob_idx if prev.nil? || glob_idx > prev
+      end
+
+      #
+      # Save document to file. When `glob_idx` is provided (parallel
+      # mode), writes to a per-glob-index suffixed staging path so
+      # concurrent workers can't clobber each other's files; the parent
+      # reconciles after parsing. With no glob_idx, writes the final
+      # filename directly (sequential mode and update_relations).
       #
       # @param [RelatonIeee::IeeeBibliographicItem] bib
+      # @param [Integer, nil] glob_idx position in the original file glob
       #
-      def save_doc(bib)
-        File.write output_file(bib.docnumber), serialize(bib), encoding: "UTF-8"
+      def save_doc(bib, glob_idx = nil)
+        path = output_file(bib.docnumber)
+        path = "#{path}.#{glob_idx}" if glob_idx
+        File.write path, serialize(bib), encoding: "UTF-8"
       end
 
       def to_yaml(bib) = bib.to_yaml
