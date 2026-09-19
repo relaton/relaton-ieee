@@ -38,5 +38,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "mini_portile2", "~> 2.8.0"
   spec.add_dependency "relaton-bib", "~> 1.20.0"
   spec.add_dependency "relaton-index", "~> 0.2.0"
-  spec.add_dependency "rubyzip", "~> 2.3.0"
+  spec.add_dependency "rubyzip", ">= 2.3", "< 4"
 end
