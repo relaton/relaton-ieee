@@ -43,8 +43,8 @@ RSpec.describe Relaton::Ieee do
 
     it "corrigendum" do
       VCR.use_cassette "corrigendum" do
-        result = Relaton::Ieee::Bibliography.get "IEEE Std P802.16-2004/D-5/Cor1-2005"
-        expect(result.docidentifier[0].content).to eq "IEEE Std P802.16-2004/D-5/Cor1-2005"
+        result = Relaton::Ieee::Bibliography.get "IEEE P802.16/D5/Cor. 1-2005"
+        expect(result.docidentifier[0].content).to eq "IEEE P802.16/D5/Cor. 1-2005"
       end
     end
 
