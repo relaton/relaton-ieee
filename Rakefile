@@ -14,15 +14,15 @@ namespace :spec do
     url = "https://raw.githubusercontent.com/relaton/relaton-data-ieee/v2/index-v1.zip"
     dest = File.join(__dir__, "spec", "fixtures", "index-v1.zip")
 
-    puts "Downloading \#{url} ..."
+    puts "Downloading #{url} ..."
     uri = URI.parse(url)
     response = Net::HTTP.get_response(uri)
 
     if response.is_a?(Net::HTTPSuccess)
       File.binwrite(dest, response.body)
-      puts "Updated \#{dest} (\#{response.body.bytesize} bytes)"
+      puts "Updated #{dest} (#{response.body.bytesize} bytes)"
     else
-      abort "Failed to download: HTTP \#{response.code}"
+      abort "Failed to download: HTTP #{response.code}"
     end
   end
 end
