@@ -32,9 +32,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "faraday", "~> 2.7.0"
-  spec.add_dependency "ieee-idams", "~> 0.2.14"
+  spec.add_dependency "ieee-idams", "~> 0.3"
   # ieee-idams 0.2.x calls Lutaml::Model::XmlAdapter, which was removed in lutaml-model 0.8.
-  spec.add_dependency "lutaml-model", "~> 0.7.0"
+  spec.add_dependency "lutaml-model", "~> 0.8"
   spec.add_dependency "mini_portile2", "~> 2.8.0"
   spec.add_dependency "relaton-bib", "~> 1.20.0"
   spec.add_dependency "relaton-index", "~> 0.2.0"
