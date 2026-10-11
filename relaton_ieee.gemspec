@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
   # ieee-idams 0.2.x calls Lutaml::Model::XmlAdapter, which was removed in lutaml-model 0.8.
   spec.add_dependency "lutaml-model", "~> 0.7.0"
   spec.add_dependency "mini_portile2", "~> 2.8.0"
-  spec.add_dependency "relaton-bib", "~> 1.20.0"
+  spec.add_dependency "relaton-bib", "2.2.0.pre.alpha.1"
   spec.add_dependency "relaton-index", "~> 0.2.0"
   spec.add_dependency "rubyzip", "~> 3.7"
 end
